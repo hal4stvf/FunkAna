@@ -55,6 +55,7 @@
 
 \theoremstyle{myStyle}
 \newtheorem{bem}[thm]{Bemerkung}
+\newtheorem*{bem*}{Bemerkung}
 \newtheorem*{mbem*}{Eigene Bemerkung}
 
 %\renewcommand\thechapter{\Roman{chapter}}
@@ -108,7 +109,7 @@
 	}
 } %sup_EK für die Operatornorm bzw mit Argumet auch Rand oder Abschluss von EK möglich
 \newcommand{\disp}{\displaystyle}
-\newcommand{\qmarks}[1]{"#1"}
+\newcommand{\qmarks}[1]{#1}
 %\newcommand{\qmarks}[1]{$"{}$ #1 $"${}}
 \newcommand{\afs}{"{}}
 \newcommand{\TODO}{\text{$\mathbb{TODO}$}}
@@ -120,7 +121,7 @@
 
 \newcommand{\set}[1]{\{#1\}}
 \newcommand{\fop}[1]{\langle #1 \rangle}
-
+\newcommand{\spcm}[1][-0.8]{\vspace{#1 em}}
 %Commands für tikz:
 \newcommand*{\rechterWinkel}[3]{% #1 = point, #2 = start angle, #3 = radius
 \draw[shift={(#2:#3)}] (#1) arc[start angle=#2, delta angle=90, radius = #3];
@@ -224,23 +225,27 @@ Eine Norm efüllt zusätzlich noch die Bedingung, dass sie nur dann verschwindet
 %Definition linearer Operator
 	\begin{definition}[linearer Operator]
 		Seien $X,Y\; \K-$Vektorräume. Eine Abbildung $T:X\rightarrow Y$ heißt \textit{linearer Operator} wenn 
-		$$T(\lambda x+\mu y) = \lambda T(x) + \mu T(y)\;\forall \lambda,\mu \in \K,\,x,y\in X$$ 
-		wir schreiben $Tx$ statt $T(x)$.\\
+		$$T(\lambda x+\mu y) = \lambda T(x) + \mu T(y)\quad \forall \lambda,\mu \in \K,\,x,y\in X$$ 
+		wir schreiben auch $Tx$ statt $T(x)$.\\
 		Wenn $Y=\K$ dann heißt ein linearer Operator $T:X\rightarrow \K$\textit{ Funktional}.\\
-		Wenn $X,Y$ normierte $\K-$Vektorräume sind, heißt ein linearer Operator $T$ \textit{beschränkt}, wenn $T(U_1(0)) \subseteq Y$ beschränkt ist. 
-		$(\Leftrightarrow \exists M \in \pR$, so dass $\norm{Tx}_Y \leq M$ $\forall x\in X$ mit $\norm{x}_X < 1$)
+		Wenn $X,Y$ normierte $\K-$Vektorräume sind, heißt ein linearer Operator $T$ \textit{beschränkt}, wenn $T(U_1(0)) \subseteq Y$ beschränkt ist. In Quantoren lautet diese Aussage
+			$$ \exists M \geq 0, \text{ so dass } \forall x\in X :\; \norm{Tx}_Y \leq M \text{ mit } \norm{x}_X < 1$$
 	\end{definition}
-Aus der Definition erkennt man, dass Bilder beschränkter Mengen $M$ unter einem beschränkten linearen Operator $T$ beschränkt sind. Denn $\exists R>0: M \subseteq  U_R(0)$, sodass $T(M) \subseteq T(U_R(0))=T(R\cdot U_1(0))=R\cdot T(U_1(0))$, und dies ist beschränkt.
+	\begin{bem*} 
+	Die Bilder beschränkter Mengen $M$ unter einem beschränkten linearen Operator $T$ sind beschränkt. Denn existiert ein $R>0$ mit $M \subseteq  U_R(0)$, sodass 
+		$$T(M) \subseteq T(U_R(0))=T(R\cdot U_1(0))=R\cdot T(U_1(0))$$
+		und dies ist beschränkt.
+	\end{bem*}
 
 	\begin{bsp}
 		\begin{enumerate}[a)]
-			\item $X = \K^n$, $Y = \K^m$, $\{T: X\to Y: T \text{ linearer Operator}\} = \K^{m \times n}.\; T\in\K^{n \times m}$ ist beschränkt. 
+			\item $X = \K^n$, $Y = \K^m$, $\{T: X\to Y: T \text{ linearer Operator}\} = \K^{m \times n}.$ $T\in\K^{n \times m}$ ist beschränkt. 
 			%(Betrachtung nur für den Fall $\K\in\{\R,\C\}$) 
 			Denn: 
 			$$\norm{T}_\infty = \max_{1\leq i \leq m} \sum^n_{j=1} |t_{ij}| < \infty,\; t_{ij} \text{ sind die Einträge der Matrix }T.$$ Da auf einem endlichdimensionalen Vektorraum alle Normen äquivalent sind, ist $T$ beschränkt.
 			\item $T: \lL{1} \to \K, \; Tf := \intl{f}.$ 
 				Es gilt $|Tf| = |\intl{f}| \leq \intl{|f|} = \norm{f}_1.$
-				Also $|Tf| < 1 \; \forall f \in \lL{1}: \norm{f}_1 < 1 \df T$ beschränkt
+				Also ist $|Tf| < 1 \; \forall f \in \lL{1}: \norm{f}_1 < 1$ und damit ist $T$ beschränkt.
 		\end{enumerate}
 	\end{bsp}
 
@@ -376,6 +381,7 @@ Aus der Definition erkennt man, dass Bilder beschränkter Mengen $M$ unter einem
 	\begin{cor}
 		$X$ normierter Raum $\df$ $X'$ Banachraum.
 	\end{cor}
+
 %%%%%%% Bemerkung 1.14
 	\begin{bem}
 		\begin{enumerate}[a)]
@@ -384,7 +390,7 @@ Aus der Definition erkennt man, dass Bilder beschränkter Mengen $M$ unter einem
 				(gilt wegen $\norm{S(Tx)}_Z \leq \norm{S} \cdot \norm{Tx}_Y
 				\leq \norm{S} \cdot \norm{T} \cdot \norm{x}_X \leq M \norm{x}_X$ $\forall x\in X$ und der Linearität von $ST$.) 
 			\item $id\in \B(X,X)$, $\norm{id} = 1$.
-			\item Aus punktweise Konvergenz $T_nx \to Tx$ folgt
+			\item Aus punktweiser Konvergenz $T_nx \to Tx$ folgt
 			i.A. \underline{nicht} $\disp \limes T_n = T$ (d.h. $\limes \norm{T_n - T} = 0$).
 				\begin{description} \item[Bsp:] 
 					$X = \ell^p, p\in [1,\infty)$, $T_n:\ell^p \to \ell^p, \; T_n(x_k) = (x_1,\dots,x_n,0,0,\dots)$ 
@@ -413,6 +419,7 @@ Aus der Definition erkennt man, dass Bilder beschränkter Mengen $M$ unter einem
 		\end{enumerate}
 	\end{bem}
 
+%%%%%%% Satz 1.15
 	\begin{thm}
 		Sei $X,Y$ normierte $\K-VR$, $T\in \BS$. Dann sind äquivalent:
 			\begin{enumerate}[(i)]
@@ -433,7 +440,9 @@ Aus der Definition erkennt man, dass Bilder beschränkter Mengen $M$ unter einem
 				$\df \inv{T} \in \B(imT,X)$
 		\end{itemize}
 	\end{proof}
+
 Die Negation dieser Aussage halten wir explizit fest mit folgendem 
+%%%%%%% Korollar 1.16
 	\begin{cor}
 		$T \in \BS$ ($X,Y$ normierte $\K-VR$. Dann sind äquivalent:
 			\begin{enumerate}[(i)]
@@ -444,6 +453,7 @@ Die Negation dieser Aussage halten wir explizit fest mit folgendem
 			\end{enumerate}
 	\end{cor}
 
+%%%%%%% 1.17
 	\begin{definition}
 		$X-\K-VR$ mit Norm $\norm{\cdot}_1,\norm{\cdot}_2$. Dann heißt $\norm{\cdot}_1$ 
 			\begin{enumerate}[(a)]
@@ -454,6 +464,7 @@ Die Negation dieser Aussage halten wir explizit fest mit folgendem
 			\end{enumerate}
 	\end{definition}
 
+%%%%%%% 1.18
 	\begin{thm}
 		$X$ $\K-VR$ mit Norm $\norm{\cdot}_1$,$\norm{\cdot}_2$. Dann gilt 
 			\begin{enumerate}[(a)]
@@ -464,8 +475,8 @@ Die Negation dieser Aussage halten wir explizit fest mit folgendem
 				\item $\norm{\cdot}_1$ ist äquivalent zu $\norm{\cdot}_2$ 
 					$\aq \exists \: m,M > 0: m\norm{x}_1 \leq \norm{x}_2 \leq M \norm{x}_1 \; \forall x\in X$
 			\end{enumerate}
-	
 	\end{thm}
+
 	\begin{proof}
 		\begin{enumerate}[zu (a):]
 	 		\item \qmarks{$\df$} $id : (X,\norm{\cdot}_1) \to (X,\norm{\cdot}_2)$ ist stetig wegen Vor.
@@ -478,10 +489,10 @@ Die Negation dieser Aussage halten wir explizit fest mit folgendem
 	 	\end{enumerate}
 	\end{proof}
 
+%%%%%%% 1.19
 	\begin{definition}
-		\marginpar{\scriptsize (sonst auch Homöomorphismus)?}.
-		Zwei normierte $\K-VR$ $X,Y$ heißen \qmarks{topologisch isomorph}, falls es ein Isomorphismus 
-		$T: X\to Y$ mit $T\in \BS$ und $\inv{T}\in\B(Y,X)$. Dann heißt $T$ topologischer Isomorphismus,
+		Zwei normierte $\K$-VR $X,Y$ heißen \textit{topologisch isomorph}, falls es ein Isomorphismus 
+		$T: X\to Y$ mit $T\in \BS$ und $\inv{T}\in\B(Y,X)$. Dann heißt $T$ topologischer Isomorphismus.
 	\end{definition}
 
 	\begin{thm}
@@ -504,9 +515,26 @@ Die Negation dieser Aussage halten wir explizit fest mit folgendem
 		$T\in \B(Z,Y)$. Dann existiert ein eindeutiger Operator $\tilde{T} \in \BS$, so dass
 		$T|_Z = T$.
 	\end{thm}
+
 	\begin{proof}
-					TODO: Beweis tippen.
+		\begin{enumerate}[a)]
+			%\item
+			\item Zeige: $\tilde{T}$ ist wohldefiniert. Da $T$ beschränkt ist, ist $(Tz_n)$ Cauchyfolge in $Y \df \disp \limes  Tz_n$ existiert.
+			Seien $(V_n), (Z_n)$ Folgen in $Z$ mit $\norm{V_n-x} \to 0, \norm{Z_n-x} \to 0.$ Dann gilt:
+			 \vspace{-0.8em}$$ \norm{TV_n - TZ_n} \overset{T~beschr.}{\leq} \norm{T}\cdots \norm{V_n - Z_n} \to 0 \df \limes TV_n = \limes TZ_n.\vspace{-0.8em}$$
+			\item Zeige: $\tilde{T}$ ist linear und beschränkt. (Betrachte Summen von Limiten, Limes der Summen, etc.; insbesondere ist $T:X \to Y$ immer beschränkt, wenn $\dim(X)<\infty$)
+			\item Zeige: $\tilde{T}|_Z = T$ und $\tilde{T}$ ist eindeutig.
+			Sei $\tilde{T} \in \B(X,Y)$ mit $\tilde{T}|_Z = T$ und $x \in X$. Dann 
+				\spcm $$\exists (Z_n) \text{ in } Z \text{ mit } Z_n \to x (\text{da } Z \text{ dicht in } X) \overset{T\;beschr.}{\df} \tilde{T}x=\limes \tilde{T}Z_n = \limes TZ_n.\spcm$$
+			\item Zeige: $\norm{\tilde{T}}=\norm{T}$.
+			\begin{itemize}[]
+				\item "'\;$\leq$\;"' Sei $x \in U_1(0)\subset X \df \exists (Z_n)$ in $Z$ mit $Z_n \to x$ und damit:
+				\spcm[-0.75em] \[\norm{\tilde{T}} = \sup_{x \in U_1(0)}\norm{\tilde{T}x} = \limes \norm{\tilde{T}Z_n} = \limes \norm{TZ_n} \leq \limes \norm{T} \norm{Z_n} = \norm{T}\limes \norm{Z_n} \leq \norm{T}.\spcm \] 
+				\item "'\;$\geq$\;"' Da $Z\subset X$ gilt auch $\disp \sup_{z \in Z} \norm{Tz} \leq \sup_{x \in X} \norm{Tx}$.
+			\end{itemize}
+		\end{enumerate}
 	\end{proof}
+
 %% Satz 1.23
 	\begin{thm}
 					Ist $T$ normerhaltend (in $\R^n$ die unitären Matrizen $\norm{Tx} = \norm{x}$), so ist $\tilde{T}$ ebenfalls normerhaltend.
@@ -530,44 +558,61 @@ Die Negation dieser Aussage halten wir explizit fest mit folgendem
 	Wir zeigen: $Ker f$ nicht abeschlossen.\par
 		Betrachte Folge $(x_n)_{n\in\N}$ mit $x_n \sum_{k=1}^n \frac{1}{k^2}$		 
 		$\df x_n\in Ker f \; \forall n\in\N$, da $x_n\in span\{e_k\}_{k\in\N}$. 
-		Es gilt jedoch $x_n \to x_0 \not\in Ker f$, da $f(x_0) = 1$.
+		Es gilt jedoch $x_n \to x_0 \not\in Ker f$, da $f(x_0) = 1$. \hfill $\square$ 
 	\end{bsp}
 
-Nun versuchen wir mit Erfolgt einer waghalsige Verallgemeinerung der geometrischen Reihe im Reellen für Operatoren und Banachräume. $\sum_{k=0}^\infty q^k = \frac{1}{1-q} \; \forall q\in\C$ mit $norm{q} < 1$
+Nun versuchen wir mit Erfolgt einer waghalsige Verallgemeinerung der geometrischen Reihe im Reellen für Operatoren und Banachräume. 
+	$\sum_{k=0}^\infty q^k = \frac{1}{1-q} \; \forall q\in\C$ mit $\norm{q} < 1$
 %% Satz 1.25 Neumansche Reihe
 	\begin{thm}[Neumanansche Reihe] 
 		$X$ Banachraum. Sei $T\in \B(X)$. Dann sind äquivalent: 
 			\begin{enumerate}[i)]
-				\item Die Reihe $\disp \sum_{i=0}^\infty T^k = I_X + T^1 + T^2 + \dots$ ist konvergent bzgl. der Operatornorm.
+				\item Die Reihe $ \sum_{i=0}^\infty T^k = I_X + T^1 + T^2 + \dots$ ist konvergent bzgl. der Operatornorm.
 				\item $\disp \limes \norm{T^n} = 0$
 				\item $\exists N\in \N: \norm{T^N} < 1$
 				\item $\disp \limes \sup \sqrt[n]{\norm{T^n}} < 1$. 
 			\end{enumerate}
 		In diesem Fall besitzt $(I-T)$ eine beschränkte Inverse.
-		Dies erfüllt $\inv{(I-T)} = \sum_{k=0}^\infty T^k$.
-		\marginpar{\scriptsize wenn $\norm{T} \leq 1$ haben wir gewonnen, aber $\norm{T}$ kann groß sein (nilpotente Matrizen)}
+		Diese erfüllt $\inv{(I-T)} = \sum_{k=0}^\infty T^k$.
 	\end{thm}
 		\begin{proof}
 			\begin{itemize}[]
-				\item $\afs i)\df ii) \df iii)"$: \qmarks{klar}
-				\item $iii) \df iv)"$: Sei $n\in\N \df \exists \ell\in\N, k\in \{q_0,\dots,N-1\}$, 
-					s.d. $n = \ell \cdot N + k$ $\df \ell \leq \frac{n}{N}$
-					$\df \norm{T^n} = \norm{(T^n)^\ell T^k} \leq \norm{T^N}^\ell \cdot \norm{T^k}$\par
-					Sei $M := \max\{1,\norm{T},\norm{T^2},\dots,\norm{T^{N-1}}\}$
-					$\df \norm{T^n} \leq M\norm{T^N}^\ell$ \par
-					$\df \sqrt[n]{\norm{T^n}} = \sqrt[n]{\norm{T^N}^\ell}\sqrt[n]{M}$
-					$\leq \sqrt[n]{\norm{T^N} \frac{n}{N}} \cdot \sqrt[n]{M}$ 
-					$ = \underbrace{\sqrt[N]{\norm{T^N}}}_{< 1} \cdot 
-						\underbrace{\sqrt[n]{M}}_{\overset{\to 1}{\text{für } n\to\infty}} 
-						\cdot \sqrt[n]{\frac{1}{\norm{T^N}}}$ \par
-					$\disp \df \limes \sup \sqrt[n]{\norm{T^n}} < 1$   ($\nearrow$ Wurzelkriterium)
-				\item $\afs iv) \df i)\afs$ \TODO
-			\end{itemize}
-			Noch zu zeigen, wenn $(i) - (iv)$ gilt $\df$ 
-				$(I - T) \cdot \sum_{k=0}^\infty T^k = (\sum_{k=0}^\infty T^k) \cdot (I-T) = I$:\par
-			Es gilt: $(I-T) \cdot S_n = (I-T) \cdot (\sum_{k=0}^\infty T^k) = \sum_{k=0}^n T^k$
-		\end{proof}
+				\item $ "' i)\df ii) \df iii)"':\;$ \qmarks{klaro}
 
+				\item $"' iii) \df iv)"':\;$ Sei $n\in\N \df \exists \ell\in\N, k\in \{q_0,\dots,N-1\}$, 
+					so dass $n = \ell \cdot N + k$ Dann folgt  
+					$$\ell \leq \frac{n}{N} \df \norm{T^n} = \norm{(T^n)^\ell T^k} \leq \norm{T^N}^\ell \cdot \norm{T^k}. $$
+					Sei $M := \max\{1,\norm{T},\norm{T^2},\dots,\norm{T^{N-1}}\}$.
+					Dann gilt $\norm{T^n} \leq M\norm{T^N}^\ell$ und damit folgt
+					\spcm[-0.75] $$ \sqrt[n]{\norm{T^n}} = \sqrt[n]{\norm{T^N}^\ell}\sqrt[n]{M}
+					\leq \sqrt[n]{\norm{T^N} \frac{n}{N}} \cdot \sqrt[n]{M}
+					 = \underbrace{\sqrt[N]{\norm{T^N}}}_{< 1} \cdot 
+						\underbrace{\sqrt[n]{M}}_{\overset{\to 1}{\text{für } n\to\infty}} 
+						\cdot \sqrt[n]{\frac{1}{\norm{T^N}}}\spcm[-1]$$
+					$\disp \df \limes \sup \sqrt[n]{\norm{T^n}} < 1$   ($\nearrow$ Wurzelkriterium)
+
+				\item $ "'iv) \df i)"': \;$ 
+					$\disp \limes \sup \sqrt[n]{\norm{T^n}} < 1 \df \exists q \in (0,1), \; N \in \N$, sodass \spcm
+					$$ \sqrt[n]{\norm{T^n}} \leq q ~\forall~ n \geq N \df \norm{T^n} \leq q^n ~\forall~ n \geq N \spcm[-0.6]$$	
+					Sei $\varepsilon > 0$, dann existiert ein $N_1 \geq N$, so dass $q^{n+1} + \dots + q^m = q^{n+1} \frac{1-q^{m-1}}{1-q}< \varepsilon \;\; \forall n,m \geq N_1$.
+					\spcm
+					$$ \text{Für } S_n:=\sum_{k=0}^\infty T^k \text{ gilt also }:
+					\norm{S_n-S_m}=\norm{\sum_{k=m+1}^n T^k}\leq \sum_{k=m+1}^n \norm{T^k} \leq q^{m+1}+\dots+q^n < \varepsilon. \spcm[-0.5]
+					$$	
+					Also ist $(S_n)$ eine Cauchyfolge in $\B(X)$. Da $X^{*}$ vollständig ist, ist auch $\B(X)$ vollständig, also konvergiert die Neumannsche Reihe.
+
+			
+			\item 
+			Noch zu zeigen, wenn $(i) - (iv)$ gilt
+				$(I - T) \cdot \sum_{k=0}^\infty T^k = (\sum_{k=0}^\infty T^k) \cdot (I-T) = I$.
+			Es gilt: 
+			\spcm[-0.4]
+			$$(I-T) \cdot S_n = (I-T) \cdot (\sum_{k=0}^n T^k) = \sum_{k=0}^n T^k - \sum_{k=1}^{n+1} T^k = I-T^{n+1} \overset{n \to \infty}{\to} I_K \spcm[-0.4] $$
+			
+			Analog andersherum ($\nearrow$ linksinvers $ \neq $ rechtsinvers in unendlichdimensionalen Räumen, da inj. $\not\Leftrightarrow$ surj.)
+			\end{itemize}
+		\end{proof}
+%%%%%%%%%%%%%%%%%%  
 	\begin{bem}
 		\begin{enumerate}
 			\item Wenn $\norm{T} < 1$, dann konvergiert die Neumannsche Reihe.
@@ -763,7 +808,7 @@ Der folgende Satz ist eine Verallgemeinerung des Intervallschachtelungsprinzips 
 %Korollar 1.37
 \begin{cor}
 	$(X,d)$ sei ein vollständiger metrischer Raum, $U\subseteq X$ offen und nichtleer.\par
-	Dann ist $U$ von 2.Kategorie.
+	Dann ist $U$ von 2. Kategorie.
 \end{cor} 
 \begin{proof}[(Eigener Beweis)]% <3
 	Da $U$ offen ist, gibt es ein $\varepsilon>0$, so dass für $x\in U,\;\overline{U_\varepsilon(x)}\subseteq U$ ist. Nun können wir den Baireschen Kategoriensatz auf $\overline{U_\varepsilon(x)}$ anwenden.
@@ -911,7 +956,7 @@ Der folgende Satz ist eine Verallgemeinerung des Intervallschachtelungsprinzips 
 	\end{thm}
 
 	\begin{proof}
-		\begin{itemize}[]
+		\begin{enumerate}[a)]
 %			\item $\qmarks{a) - c)}$: mündlicher Beweis. TODO. folgt aus Definition.
 %			\item Zu $\qmarks{d)}$: Die Hinrichtung folgt aus c). 
 %				Für $"{}\Leftarrow"$: Sei $M$ präkompakt $\forall \varepsilon > 0\; \exists p\in\N, \{x_1,\dots,x_p\} \subseteq X$ mit $M \subseteq \cup_{j=1}^p \overline{ U_{\frac{\varepsilon}{2}}(x_j)}$. 
@@ -919,20 +964,20 @@ Der folgende Satz ist eine Verallgemeinerung des Intervallschachtelungsprinzips 
 %				$\overline{M} \subseteq \cup_{j=1}^p \overline{U_{\frac{\varepsilon}{2}}(x_j)} \subseteq \cup_{j=1}^p U_{\varepsilon}(x_j)$
 %				$\df$ $\overline{M}$ präkompakt. Da $(\overline{M},d)$ vollständig ist $\overline{M}$ kompakt. (Satz 1.41) $\df$ $M$ relativ kompakt.
 
-			\item a) relativ kompakt: Sei $(x_n)$ eine Folge aus $S$. Da $(x_n)$ ein Folge in M ist, hat es eine konvergente Teilfolge, dessen Grenzwert in $\overline{M}$ ist. Dann ist der Grenzwert auch in $\overline{S}$. Also ist S relativ kompakt. 
+			\item  relativ kompakt: Sei $(x_n)$ eine Folge aus $S$. Da $(x_n)$ ein Folge in M ist, hat es eine konvergente Teilfolge, dessen Grenzwert in $\overline{M}$ ist. Dann ist der Grenzwert auch in $\overline{S}$. Also ist S relativ kompakt. 
 				präkompakt: Sei $\varepsilon>0$ gegeben. Dann gibt es eine endliche Menge $\{x_1,\dots,x_n\}\subseteq M$, so dass $S\subseteq M = \bigcup^n_{i=0}U_\varepsilon(x_i)$. Also ist auch S präkompakt.
 			
-			\item b) relativ kompakt: Ist $(x_n)$ eine Folge aus $M\cup N$, so gibt es eine Teilfolge, die nur in $M$ oder $N$ ist. Dann hat diese Teilfolge noch eine konvergente Teilfolge.
+			\item  relativ kompakt: Ist $(x_n)$ eine Folge aus $M\cup N$, so gibt es eine Teilfolge, die nur in $M$ oder $N$ ist. Dann hat diese Teilfolge noch eine konvergente Teilfolge.
 				präkompakt: $M$ und $N$ haben jeweils ein $\varepsilon$-Netz. Die Vereinigung ist dann auch ein $\varepsilon$-Netz.
 				
-			\item c) Angenommen M sei nicht präkompakt, dann gibt es ein $\varepsilon>0$, so dass sich $M$ nicht durch endlich viele $\varepsilon$-Kugeln überdecken lässt. Wählen wir aus jedem dieser  (mindestens abzählbar vielen) Kugeln ein Element aus, entsteht eine Folge, dessen Folgenglieder alle Mindestabstand $\frac{\varepsilon}{2}$ zueinander haben. $\df$ Es gibt keine konvergente Teilfolge $\df$ $M$ ist nicht relativ kompakt.
+			\item  Angenommen M sei nicht präkompakt, dann gibt es ein $\varepsilon>0$, so dass sich $M$ nicht durch endlich viele $\varepsilon$-Kugeln überdecken lässt. Wählen wir aus jedem dieser  (mindestens abzählbar vielen) Kugeln ein Element aus, entsteht eine Folge, dessen Folgenglieder alle Mindestabstand $\frac{\varepsilon}{2}$ zueinander haben. $\df$ Es gibt keine konvergente Teilfolge $\df$ $M$ ist nicht relativ kompakt.
 			
-			\item d) $\qmarks{\df}$ folgt aus c) \par
+			\item  $\qmarks{\df}$ folgt aus c) \par
 				$\qmarks{\Leftarrow}$ Sei $M$ präkompakt $\df \forall \varepsilon > 0\; \exists p\in\N, \{x_1,\dots,x_p\} \subset X$ mit $M \subset \cup_{j=1}^p \overline{ U_{\frac{\varepsilon}{2}}(x_j)}$. 
 				Wegen $\overline{U_{\frac{\varepsilon}{2}}(x_j)} \subset U_{{\varepsilon}}(x_j)$ gilt
 				$\overline{M} \subset \cup_{j=1}^p \overline{U_{\frac{\varepsilon}{2}}(x_j)} \subset \cup_{j=1}^r U_{\varepsilon}(x_j)$
 				$\df$ $\overline{M}$ ist präkompakt. Da $(\overline{M},d)$ vollständig ist, ist $\overline{M}$ kompakt. $\overset{\text{Satz 1.41}}{\df}$ $M$ relativ kompakt.
-		\end{itemize}
+		\end{enumerate}
 	\end{proof}
 
 %Bemerkung, Fakten 1.46
@@ -951,43 +996,22 @@ Der folgende Satz ist eine Verallgemeinerung des Intervallschachtelungsprinzips 
 	\end{bem}
 \newcommand{\xt}{x_\eta}%Eigentlich eta glaube ich
 
-%Lemma 1.47 Lemma von Riesz
-
-%	\begin{lemma}[Lemma von Riesz]
-%		$(X,\norm{\cdot})$ normierter Raum, $E\subseteq X$ abgeschlossener Unterraum mit $E \not = X$, $\eta\in (0,1)$. \par
-%		Dann existiert ein $x_\eta \in X$ mit $\norm{\xt} = 1$ und $\norm{\xt - y} \geq \eta \; \forall y\in E.$
-%	\end{lemma}
-%	\begin{proof}
-%		Sei $x_0 \in X\backslash E$. $\delta := \inf_{y\in E} \norm{x_0 - y}$.
-%		Da $E$ abgeschlossen ist $\df$ $\delta > 0$. Sei $(y_n)$ Folge in $E$ mit $\norm{x_0 - y_n} \to \delta$. 
-%		Sei $\eta \in (0,1) \df \frac{\delta}{\eta} > \delta $
-%		$\df \exists z\in E$ mit $\norm{x_0 - z} \leq \frac{\delta}{\eta}.$ Definiere $\xt := \frac{x_0-z}{\norm{x_0 - z}} \df \norm{\xt} = 1$.\par	
-%		Für $y\in E$ gilt 
-%		%\begin{equation*} \begin{split}
-%		$\norm{\xt - y} = \norm{y - \frac{x_0-z}{\norm{x_0 - z}}} 
-%		 = \norm{y + \frac{z}{\norm{x_0 - z}} - \frac{x_0}{\norm{x_0 - z}}} 
-%		 = \frac{1}{\norm{x_0 - z}} \norm{(\underbrace{\norm{x_0 - z}y + z}_{\in E}) - x_0} 
-%		\vspace{-1em}> \delta\cdot \frac{1}{\norm{x_0 - z}} \geq \frac{\eta}{\delta} \cdot \delta = \eta
-%		$
-%		%\end{split} \end{equation*}
-
 	\begin{lemma}[Lemma von Riesz]%Lemmaumgebung gab es schon :O
 		$(X,\norm{\cdot})$ normierter Raum, $E\subset X$ abgeschlossener Unterraum mit $E \not = X$, $\eta\in (0,1)$. \par
 		Dann existiert ein $x_\eta \in X$ mit $\norm{\xt} = 1$ und $\norm{\xt - y} \geq \eta \; \forall y\in E.$
 	\end{lemma}
+
 	\begin{proof}
-		Sei $x_0 \in X\setminus E$. $\delta := \inf_{y\in E} \norm{x_0 - y}$, da E abgeschlossen ist, ist $\delta > 0$. Sei $\eta \in (0,1) \df \frac{\delta}{\eta} > \delta $ $\df \exists z\in E$ mit $\norm{x_0 - z} \leq \frac{\delta}{\eta}.$ Definiere $\xt := \frac{x_0-z}{\norm{x_0 - z}} \df \norm{\xt} = 1$.
+		Sei $x_0 \in X\setminus E$. Definiere $\delta := \inf_{y\in E} \norm{x_0 - y}$, da E abgeschlossen ist, ist $\delta > 0$. Sei $(y_n)$ Folge in $E$ mit $\norm{x_0 - y_n} \to \delta$. 
+Sei $\eta \in (0,1) \df \frac{\delta}{\eta} > \delta $ $\df \exists z\in E$ mit $\norm{x_0 - z} \leq \frac{\delta}{\eta}.$ Definiere $\xt := \frac{x_0-z}{\norm{x_0 - z}} \df \norm{\xt} = 1$.
 		Für $y\in E$ gilt dann 
+		\spcm[-1.3]
 		$$\norm{\xt - y} = \norm{y - \frac{x_0-z}{\norm{x_0 - z}}} 
 		= \norm{y + \frac{z}{\norm{x_0 - z}} - \frac{x_0}{\norm{x_0 - z}}} 
 		= \frac{\norm{\overbrace{(\norm{x_0 - z}y + z)}^{\in E} - x_0}}{\norm{x_0 - z}}  
 		\geq \delta\cdot \frac{1}{\norm{x_0 - z}} \geq \frac{\eta}{\delta} \cdot \delta = \eta$$
-
-%	\begin{lemma}[Lemma von Riesz]
-%		$(X,\norm{\cdot})$ normierter Raum, $E\subseteq X$ abgeschlossener Unterraum mit $E \not = X$, $\eta\in (0,1)$. \par
-%		Dann existiert ein $x_\eta \in X$ mit $\norm{\xt} = 1$ und $\norm{\xt - y} \geq \eta \; \forall y\in E.$
-%	\end{lemma}
-%	\begin{proof}
+	\end{proof}
+%	\begin{proof}{Alternative Stil}
 %		Sei $x_0 \in X\backslash E$. $\delta := \inf_{y\in E} \norm{x_0 - y}$.
 %		Da $E$ abgeschlossen ist $\df$ $\delta > 0$. Sei $(y_n)$ Folge in $E$ mit $\norm{x_0 - y_n} \to \delta$. 
 %		Sei $\eta \in (0,1) \df \frac{\delta}{\eta} > \delta $
@@ -1001,7 +1025,7 @@ Der folgende Satz ist eine Verallgemeinerung des Intervallschachtelungsprinzips 
 %		$
 %		%\end{split} \end{equation*}
 
-	\end{proof}	
+	
 
 %Korollar 1.48
 	\begin{cor}
@@ -1024,6 +1048,7 @@ Der folgende Satz ist eine Verallgemeinerung des Intervallschachtelungsprinzips 
 			\item genauso.
 		\end{enumerate}
 	\end{proof}
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 	\subsection{Skalarprodukträume}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -1035,13 +1060,9 @@ Erinnerung:\\
 		\item $(x,x) > 0$  $\forall x\in X\backslash\{0\}$.
 	\end{enumerate}
 
-	Wiederholung: $X$ $\K-$Vektorraum. Ein \qmarks{Skalarprodukt} ist eine Abb $(\cdot,\cdot) \to \K$ mit (S1) $(\alpha x + \beta y, z) = \alpha (x,z) + \beta (y,z)$ $\forall x,y,z \in X, \alpha,\beta \in \K$
-	(S2) $(x,y) = (y,x)$
-	(S3) $(x,x) > 0 \forall x\in X\backslash{0}$.
-
 %Bemerkerung 1.49
 	\begin{bem}
-		\begin{enumerate}[a)]
+		\begin{enumerate}[1)]
 			\item $\norm{x} := \sqrt{(x,x)}$ ist eine Norm.
 			\item ein vollständiger Skalarproduktraum heißt \textit{Hilbertraum}.
 			\item $\norm{x} \cdot \norm{y} \geq |(x,y)| \; \forall x,y \in X$ (Cauchy-Schwarz-Ungleichung)
@@ -1057,28 +1078,28 @@ Erinnerung:\\
 	\end{bem}
 %Satz 1.50
 	\begin{thm}
-		Sei $(X,\norm{\cdot})$ normierter Raum mit $\norm{x+y}^2 + \norm{x-y}^2 = 2... \forall x,y \in X$ 
-		Dann existiert ein Skalarprodukt auf $X$, welches $\norm{\cdot}$ induziert.
+	Sei $(X,\norm{\cdot})$ ein normierter Raum mit $\norm{x+y}^2 + \norm{x-y}^2 = 2\norm{x}^2 +2\norm{y}^2 ~\forall x,y \in X$. Dann existiert ein Skalarprodukt auf $X$, welches $\norm{\cdot}$ induziert.
 	\end{thm}
 	\begin{proof}
-		Skizze! a) $\K = \R$ $(x,y) := \frac{1}{4}(\norm{x + y}^2 - \norm{x-y}^2)$.\\ b) $\K = \C$ $(x,y) := \frac{1}{4}(\| x+y\|^2 - \|x-y\|^2 + i(\|x+iy\|^2 + \|x-iy\|^2)$
+		Skizze! a) $\K = \R$ $(x,y) := \frac{1}{4}(\norm{x + y}^2 - \norm{x-y}^2)$.\\ b) $\K = \C$ $(x,y) := \frac{1}{4}(\| x+y\|^2 - \|x-y\|^2 + i(\|x+iy\|^2 + \|x-iy\|^2)$ ($\nearrow$ Übung, Blatt 6, Aufgabe 1)
 	\end{proof}
 
 % Definition 1.51
 	\begin{definition}
-		$(X,\SP)$ Skalarprodukt, $x,y\in X$. $M,N \subseteq X$, $(x_i)_{i\in I}$ Famile.
+		$(X,\SP)$ Skalarprodukt, $x,y\in X$. $M,N \subseteq X$, $(x_i)_{i\in I}$ Familie.
 		\begin{enumerate}
-			\item $x$ orthogonoal zu $y$ (x $\perp$ y), wenn $(x,y) = 0$.
-			\item $x$ orthogonoal zu $N$ (x $\perp$ M), wenn $x \perp y\quad \forall y\in N$
+			\item $x$ orthogonal zu $y$ (x $\perp$ y), wenn $(x,y) = 0$.
+			\item $x$ orthogonal zu $N$ (x $\perp$ M), wenn $x \perp y\quad \forall y\in N$
 			\item $M$ orthogonal zu $N$ (N $\perp$ M), wenn $x \perp M\quad \forall x\in N$.
-			\item $M^\perp = \{x\in X: x\perp M\}$ \qmarks{Orthogonalraum zu M}
-			\item $\xf$ heißt Orthogonalsystem (OGS), wenn $x \perp y, \forall i,j \in I, i\neq j$
-			\item $\xf$ heißt Orthonormalsystem (ONS), wenn es OGS mit $\|x_i \| = 1 \; \forall i \in I$ ist. 
-			\item $\xf$ heißt Orthogonalbasis (OGB), wenn es linear unabhängiges OGS ist und $\overline{span(\xf)} = X$.
-			\item $\xf$ heißt Orthonomalbais (ONB), wenn es OGB und ONS ist.	
+			\item $M^\perp = \{x\in X: x\perp M\}$ \textit{Orthogonalraum zu M}
+			\item $\xf$ heißt \textit{Orthogonalsystem} (OGS), wenn $x \perp y, \forall i,j \in I, i\neq j$
+			\item $\xf$ heißt \textit{Orthonormalsystem} (ONS), wenn es OGS mit $\|x_i \| = 1 \; \forall i \in I$ ist. 
+			\item $\xf$ heißt \textit{Orthogonalbasis} (OGB), wenn es ein linear unabhängiges OGS ist \par und $\overline{span(\xf)} = X$.
+			\item $\xf$ heißt \textit{Orthonomalbais} (ONB), wenn es OGB und ONS ist.	
 		\end{enumerate}
 	\end{definition}
 %Beispiel 1.52
+	%TODO Layout
 	\begin{bsp}
 		\begin{enumerate}[a)]
 			\item $e_n = (\delta_{in})_{i\in I} \in \ell^2$ $(e_n)_{n\in \N}$ ist ONS
@@ -1091,20 +1112,22 @@ Erinnerung:\\
 			$u_k \in L^2([0,2\pi])$ ist ONS, da $\int_0^{2\pi} u_k(x) \overline{u_j(x)} dx = \delta_{kj}$ Auch ONB?
 		\end{enumerate}
 		Beachte: $V^\perp$ ist immer abgeschlossen, da für eine Folge $(v_i)$ in $V^\perp$ mit $v_i \to v$ gilt\\ $(x,v) \leftarrow (x,v_i) = 0 \; \forall x\in V$ $\df v \in V^\perp$
-
 	\end{bsp}
 
 %Satz 1.53 (Besselsche Ungleichung)
 	\begin{thm}[Besselsche Ungleichung]
-		Sei $X$ ein Skalarproduktraum, $\ff{u}{i}{I}$ ein Orthonormalsystem, $x\in X$, $i_1,\dots,i_n \in I$. Dann ist $\sum_{k=1}^n |(x,u_{i_k})|^2 \leq\norm{x}^2 $
+		Sei $X$ ein Skalarproduktraum, $\ff{u}{i}{I}$ ein Orthonormalsystem, $x\in X$, $i_1,\dots,i_n \in I$. Dann ist 
+			$$\sum_{k=1}^n |(x,u_{i_k})|^2 \leq\norm{x}^2 $$
 	\end{thm}
 	\begin{proof}
-		$x_n := x - \sum_{k=1}^n (x,u_{ik}) u_{ik}$, $j\in \{1,\dots,n\}$\par
-		$(x_n, u_{ij}) = (x,u_{ij}) - \sum^n_{k=1} (x,u_{i_k}) \underbrace{(u_{i_k},u_{i_j})}_{\delta_{kj}}
-		= (x, u_{i_j}) - (x, u_{i_j}) = 0$\par
-		$\df \sum^n_{k=1} (x, u_{i_k}) u_{i_k} \perp x_n$\par
-		Und mit dem Satz des Pythagoras folgt nun
-	$$\norm{x}^2 = \norm{x_n}^2+\|\sum^n_{k=1} (x,u_{i_j})u_k\|^2 = \|x_n\|^2 + \sum^n_{k=1}|(x,u_{i_k})|^2 \geq \sum^n_{k=1} |(x,u_{i_k})|^2$$
+		Sei $\disp x_n := x - \sum_{k=1}^n (x,u_{ik}) u_{ik}$ und $j\in \{1,\dots,n\}$. Dann ist
+		\spcm[-1]
+		$$(x_n, u_{ij}) = (x,u_{ij}) - \sum^n_{k=1} (x,u_{i_k}) \underbrace{(u_{i_k},u_{i_j})}_{\delta_{kj}}
+		= (x, u_{i_j}) - (x, u_{i_j}) = 0 \spcm$$
+		Also ist $\sum^n_{k=1} (x, u_{i_k}) u_{i_k} \perp x_n$
+		und mit dem Satz des Pythagoras folgt nun
+		\spcm[-0.5]
+		$$\norm{x}^2 = \norm{x_n}^2+\|\sum^n_{k=1} (x,u_{i_j})u_k\|^2 = \|x_n\|^2 + \sum^n_{k=1}|(x,u_{i_k})|^2 \geq \sum^n_{k=1} |(x,u_{i_k})|^2$$
 	\end{proof}
 	
 %Korollar 1.54
@@ -1139,17 +1162,19 @@ Erinnerung:\\
 	\begin{thm}[Projektionssatz]
 		$X$ Skalarproduktraum, $V$ vollständig UVR, $x\in X$. Dann existiert ein eindeutiges $v_0 \in V$, so dass $\norm{x - v_0} = \inf_{v\in U} \norm{x - v}$. Dieses $v_0$ erfüllt $x - v_0 \in V^\perp$	
 	\end{thm}
-	\begin{center}
-		\begin{tikzpicture}
-			\draw [->] (0,0) -- (3,0);
-			\draw [->] (0,0) -- (0,3);
-			\draw [thick](0,0) -- (2,3) node [above right] {$V$};
-			\draw [fill=black](1,1.5) circle(1pt) node [left] {$v_0$};
-			\draw (1,1.5) -- (2,5/6);
-			\draw [fill=black](2,5/6) circle(1pt) node [right] {$x$};
-			\rechterWinkel{1,3/2}{236}{0.5};
-		\end{tikzpicture}
-	\end{center}
+
+	%\begin{center}
+		%\begin{tikzpicture}
+			%\draw [->] (0,0) -- (3,0);
+			%\draw [->] (0,0) -- (0,3);
+			%\draw [thick](0,0) -- (2,3) node [above right] {$V$};
+			%\draw [fill=black](1,1.5) circle(1pt) node [left] {$v_0$};
+			%\draw (1,1.5) -- (2,5/6);
+			%\draw [fill=black](2,5/6) circle(1pt) node [right] {$x$};
+			%\rechterWinkel{1,3/2}{236}{0.5};
+		%\end{tikzpicture}
+	%\end{center}
+
 %	\begin{proof}
 %		Sei $(v_n)$ Folge in $V$ mit $\underbrace{\norm{x-v_n}}_{=: d_n} \to \underbrace{\inf_{v\in V}\norm{x-v}}_{=: d}.$
 %		$\df[Parallelogrammgleichung!] \norm{x - \frac{v_n+v_m}{2}}^2 + \norm{\frac{v_n+v_m}{2}}^2
@@ -1205,8 +1230,8 @@ Erinnerung:\\
 		Sei $X$ ein Skalarproduktraum, $V$ ein Unterraum. Dann ist $V^\perp = \overline{V}^\perp$
 	\end{lemma}
 	\begin{proof}
-		\qmarks{$\supseteq$}  Da $V\subseteq \overline{V} \df \overline{V}^\perp \subseteq V^\perp$ \par
-		\qmarks{$\subseteq$} Sei $x\in V^\perp, v\in V \df \exists$ Folge $(v_n)$ in $V$ mit $v_n \to v$
+		$"'\supseteq"'$  Da $V\subseteq \overline{V} \df \overline{V}^\perp \subseteq V^\perp$ \par
+		$"'\subseteq"'$ Sei $x\in V^\perp, v\in V \df \exists$ Folge $(v_n)$ in $V$ mit $v_n \to v$
 		$\df (x,v) \leftarrow (x,v_n) = 0$
 	\end{proof}
 
@@ -1226,18 +1251,19 @@ Erinnerung:\\
 	\end{thm}	
 	\begin{proof}
 		\begin{itemize}[]
-		\item \qmarks{(i)$\df$(ii)}: Sei $\varepsilon > 0$ gegeben. Da $(u_i)_{i\in I}$ eine ONB ist, gibt es $i_1,\dots,i_n\in I,\;\alpha_1,\dots \alpha_n \in \K$ so dass $\|x- \sum^n_{k=1} \alpha_k u_{i_k}\| < \varepsilon$ wegen Korollar 1.56 ist
+		\item $"'(i)\df(ii)"':$ Sei $\varepsilon > 0$ gegeben. Da $(u_i)_{i\in I}$ eine ONB ist, gibt es $i_1,\dots,i_n\in I,\;\alpha_1,\dots \alpha_n \in \K$ so dass $\|x- \sum^n_{k=1} \alpha_k u_{i_k}\| < \varepsilon$ wegen Korollar 1.56 ist
 		\marginpar{nochmal anschauen!}
 		$$\|x- \sum^n_{k=1} (x, u_{i_k})\| \leq \|x-\sum^n_{k=1} \alpha_k u_{i_k}\| < \varepsilon$$
-		\item \qmarks{(ii) $\df$ (iii)}: Es ist:
+		\item $"'(ii) \df (iii)"':$ Es ist:
 		$$x = \sum_{i\in I} (x, u_i)u \overset{(\cdot, y)}{\df} (x,y)=\left(\sum_{i\in I} (x, u_i)u_i,y\right)=\sum_{i\in I} (x,u_i)(u_i,y)\quad \forall x,y\in X$$
-		\item \qmarks{(iii) $\df$ (iv)}: Setze in die Formel $y=x$ ein.
-		\item \qmarks{(iv) $\df$ (i)}: Mit Pythagoras und Korollar 1.56 gilt:
+		\item $"'(iii) \df (iv)"'$: Setze in die Formel $y=x$ ein.
+		\item $"'(iv) \df (i)"'$: Mit Pythagoras und Korollar 1.56 gilt:
 		$$\|x\|^2 = \sum_{i\in I} |(x_i,u_i)|^2 + \|x- \sum_{i\in I} (x,u_i)u_i\|^2 \df x- \sum_{i\in I} (x,u_i)u_i = 0 \df x \in \overline{\aufspan (u_i)_{i\in I}}.$$
-		\item \qmarks{(i) $\df$ (v)}: Wegen Lemma 1.57 ist $(\aufspan (u_i)_{i\in I})^\perp =\overline{\aufspan (u_i)_{i\in I}}^\perp = X^\perp = \{0\}$.
-		\item \qmarks{(v)$\df$(i)}: Sei $X$ ein Hilbertraum $\df \overline{\aufspan (u_i)_{i\in I}}$ ist vollständig. Sei $x\in X$ mit $x = x_1+x_2$, wobei $x_1 \in \overline{\aufspan (u_i)_{i\in I}},\;x_2\in \overline{\aufspan (u_i)_{i\in I}}^\perp =  \aufspan (u_i)_{i\in I}^\perp = \{0\} \df x = x_1$.
+		\item $"'(i) \df (v)"'$: Wegen Lemma 1.57 ist $(\aufspan (u_i)_{i\in I})^\perp =\overline{\aufspan (u_i)_{i\in I}}^\perp = X^\perp = \{0\}$.
+		\item $"'(v)\df(i)"'$: Sei $X$ ein Hilbertraum $\df \overline{\aufspan (u_i)_{i\in I}}$ ist vollständig. Sei $x\in X$ mit $x = x_1+x_2$, wobei $x_1 \in \overline{\aufspan (u_i)_{i\in I}},\;x_2\in \overline{\aufspan (u_i)_{i\in I}}^\perp =  \aufspan (u_i)_{i\in I}^\perp = \{0\} \df x = x_1$.
 		\end{itemize}
 	\end{proof}
+
 %	\begin{proof}
 %		\begin{itemize}[]
 %			\item $\qmarks{i\df ii}$: 
@@ -1269,7 +1295,12 @@ Erinnerung:\\
 %Satz 1.59
 	\begin{thm} 
 		Die Familie $\ff{u}{k}{\Z}$ mit $u_k(x) = \frac{1}{2 \pi} e^{ikx}$ ist eine Orthonormalbasis von $L^2([0,2\pi])$ 
-		
+		Wir benutzen:	 
+			\begin{enumerate}[a)]
+				\item $\forall \varepsilon > 0, f\in L^2([0,2\pi]) ~\exists g\in C([0,2\pi])$ mit $g(0) = g(2\pi) = 0$ und $\norm{f-g}_2 < \varepsilon$,
+				\item Zu $g\in C([0,2\pi])$ mit $g(0) = g(2\pi), \varepsilon > 0 ~\exists h\in span(U_i)_{i \in \Z}: \norm{g-h}_\infty < \varepsilon$.
+			\end{enumerate}
+
 	\end{thm}
 	\begin{proof}
 		Sei $f\in L^2([0,2\pi]), \varepsilon > 0$.
@@ -1315,6 +1346,7 @@ Sei $f\in L^2([0,2\pi])$
 		$(X, (\cdot,\cdot))$ sei ein Hilbertraum. Dann existiert eine Orthonormalbasis.
 	\end{thm}
 
+	%TODO Layout
 	\begin{proof}
 		Sei $M = \{\ff{u}{i}{I} : \ff{u}{i}{I} \text{ ist Orthonormalsystem} \}$ \par
 		Wir definieren die Halbordnung $\ff{u}{i}{I} \subseteq \ff{y}{i}{J} :\aq I \subseteq J$ und $x_i = y_i\; \forall i \in I$.\par
@@ -1324,12 +1356,18 @@ Sei $f\in L^2([0,2\pi])$
 		$\df \forall x\in X$ mit $x\perp \hat{x}_i \;\forall i \in I$ gilt $x= 0$ \par
 		$\df (span\ff{\hat{{x}}}{i}{I})^\perp = \{0\}$
 	\end{proof}
- TODO ÜA \par 
- 
+	Übung. Blatt 5,6.
+	\begin{enumerate}
+		\item Gram-Schmidt-Orthonormalisierung\\
+		Sei $(X, (\cdot,\cdot))$ ein Skalarproduktraum, $(x_n)_{n \in \N}$ linear unabhängig. Dann existiert ein ONS $(y_n)_{y \in \N}$ mit $span(y_1,\dots,y_k)=span(x_1,\dots,x_k)$.\\ Mit $(y_n)$ wie vorhin, gilt $(y_n)$ ist ONB $\forall k \in \N \Leftrightarrow span(x_n)_{n \in \N} = X$.
+		\item $M\subset X$ ist UVR $\df (M^{\perp})^{\perp} = \overline{M}$
+	\end{enumerate}
+
 %Satz 1.63
 	\begin{thm}
 		Seien $X$ ein Hilbertraum, $\ff{x}{i}{I}, \ff{y}{i}{J}$ Orthonormalbasen. Dann haben $I$ und $J$ die gleiche Mächtigkeit.
 	\end{thm}
+	%TODO Layout
 	\begin{proof}
 		Für endliches $I$ ist die Aussage klar. \par
 		Seien also $|I|$ und $|J|$ unendlich.  \par
@@ -1337,13 +1375,20 @@ Sei $f\in L^2([0,2\pi])$
 		sowie $\bigcup_{j\in J} S_{y_j} = I$ und $S_{y_j} \neq \emptyset$. Denn:
 		Ist $S_{y_j} = \emptyset$, dann $y_j \perp x_i \forall i \in I \df y_j =0$ Lightning! \par
 		Ist $i\in I$ mit $i \not \in \bigcup_{j\in J} S_{y_j}$, dann $x_i \perp y_j \forall j\in J \df x_i = 0$ Lightning! \par
-		Also $|I| = |\bigcup{j\in J} S_{x_j}| \subseteq |J| \cdot |\N| = |J|$. \par
+		Also $|I| = |\bigcup_{j\in J} S_{x_j}| \subseteq |J| \cdot |\N| = |J|$. \par
 		Analog $|J| \subseteq |I|$
 	\end{proof}
 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
 \chapter{Einige Hauptsätze aus der Funktionalanalysis}			
-	\section{Satz von der offenen Abbildung, Satz vom abgeschlossenen Graphen, Satz von der stetigen Inversen}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 	
+\section{Satz von der offenen Abbildung, Satz vom abgeschlossenen Graphen, Satz von der stetigen Inversen}
+
 %Definition 2.1
 	\begin{definition}
 		Seien $X,Y$ topologische Räume. $f: X\to Y$ heißt \textit{offen}, falls für alle offenen $U\subseteq X$, $f(U)\subseteq Y$ offen ist.
@@ -1357,10 +1402,11 @@ Sei $f\in L^2([0,2\pi])$
 			\item $\inv{f}: f(X) \to X$ stetig.
 		\end{enumerate}
 	\end{thm}
+
 	\begin{proof}
 		\begin{itemize}[]
-			\item \qmarks{$i \to ii$} Sei $U \subseteq X$ offen, dann ist $ \inv{(\inv{f})}(U) = f(U)$ offen, also ist $\inv{f}$ stetig.
-		\item \qmarks{$ii \to i$} Sei $U \subseteq X$ offen, $\inv{f}$ stetig 
+			\item $"'(i) \df (ii)"':$ Sei $U \subseteq X$ offen, dann ist $ \inv{(\inv{f})}(U) = f(U)$ offen, also ist $\inv{f}$ stetig.
+		\item $"'(ii) \df (i)"':$ Sei $U \subseteq X$ offen, $\inv{f}$ stetig 
 			$\df f(U) = \inv{(\inv{f})}(U)$ offen $\df f $ offen.
 		\end{itemize}
 	\end{proof}
@@ -1384,67 +1430,69 @@ Sei $f\in L^2([0,2\pi])$
 	\begin{thm}[Satz von der offenen Abbildung, Satz von Banach-Schauder, open-mapping theorem]
 		Seien $X,Y$ Banachräume und $T\in \BS$ surjektiv. Dann ist $T$ offen.	
 	\end{thm}
-	\begin{proof}
-		
-		\underline{1.Schritt:} 
-		Wir zeigen zuerst, dass es ein $\varepsilon_0 > 0$ gibt, so dass $U_{\varepsilon_0}(0) \subseteq \overline{T(U_1(0))}$.\par 
-		Weil $T$ surjektiv ist, ist $Y = \bigcup_{n\in \N} T(U_n(0))$, und da $Y$ vollständig ist, können wir den Baireschen Kategoriensatz anwenden, und es ist für ein $N\in\N: \mathring{\overline{T(U_N(0))}} \not = \emptyset$.
-		 Also $$\exists y_0 \in \overline{T(U_N(0))}\df \varepsilon > 0 \text{ s.d. }U_\varepsilon(y_0) \subseteq \overline{T(U_N(0))}$$
-		 Wir müssen noch zeigen, dass die Menge tatsächlich eine Nullumgebung ist.
-		 Dafür stellen wir fest, dass für $y \in U_{\varepsilon}(0)$ es Punkte $x_i \in U_{N}(0)$ gibt, so dass $\lim_{i\to \infty} Tx_i=y_0+y$. Sei nun $x_0\in X$ so dass $Tx_0 = y_0$. Dann ist 
-		 $$\TODO\; T\left(\frac{x_i-x_0}{k_0+\|x_0\|}\right)=\frac{T(x_i-x_0)}{k_0+\|x_0\|}\to \frac{y}{N+\|x_0\|}\quad\text{ wobei } \norm{\frac{x_i-x_0}{k_0+\|x_0\|}}\leq \frac{\|x_i\|}{N+\|x_0\|}+\frac{\|x_0\|}{N+\|x_0\|} \leq 2$$
-		 
-		 Insgesamt folgt also: $$U_{{\varepsilon_0}}(0)\subseteq \overline{T(U_1(0))} \quad \text{ mit } \varepsilon_0:=\frac{\varepsilon}{2(N+\|x_0\|)}$$
-		 \underline{2.Schritt:} Es ist noch zu zeigen, dass $U_{\varepsilon_0}(0) \subseteq T(U_1(0)).$\par Sei dafür $y\in U_{\varepsilon_0}(0)$, $\varepsilon>0$ mit $\|y\|<\varepsilon<\varepsilon_0$ und $ \overline{y}:=\frac{\varepsilon_0}{\varepsilon}y \df \|\overline{y}\|<\varepsilon_0 \overset{\text{1.Schritt}}{\df} \overline{y}\in \overline{T(U_1(0))}$. Also gibt es ein $y_0$ und $\alpha$, so dass $y_0 = Tx_0 \in T(U_1(0)),\,\alpha \in (0,1)$ mit $\|\overline{y}-y_0\|<\alpha \varepsilon_0$ und $\frac{\varepsilon}{\varepsilon_0 (1-\alpha)}< 1$.\par 
-		 Wir betrachten nun $\frac{\overline{y}-y_0}{\alpha}\in U_{\varepsilon_0}(0)$. 		 $\df \exists y_1 = Tx_1 \in {T(U_1(0))}$ mit $\norm{\frac{\overline{y}-y_0}{\alpha} - y_1} < \alpha \varepsilon_0
-			\df \norm{\overline{y} - (y_0 + \alpha y_1)} < \alpha^2 \varepsilon_0$
-			Behandle $\frac{\overline{y} - (y_0 +\alpha y_1)}{\alpha^2}$ mit derselben Methoden,
-			erhalte, $y_2 = Tx_2 \in {T(U_1(0))}$ mit $\norm{\overline{y} - (y_0 + \alpha y_1 + \alpha^2 y_2)} < \alpha^3 \varepsilon_0$
-			So erhalten wir induktiv eine Folge $(x_n)$ in $\U{0}$ mit $\norm{\overline{y} - T(\sum_{k=0}^n \alpha^k x_k)} < \alpha^{n+1} \cdot \varepsilon_0$.
-			Wegen $\alpha < 1$ gistilt $\overline{x} := \sum_{\alpha=0}^\infty \alpha^k x_k$ konvergent
-			$\df[T beschränkt] T\overline{x} = \overline{y}$ Für $x := \frac{\varepsilon}{\varepsilon_0} \overline{x}$
-		ist $Tx = y$ und  
-		$\norm{x} = \frac{\varepsilon}{\varepsilon_0} \norm{\overline{x}} \leq \frac{\varepsilon}{\varepsilon_0} \sum_{k=0}^\infty \alpha^k \underbrace{\norm{x_k}}_{< 1} < \frac{\varepsilon}{\varepsilon_0} \sum_{k=0}^\infty \alpha^k = \frac{\varepsilon}{\varepsilon_0} \cdot \frac{1}{1-\alpha} < 1$
-		$\df y\in T(U_1(0)).$ Also $U_{\varepsilon_0}(0) \subseteq T(U_1(0))$.
-		
-		
-	\end{proof}
+%	\begin{proof}
+%		
+%		\underline{1.Schritt:} 
+%		Wir zeigen zuerst, dass es ein $\varepsilon_0 > 0$ gibt, so dass $U_{\varepsilon_0}(0) \subseteq \overline{T(U_1(0))}$.\par 
+%		Weil $T$ surjektiv ist, ist $Y = \bigcup_{n\in \N} T(U_n(0))$, und da $Y$ vollständig ist, können wir den Baireschen Kategoriensatz anwenden, und es ist für ein $N\in\N: \mathring{\overline{T(U_N(0))}} \not = \emptyset$.
+%		 Also $$\exists y_0 \in \overline{T(U_N(0))}\df \varepsilon > 0 \text{ s.d. }U_\varepsilon(y_0) \subseteq \overline{T(U_N(0))}$$
+%		 Wir müssen noch zeigen, dass die Menge tatsächlich eine Nullumgebung ist.
+%		 Dafür stellen wir fest, dass für $y \in U_{\varepsilon}(0)$ es Punkte $x_i \in U_{N}(0)$ gibt, so dass $\lim_{i\to \infty} Tx_i=y_0+y$. Sei nun $x_0\in X$ so dass $Tx_0 = y_0$. Dann ist 
+%		 $$\TODO\; T\left(\frac{x_i-x_0}{k_0+\|x_0\|}\right)=\frac{T(x_i-x_0)}{k_0+\|x_0\|}\to \frac{y}{N+\|x_0\|}\quad\text{ wobei } \norm{\frac{x_i-x_0}{k_0+\|x_0\|}}\leq \frac{\|x_i\|}{N+\|x_0\|}+\frac{\|x_0\|}{N+\|x_0\|} \leq 2$$
+%		 
+%		 Insgesamt folgt also: $$U_{{\varepsilon_0}}(0)\subseteq \overline{T(U_1(0))} \quad \text{ mit } \varepsilon_0:=\frac{\varepsilon}{2(N+\|x_0\|)}$$
+%		 \underline{2.Schritt:} Es ist noch zu zeigen, dass $U_{\varepsilon_0}(0) \subseteq T(U_1(0)).$\par Sei dafür $y\in U_{\varepsilon_0}(0)$, $\varepsilon>0$ mit $\|y\|<\varepsilon<\varepsilon_0$ und $ \overline{y}:=\frac{\varepsilon_0}{\varepsilon}y \df \|\overline{y}\|<\varepsilon_0 \overset{\text{1.Schritt}}{\df} \overline{y}\in \overline{T(U_1(0))}$. Also gibt es ein $y_0$ und $\alpha$, so dass $y_0 = Tx_0 \in T(U_1(0)),\,\alpha \in (0,1)$ mit $\|\overline{y}-y_0\|<\alpha \varepsilon_0$ und $\frac{\varepsilon}{\varepsilon_0 (1-\alpha)}< 1$.\par 
+%		 Wir betrachten nun $\frac{\overline{y}-y_0}{\alpha}\in U_{\varepsilon_0}(0)$. 		 $\df \exists y_1 = Tx_1 \in {T(U_1(0))}$ mit $\norm{\frac{\overline{y}-y_0}{\alpha} - y_1} < \alpha \varepsilon_0
+%			\df \norm{\overline{y} - (y_0 + \alpha y_1)} < \alpha^2 \varepsilon_0$
+%			Behandle $\frac{\overline{y} - (y_0 +\alpha y_1)}{\alpha^2}$ mit derselben Methoden,
+%			erhalte, $y_2 = Tx_2 \in {T(U_1(0))}$ mit $\norm{\overline{y} - (y_0 + \alpha y_1 + \alpha^2 y_2)} < \alpha^3 \varepsilon_0$
+%			So erhalten wir induktiv eine Folge $(x_n)$ in $\U{0}$ mit $\norm{\overline{y} - T(\sum_{k=0}^n \alpha^k x_k)} < \alpha^{n+1} \cdot \varepsilon_0$.
+%			Wegen $\alpha < 1$ gistilt $\overline{x} := \sum_{\alpha=0}^\infty \alpha^k x_k$ konvergent
+%			$\df[T beschränkt] T\overline{x} = \overline{y}$ Für $x := \frac{\varepsilon}{\varepsilon_0} \overline{x}$
+%		ist $Tx = y$ und  
+%		$\norm{x} = \frac{\varepsilon}{\varepsilon_0} \norm{\overline{x}} \leq \frac{\varepsilon}{\varepsilon_0} \sum_{k=0}^\infty \alpha^k \underbrace{\norm{x_k}}_{< 1} < \frac{\varepsilon}{\varepsilon_0} \sum_{k=0}^\infty \alpha^k = \frac{\varepsilon}{\varepsilon_0} \cdot \frac{1}{1-\alpha} < 1$
+%		$\df y\in T(U_1(0)).$ Also $U_{\varepsilon_0}(0) \subseteq T(U_1(0))$.
+%	\end{proof}
 
+ 	\begin{proof}
+ 		Wir zeigen, dass $(ii)$ aus Lemma 2.3 gilt.
+ 		\begin{enumerate}[1. {Schritt}]
+ 			\item Wir zeigen $\exists \varepsilon_0 > 0$, so dass $U_{\varepsilon_0}(0) \subseteq \overline{T(U_1(0))}.$ Weil $T$ surjektiv gilt $Y = \bigcup_{n\in\N} T(U_n(0))$.
+ 			Da $Y$ Banachraum, so gilt nach Baire
+ 			$\exists N\in\N: \overline{T(U_N(0))} \neq \emptyset$
+ 			$\exists y_0 \in \overline{T(U_N(0))}, \varepsilon > 0$, so dass 
+ 			$\U{\varepsilon}{0} \subseteq \overline{T(U_N(0))}$.
+ 			Aus $\U{\varepsilon}{0} \subseteq \frac{1}{2} \U{\varepsilon}{y_0} + \frac{1}{2} \U{\varepsilon}{-y_0}$ und 
+ 			$\overline{T(U_N(0))} = \frac{1}{2} \overline{T(U_N(0))} + \frac{1}{2} \overline{T(U_N(0))} $		
+ 			folgt $ \U{\varepsilon}{0} \subseteq \overline{T(U_N(0))}$
+ 			$\df \U{\frac{\varepsilon}{N}}{0} \subseteq \overline{T(U_1(0))}$.
+ 			$\varepsilon_0 := \frac{\varepsilon}{N}$.
+ 			\item Wir zeigen $\U{\varepsilon_0}{0} \subseteq {T(U_1(0))}$
+ 			Sei $y\in \U{\varepsilon_0}{0}$. Wähle $\varepsilon > 0$ mit $ \norm{y} < \varepsilon < \varepsilon_0$, $\overline{y} : = \frac{\varepsilon_0}{\varepsilon} y$ 
+ 			$\df$ $\norm{\overline{y}} < \varepsilon_0$
+ 			$\df \overline{y} \in \overline{T(U_1(0))}$
+ 			$\df \exists y_0 = Tx_0 \in {T(U_1(0))}$ mit $\norm{\overline{y} - y_0} < \alpha \varepsilon_0$, wobei $0 < \alpha < 1$ mit $\frac{\varepsilon}{\varepsilon_0} \cdot \frac{1}{1-\alpha} < 1$
+ 			Betrachte nun $\frac{\overline{y} - y_0}{\alpha} \in \U{\varepsilon_0}{0}$
+ 			$\df \exists y_1 = Tx_1 \in {T(U_1(0))}$ mit $\norm{\frac{\overline{y}-y_0}{\alpha} - y_1} < \alpha \varepsilon_0
+ 			\df \norm{\overline{y} - (y_0 + \alpha y_1)} < \alpha^2 \varepsilon_0$
+ 			Behandle $\frac{\overline{y} - (y_0 +\alpha y_1)}{\alpha^2}$ mit derselben Methoden,
+ 			erhalte, $y_2 = Tx_2 \in {T(U_1(0))}$ mit $\norm{\overline{y} - (y_0 + \alpha y_1 + \alpha^2 y_2)} < \alpha^3 \varepsilon_0$
+ 			Erhalte so induktiv eine Folge $(x_n)$ in $\U{0}$ mit $\norm{\overline{y} - T(\sum_{k=0}^n \alpha^k x_k)} < \alpha^{n+1} \cdot \varepsilon_0$.
+ 			Weegen $\alpha < 1$ gilt $\overline{x} := \sum_{\alpha=0}^\infty \alpha^k x_k$ konver.
+ 			$\df[T beschränkt] T\overline{x} = \overline{y}$ Für $x = \frac{\varepsilon}{\varepsilon_0} \overline{x}$
+ 		gilt $Tx = y$ und  
+ 		$\norm{x} = \frac{\varepsilon}{\varepsilon_0} \norm{\overline{x}} \leq \frac{\varepsilon}{\varepsilon_0} \sum_{k=0}^\infty \alpha^k \underbrace{\norm{x_k}}_{< 1} < \frac{\varepsilon}{\varepsilon_0} \sum_{k=0}^\infty \alpha^k = \frac{\varepsilon}{\varepsilon_0} \cdot \frac{1}{1-\alpha} < 1$
+ 		$\df y\in T(U_1(0)).$ Also $\U{\varepsilon}{0} \subseteq T(U_1(0))$.
+ 		\end{enumerate}
+ 	\end{proof}
 
-	\begin{proof}
-		Wir zeigen, dass $(ii)$ aus Lemma 2.3 gilt.
-		\begin{enumerate}[1. {Schritt}]
-			\item Wir zeigen $\exists \varepsilon_0 > 0$, so dass $U_{\varepsilon_0}(0) \subseteq \overline{T(U_1(0))}.$ Weil $T$ surjektiv gilt $Y = \bigcup_{n\in\N} T(U_n(0))$.
-			Da $Y$ Banachraum, so gilt nach Baire
-			$\exists N\in\N: \overline{T(U_N(0))} \neq \emptyset$
-			$\exists y_0 \in \overline{T(U_N(0))}, \varepsilon > 0$, so dass 
-			$\U{\varepsilon}{0} \subseteq \overline{T(U_N(0))}$.
-			Aus $\U{\varepsilon}{0} \subseteq \frac{1}{2} \U{\varepsilon}{y_0} + \frac{1}{2} \U{\varepsilon}{-y_0}$ und 
-			$\overline{T(U_N(0))} = \frac{1}{2} \overline{T(U_N(0))} + \frac{1}{2} \overline{T(U_N(0))} $		
-			folgt $ \U{\varepsilon}{0} \subseteq \overline{T(U_N(0))}$
-			$\df \U{\frac{\varepsilon}{N}}{0} \subseteq \overline{T(U_1(0))}$.
-			$\varepsilon_0 := \frac{\varepsilon}{N}$.
-			\item Wir zeigen $\U{\varepsilon_0}{0} \subseteq {T(U_1(0))}$
-			Sei $y\in \U{\varepsilon_0}{0}$. Wähle $\varepsilon > 0$ mit $ \norm{y} < \varepsilon < \varepsilon_0$, $\overline{y} : = \frac{\varepsilon_0}{\varepsilon} y$ 
-			$\df$ $\norm{\overline{y}} < \varepsilon_0$
-			$\df \overline{y} \in \overline{T(U_1(0))}$
-			$\df \exists y_0 = Tx_0 \in {T(U_1(0))}$ mit $\norm{\overline{y} - y_0} < \alpha \varepsilon_0$, wobei $0 < \alpha < 1$ mit $\frac{\varepsilon}{\varepsilon_0} \cdot \frac{1}{1-\alpha} < 1$
-			Betrachte nun $\frac{\overline{y} - y_0}{\alpha} \in \U{\varepsilon_0}{0}$
-			$\df \exists y_1 = Tx_1 \in {T(U_1(0))}$ mit $\norm{\frac{\overline{y}-y_0}{\alpha} - y_1} < \alpha \varepsilon_0
-			\df \norm{\overline{y} - (y_0 + \alpha y_1)} < \alpha^2 \varepsilon_0$
-			Behandle $\frac{\overline{y} - (y_0 +\alpha y_1)}{\alpha^2}$ mit derselben Methoden,
-			erhalte, $y_2 = Tx_2 \in {T(U_1(0))}$ mit $\norm{\overline{y} - (y_0 + \alpha y_1 + \alpha^2 y_2)} < \alpha^3 \varepsilon_0$
-			Erhalte so induktiv eine Folge $(x_n)$ in $\U{0}$ mit $\norm{\overline{y} - T(\sum_{k=0}^n \alpha^k x_k)} < \alpha^{n+1} \cdot \varepsilon_0$.
-			Weegen $\alpha < 1$ gilt $\overline{x} := \sum_{\alpha=0}^\infty \alpha^k x_k$ konver.
-			$\df[T beschränkt] T\overline{x} = \overline{y}$ Für $x = \frac{\varepsilon}{\varepsilon_0} \overline{x}$
-		gilt $Tx = y$ und  
-		$\norm{x} = \frac{\varepsilon}{\varepsilon_0} \norm{\overline{x}} \leq \frac{\varepsilon}{\varepsilon_0} \sum_{k=0}^\infty \alpha^k \underbrace{\norm{x_k}}_{< 1} < \frac{\varepsilon}{\varepsilon_0} \sum_{k=0}^\infty \alpha^k = \frac{\varepsilon}{\varepsilon_0} \cdot \frac{1}{1-\alpha} < 1$
-		$\df y\in T(U_1(0)).$ Also $\U{\varepsilon}{0} \subseteq T(U_1(0))$.
-		\end{enumerate}
-	\end{proof}
+	ÜA: $X,Y$ Banachräume, $T\in \BS$ ist offen (relativ in im$T$) $\Leftrightarrow imT$ abgeschlossen. 
+		\begin{proof}[Idee]
+		$"'\Leftarrow"'$ gilt nach Satz 2.4. ($imT$ abgeschlossen $\df imT$ ist Banachraum)\\
+		$"'\df"'$ betrachte injektive Abbildung $\hat{T}: X\setminus KerT \to imT, x+KerT\mapsto Tx$
+		\end{proof}
 
-	ÜA: $X,Y$ Banachräume, $T\in \BS$ ist offen (relativ in im$T$) $\Leftrightarrow imT$ abgeschlossen. TODO
-
+%%%%%%% 2.5
 	\begin{thm}[Satz von der stetigen Inversen, inverse mapping theorem]
 	$X, Y$ Banachräume. $T\in\BS$ bijektiv $\df \inv{T}\in \B(Y,X)$	
 	\end{thm}
@@ -1453,11 +1501,13 @@ Sei $f\in L^2([0,2\pi])$
 		Folgt aus open mapping thm und Satz 2.2 (wichtig Banachraum!)
 	\end{proof}
 
+%%%%%%% 2.6
 	\begin{definition}[Graph]
 		$X,Y$ Mengen, $f: X\to Y$ Abbildung. Der \qmarks{Graph von $f$} ist 
 			$G(f) := \{(x,f(x)) : x\in X\} \subseteq X\times Y$
 	\end{definition}
 
+%%%%%%% 2.7
 	\begin{definition}
 		$X,Y$ metrische Räume. Dann ist auf $X\times Y$ eine Metrik via 
 			$d((x_1,y_1),(x_2,y_2)) : (d(x_1,x_2)^2 + d(y_1,y_2)^2)^{\frac{1}{2}}$ definiert. (erhält Parallelogrammgleichung und damit Skalarproduktstruktur)
@@ -1467,26 +1517,29 @@ Sei $f\in L^2([0,2\pi])$
 		\begin{enumerate}[(i)]
 			\item $X\times Y$ vollständig $\Leftrightarrow$ $X, Y$ vollständig
 			\item $X\times Y$ normierter Raum $\Leftrightarrow$ $X,Y$ nomierte Räume
-			\item $X\times Y$ Skalarproduktraum $\Leftrightarrow$ $X,Y$ SKP
-			\item abgeschlossene Metrik ist äquivalent zu $max\{d(x_1,x_2),d(y_1,y_2)\}$ und 
+			\item $X\times Y$ Skalarproduktraum $\Leftrightarrow$ $X,Y$ Skalarproduktraum. 
+			\item abgeschlossene Metrik ist äquivalent zu $\max\{d(x_1,x_2),d(y_1,y_2)\}$ und 
 			$(d(x_1,x_2)^p + d(y_1,y_2)^p)^{\frac{1}{p}}$, $p\in (1,\infty)$
 		\end{enumerate}
 
+%%%%%%% 2.8
 	\begin{definition}[Graphenabgeschlossenheit]
 		$X,Y$ metrische Räume, $f: X\to Y$ heißt \textit{graphenabgeschlossen}, wenn $G(f) \subseteq X\times Y$ abgeschlossen ist.	
 	\end{definition}
 
+%%%%%%% 2.9
 	\begin{bem}
 		\begin{enumerate}
-			\item $f$ graphenabgeschlossen $\aq$ $( (x_n)$ in $X$ mit $x_n \to x$ und $f(x_1) \to y$ 
+			\item $f$ graphenabgeschlossen $\aq$ $(x_n)$ in $X$ mit $x_n \to x$ und $f(x_1) \to y$ 
 			$\df f(x) = y$)
 			\item $T: X\to Y$ lineare Operator $\df$ $G(T) \subseteq X\times Y$ UVR.
 			\item $f$ stetig $\df$ $f$ graphenabgeschlossen.
-			\item Umkehrung gilt nicht: Bspw: $f: \R \to \R$ 
+			\item Umkehrung von $(iii)$ gilt i.A. nicht: Gegensbeispiel: $f: \R \to \R$ 
 				$x\mapsto \begin{cases} 0& x=0\\ \frac{1}{x} & sonst \end{cases}$
 		\end{enumerate}
 	\end{bem}
 
+%%%%%%% 2.10
 	\begin{thm}[Satz vom abgeschlossem Graphen, closed graph theorem]
 		$X,Y$ Banachräume, $T: X\to Y$, lineare Operatoren. Dann sind äquivalent:
 			\begin{enumerate}[(i)]
@@ -1497,7 +1550,7 @@ Sei $f\in L^2([0,2\pi])$
 
 	\begin{proof}[TODO]
 		\begin{itemize}
-			\item \qmarks{$ii\df i$} Klar, TODO
+			\item \qmarks{$ii\df i$} Klar, weil $\dots$ 
 			\item Definiere Abbildung, $S: G(T) \to X, (x,Tx) \mapsto X$
 			$\df$ $S$ bijektiv und linear. Wegen 
 				$\norm{S(x,Tx)}_X = \norm{X} \leq (\norm{x}_X^2 + \norm{Tx}_Y^2)^{\frac{1}{2}})$
@@ -1509,17 +1562,20 @@ Sei $f\in L^2([0,2\pi])$
 		\end{itemize}
 	\end{proof}
 
+%%%%%%% 2.11
 	\begin{bem}
-		Ein paar Anwednungenj
+		Ein paar Anwendungen
 		\begin{enumerate}
 			\item Aus Inverse mapping thm folgt: $(X,\norm{\cdot}_1$, $(X,\norm{\cdot}_2)$ BRe, $\norm{\cdot}_1$ stärker als $\norm{\cdot}_2$ $\df$
-				 $\norm{\cdot}_2$ stärker $\norm{\cdot}_1.$
-				 \begin{proof}[TODO]
-				 TODO
+				 $\norm{\cdot}_2$ stärker $\norm{\cdot}_1$.
+				 \begin{proof}
+						\spcm
+						Sei $I_X: (X,\norm{\cdot}_1)\to(X,\norm{\cdot}_2) \overset{Vor.}{\df}  I_x$ beschränkt $\overset{IMT}{\df} I_X^{-1}
+						: (X,\norm{\cdot}_2) \to (X,\norm{\cdot}_1)$ beschränkt $\df \norm{\cdot}_2$ ist stärker als $\norm{\cdot}_1 \spcm$.
 				 \end{proof}
 			\item Betrachte $X = C([a,b])$, $Y = C^1([a,b])$ mit Normen $\norm{x}_X = \max_{t\in[a,b]} |x(t) | = \norm{x}_\infty$, $\norm{x}_Y = \norm{x}_\infty + \norm{x'}_\infty$, $X,Y$ Banachräume.\par
 			Ist $T\in \B(C([a,b]))$ mit $imT \subset C^1([a,b])$. Dann ist $T\in \B(C([a,b]), C^1([a,b]))$
-				\begin{proof}[TODO]
+				\begin{proof}
 					$x, x_n \in X y\in Y$ mit $\norm{x_n - x}_X \to 0$, $\norm{Tx_n - y}_Y \to 0$
 					$\df \norm{x_n - x}_X \to 0$ und $\norm{Tx_n - y}_X \to 0$, da $\norm{z}_X \leq \norm{z}_Y \; \forall z\in Y$. $\df[T\in\B(X)]$ $\limes \norm{Tx_n - Tx} = 0 \df y = Tx$
 					$\df T$ graphenabgeschlossen $\df[X,Y \; BRe]$ $T\in \BS$.
@@ -1528,6 +1584,7 @@ Sei $f\in L^2([0,2\pi])$
 
 	\end{bem}
 
+%%%%%%% 2.12
 	\begin{bem}
 		$T: X\to Y$ lineare Operatoren. Dann sind äquivalent:
 			\begin{enumerate}[(i)]
@@ -1535,20 +1592,24 @@ Sei $f\in L^2([0,2\pi])$
 				\item $\forall (x_n)$ in $X$ mit $x_n \to 0$, $y\in Y$ mit $ (Tx_1) \to y$ folgt $y=0$ 
 			\end{enumerate}
 
-		\begin{proof}[TODO]
-				TODO
+		\begin{proof}
+			Nutze Linearität:\\
+			"'$\df$"' klar (Spezialisierung auf Nullfolgen)\\
+			"'$\Leftarrow$"' angenommen $(x_n) \to x, T(x_n) \to y \df (x_n-x)$ ist Nullfolge
 		\end{proof}
 
 	\end{bem}
 
 	\section{Das Prinzip der gleichmäßigen Beschränkheit, Satz von Banach-Steinhaus}
 \newcommand{\F}{\mathcal{F}}
+
+%%%%%%% 2.13
 	\begin{thm}[Satz von Osgood]
 		$X$ normierte Raum, $E \subset X$ Teilmenge von 2. Kategorie.	Sei $\mathcal{F} = \{f_\alpha: X\to \R$ stetig, $\alpha \in A\}$ eine Menge von FUnktionen. $\F$ sei auf $E$ punktweise beschränkt, d.h. $\forall x\in E$ $\exists M_x > 0$, so dass $f_\alpha (x) \leq M_x$ $\forall \alpha \in A$. Dann existiert abgeschlossene Kugel $K\subseteq X$, auf der $\F$ glm nach oben beschränkt ist. D.h.
 		$$\exists M > 0 \text{ s.d } f_\alpha (x) \leq M \; \forall \alpha \in A, x\in K.$$
 	\end{thm}
 	
-	\begin{proof}[TODO]
+	\begin{proof}
 		Für $n\in \N$, def $E_n : \{x\in X: f_\alpha(x) \leq n \forall \alpha \in A\}$
 		$= \bigcap_{\alpha\in A} \underbrace{\{ x\in X: f_\alpha (x) \leq n\}}_{\text{abgeschlossen, da f stetig}}$
 		$\df E_n$ abgeschlossen. Ferne gilt $E\subset \cup_{n\in\N} E_n$ wegen Annahme (punktweise Beschränkt). $\df[2. Kate] \cup_{n\in\N} E_n$ von 2. Kategoriere 
@@ -1557,24 +1618,28 @@ Sei $f\in L^2([0,2\pi])$
 		Insbesondere $\exists x_0 \in U, \delta > 0$, so dass $K:= \overline{U_\delta(x_0)} \subseteq U$. Dann gilt $\forall \alpha \in A, x\in \overline{U_\delta(x_0)}: f_\alpha (x) \leq M.$
 	\end{proof}
 
+%%%%%%% 2.14
 	\begin{cor}[Prinzip der glm Beschränkheit]
 		$X,Y$ normierter Räume, $E\subset X$ von 2. Kategorie, 
 			$\F \subseteq \BS$ mit $\forall x \in $ $\exists M_x > 0$ so dass $\norm{Tx} \leq M_x \forall T \in \F$.
 			Dann gilt: $$\exists M > 0 \text{ so dass } \norm{T} \leq M \forall T \in \F$$
 	\end{cor}
 
-	\begin{proof}[TODO]
-		TODO
+	\begin{proof}
+		Für $T \in \F$ definiere $f_T: X \to \R, x \mapsto \norm{Tx} \df f_T$ ist stetig $\forall T \in \F, \{f_T: T \in \F\}$ ist pw. beschränkt $\overset{Osgood}{\df} \exists M,r >0, x_0 \in E: \disp \sup_{\underset{T \in \F}{x \in \overline{U_r(x_0)}}} \norm{Tx} \in M$. Für $x \in U_1(0)$ gilt dann
+		$$\norm{Tx}=\norm{\frac{1}{r}T(rx+x_0)-\frac{1}{r}Tx_0} \leq \frac{1}{r} \underbrace{\norm{T(rx+x_0)}}_{\leq M} + \frac{1}{r} \underbrace{\norm{Tx_0}}_{\leq M} \leq \frac{2M}{r} \df \norm{T} \leq \frac{2M}{r} ~\forall T \in \F.$$
 	\end{proof}
 
+%%%%%%% 2.15
 	\begin{cor}
 		$X$ Banachraum, $Y$ normierter Raum. Sei $\F \subseteq \BS$, so dass $\forall x \in X$ $\exists M_x > 0: \norm{T_x} \leq M_x \; \forall T\in \F$. Dann existiert ein $M > 0$, so dass $\norm{T} \leq M$ $\forall T \in \F$.
 	\end{cor}
 
-	\begin{proof}[TODO]
+	\begin{proof}
 		$X$ Banachraum $\df[Baire]$ $X$ von 2. Kategorier. Resultat folgt aus Kor. 2.14.
 	\end{proof}
 
+%%%%%%% 2.16
 	\begin{cor}
 		$X$ Banachraum, $Y$ normierter Raum, $\F \subseteq \BS$, so dass 
 			$$ \sup_{T\in\F} \norm{T} = \infty \vspace{-1em} $$. 
@@ -1588,21 +1653,29 @@ Sei $f\in L^2([0,2\pi])$
 							$\df[2.14] \sup{T\in \F} \norm{T} < \infty$ Widerspruch!
 					\end{proof}
 			\end{enumerate}
-
 	\end{cor}
+
 TODO: Ein Beispiel für starke Konvergenz aber keine Konvergenz von Operatoren oder sowas.
 
+%%%%%%% 2.17
 	\begin{thm}
 		$X$ Banachraum, $Y$ normierter Raum. $(T_n)$ Folge in $\BS$, so dass 
-			$$ Tx = \limes T_n x \; \forall x\in X$$. 
+			$$ Tx = \limes T_n x \; \forall x\in X.$$ 
 		Dann gilt $T\in \BS$, $\{\norm{T_n} : n\in \N\}$ beschränkt und $\norm{T} \leq \limes\inf \norm{T_n}$.
 	\end{thm}
 
-	\begin{proof}[TODO]
-		Linearität von $T$ klar. \par
-TODO
+	\begin{proof}
+		Linearität von $T$ ist klar. Weiter gilt 
+		\[
+		\limes |\norm{T_nx}-\norm{Tx}| \leq \limes \norm{T_nx-Tx} = 0 ~\forall x \in X \df ~\forall x \in X ~\exists M_x>0 \text{, sodass } \sup_{n \in \N} \norm{T_nx}\leq M_x
+		\]
+		$\df \exists M>0,$ so dass $ \disp \sup_{n \in \N} \norm{T}\leq M<\infty$. Für $x \in X$ und jede TF $(X_{n_k})$, sodass $\norm{T_{n_k}}$ konvergiert, gilt
+		\[
+		\norm{Tx}=\lim_{k \to \infty}\norm{T_{n_k}x}\leq \lim_{k \to \infty}\norm{T_{n_k}}\norm{x} \df \norm{Tx} \leq \liminf_{n \to \infty} \norm{Tn}\norm{x} \df \norm{T} \leq \liminf_{n \to \infty} \norm{T_n}.
+		\]
 	\end{proof}
 
+%%%%%%% 2.18
 	\begin{thm}[Satz von Banach-Steinhaus]
 		$X,Y$ Banachräume, $(T_n)$ Folge in $\BS$. Dann konvergiert $(T_n)$ punktweise gegen ein $T\in \BS$, genau dann wenn folgende beiden Bedingungen erfüllt sind:
 			\begin{enumerate}[(1)]
@@ -1611,8 +1684,13 @@ TODO
 			\end{enumerate}
 	\end{thm}
 
-	\begin{proof}[TODO]
-		TODO
+	\begin{proof}
+		"'$\df$"' 1. folgt aus Satz 2.17., 2. ist klar (nehme $D=X$)\\
+		"'$\Leftarrow$"' Sei $x \in X, \varepsilon>0 \df \exists y \in D: \norm{x-y}<\frac{\varepsilon}{3M}, \exists N \in \N: \norm{T_ny-T_my}<\frac{\varepsilon}{3} ~\forall n,m \leq N$. Dann gilt 
+\begin{align*}
+		\forall n,m \leq N: \norm{T_mx-T_nx} &\leq \norm{T_mx-T_my} + \norm{T_my-T_ny} + \norm{T_ny-T_nx}\\ &\leq \norm{T_m} \norm{x-y}+ \norm{T_my-T_nx} + \norm{T_n} \norm{x-y}\\ &\leq M \frac{\varepsilon}{3M} + \frac{\varepsilon}{3} + \frac{\varepsilon}{3M} = \varepsilon.
+		\end{align*}
+		$\df (T_nx)$ ist Cauchyfolge in $Y \df (T_nx)$ konvergiert in $Y \overset{2.17.}\df T \in B(X,Y).$ 
 	\end{proof}
 
 	\newcommand{\BKK}{\B(X,\K)}
