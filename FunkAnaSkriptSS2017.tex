@@ -1,4 +1,4 @@
-%Stand: 22.05.2017
+%Stand: 26.05.2017
 
 \documentclass[ngerman]{report}
 %pdf language settings
@@ -29,7 +29,7 @@
 \usepackage{marginnote} %allows to do some nice marinnotes
 %Headers and Footnotes
 \pagestyle{headings}
-\ihead{Funktionalanalysis - Vorlesungsmitschrift}
+\ihead{Funktionalanalysis - Vorlesungsmitschrift. Stand: \today}
 
 
 \newtheoremstyle{myStyle}% style, der die Überschrift nicht fett, sondern kursiv erscheinen lässt
@@ -89,7 +89,7 @@
 \newcommand{\aufspan}{\textnormal{span}}
  
 \newcommand{\seminorm}[1]{||| #1 |||}
-\newcommand{\norm}[1]{\|#1\|}
+\newcommand{\norm}[1]{\left \|#1\right\| }
 \newcommand{\intl}[1]{\int_\Omega #1 d\mu} %"Standard"Lebesgue-Integral über Omega
 \newcommand{\df}[1][]{% "daraus folgt", also Implikation
 	%\IfEqCase{#1}{
@@ -101,7 +101,9 @@
 \newcommand{\aq}{\Leftrightarrow} % "äquivalent zu", also Äquivalenz
 \newcommand{\U}[2][1]{U_{#1}(#2)} %Umgebung um #2 mit Abstand #1 \U{r}{a}
 \newcommand{\EK}{\U{0}} %Umgebung bzw Einheitskugel um 0
+\newcommand{\BKK}{\B(X,\K)}
 \newcommand{\limes}[1][\infty]{\lim_{n \to #1}}
+\newcommand{\toinf}[1][n]{\overset{#1\to \infty}{\to}}
 
 \newcommand{\inv}[1]{#1^{-1}}
 \newcommand{\supT}[1][a]{
@@ -111,21 +113,27 @@
 	{a}{\sup_{x \in \EK}}
 	}
 } %sup_EK für die Operatornorm bzw mit Argumet auch Rand oder Abschluss von EK möglich
+
 \newcommand{\disp}{\displaystyle}
 \newcommand{\qmarks}[1]{#1}
-%\newcommand{\qmarks}[1]{$"{}$ #1 $"${}}
 \newcommand{\afs}{"{}}
 \newcommand{\TODO}{\text{$\mathbb{TODO}$}}
 
 \newcommand{\ov}[1]{\overline{#1}}
 \newcommand{\xf}{(x_i)_{i\in I}}
 \newcommand{\ff}[3]{(#1_#2)_{#2\in#3}}
-\newcommand{\SP}{(\cdot,\cdot)}
+\newcommand{\SP}{\left (\cdot,\cdot \right)} %Standardskalarprodukt
+\newcommand{\Sp}[1]{\left (#1 \right)} % Skalarprodukt mit angepassten Klammern
+%\newcommand{\skp}
 
-\newcommand{\set}[1]{\{#1\}}
-\newcommand{\fop}[1]{\langle #1 \rangle}
+\newcommand{\set}[1]{\{#1\}} %Mengen
+\newcommand{\fop}[1]{\left \langle #1 \right \rangle} %Funktionalauswertung
 \newcommand{\f}[2]{\langle #1,#2 \rangle} %Konrads fop
-\newcommand{\spcm}[1][-0.8]{\vspace{#1 em}}
+\newcommand{\spcm}[1][-0.8]{\vspace{#1 em}} %technischer Befehl fürs Layout
+\newcommand{\wkc}{\longrightarrow} %weak convergent
+\newcommand{\wskc}{\overset{*}{\longrightarrow}} % weak star convergent
+\newcommand{\inner}[1]{\overset{\circ}{#1}}
+
 %Commands für tikz:
 \newcommand*{\rechterWinkel}[3]{% #1 = point, #2 = start angle, #3 = radius
 \draw[shift={(#2:#3)}] (#1) arc[start angle=#2, delta angle=90, radius = #3];
@@ -136,7 +144,7 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \begin{document}
-%\tableofcontents
+\tableofcontents
 
 \chapter{Arbeit im Gange - Grundlagen}
 \section{is' klar 'ne?}
@@ -205,22 +213,22 @@ Eine Norm efüllt zusätzlich noch die Bedingung, dass sie nur dann verschwindet
 \end{bsp}
 
 %Trivia Fakten
-\begin{bem}[diverse Fakten]
-	Seien $p,q,r\in [1,\infty)$
-	\begin{enumerate}[(a)]
-		\item $L^p(\Omega,\mu)$ ist ein Banachraum, $L^2(\Omega,\mu)$ ist ein Hilbertraum mit $(f,g)_2 := \int_\Omega f \overline{g} d\mu$
-		
-		\item Falls $\mu(\Omega) < \infty,\, p\geq r \Rightarrow\; L^p(\Omega,\mu)\subseteq L^r(\Omega,\mu)$
-		
-		\item Wenn $p\geq r\Rightarrow\; L^r(\Omega,\mu)\cap L^\infty(\Omega,\mu)\subseteq L^p(\Omega,\mu)$
-		
-		\item $\frac{1}{p}+\frac{1}{q}=1,\,f\in L^p(\Omega,\mu),\,g\in L^q(\Omega,\mu)\Rightarrow\;fg\in 		 L^1(\Omega,\mu)$ mit $\norm{fg}_1\leq\norm{f}_p\norm{g}_q$ (Hölder-Ungleichung). Dies gilt auch für $p=1, q=\infty$ wobei \underline{hier} $\frac{1}{\infty}:=0$.
-		
-		\item Sei $\Omega\subseteq \R^n$ ein Gebiet. $C^k_0:=\{f:\Omega \rightarrow \C\,|\, \supp f$ kompakt und $f\in C^k(\Omega,\C)\}$ ist dicht in $L^p(\Omega)\;\forall p\in[1,\infty)$. Dies gilt nicht für $p=\infty$, da $f=\textnormal{const}$ oder $f=sign$ sich nicht durch Funktionen aus $C^k_0$ approximieren lassen.
-		
-		\item $BC(\Omega)$ ist abgeschlossen in $L^\infty (\Omega)$, aber nicht in $L^p(\Omega)$ für $p<\infty$, dennoch ist $BC(\Omega)$ in beiden Fällen ein Unterraum.
-	\end{enumerate}
-\end{bem}
+	\begin{bem}[diverse Fakten]
+		Seien $p,q,r\in [1,\infty)$
+		\begin{enumerate}[(a)]
+			\item $L^p(\Omega,\mu)$ ist ein Banachraum, $L^2(\Omega,\mu)$ ist ein Hilbertraum mit $(f,g)_2 := \int_\Omega f \overline{g} d\mu$
+			
+			\item Falls $\mu(\Omega) < \infty,\, p\geq r \Rightarrow\; L^p(\Omega,\mu)\subseteq L^r(\Omega,\mu)$
+			
+			\item Wenn $p\geq r\Rightarrow\; L^r(\Omega,\mu)\cap L^\infty(\Omega,\mu)\subseteq L^p(\Omega,\mu)$
+			
+			\item $\frac{1}{p}+\frac{1}{q}=1,\,f\in L^p(\Omega,\mu),\,g\in L^q(\Omega,\mu)\Rightarrow\;fg\in 		 L^1(\Omega,\mu)$ mit $\norm{fg}_1\leq\norm{f}_p\norm{g}_q$ (Hölder-Ungleichung). Dies gilt auch für $p=1, q=\infty$ wobei \underline{hier} $\frac{1}{\infty}:=0$.
+			
+			\item Sei $\Omega\subseteq \R^n$ ein Gebiet. $C^k_0:=\{f:\Omega \rightarrow \C\,|\, \supp f$ kompakt und $f\in C^k(\Omega,\C)\}$ ist dicht in $L^p(\Omega)\;\forall p\in[1,\infty)$. Dies gilt nicht für $p=\infty$, da $f=\textnormal{const}$ oder $f=sign$ sich nicht durch Funktionen aus $C^k_0$ approximieren lassen.
+			
+			\item $BC(\Omega)$ ist abgeschlossen in $L^\infty (\Omega)$, aber nicht in $L^p(\Omega)$ für $p<\infty$, dennoch ist $BC(\Omega)$ in beiden Fällen ein Unterraum.
+		\end{enumerate}
+	\end{bem}
 
 
 
@@ -265,8 +273,6 @@ Eine Norm efüllt zusätzlich noch die Bedingung, dass sie nur dann verschwindet
 			\end{enumerate}
 	\end{thm}
 
-%TODO: Über das Beweiskästchen streiten wir nochmal ;) DS (<- Mein Namenskürzel)
-
 	\begin{proof}
 		\begin{itemize}[]
 			\item $"(i) \df (ii)":$ 
@@ -297,6 +303,7 @@ Eine Norm efüllt zusätzlich noch die Bedingung, dass sie nur dann verschwindet
 		\end{itemize}
 	\end{proof}
 
+An dieser Stelle werden einige Definition und Bemerkung festgehalten, die in späteren Kapitel beleuchtet und untersucht werden.
 	\begin{bem} 
 		\begin{enumerate}[a)]
 			\item $\B(X,Y) := \{ T: X\to Y: T \text{ beschränkt}\}$
@@ -307,7 +314,7 @@ Eine Norm efüllt zusätzlich noch die Bedingung, dass sie nur dann verschwindet
 	
 
 	\begin{bem}
-		\begin{enumerate}[a)] \addtocounter{enumi}{2}
+		\begin{enumerate}[a)] \addtocounter{enumi}{3}
 			\item $Ker\:T$, $Im\:T$ sind UVR. 
 			\item $(i) - (vi)$ äquivalent zu $(vii)$:
 				Jede beschränkte Menge wird auf eine beschränkte Menge abgebildet.
@@ -363,7 +370,7 @@ Eine Norm efüllt zusätzlich noch die Bedingung, dass sie nur dann verschwindet
 				\item $\disp "' M_3 \geq  M_1: "'$ Sei $\norm{x} \leq 1$. Dann gilt $\norm{Tx} \leq \norm{Tx}/\norm{x}$. Also:
 					$$ M_1 =  \supT[A]\norm{Tx} \leq \supT[A] (\norm{Tx}/ \norm{x}) \leq  M_3$$
 
-				\item $\disp "' M_2 \geq  M_3: "'$ Einfaches Umformung:
+				\item $\disp "' M_2 \geq  M_3: "'$ Einfaches Umformen ergibt:
 					$$ M_3 = \sup_{{x \not = 0}} \frac{\norm{Tx}}{\norm{x}} = \sup_{{x \not = 0}} \norm{T\frac{x}{\norm{x}}} \leq M_2$$ 	
 				
 			\end{itemize}
@@ -1622,7 +1629,7 @@ Sei $f\in L^2([0,2\pi])$
 		\begin{proof}
 			Nutze Linearität:\\
 			"'$\df$"' klar (Spezialisierung auf Nullfolgen)\\
-			"'$\Leftarrow$"' angenommen $(x_n) \to x, T(x_n) \to y \df (x_n-x)$ ist Nullfolge
+			"'$\Leftarrow$"' angenommen $(x_n) \to x, T(x_n) \to y \df (x_n-x)$ ist Nullfolge.
 		\end{proof}
 
 	\end{bem}
@@ -1640,8 +1647,8 @@ Sei $f\in L^2([0,2\pi])$
 		Für $n\in \N$, def $E_n : \{x\in X: f_\alpha(x) \leq n \forall \alpha \in A\}$
 		$= \bigcap_{\alpha\in A} \underbrace{\{ x\in X: f_\alpha (x) \leq n\}}_{\text{abgeschlossen, da f stetig}}$
 		$\df E_n$ abgeschlossen. Ferne gilt $E\subset \cup_{n\in\N} E_n$ wegen Annahme (punktweise Beschränkt). $\df[2. Kate] \cup_{n\in\N} E_n$ von 2. Kategoriere 
-		$\df$ $\exists n_0 \in \N$ so, dass $\circ E_{n_0} = \circ \overline{E_{n_0}} \neq \emptyset.$
-		$\df$ Für $U = \circ E_{n_o} :\sup_{\alpha \in A, x \in U} f_\alpha (x) \leq n_0 =: M$
+		$\df$ $\exists n_0 \in \N$ so, dass $\inner{E}_{n_0} = \inner{\overline{E_{n_0}}} \neq \emptyset.$
+		$\df$ Für $U = \inner{E}_{n_o} :\sup_{\alpha \in A, x \in U} f_\alpha (x) \leq n_0 =: M$
 		Insbesondere $\exists x_0 \in U, \delta > 0$, so dass $K:= \overline{U_\delta(x_0)} \subseteq U$. Dann gilt $\forall \alpha \in A, x\in \overline{U_\delta(x_0)}: f_\alpha (x) \leq M.$
 	\end{proof}
 
@@ -1693,13 +1700,10 @@ TODO: Ein Beispiel für starke Konvergenz aber keine Konvergenz von Operatoren o
 
 	\begin{proof}
 		Linearität von $T$ ist klar. Weiter gilt 
-		\[
-		\limes |\norm{T_nx}-\norm{Tx}| \leq \limes \norm{T_nx-Tx} = 0 ~\forall x \in X \df ~\forall x \in X ~\exists M_x>0 \text{, sodass } \sup_{n \in \N} \norm{T_nx}\leq M_x
-		\]
-		$\df \exists M>0,$ so dass $ \disp \sup_{n \in \N} \norm{T}\leq M<\infty$. Für $x \in X$ und jede TF $(X_{n_k})$, sodass $\norm{T_{n_k}}$ konvergiert, gilt
-		\[
-		\norm{Tx}=\lim_{k \to \infty}\norm{T_{n_k}x}\leq \lim_{k \to \infty}\norm{T_{n_k}}\norm{x} \df \norm{Tx} \leq \liminf_{n \to \infty} \norm{Tn}\norm{x} \df \norm{T} \leq \liminf_{n \to \infty} \norm{T_n}.
-		\]
+			$$ \limes |\norm{T_nx}-\norm{Tx}| \leq \limes \norm{T_nx-Tx} = 0 ~\forall x \in X \df ~\forall x \in X ~\exists M_x>0 \text{, sodass } \sup_{n \in \N} \norm{T_nx}\leq M_x$$ 
+		$\df \exists M>0,$ so dass $ \disp \sup_{n \in \N} \norm{T}\leq M<\infty$. 
+		Für $x \in X$ und jede TF $(X_{n_k})$, sodass $\norm{T_{n_k}}$ konvergiert, gilt
+			$$ \norm{Tx}=\lim_{k \to \infty}\norm{T_{n_k}x}\leq \lim_{k \to \infty}\norm{T_{n_k}}\norm{x} \df \norm{Tx} \leq \liminf_{n \to \infty} \norm{Tn}\norm{x} \df \norm{T} \leq \liminf_{n \to \infty} \norm{T_n}.$$ 
 	\end{proof}
 
 %%%%%%% 2.18
@@ -1720,8 +1724,12 @@ TODO: Ein Beispiel für starke Konvergenz aber keine Konvergenz von Operatoren o
 		$\df (T_nx)$ ist Cauchyfolge in $Y \df (T_nx)$ konvergiert in $Y \overset{2.17.}\df T \in B(X,Y).$ 
 	\end{proof}
 
-	\newcommand{\BKK}{\B(X,\K)}
-	\chapter{Lineare Funktionale und duale Abbildungen}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\chapter{Lineare Funktionale und duale Abbildungen}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
 	$X$ normierter $\K$-VR.\par
 	Erinnerung: $X' = \B(X,\K)$, $x' \in X'$ ,$\norm{x'} = \norm{x'}_{\B(X,\K)} = \sup_{x\in \EK \leq X}|x'(x)| = \sup_{x\in X, \norm{x} = 1} |x'(x)| = \sup_{x\in \overline{\EK}}|x'(x)|.$ \\
 	Notation: Anstelle von $x'(x) =: \langle x,x' \rangle _{X,X'}$, $x' \in X', x\in X$.\\ 
@@ -1742,11 +1750,12 @@ TODO: Ein Beispiel für starke Konvergenz aber keine Konvergenz von Operatoren o
 	\end{lemma}
 
 	\begin{hinweise}
-		Falls $E = X$ $\df$ klar. $(F = f)$.	Angenommen $E \subsetneq X \df x_0 \in X\backslash E, x_0 \neq 0.$
-
+		Falls $E = X$ $\df$ klar. $(F = f)$.	
+		Angenommen $E \subsetneq X \df x_0 \in X\backslash E, x_0 \neq 0.$
 		\begin{enumerate}[1 {Schritt:}]
 			\item Zunächst Forsetztung auf eindimensional größeren Raum. TODO 
-			\item Definiere Menge von Abbildungen und Unterräume, definiere und zeige Halbordnung, und prüfe dann Voraussetzung vom Lemma von Zorn. Das liefert ein maximales Element, dass dann schon der ganze Raum sein muss. Sonst fände mein mit Schritt eins einen größeren Raum, was aber ein Widerspruch zur Annahme bereits das maximale Element benutzt zu haben. 	
+			\item Definiere Menge von Abbildungen und Unterräume, definiere und zeige Halbordnung, und prüfe dann Voraussetzung vom Lemma von Zorn. 
+			Das liefert ein maximales Element, dass dann schon der ganze Raum sein muss. Sonst fände mein mit Schritt eins einen größeren Raum, was aber ein Widerspruch zur Annahme bereits das maximale Element benutzt zu haben. 	
 		\end{enumerate}
 	\end{hinweise}
 
@@ -1896,7 +1905,20 @@ TODO: Ein Beispiel für starke Konvergenz aber keine Konvergenz von Operatoren o
 		\end{enumerate}
 	\end{proof}
 
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Dualraum und Reflexivität}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\footnotesize
+Es wird de Dualraum genauer untersucht. Der Bidualraum wird als Dualraum des Dualraums eingeführt. Man findet eine kanonische Injektion von Raum in den Bidualraum (über das Funktional zu einem Funktional). 
+Ist die Bidualraum immer gleich dem Raum? 
+Diese Eigenschaft soll reflexiv heißen. Welchen Zusammenhang besteht zwischen reflexiv und vollständig?\\
+Hat man mehr Struktur durch einen Hilbertraum findet man eine explizite Darstellung eines Funktionals über das Skalarprodukt. Wie stehen da reflexiv und vollständig in Beziehung?\\
+Wir verallgemeiner den Orthogonalraum auf normierter Räume und seinen Dualraum. Welche topologische Eigenschaften haben solche Räume? Gibt es Normisomorphien?
+
+
+\normalsize
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 		\begin{definition}
 			$X'' = (X')' $ heißt Bidualraum. \\
@@ -1907,12 +1929,12 @@ TODO: Ein Beispiel für starke Konvergenz aber keine Konvergenz von Operatoren o
 		\begin{bem}
 		Vorüberlegung: Sei $x_0 \in X$ betrachte $f_{x_0}: X' \to \K, y' \mapsto \langle x_0, y' \rangle$. 
 		$f_{x_0} \in (X')'$ ?, Ja, weil $\norm{f_{x_0}} = \norm{f_{x_0}}_{\B(X',\K)} = \sup_{}|\langle  x_0, x' \rangle| = \norm{x_0}$. $f_0$ linear klar. \\
-		$\df \mathcal{J}_{X}: X \to X'': x \mapsto f_X = \langle x, \cdot \rangle$ ist linear, isometrisch. \\ 
-		$\df \mathcal{J}_X \subset X''$ auf diese Art kann $X$ als Teilraum von $X''$ aufgefasst werden.
+		$\df {J}_{X}: X \to X'': x \mapsto f_X = \langle x, \cdot \rangle$ ist linear, isometrisch. \\ 
+		$\df {J}_X \subset X''$ auf diese Art kann $X$ als Teilraum von $X''$ aufgefasst werden.
 		\end{bem}
 
 	\begin{definition}
-		$X$ normierte Vr heißt reflexiv, falls $\mathcal{J}_X(X) = X''$. In diesem Fall ist $J_X :X \to X''$ ein Isomorphismus.
+		$X$ normierte Vr heißt reflexiv, falls ${J}_X(X) = X''$. In diesem Fall ist $J_X :X \to X''$ ein Isomorphismus.
 	\end{definition}
 
 	\begin{lemma}
@@ -1925,14 +1947,15 @@ TODO: Ein Beispiel für starke Konvergenz aber keine Konvergenz von Operatoren o
 	\end{proof}
 
 	Zunächst Charakterisierung des HR-Falls
-	
+
+%%%%%%%%%%%%%%%%%%%%%%%% 3.11
 	\begin{thm}[Darstellungssatz Frächet-Riesz]
 		Sei $X$ Hilbertraum. Dann ist 
-			$$R_X : X \to X', \; x \mapsto \sp{\cdot, x} = (y \mapsto \SP{y,x})$$
+			$$R_X : X \to X', \; x \mapsto \Sp{\cdot, x} = (y \mapsto \Sp{y,x})$$
 			anti-linear, isometrische Bijektion. D.h.
 						\begin{enumerate}[(i)]
-							\item $y \mapsto \SP{y,x} \in X' \forall x\in X$
-							\item $\forall x' \in X' \exists ! \in X \fop{y,x'} = \SP{y,x} \forall y \in X$
+							\item $R_X(x) = (y \mapsto \Sp{y,x}) \in X' \quad \forall x\in X$
+							\item $\forall x' \in X' \;\exists ! \; x \in X : \; \fop{y,x'} = \Sp{y,x} \quad \forall y \in X$
 						\end{enumerate}
 	\end{thm}
 
@@ -2048,7 +2071,7 @@ TODO: Ein Beispiel für starke Konvergenz aber keine Konvergenz von Operatoren o
 		TODO
 	\end{proof}
 
-	ÜA: $X$ normierter Raum, $x_0 \not\in \overline{E}$, $E\subset X$ UVR. Dann existiert $x' \in X'$ mit  $Kern x' > \overline{E}$ und $\fop{x_0, x'} \neq 0.$
+	ÜA: $X$ normierter Raum, $x_0 \not\in \overline{E}$, $E\subset X$ UVR. Dann existiert $x' \in X'$ mit  $Kern x' \subset \overline{E}$ und $\fop{x_0, x'} \neq 0.$
 
 	\begin{thm} $X$ normierter Raum, $M \subset X$ UVR. Dann gilt 
 		$$\overline{E} = (E^\perp)_\perp $$
@@ -2063,7 +2086,7 @@ TODO: Ein Beispiel für starke Konvergenz aber keine Konvergenz von Operatoren o
 	\end{proof}
 
 	\begin{cor} 
-		$X$ normierter Raum, $E\subset X$ UVR>. Dann gilt $E$ abgeschlossen $\aq$	$ E = (E^\perp)_\perp)$
+		$X$ normierter Raum, $E\subset X$ UVR. Dann gilt $E$ abgeschlossen $\aq$	$ E = (E^\perp)_\perp)$
 	\end{cor}
 
 	\begin{thm}[Übung]
@@ -2108,8 +2131,19 @@ TODO: Ein Beispiel für starke Konvergenz aber keine Konvergenz von Operatoren o
 		TODO
 	\end{proof}
 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 	\section{Duale und adjungierte Abbildungen}
-
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\footnotesize
+In diesem Abschnitt wird die duale Abbildung definiert. Wann ist dieser stetig? 
+Was wissen über sein Kern und sein Bild? 
+Wie hängen Injektivität und Surjektivität vom Operator und seinem Dualen zusammen. Was ist mit dem Dualen des Dualen?
+Welche Rechenregeln gelten ? Folgt aus der Bijektivität eines Operatoren die Bijektivität seines Dualen und umgekehrt? \\
+Wenn wir sogar einen Hilbertraum haben, können wir (noch stärker) einen adjungiert Operator einführen und diesen mit Hilfe der Riesz-Einbettung eindeutig charakterisieren.
+Auch für den adjungierten Operatoren werden einige Rechenregel gezeigt.
+Welche Gleichheiten gelten für Bild und Kern von Operatoren und seinem Adjungierten?
+\normalsize
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 	\begin{definition}
 	$X,Y$ normierte Räume, $T\in \BS$. Die Abb $T' : Y' \to X'$ mit 
 		$$\fop{x',T' y'} = \fop{Tx, y'} \; \forall y'\in Y', x \in X.$$
@@ -2164,14 +2198,105 @@ TODO: Ein Beispiel für starke Konvergenz aber keine Konvergenz von Operatoren o
 				\end{enumerate}
 	\end{thm}
 
+	\begin{hinweise}
+
+	\end{hinweise}
+
 	\begin{proof}
 		TODO
 	\end{proof}
 
+	Notiz:  hier motivation für folgendes Korollar mündlich.
+	\begin{cor}
+		$X, Y$ Banachräume, $T\in \BS$. Dann gilt 
+			$$ (\inv{T} \in \B(Y,X) \aq \; ) T \text{ bijektiv } \quad \aq 
+				\quad T' \text{ bijektiv } (\aq \inv{(T')} \in \B(X',Y'))$$
+	\end{cor}
+
+	\begin{proof}
+		TODO
+	\end{proof}
+	
+	Jetzt Fokus auf den Hilbertraum. Grob ist der Hilbertraum sein eigener Dualraum. 
+	\begin{definition}
+		$(X, \SP_X), (Y, \SP_Y)$ Skalarprodukträume. 
+		$T\in \BS$. Ein Operator $T^*\in \B(Y,X)$ heißt zu $T$ adjungierter Operator, wenn 
+			$$ (Tx,y)_Y = (x,T^* y)_X \quad \forall x\in X, y\in Y.$$
+	\end{definition}
+
+	\begin{bsp}
+	 $\K^n, \K^m$ mit euklidschem Skalarprodukt. $A\in \K^{n\times m} = \B(\K^m, \K^n)$
+	 $\df A^* = \ov{A}^T$
+	\end{bsp}
+	
+	\begin{thm}
+		$(X,\SP_X)$ Hilbertraum, $(Y,\SP)$ Skalarproduktraum. Dann existiert ein eindeutiges $T^* \in \B(Y,X)$. Für die Riesz-Einbettung $R_X : X\to X'$, $R_Y : Y \to Y'$ gilt
+			$$ T^* = \inv{R_x} T' R_Y.$$
+	\end{thm}
+Im folgenden Satz sind die Voraussetzungen zum Teil etwas stärker als sie seien müssten.
+	\begin{thm}
+		$X,Y,Z$ Hilberträume, $S,T \in \BS, U \in \B(Y,Z)$ und $\alpha \in \K$. Dann gilt
+			\begin{enumerate}[(i)]
+				\item $(S+T)^* = S^* + T^*$, da $(S+T)^* = \inv{R_X}(S+T)' R_Y = \inv{R_X}S' R_Y + \inv{R_X}T' R_Y = S^* + T^*$.
+				\item $(UT)^* = T^* U^*$, da $(UT)^* = \inv{R_Y}(UT)' R_Z = \inv{R_X}T'R_Y \inv{R_Y} U' R_Z = T^* U^*$
+				\item $(\alpha T)^* = \ov{\alpha} T^*$, da $(\alpha T)^* = \inv{R_X} (\alpha T)' R_Y = \inv{R_X} \alpha T' R_Y = \ov{\alpha} \inv{R_X} T' R_Y = \alpha T^*$
+				\item $(id_X)^* = id_X$, da TODO
+				\item $T^{**} = T$, da TODO
+				\item $\norm{T^*} = \norm{T}$, da TODO
+				\item Existiert $\inv{T}$, dann auch $\inv{(T^*)}$, und es gilt $\inv{(T^*)} = (\inv{T})^*$ (Folgt aus Kor. 3.24)
+			\end{enumerate}
+	\end{thm}
+
+	\begin{thm}
+		$X,Y$ Hilberträume, $A\in \BS$. Dann gilt
+			\begin{enumerate}[(i)]
+				\item $(imA)^\perp = Ker A^*$
+				\item $(imA^*)^\perp = Ker A$
+				\item $\ov{imA} = (KerA^*)^\perp$
+				\item $\ov{imA^*} = (KerA)^\perp$
+			\end{enumerate}
+	\end{thm}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+	\section{Schwache Konvergenz}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+	\begin{definition}
+		$X$ normierter Raum. 
+		Eine Folge $(x_n)$ in $X$ heißt 
+			\begin{enumerate}[a)]
+				\item \textit{schwache Cauchy-Folge}, wenn 
+					$$ \fop{x_n,x'} CF \text{ ist }  \forall x' \in X$$
+				\item \textit{schwach konvergent} gegen $x\in X$, wenn
+					$$ \fop{x_n, x'} \to \fop{x,x'} \quad \forall x' \in X'$$
+					$$(\text{schreibe } x_n \longrightarrow x )$$
+			\end{enumerate}
+		Eine Folge $(x_n')$ in $X'$ heißt
+			\begin{enumerate}[a)]
+				\item \textit{schwach$^*$ Cauchy-Folge}, wenn 
+					$$ \fop{x,x_n'} \text{ CF ist } \quad \forall x\in X$$
+				\item \textit{schwach$^*$ konvergent} gege $x' \in X'$, wenn
+					$$ \fop{x,x_n'} \to \fop{x,x'} \quad \forall x\in X $$
+					$$(\text{schreibe } x_n' \overset{*}{\longrightarrow} x')$$
+			\end{enumerate}
+			Eine Menge $M\subset X$ $(M \subset X')$ heißt \textit{schwach (schwach$^*$) Folgenkompakt}, wenn jede Folge in $M$ eine schwach (schwach$^*$) konvergente Teilfolge besitzt, deren schwacher (schwacher $^*$) Grenzwert in $M$ liegt.
+		
+
+	\end{definition}
+
+	\begin{bem}
+		\begin{enumerate}[a)]
+			\item  $x_n \longrightarrow x \df J_x x_n \overset{*}{\longrightarrow} J_x x_n$, da $\fop{x_n, x'} = \fop{x', J_x x_n}$
+		\end{enumerate}
+	\end{bem}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %Zusätze. Alles was man noch definieren, erklären, beweisen, oder erwähnen möchte.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\section*{Etwaige Begriffe}
+\appendix 
+
+\chapter{Etwaige Begriffe}
 	\begin{enumerate}
 		\item \textbf{Hausdorffsch, Hausdorffeigenschaft} - Eine Menge heißt \textit{hausdorffsch}, wenn je zwei versch. Punkte stets disjunkte Umgebungen haben. Metrische Räume sind zum Beispiel hausdorffsch, da zwei versch. Punkte stets einen Abstand $> 0$ haben. Für ein Gegenbeispiel $\nearrow$ topologischer Raum
 
@@ -2202,6 +2327,5 @@ Sei $M:=\{1,2\},\dots$
 \end{enumerate}
 			
 	\end{enumerate} 
- 
 \end{document}
 %TODO: -Layout! -Eigene Kommentare innerhalb des Skripts? 
