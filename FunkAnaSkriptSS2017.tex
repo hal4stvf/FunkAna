@@ -1916,7 +1916,6 @@ Diese Eigenschaft soll reflexiv heißen. Welchen Zusammenhang besteht zwischen r
 Hat man mehr Struktur durch einen Hilbertraum findet man eine explizite Darstellung eines Funktionals über das Skalarprodukt. Wie stehen da reflexiv und vollständig in Beziehung?\\
 Wir verallgemeiner den Orthogonalraum auf normierter Räume und seinen Dualraum. Welche topologische Eigenschaften haben solche Räume? Gibt es Normisomorphien?
 
-
 \normalsize
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
@@ -2283,13 +2282,52 @@ Im folgenden Satz sind die Voraussetzungen zum Teil etwas stärker als sie seien
 		
 
 	\end{definition}
-
+\newcommand{\limesinf}{\underset{n\to\infty}{\lim\inf}}
 	\begin{bem}
 		\begin{enumerate}[a)]
 			\item  $x_n \longrightarrow x \df J_x x_n \overset{*}{\longrightarrow} J_x x_n$, da $\fop{x_n, x'} = \fop{x', J_x x_n}$
+			\item Wenn $(x_n)$ schwach konvergiert, dann ist der schwache Limes eindeutig. $x_n \to x, x_n \wkc y$ $\fop{x,x'} =\limes \fop{x_n,x'} = \fop{y, x'} \; \forall x' \in X'$ 
+				$\df 0 = \fop{x-y,x'} \; \forall x' \in X' \df[Kor3.4] x-y = 0 \df x = y$
+			\item $x_n' \wskc x'$, dann $(\norm{x_n'})$ beschränkt und $\norm{x'} \limesinf \norm{x_n'}$ (Banach-Steinhaus)
+			\item $x_n \to x$, dann $(\norm{x_n})$ beschränkt und $\norm{x} \leq \limesinf \norm{x_n}$(gilt wegen a) und c))
+			\item $x_n \to x \df x_n \wkc x$\\
+			$x_n' \to x' \df x_n' \wskc x'$
+			\item Umkehrung in e) gilt i.A nicht: z.B. betrachte $e_n = (\delta_{in})_{n\in \N} \in \ell^2$. Dann gilt für $x' \in \ell^2{'}: x = \inv{R_{\ell^2}} x' = (x_i)_{i\in\N}\in \ell^2$.
+			$\limes \fop{e_n, x'} = \limes (e_n,x) = \limes \ov{x} = 0$ $\df e_n \wkc 0$
+			\item $x_n \to x, x_n' \wskc x'$ $df \fop{x_n,x_n'} \to \fop{x,x'}$, weil $|\fop{x_n,x_n'} - \fop{x,x'}| \leq |\fop{x,x' - x_n'}| + \norm{x_n} \cdot \norm{x_n'} \to 0$
+			\item $x_n \wkc x, x_n' \to x'$ $\df$ $\fop{x_n,x_n'} \to \fop{x,x'}$ wie in g).
+			\item Aus $x_n \wkc x$, $x_n' \wskc x'$ folgt i.A. \underline{nicht} $\fop{x_n,x_n'} \to \fop{x,x'}$. \\
+			Bsp. $x_n = e_n \in \ell^2, x_n' = R_{\ell^2} e_n$ $\df$ $x_n \wkc 0, x_n' \wskc 0$, aber $\fop{x_n,x_n'} = 1 \; \forall \in \N.$
+			\item $\dim X < \infty \df  (x_n \wkc \aq x_n \to x) \& (x_n' \wskc x \aq x_n' \wkc x')$
+			\item $X$ reflexiv, dann $x_n' \wkc x \aq x_n' \wskc x'$ ($"' \df "'$ gilt auch ohne Reflexivität)
 		\end{enumerate}
 	\end{bem}
+GANZ viel zu Beispielen in lp Räumen.
+	\begin{thm}[Satz von Banach-Alaoglu]
+		$X$ separabler Banachraum. Dann gilt $\ov{U_1^{x'}(0)} = \set{x' \in X' : \norm{x'} \leq 1 }$ ist schwach$^*$ folgenkompakt.	
+	\end{thm}
 
+	\begin{hinweise}
+		Nehme solange Teilfolgen bis man nicht mehr weiß was die Folge eigentlich ist. Und dann mit Banach-Steinhaus argumentieren: Fertig.	
+	\end{hinweise}
+
+	\begin{proof}
+		TODO
+	\end{proof}
+
+	\begin{lemma}
+		$X$ normierter Raum. Dann 
+			$$ X \text{ reflexiv } \aq \text{ Jeder abgeschlossen UVR von } X \text{ ist reflexiv}.$$
+	\end{lemma}
+
+	\begin{hinweise}
+%		Von rechts nach links.  klaro\\
+%		Von links nach rechts: Nehme abgeschlossene UR. Dies ist ein Banachraum. Dann nehme eine x', das definiert ein y'' aus dem Bidualraum. Dann finde ein x 
+	\end{hinweise}
+
+	\begin{thm}
+		$X$ reflexiv. Dann ist $\EK \subset X$ schwach folgenkompakt.
+	\end{thm}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %Zusätze. Alles was man noch definieren, erklären, beweisen, oder erwähnen möchte.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
