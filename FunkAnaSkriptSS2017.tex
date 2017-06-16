@@ -126,6 +126,9 @@
 \newcommand{\Sp}[1]{\left (#1 \right)} % Skalarprodukt mit angepassten Klammern
 %\newcommand{\skp}
 
+
+\newcommand{\abs}[1]{\left\lvert #1 \right\rvert }
+\newcommand{\lightning}{\text{\Lightning}}
 \newcommand{\set}[1]{\{#1\}} %Mengen
 \newcommand{\fop}[1]{\left \langle #1 \right \rangle} %Funktionalauswertung
 \newcommand{\f}[2]{\langle #1,#2 \rangle} %Konrads fop
@@ -2438,8 +2441,12 @@ GANZ viel zu Beispielen in lp Räumen.
 
 	\begin{thm}
 		$(\Omega, \mathcal{A}, \mu)$ Maßraum. $p\in [1, \infty]$, $q\in [1,\infty]$, so dass $\frac{1}{p} + \frac{1}{q} = 1$. Betrachte die Abbildung
-			$$J_p : L^q(\Omega,\mu) \to L^p (\Omega, \mu)'$$
-			$$ g \mapsto (f \mapsto \int_\Omega fg d\mu)$$
+		\begin{equation}
+		\begin{split}
+			 J_p : & L^q(\Omega,\mu) \to L^p (\Omega, \mu)',\\ &
+			 g \mapsto (f \mapsto \int_\Omega fg d\mu) 		
+		\end{split}
+		\end{equation}
 		Dann gilt 
 			\begin{enumerate}
 				\item $J_p$ normerhaltend
@@ -2454,6 +2461,100 @@ GANZ viel zu Beispielen in lp Räumen.
 	\begin{cor}
 		$(\Omega, \mathcal{A}, \mu)$ Maßraum, $p\in (1,\infty)$. Dann ist $L^p (\Omega, \mu)$ reflexiv.
 	\end{cor}
+	\begin{proof}
+		Wir betrachten die Abbildungen 
+		$$J_p : L^q(\Omega,\mu) \to L^p(\Omega,\mu)',\qquad J_q:L^p(\Omega,\mu)\to L^q(\Omega,\mu)'$$	
+		gemäß (4.1) . Dann gilt:
+		\marginpar{richtige Querverweise?}
+		\begin{equation}
+			\fop{f,J_p g} = \int_\Omega fgd\mu  = \fop{g,J_q f}
+		\end{equation}
+		Sei $f'' \in L^p(\Omega,\mu)''$, da $L^q(\Omega,\mu) \to \K,\quad g \mapsto \fop{J_pg, f''}$ ein linearer Funktional aus $L^q(\Omega,\mu)'$ beschreibt, können wir auch schreiben:
+		\begin{equation}
+		\fop{g,f'} = \fop{J_p g, f''},\quad \forall g\in L^q(\Omega, \mu)		.	
+		\end{equation}
+		Sei $f:= J^{-1}_q f' \in L^p(\Omega,\mu).$ Dann gilt für alle $g'\in L^p(\Omega,\mu)'$
+		$$\fop{g',f''} = \fop{J_p { J^{-1}_p g'} , f''} \overset{(4.3)}{ = } \fop{J^{-1}_p g',f'} = \int_\Omega (J^{-1}_p g') f d \mu = \int_\Omega f (J_p^{-1} g' \overset{(4.2)}{=} \fop{f,g'}.$$
+	\end{proof}		
+	\begin{cor}
+		Sei $\Omega \subseteq \R^n$ offen und nichtleer. Dann ist
+			$$J_\infty : L^1(\Omega) \to L^\infty(\Omega)'$$
+			nicht surjektiv.
+	\end{cor}
+	\begin{proof}
+		Sei $BC:= C(\Omega,\K) \cap L^\infty(\Omega) = \{f:\Omega \to \K : f$ stetig und beschränkt $\}$ und für
+		$x_0 \in \Omega$ definieren wir
+		$$f: BC(\Omega) \to \K,\quad \varphi \mapsto \varphi(x_0)$$
+		$f$ ist offenbar linear und  wegen $|\fop{\varphi, f}| = |\varphi (x_0)| \leq \norm{\varphi}_\infty$
+		beschränkt, also $\in L^\infty(\Omega)'$. Da $\fop{1_\Omega,f} = 1$, ist $\norm{f} = 1$. Nach Hahn-Banach gibt es also ein $x' \in L^\infty(\Omega)'$, so dass $\|x'\| = 1$ und $x'|_{BC(\Omega)} = f$.\\
+		Wir zeigen nun $x' \not\in im J_\infty$ per Widerspruch: Angenommen $x' \in im J_\infty \df \exists g \in L^1(\Omega) : J_\infty g = x'$
+		$$\df \forall \varphi\in BC(\Omega) : \varphi(x_0) = \fop{\varphi, x'} = \int_\Omega \varphi g d\lambda^n$$
+		Sei $(\varphi_k)$ eine Folge in $BC(\Omega)$ mit 
+		$$\supp\, \varphi_k \subseteq U_{\frac{1}{k}}(x_0),\quad \norm{\varphi_k}_\infty = 1,\quad \varphi_k(x_0) = 1\quad \forall k\in\N$$
+		Dann ist aber
+		$$1 = |\fop{\varphi_k, x'}| = \abs{\int_\Omega \varphi_k g d\lambda^n}\leq \int_\Omega |\varphi_k||g| d\lambda^n \leq \| \varphi_k \|_\infty \int_{U_{\frac{1}{k}}(x_0)}|g|d \lambda^n = \int_{U_{\frac{1}{k}}(x_0)}|g|d \lambda^n \overset{k\to\infty}{\longrightarrow} 0 \;\lightning!$$
+		
+		Wobei sich die Konvergenz gegen $0$ durch $\int_{U_{\frac{1}{k}}(x_0)}|g|d \lambda^n = \int_\Omega 1_{U_{\frac{1}{k}}(x_0)} |g| d\lambda^n$ und dem Satz der monotonen Konvergenz erklärt. 
+	\end{proof}
+
+
+	\section{Der Dualraum von $C(K,\K)$}
+	In diesem Abschnitt wollen wir den Dualraum von $C(K)$ für eine kompakte, hausdorffsche Menge $K$ mit der Topologie $\tT \in P(K)$ näher untersuchen. Dafür benötigen wir einiges an Maßtheorie.
+	Wir wissen bereits, dass $C(K):=C(K,\K)$ mit der Supremumsnorm zu einem Banachraum wird. $\B = \sigma(\tT)$ ist die \textit{Borel $\sigma$-Algebra}, also die kleinste $\sigma$-Algebra, die noch $\tT$ enthält. Entsprechend ist $\B_0$ der kleinste Ring, der $\tT$ enthält.
+	\begin{definition}[inkl. Satz]
+		Sei $R$ ein Ring über $\Omega$ mit $\Omega\in R$ (also eine Algebra), $\mu R\to\K$ additiv. Für $E\in R$ definieren wir
+		$$|\mu |(E) := \sup \left\lbrace \sum^k_{i=1} |\mu(E_i)|: k\in\N,\, E_1,\dots,E_k\in R \text{ paarweise disjunkt, } E_i \subseteq E \right\rbrace$$
+		das \textit{Variationsmaß zu $\mu$}. Das Variationsmaß $|\mu| : R \to [0,\infty]$
+		ist additiv.
+		$$\| \mu \|_{Var} := |\mu|(\Omega)$$
+		heißt \textit{Totalvariation  zu $\mu$}. $\mu$ heißt \textit{beschränkt}, falls $\| \mu \|_{Var} <\infty$.
+	\end{definition}
+	\begin{proof}[der Additivität von $|\mu|$]
+	Seien $B_1, B_2 \in R$ disjunkt.
+	Es ist zu zeigen:
+		$$\df |\mu| (B_1)+|\mu| (B_2) = |\mu|(B_1\cup B_2)$$
+		Die Ungleichung \afs $\leq$ \afs ist klar.
+		Für die andere Ungleichheit sei $\varepsilon>0$ beliebig. Seien $E_1,\dots,E_k \in R$ paarweise disjunkte Mengen mit $E_i \subseteq B_1 \cup B_2$, so dass
+		$$
+		|\mu| (B_1 \cup B_2) - \varepsilon \leq \sum^k_{i=1} |\mu|(E_i)|
+		$$
+		$$\df \sum^k_{i=1} |\mu|(E_i)| \leq  \sum^k_{i=1} |\mu|(E_i \cap B_1)+ \mu(E_i \cap B_2)| \leq \sum^k_{i=1} |\mu|(E_i \cap B_1)| + \sum^k_{i=1} |\mu(E_i \cap B_2)| \leq |\mu|(B_1) + |\mu|(B_2)$$
+		Insgesamt also $|\mu| (B_1 \cup B_2) - \varepsilon \leq |\mu|(B_1) + |\mu|(B_2)$. Da $\varepsilon > 0$ beliebig war, folgt die Behauptung.		
+	\end{proof}
+	
+	\begin{definition}
+	$K$ sei ein kompakter Hausdorffraum mit der Topologie $\tT$. Wir definieren
+	\begin{equation*}
+		\begin{split}
+		& ba(K) := \{\mu : B_0 \to \K : \mu \text{ additiv und beschränkt} \}\\
+		& ca(K) := \{\mu : B \to \K : \mu\; \sigma-\text{additiv und beschränkt} \}
+		\end{split}
+	\end{equation*}
+	$M\in ba(K)$ heißt \textit{regulär}, wenn für alle $E\in \tT$ gilt
+	$$\inf \left\lbrace |\mu| (U\setminus C) : C\subseteq E \subseteq U,\, C \text{ abgeschlossen, } U \text{ offen} \right\rbrace = 0.$$
+	Zusätzlich definieren wir
+	$$rba := \left\lbrace \mu \in ba(K) : \mu \text{ regulär}\right\rbrace,\qquad 
+	rca := \left\lbrace \mu \in ca(K) : \mu \text{ regulär}\right\rbrace. $$
+	Offenbar definiert die Totalvariation $\|\mu \|_{Var}$ eine Norm auf $ba(K), ca(K), rba, rca$
+	\end{definition}	
+	
+	Resultat: Für einen Ring $R$, $\mu \in ba(K)$ reellwertig ist 
+	$$\mu^+:=\frac{1}{2}(|\mu| + \mu),\qquad \mu^-:=\frac{1}{2}(|\mu| - \mu)$$
+	nicht negativ und beschränkt.
+	Es ist $\mu = \mu^+ - \mu^-$, diese Zerlegung heißt \textit{Jordan-Zerlegung}.
+	Ist $\mu$ regulär, so sind $\mu^+,\,\mu^-$ regulär.
+	Für komplexwertiges $\mu$ ist
+	$$\mu = Re(\mu)^+ - Re(\mu)^- + i(Im(\mu)^+ -Im(\mu)^-).$$
+	Wir betrachten nochmal das (Riemann-) Integral stetiger Funktionen:
+	$K$ sei kompakt, $B_0$ wie oben und $\mu : B_0 \to \K$ additiv mit $\|\mu \|_{Var} < \infty$. Für Treppenfunktionen 
+	$$f = \sum^k_{i=1} 1_{E_i} a_i,\, k\in\N,\,a_i\in\K,\,E_i\in B_0$$ 
+	ist 
+	$$\int_K f d\mu := \sum^k_{i=1} a_i \mu(E_i)$$
+	unabhängig von der Darstellung von $f$ und es ist offenbar $\abs{\int_K fd\mu} \leq \|f\|_\infty \|\mu \|_{Var}$. 
+	Wir zeigen nun, dass sich jedes $f \in C(K)$ durch Treppenfunktionen approximieren lässt.
+	
+	
+	
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %Zusätze. Alles was man noch definieren, erklären, beweisen, oder erwähnen möchte.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
