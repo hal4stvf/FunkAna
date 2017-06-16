@@ -2378,7 +2378,7 @@ GANZ viel zu Beispielen in lp Räumen.
 
 	\begin{thm}[Lemma von Maza]
 		$X$ normierter Raum. $(x_n)$ Folge in X mit $x_n \wkc x$. Dann gilt 
-			$$ x\in conv\set{x_k: k\in\N} = M$$
+				$$ x\in \ov{conv\set{x_k: k\in\N}} =: M$$
 	\end{thm}
 
 	\begin{proof}
@@ -2389,6 +2389,71 @@ GANZ viel zu Beispielen in lp Räumen.
 		$X$ reflexiv, $M\subset X$ nichtleere, konvex, abgeschlossen. $x_0 \in X$ beliebig. Dann existiert ein $x\in M$ mit  
 		$$ \norm{x - x_0} = dist(x_0,M)$$
 	\end{thm}
+
+	\chapter{Funktionenräume}
+
+	\section{Dualität in L$^p$}
+
+	$p\in [1,\infty]$, $(\Omega, \mathcal{A}, \mu)$ Maßraum. $q\in [1,\infty]$, so dass $\frac{1}{p} + \frac{1}{q} = 1$. Nach Hölder-Ungleichng gitl für $f\in L^p(\Omega,\mu), g\in L^q(\Omega, \mu)$.\\
+	$$\left| \int_\Omega fg d\mu \right| \leq \norm{f}_p \norm{g}_q$$
+	Mit anderen Worten. Die Abbidung
+		$$ J_p : L^q(\Omega,\mu) \to L^p(\Omega, \mu)' $$
+		$$ g \mapsto (f \mapsto \int_\Omega fg d\mu)$$
+	definiere lineare Abbildung mit $\norm{J_pg} \leq \norm{g}_q$.\\
+	Für $p=2$ gilt : $J_p = \ov{R_{L^2}}$, insbesondere ist $J_p$ normerhaltend und surjektiv. (S.v. Frechet-Riesz). Sonst?
+
+	\begin{thm}
+		$p\in [1,\infty)$, $q\in [1,\infty]$, so dass $\frac{1}{p} + \frac{1}{q} = 1$. 
+		Dann ist die Abbildung 
+			$$J_p : \ell^q \to (\ell^p)'$$
+			$$ (y_n) \mapsto ((x_n) \mapsto \sum_{n=1}^\infty x_ny_n)$$
+		normerhaltend und surjektiv.
+	\end{thm}
+
+	Gilt auch $imJ_\infty = (\ell^\infty)'$?
+
+	\begin{cor}
+		Die Abbildung 
+		$$J_\infty : \ell^1 \to (\ell^\infty)'_\infty$$
+		$$(y_n) \mapsto ((x_n) \mapsto \sum_{n=1}^\infty x_ny_n)$$
+		ist normerhaltend, jedoch nicht surjektiv.
+	\end{cor}
+
+	\begin{definition}
+		$\Omega$ Menge, $\mathcal{R} \subseteq \mathcal{P}(\Omega)$. 
+		Ring über $\Omega$ (d.h. 
+		$$\emptyset \in \mathcal{R}, A,B \in \mathcal{R} \df A\backslash B, A\cup B \in \mathcal{R}).$$
+		 Eine Abbildung : 
+			$$ \mu: \mathcal{R} \to \K \quad \text{ heißt}$$ 
+	\begin{enumerate}[a)]
+		\item "'additiv"', wenn $\mu(\emptyset) = 0, \mu(A\cup B) = \mu(A) + \mu(B) \forall A,B \in \mathcal{R}$ mit $A\cap B = \emptyset$.
+		\item "'$\sigma$-additiv"'
+		\item "'signiertes Maß "', wenn $\mathcal{R}$ $\sigma$-Algebra ist $\K = \R$ und $\mu$ $\sigma$-additiv
+		\item "'komplexes Maß"'
+		\item "'Maß"'
+		\item "'$\sigma$-endliches Maß"'
+		\item "'endliches Maß "'
+	\end{enumerate}
+	\end{definition}
+
+	\begin{thm}
+		$(\Omega, \mathcal{A}, \mu)$ Maßraum. $p\in [1, \infty]$, $q\in [1,\infty]$, so dass $\frac{1}{p} + \frac{1}{q} = 1$. Betrachte die Abbildung
+			$$J_p : L^q(\Omega,\mu) \to L^p (\Omega, \mu)'$$
+			$$ g \mapsto (f \mapsto \int_\Omega fg d\mu)$$
+		Dann gilt 
+			\begin{enumerate}
+				\item $J_p$ normerhaltend
+				\item Falls $p \in (1,\infty)$, so ist $J_p$ surjektiv
+				\item Falls $p = 1$ und $\mu$ $\sigma$-endlich, dann ist $J_p$ surjektiv.
+			\end{enumerate}
+	\end{thm}
+	\begin{proof}
+		Ohne Beweis. Siehe Alt.
+	\end{proof}
+	
+	\begin{cor}
+		$(\Omega, \mathcal{A}, \mu)$ Maßraum, $p\in (1,\infty)$. Dann ist $L^p (\Omega, \mu)$ reflexiv.
+	\end{cor}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %Zusätze. Alles was man noch definieren, erklären, beweisen, oder erwähnen möchte.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
