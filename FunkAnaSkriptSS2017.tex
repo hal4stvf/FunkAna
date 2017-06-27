@@ -1,4 +1,4 @@
-%Stand: 07.06.2017
+%Stand: 20.06.2017
 
 \documentclass[ngerman]{report}
 %pdf language settings
@@ -2377,7 +2377,7 @@ GANZ viel zu Beispielen in lp Räumen.
 			Leicht zu zeigen: TODO 
 	\end{definition}
 
-	Klar: $M$ konvex $\aq$ $\ov{M}$ konvex.
+	Klar: $M$ konvex $\df$ $\ov{M}$ konvex.
 
 	\begin{thm}[Lemma von Maza]
 		$X$ normierter Raum. $(x_n)$ Folge in X mit $x_n \wkc x$. Dann gilt 
@@ -2553,8 +2553,124 @@ GANZ viel zu Beispielen in lp Räumen.
 	unabhängig von der Darstellung von $f$ und es ist offenbar $\abs{\int_K fd\mu} \leq \|f\|_\infty \|\mu \|_{Var}$. 
 	Wir zeigen nun, dass sich jedes $f \in C(K)$ durch Treppenfunktionen approximieren lässt.
 	
+	\begin{thm}[Satz von Riesz-Radon, Dualraum von $C(K)$]
+		$K$ kompakt, Hausdorffsch. Durch
+			$$ J: rca(K) \to C(K)' \quad \mu \mapsto (f\mapsto \int_K f d\mu)$$
+		ist ein isometrischer Isomorphismus definiert
+	\end{thm}
 	
+	\begin{proof}
+		Nicht hier!
+	\end{proof}
+
+	\begin{bem*}
+		\begin{enumerate}[a)]
+			\item $x' \in C([0,1])'$, $\fop{f,x'} = f(0) \df \norm{x'} = 1$
+			$\mu(E) = \{ 1 \quad 0\in E\quad 0\; sonst$ $\forall E\in\sigma([0,1]$ (Diracmaß). 
+			Es gilt $\int_K f d\mu = f(0)$.
+			\item $g\in L^1([0,1])$, $x' \in C([0,1])'$, $\fop{f,x'} = \int_{[0,1]} f g d\lambda$,
+			$\mu := g d\lambda$, $\mu(A) := \int_{A} g d\lambda$ $\df \fop{f,x'} = \int_{[0,1]} f d\mu$
+		\end{enumerate}
+	\end{bem*}
+
+	\section{Kompaktheit in $C(K)$ und $L^p$}
+
+	\begin{thm}[Satz Arzela-Ascoli]
+		$K\subseteq \R^n$ kompakt, $M\subseteq C(K)$. Dann gilt 	
+			$$ M \text{ präkompakt} \aq M \text{ beschränkt} \text{ und } \text{gleichgeradig stetig}$$
+		Dabei heißt eine Menge $M$ gleichgeradig stetig, falls 
+			$$ \sup_{f\in M} |f(x) - f(y)| \to 0 \text{ für } x,y \in K \text{ mit } x - y \to 0$$
+			$$ (d.h. \forall \epsilon \exists \delta > 0: \forall x,y \in K \text{ mit } |x-y| < \delta \text{ und } \forall f\in M: |f(x) - f(y)| < \epsilon$$
+	\end{thm}
+
+	\begin{proof}
+	\end{proof}
+
+	\begin{thm}[Präkompaktheit in $L^p$]
+		$p\in[1,\infty)$, $M \subseteq L^p(\R^n)$. Dann sind äquivalent
+		\begin{enumerate}[(i)]
+			\item $M$ präkompakt
+			\item a) $M$ beschränkt und 
+				b) $\sup_{f\in M} \norm{f(\cdot + h) - f(\cdot)}_p \to 0$ bei $h\to 0$
+				c) $\sup_{f\in M} \norm{1_{\R^n\backslash U_r(0)}f}\to 0$ für $r\to 0$
+		\end{enumerate}
+	\end{thm}
+	\begin{proof}
+		hier nicht, siehe bspw. Alt	
+	\end{proof}
+
+	\begin{bem*}[Kompaktheit in $L^p(\Omega)$]
+		Fasse $L^p(\Omega)$ als UVR von $L^p(\R^n)$ auf via
+			$$ L^p(\Omega) \ni f \mapsto 1_\Omega f \in L^p(\R^n)$$
+	\end{bem*}
+
+	\section{Sobolevräume}
+
+		\begin{lemma}[partielle Integration]
+			$\Omega \subset \R^n$ offen, beschränkt und habe stückweise glatten Rand. Dann gilt für $u,v \in C^1(\ov{\Omega})$.
+				$$\int_\Omega v(x) \frac{\partial}{\partial x_i} u(x) dx = 
+				\int_{\partial \Omega} v(x)u(x) e_i^T n(x) ds(x) - \int_\Omega \frac{\partial}{\partial x_i} v(x) u(x) dx$$
+				wobei n der Einheitsnormalenvektor ist und das erste Integral das Hyperflächenintegral.
+		\end{lemma}
+		\begin{proof}
+		\end{proof}
+
+	\begin{bem}[Notation]
+		$\alpha \in \N_0^n:$ Multiindex, $D^\alpha f := \frac{\partial^|\alpha|}{\partial x^\alpha}f$ Ableitung
+	\end{bem}
+
+	\begin{bem}
+		$f\in C^m(\Omega), \phi\in C_0^\infty(\Omega) = \{f\in C^\infty(\Omega): suppf\subset \circ\Omega\}.$ Anwendung von Lemma 4.12. liefert 
+		 $$ \int_\Omega D^\alpha f(x) \phi(x) dx = (-1)^{|\alpha|}\int_\Omega f(x) D^\alpha \phi(x) dx$$ 
+	\end{bem}
+
+	\begin{definition}[schwache Ableitung]
+		$\Omega \subset \R^n$ offen, $f\in L^1_{\text{loc}}(\Omega), \alpha \in N^n_0$. Wenn ein 
+		$w \in L^1_{\text{loc}}(\Omega)$ existiert, so dass 
+			$$\int_\Omega f D^\alpha \varphi d\lambda^n = (-1)^|\alpha| \int_\Omega w \varphi d\lambda^n 
+			\quad \forall \varphi \in C_0^\infty(\Omega)$$
+			dann heißt w \textit{schwache Ableitung} von $f$. $f \in L^1_{\text{loc}}(\Omega)$ heißt \textit{m-mal schwach diffbar}, wenn die $\alpha-ten$ schwache Ableitung exisiert $\forall |\alpha| \leq m$. 
+	\end{definition}
 	
+	\begin{bem*}[Lemma (Übung)]
+		Sei $f\in L^1_{\text{loc}}$, so dass 
+			$$\int_\Omega f \phi d\lambda^n = 0 \; \forall \phi \in C^\infty_0(\Omega) \aq f = 0$$
+	\end{bem*}
+
+	\begin{thm}
+		Vor. wie in Def. 4.15. Dann gilt: Falls existent, so ist die $\alpha-te$ schwache Ableitung von $f$ eindeutig bestimmt. 
+	\end{thm}
+
+	\begin{bsp}
+		\begin{enumerate}[a)]
+			\item
+			\item
+			\item Ist $f$ $\alpha$-mal stetig differenzierbar, so ist $f$ $\alpha$-mal schwach differenzierbar, und die konventionelle Ableitung stimmt mit der schwachen Ableitung überein. (Lemma 4.12)
+		\end{enumerate}
+	\end{bsp}
+
+	\begin{definition}[Sobolevräume]
+		$\Omega \subset \R^n$ offen, $K\in\N_0$	
+		\begin{enumerate}
+			\item $p\in [1,\infty)$, $W^{k,p}(\Omega) = \set{f\in L^p(\Omega): D^\alpha f\in L^p(\Omega) \forall |\alpha| \leq k}$ mit Norm $\norm{f}_{W^{k,p}} = (\sum_{|\alpha| \leq k} \norm{D^\alpha f}^p_{L^p(\Omega)})^{\frac{1}{p}}$
+		\item $(p = \infty)$ $W^{k,\infty}(\Omega) = \set{f\in L^\infty(\Omega): D^\alpha f \in L^\infty(\Omega) \; \forall |\alpha| \leq k}$ mit Norm $\norm{f}_{W^{k,\infty}} = \max_{|\alpha| \leq} \norm{D^\alpha f}_{L^\infty(\Omega)}$
+		\end{enumerate}
+	\end{definition}
+
+	\begin{thm}
+		Vor. wie in Definition 4.18. Dann gilt 
+			\begin{enumerate}[a)]
+				\item $W^{k,p}(\Omega)$ Banachraum $\forall p\in[1,\infty], k\in \N_0$
+				\item $\forall k\in \N_0, p\in [1,\infty): C^\infty(\Omega) \subset W^{k,p}(\Omega)$ ist dicht in $W^{k,p}(\Omega)$.
+				\item $p =2$. Dann ist $W^{k,2}(\Omega)$ Hilbertraum mit $(f,g)_{W^{k,2}(\Omega)} = \sum_{|\alpha| \leq k} (D^\alpha f, D^\infty g)_{L^2(\Omega)}$
+			\end{enumerate}
+	\end{thm}
+
+	\begin{definition}[$W^{k,p}_0(\Omega)$]
+		$\Omega \subset \R^n$ offen, $k\in \N_0$, $p\in [1,\infty)$.
+			$$ W^{k,p}_0(\Omega) := \ov{C^\infty_0(\Omega)}\subset W^{k,p}(\Omega)$$ 
+			Wobei Abschluss bezüglich $\norm{\cdot}_{W^{k,p}(\Omega)}$
+	\end{definition}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %Zusätze. Alles was man noch definieren, erklären, beweisen, oder erwähnen möchte.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
