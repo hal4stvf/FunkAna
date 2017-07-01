@@ -137,6 +137,7 @@
 \newcommand{\wskc}{\overset{*}{\longrightarrow}} % weak star convergent
 \newcommand{\inner}[1]{\overset{\circ}{#1}}
 
+\newcommand{\Sobolov}{W^{1,2}_0}
 %Commands für tikz:
 \newcommand*{\rechterWinkel}[3]{% #1 = point, #2 = start angle, #3 = radius
 \draw[shift={(#2:#3)}] (#1) arc[start angle=#2, delta angle=90, radius = #3];
@@ -2671,6 +2672,92 @@ GANZ viel zu Beispielen in lp Räumen.
 			$$ W^{k,p}_0(\Omega) := \ov{C^\infty_0(\Omega)}\subset W^{k,p}(\Omega)$$ 
 			Wobei Abschluss bezüglich $\norm{\cdot}_{W^{k,p}(\Omega)}$
 	\end{definition}
+
+	\section*{Anwendung an elliptischer Randwertprobleme}
+	hier vieles 
+	\begin{lemma}
+		Ist $\Omega \subset \R^n$ offen und beschränkt, so existiert $c > 0$, so dass
+			$$ \int_\Omega |u(x)|^2 dx \leq \int_\Omega \norm{grad u(x)}^2dx \quad \forall u\in W_0^{1,2}(\Omega)$$
+	\end{lemma}
+	
+	\begin{proof}
+	\end{proof}
+
+	\begin{thm}
+		$\Omega$ offen und beschränkt. Dann ist $a(\cdot,\cdot)$ ein Skalarprodukt auf $W_0^{1,2}(\Omega).$
+	\end{thm}
+
+	\begin{proof}
+	\end{proof}
+zu b)
+	\begin{thm}
+		$\Omega \subset \R^n$ offen und beschränkt. Dann ist $\Sobolov(\Omega)$ Hilbertraum mit $\norm{\cdot} = a(\cdot,\cdot)$ mit 
+		$$a(u,v) = \int_\Omega(grad u)^T \ov{grad v} d\lambda^n$$
+	\end{thm}
+
+zu c)
+	\begin{thm}
+		$\Omega \subset \R^n$ offen und beschränkt, $f\in L^2(\Omega)$. Dann ist 
+			$$ F: \Sobolov(\Omega) \to \K, \varphi \mapsto \int_\Omega f(x) \varphi(x) dx$$
+		in $\Sobolov(\Omega)'$.
+	\end{thm}
+
+	\begin{cor}
+		Unter den gegebenen Voraussetzung existiert ein eindeutiges $u\in \Sobolov(\Omega)$, so dass $a(\varphi, u) = F(\varphi)$ $\forall \varphi \in C^\infty_0(\Omega)$.
+	\end{cor}
+
+	\begin{bem}[Neumann-RWP]
+		$div(A(x)grad u(x)) = f$ auf $\Omega$. mit $n^T A(x) grad u(x) = g$ auf $\partial \Omega$	mit $n^T$ ist Einheitsnormalenvektor. Kann mit ähnlichen Methoden behandelt werden.
+		$$\int_\Omega \varphi(x) div (A(x) grad u(x)) dx = - \int_\Omega (grad \varphi(x))^T A(x) gradu(x) dx + \int_{\partial\Omega} \varphi(x) n^T(x) A(x) grad u(x) dx$$ 
+	$$ = -a(\varphi, u) + \int_\Omega \varphi g d\lambda^{n-1} = \int_\Omega \varphi(x) f(x) dx$$
+	\end{bem}
+
+	\chapter{Kompakte Operatoren und Spektraltheorie}
+
+	\section{Kompakte Operatoren}
+
+	\begin{definition}
+		$X,Y$ normierte Räume. $T: X\to Y$ linearer Operatoren. $T$ heißt \textit{kompakt}, wenn 
+		$\ov{T U_1(0)}$ kompakt. 
+			$$ K(X,Y) := \set{T: X\to Y, T \text{ kompakt }}, \quad K(X) = K(X,X)$$
+	\end{definition}
+
+	\begin{bem}
+		\begin{enumerate}
+			\item $K(X,Y) \subset \BS$
+			\item Äquivalent sind für $T: X\to Y$
+				\begin{enumerate}[(i)]
+					\item $T\in K(X,Y)$
+					\item $M \subset X$ beschränkt $\df$ $T(M)$ präkompakt
+					\item $TU_1(0)$ präkompakt
+					\item $(x_n)$ beschränkt Folge $\df$ $(Tx_n)$ hat konvergente Teilfolge.
+				\end{enumerate}
+			\item $id \in K(x) \aq \dim X < \infty$
+		\end{enumerate}
+	\end{bem}
+	
+	\begin{bsp}
+		$X: C([0,1])$ mit $\norm{\cdot}_\infty$. 
+			$$(Tf)(t) = \int_0^t f(\tau)d\tau \df T\in \B(C([0,1]))$$
+		Für $f\in C([0,1])$, $\norm{f}_\infty \leq 1$, $t_1,t_2 \in [0,1]$ gilt 
+			$$|(Tf)(t_1) - (Tf)(t_2)| =|\int_{t_1}^{t_2} f(\tau) d\tau| \leq |t_2 - t_1|$$
+		$\df \set{Tf: \norm{f}_\infty \leq 1}$ ist gleichgeradig stetig. $\df[Arz. Arc]$ präkompakt.
+		$\df$ kompakt.
+	\end{bsp}
+
+	\begin{thm}
+		\begin{enumerate}[a)]
+			\item $K(X,Y)$ abgeschlossener UVR von $\B(X,Y)$.
+			\item $T\in K(X,Y)$ ist vollstetig. D.h. $x_n \wkc x \df Tx_n \to Tx$
+			\item $X$ reflexiv, $T: X \to Y$ vollstetig $\df$ $T\in K(X,Y)$
+			\item $T\in \BS$ mit $rang T < \infty$, dann $T\in K(X,Y)$ (rangT = dim im T)
+			\item $Y$ Hilbertraum, $T\in \BS$. Dann $T\in K(X,Y) \aq \exists (T_n) in \BS$, so dass 
+			$rang T_n < \infty$ $\forall n\in \N$ und $\norm{T - T_n} \to 0$
+			\item $p \in \BS$. Projektor (d.h. $P^2 = P$). Dann $P\in K(X) \aq rang P < \infty$.
+			\item $T\in K(X,Y)$, $U\in \B(Y,Z)$, $S \in\B(V,X) \df UTS \in K(V,Z)$
+		\end{enumerate}
+	\end{thm}
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %Zusätze. Alles was man noch definieren, erklären, beweisen, oder erwähnen möchte.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
