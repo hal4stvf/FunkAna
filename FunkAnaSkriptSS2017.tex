@@ -18,7 +18,18 @@
 \usepackage{amsmath}
 \usepackage[nothm]{thmbox} %Decorate theorem statements
 %more features for environments and other stuff
-\usepackage{tikz}
+\usepackage{tikz} %Kein Zeichenprogramm.
+	%% Todo enviroment with package todonote 
+	%\usepackage{iften} % Erstmal nur für todonote Package
+	\usepackage{xkeyval} % Erstmal nur für todonote Package
+	\usepackage{xcolor}
+	\usepackage{calc} % Erstmal nur für todonote Package
+	\usepackage[colorinlistoftodos]{todonotes}
+		%%% Commands and explanation
+			\newcommand{\todor}[1][Vollständiger Beweis]{\todo[color=red]{#1}} %r ot für vollständiger Beweis
+			\newcommand{\todoo}[1][Beweisskizzen vorhanden]{\todo{#1}} %o range fur Beweisskizzenvorhanden
+			\newcommand{\todoy}[1][Layouten]{\todo[color=yellow]{#1}} %y ellow für schöneres Design
+			\newcommand{\todog}[1][Vollständiger Beweis]{\todo[color=green]{#1}} %g reen für kann man machen: Beispiele, Anmerkungen, etc
 \usepackage{centernot} %nicer looking not
 \usepackage{marvosym} %some 
 \usepackage{paralist} %Adds more function to listing environments
@@ -43,6 +54,10 @@
   {\thmname{#1}\thmnumber{ #2}\thmnote{ (#3)}}
   
 %mathematical environments
+	%% make the math theorems appeare in tableofcontents %%
+		\usepackage{thmtools}
+		%\declaretheorem[numberwithin=section]{thm}
+	%%%%%%
 \theoremstyle{plain}%Text innen wird kursiv
 \newtheorem{thm}{Satz}[chapter]
 \newtheorem{lemma}[thm]{Lemma}
@@ -58,6 +73,7 @@
 \newtheorem*{bem*}{Bemerkung}
 \newtheorem*{mbem*}{Eigene Bemerkung}
 \newtheorem*{proof*}{Beweisskizze}
+
 
 \newenvironment{hinweise}{\footnotesize \begin{proof*}}{\hfill $\square$ \end{proof*}\normalsize}
 %\newcommand{\hinweise}[1]{\footnotesize \begin{proof*} #1 \hfill $\square$ \end{proof*}\normalsize}
@@ -76,7 +92,7 @@
 \newcommand{\hL}{\mathcal{L}}
 \newcommand{\tT}{\mathcal{T}} %topologisches T
 \newcommand{\B}{\mathcal{B}} %Raum der beschränkten Funktion
-\newcommand{\BS}[1][X,Y]{\mathcal{B}(#1)} %"Standardraum" der beschränkten Funktion
+\newcommand{\BS}[2][X,Y]{\mathcal{B}(#1#2)} %"Standardraum" der beschränkten Funktion
 %Für (mind.) ein Beweis notwendig:
 \newcommand{\dX}{\hat{X}}%Dach X
 \newcommand{\dd}{\hat{d}}%Dach d
@@ -144,11 +160,16 @@
 \fill[shift={(#2+45:#3/2)}] (#1) circle[radius=1.25\pgflinewidth];
 }
 
+\newcommand{\codim}{\text{codim}\:}
+\newcommand{\ind}{\text{ind}\:}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \begin{document}
+
+\listoftodos
 \tableofcontents
+\listoftheorems
 
 \chapter{Arbeit im Gange - Grundlagen}
 \section{is' klar 'ne?}
@@ -161,6 +182,7 @@
 	\item Cauchy-Folge: 
 					$(x_n),\,  \forall \varepsilon > 0\; \exists n \in \N : \forall m \geq n : \norm{x_m-x_n}<\varepsilon$
 	\item vollständiger metrischer Raum, Topologie.
+\todo{Diese Begriffe hinten noch definieren?}
 \end{enumerate}
 
 %Definition der Seminorm
@@ -2343,7 +2365,7 @@ GANZ viel zu Beispielen in lp Räumen.
 	\end{thm}
 	
 	\begin{proof}
-		TODO	
+		\todor	
 	\end{proof}
 
 	\begin{cor}
@@ -2365,7 +2387,7 @@ GANZ viel zu Beispielen in lp Räumen.
 			$$Re\fop{x,x'} \leq \alpha < Re\fop{x_0, x'} \quad \forall x\in M$$
 	\end{thm}
 	\begin{proof}
-		TODO	
+		\todor	
 	\end{proof}
 
 	\begin{cor}
@@ -2375,10 +2397,10 @@ GANZ viel zu Beispielen in lp Räumen.
 	\begin{definition}
 		$X$ Vektorraum, $M \subset X$. Die \textit{konvexe Menge} von $M$ ist. 
 			$$conv(M) = \bigcap_{\overset{M \subset C \subset X}{C \text{ konvex}}} C$$ 
-			Leicht zu zeigen: TODO 
+			Leicht zu zeigen: \todog[Leicht zu zeigen]
 	\end{definition}
 
-	Klar: $M$ konvex $\df$ $\ov{M}$ konvex.
+	Klar: $M$ konvex $\df$ $\ov{M}$ konvex. \todog[Klar]
 
 	\begin{thm}[Lemma von Maza]
 		$X$ normierter Raum. $(x_n)$ Folge in X mit $x_n \wkc x$. Dann gilt 
@@ -2386,7 +2408,7 @@ GANZ viel zu Beispielen in lp Räumen.
 	\end{thm}
 
 	\begin{proof}
-		TODO
+		\todor
 	\end{proof}
 
 	\begin{thm}
@@ -2394,9 +2416,19 @@ GANZ viel zu Beispielen in lp Räumen.
 		$$ \norm{x - x_0} = dist(x_0,M)$$
 	\end{thm}
 
-	\chapter{Funktionenräume}
+	\begin{proof}
+		\todor	
+	\end{proof}
 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+	\chapter{Funktionenräume}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 	\section{Dualität in L$^p$}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 	$p\in [1,\infty]$, $(\Omega, \mathcal{A}, \mu)$ Maßraum. $q\in [1,\infty]$, so dass $\frac{1}{p} + \frac{1}{q} = 1$. Nach Hölder-Ungleichng gitl für $f\in L^p(\Omega,\mu), g\in L^q(\Omega, \mu)$.\\
 	$$\left| \int_\Omega fg d\mu \right| \leq \norm{f}_p \norm{g}_q$$
@@ -2429,15 +2461,15 @@ GANZ viel zu Beispielen in lp Räumen.
 		$$\emptyset \in \mathcal{R}, A,B \in \mathcal{R} \df A\backslash B, A\cup B \in \mathcal{R}).$$
 		 Eine Abbildung : 
 			$$ \mu: \mathcal{R} \to \K \quad \text{ heißt}$$ 
-	\begin{enumerate}[a)]
-		\item "'additiv"', wenn $\mu(\emptyset) = 0, \mu(A\cup B) = \mu(A) + \mu(B) \forall A,B \in \mathcal{R}$ mit $A\cap B = \emptyset$.
-		\item "'$\sigma$-additiv"'
-		\item "'signiertes Maß "', wenn $\mathcal{R}$ $\sigma$-Algebra ist $\K = \R$ und $\mu$ $\sigma$-additiv
-		\item "'komplexes Maß"'
-		\item "'Maß"'
-		\item "'$\sigma$-endliches Maß"'
-		\item "'endliches Maß "'
-	\end{enumerate}
+		\begin{enumerate}[a)]
+			\item "'additiv"', wenn $\mu(\emptyset) = 0, \mu(A\cup B) = \mu(A) + \mu(B) \forall A,B \in \mathcal{R}$ mit $A\cap B = \emptyset$.
+			\item "'$\sigma$-additiv"'
+			\item "'signiertes Maß "', wenn $\mathcal{R}$ $\sigma$-Algebra ist $\K = \R$ und $\mu$ $\sigma$-additiv
+			\item "'komplexes Maß"'
+			\item "'Maß"'
+			\item "'$\sigma$-endliches Maß"'
+			\item "'endliches Maß "'
+		\end{enumerate}
 	\end{definition}
 
 	\begin{thm}
@@ -2477,6 +2509,7 @@ GANZ viel zu Beispielen in lp Räumen.
 		Sei $f:= J^{-1}_q f' \in L^p(\Omega,\mu).$ Dann gilt für alle $g'\in L^p(\Omega,\mu)'$
 		$$\fop{g',f''} = \fop{J_p { J^{-1}_p g'} , f''} \overset{(4.3)}{ = } \fop{J^{-1}_p g',f'} = \int_\Omega (J^{-1}_p g') f d \mu = \int_\Omega f (J_p^{-1} g' \overset{(4.2)}{=} \fop{f,g'}.$$
 	\end{proof}		
+
 	\begin{cor}
 		Sei $\Omega \subseteq \R^n$ offen und nichtleer. Dann ist
 			$$J_\infty : L^1(\Omega) \to L^\infty(\Omega)'$$
@@ -2499,7 +2532,11 @@ GANZ viel zu Beispielen in lp Räumen.
 	\end{proof}
 
 
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 	\section{Der Dualraum von $C(K,\K)$}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
 	In diesem Abschnitt wollen wir den Dualraum von $C(K)$ für eine kompakte, hausdorffsche Menge $K$ mit der Topologie $\tT \in P(K)$ näher untersuchen. Dafür benötigen wir einiges an Maßtheorie.
 	Wir wissen bereits, dass $C(K):=C(K,\K)$ mit der Supremumsnorm zu einem Banachraum wird. $\B = \sigma(\tT)$ ist die \textit{Borel $\sigma$-Algebra}, also die kleinste $\sigma$-Algebra, die noch $\tT$ enthält. Entsprechend ist $\B_0$ der kleinste Ring, der $\tT$ enthält.
 	\begin{definition}[inkl. Satz]
@@ -2568,13 +2605,15 @@ GANZ viel zu Beispielen in lp Räumen.
 		\begin{enumerate}[a)]
 			\item $x' \in C([0,1])'$, $\fop{f,x'} = f(0) \df \norm{x'} = 1$
 			$\mu(E) = \{ 1 \quad 0\in E\quad 0\; sonst$ $\forall E\in\sigma([0,1]$ (Diracmaß). 
-			Es gilt $\int_K f d\mu = f(0)$.
+			Es gilt $\int_K f d\mu = f(0)$. \todoy %TODO
 			\item $g\in L^1([0,1])$, $x' \in C([0,1])'$, $\fop{f,x'} = \int_{[0,1]} f g d\lambda$,
 			$\mu := g d\lambda$, $\mu(A) := \int_{A} g d\lambda$ $\df \fop{f,x'} = \int_{[0,1]} f d\mu$
 		\end{enumerate}
 	\end{bem*}
 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 	\section{Kompaktheit in $C(K)$ und $L^p$}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 	\begin{thm}[Satz Arzela-Ascoli]
 		$K\subseteq \R^n$ kompakt, $M\subseteq C(K)$. Dann gilt 	
@@ -2585,6 +2624,7 @@ GANZ viel zu Beispielen in lp Räumen.
 	\end{thm}
 
 	\begin{proof}
+		\todor
 	\end{proof}
 
 	\begin{thm}[Präkompaktheit in $L^p$]
@@ -2605,7 +2645,9 @@ GANZ viel zu Beispielen in lp Räumen.
 			$$ L^p(\Omega) \ni f \mapsto 1_\Omega f \in L^p(\R^n)$$
 	\end{bem*}
 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 	\section{Sobolevräume}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 		\begin{lemma}[partielle Integration]
 			$\Omega \subset \R^n$ offen, beschränkt und habe stückweise glatten Rand. Dann gilt für $u,v \in C^1(\ov{\Omega})$.
@@ -2614,6 +2656,7 @@ GANZ viel zu Beispielen in lp Räumen.
 				wobei n der Einheitsnormalenvektor ist und das erste Integral das Hyperflächenintegral.
 		\end{lemma}
 		\begin{proof}
+			\todor
 		\end{proof}
 
 	\begin{bem}[Notation]
@@ -2636,15 +2679,20 @@ GANZ viel zu Beispielen in lp Räumen.
 	\begin{bem*}[Lemma (Übung)]
 		Sei $f\in L^1_{\text{loc}}$, so dass 
 			$$\int_\Omega f \phi d\lambda^n = 0 \; \forall \phi \in C^\infty_0(\Omega) \aq f = 0$$
+	\todog[Übungsbeweis] Beweisen?
 	\end{bem*}
 
 	\begin{thm}
 		Vor. wie in Def. 4.15. Dann gilt: Falls existent, so ist die $\alpha-te$ schwache Ableitung von $f$ eindeutig bestimmt. 
 	\end{thm}
 
+	\begin{proof}
+		\todor	
+	\end{proof}
+
 	\begin{bsp}
 		\begin{enumerate}[a)]
-			\item
+			\item \todoo[Beispiel vervollständigen]
 			\item
 			\item Ist $f$ $\alpha$-mal stetig differenzierbar, so ist $f$ $\alpha$-mal schwach differenzierbar, und die konventionelle Ableitung stimmt mit der schwachen Ableitung überein. (Lemma 4.12)
 		\end{enumerate}
@@ -2667,20 +2715,26 @@ GANZ viel zu Beispielen in lp Räumen.
 			\end{enumerate}
 	\end{thm}
 
+	\begin{proof}
+		siehe Alt.
+	\end{proof}
+
 	\begin{definition}[$W^{k,p}_0(\Omega)$]
 		$\Omega \subset \R^n$ offen, $k\in \N_0$, $p\in [1,\infty)$.
 			$$ W^{k,p}_0(\Omega) := \ov{C^\infty_0(\Omega)}\subset W^{k,p}(\Omega)$$ 
 			Wobei Abschluss bezüglich $\norm{\cdot}_{W^{k,p}(\Omega)}$
 	\end{definition}
-
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 	\section*{Anwendung an elliptischer Randwertprobleme}
-	hier vieles 
-	\begin{lemma}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+	\todor[Komplette Herleitung zu Dirichlet Randwertproblem] hier vieles 
+	\begin{lemma}[Poincare-Ungleichung]
 		Ist $\Omega \subset \R^n$ offen und beschränkt, so existiert $c > 0$, so dass
 			$$ \int_\Omega |u(x)|^2 dx \leq \int_\Omega \norm{grad u(x)}^2dx \quad \forall u\in W_0^{1,2}(\Omega)$$
 	\end{lemma}
 	
 	\begin{proof}
+		\todor
 	\end{proof}
 
 	\begin{thm}
@@ -2688,12 +2742,17 @@ GANZ viel zu Beispielen in lp Räumen.
 	\end{thm}
 
 	\begin{proof}
+	\todor
 	\end{proof}
 zu b)
 	\begin{thm}
 		$\Omega \subset \R^n$ offen und beschränkt. Dann ist $\Sobolov(\Omega)$ Hilbertraum mit $\norm{\cdot} = a(\cdot,\cdot)$ mit 
 		$$a(u,v) = \int_\Omega(grad u)^T \ov{grad v} d\lambda^n$$
 	\end{thm}
+
+	\begin{proof}
+		\todor	
+	\end{proof}
 
 zu c)
 	\begin{thm}
@@ -2702,9 +2761,17 @@ zu c)
 		in $\Sobolov(\Omega)'$.
 	\end{thm}
 
+	\begin{proof}
+		\todor	
+	\end{proof}
+
 	\begin{cor}
 		Unter den gegebenen Voraussetzung existiert ein eindeutiges $u\in \Sobolov(\Omega)$, so dass $a(\varphi, u) = F(\varphi)$ $\forall \varphi \in C^\infty_0(\Omega)$.
 	\end{cor}
+
+	\begin{proof}
+		\todor	
+	\end{proof}
 
 	\begin{bem}[Neumann-RWP]
 		$div(A(x)grad u(x)) = f$ auf $\Omega$. mit $n^T A(x) grad u(x) = g$ auf $\partial \Omega$	mit $n^T$ ist Einheitsnormalenvektor. Kann mit ähnlichen Methoden behandelt werden.
@@ -2712,9 +2779,15 @@ zu c)
 	$$ = -a(\varphi, u) + \int_\Omega \varphi g d\lambda^{n-1} = \int_\Omega \varphi(x) f(x) dx$$
 	\end{bem}
 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 	\chapter{Kompakte Operatoren und Spektraltheorie}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 	\section{Kompakte Operatoren}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 	\begin{definition}
 		$X,Y$ normierte Räume. $T: X\to Y$ linearer Operatoren. $T$ heißt \textit{kompakt}, wenn 
@@ -2723,7 +2796,7 @@ zu c)
 	\end{definition}
 
 	\begin{bem}
-		\begin{enumerate}
+		\begin{enumerate}[a)]
 			\item $K(X,Y) \subset \BS$
 			\item Äquivalent sind für $T: X\to Y$
 				\begin{enumerate}[(i)]
@@ -2732,7 +2805,7 @@ zu c)
 					\item $TU_1(0)$ präkompakt
 					\item $(x_n)$ beschränkt Folge $\df$ $(Tx_n)$ hat konvergente Teilfolge.
 				\end{enumerate}
-			\item $id \in K(x) \aq \dim X < \infty$
+			\item $id \in K(x) \aq \dim X < \infty$ (Lema von Riesz)
 		\end{enumerate}
 	\end{bem}
 	
@@ -2757,6 +2830,78 @@ zu c)
 			\item $T\in K(X,Y)$, $U\in \B(Y,Z)$, $S \in\B(V,X) \df UTS \in K(V,Z)$
 		\end{enumerate}
 	\end{thm}
+	\begin{proof}
+		\todor
+	\end{proof}
+
+	\begin{thm}[Satz von Schauder]
+		$X,Y$ normierte Räume
+			\begin{enumerate}[a)]
+				\item $T\in K(X,Y) \df T' \in K(Y',X')$
+				\item $T' \in K(Y',X')$, $Y$ vollständig $\df$ $T$ kompakt
+			\end{enumerate}
+	\end{thm}
+
+	\begin{proof}
+		\todor	
+	\end{proof}
+
+	\begin{definition}[Fredholm-Operator] 	
+		$A\in \BS$ heißt \emph{Fredholm-Operator}, falls 
+			\begin{enumerate}[a)]
+				\item $\dim(ker A) < \infty$
+				\item $im(A)$ abgeschlossen
+				\item $\codim(im A) < \infty$ ($V\subset X$ UVR, $\codim V := \dim X/V)$
+			\end{enumerate}
+		\emph{Fredholmindex}: $\ind(A) := \dim Ker A - \codim im A$
+	\end{definition}
+
+	\begin{thm}
+		$T\in K(X)$. Dann ist $A := I - T$ ein Fredholm-Operator mit $\ind(A) = 0$.
+	\end{thm}
+
+	\begin{proof}
+		\todor	
+	\end{proof}
+
+	\begin{bem}
+		$X$ normierter Raum, $\dim X = \infty$, $T\in K(X)$. Dann folgt
+			$T$ hat keine beschränkte Inverse. \todor[Beweis Übung]
+	\end{bem}
+
+	\begin{bem*}
+		$$T:C([0,1]) \to C([0,1]),\; f\mapsto (t\mapsto \int_0^t f(\tau) d\tau)$$
+		$(\lambda I - T)f = 0 \df \lambda f(t) = \int_0^t f(\tau) d\tau$, $\lambda = 0 \df f=0$; \{$\lambda \neq 0, f(0) = 0$ und $f'(t) = \frac{1}{\lambda}\}$ $\df f = 0$.
+	\end{bem*}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%	
+	\section{Das Spektrum von beschränkten Operatoren}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%	
+
+	\begin{definition}
+		$T\in \BS[X]$ \todor[lange Definition, Resolventenmenge, etc]
+	\end{definition}
+
+	\begin{thm}
+		$T\in \BS[X]$, $X$ Banachraum. Dann ist $\rho(T)$ offen und die "'Resolventenfunktion"' 
+			$ R(\lambda, T) := \inv{(\lambda I - T)} : \rho(T) \to \BS[X] $ 
+		ist komplex-analytisch (d.h. in Potenzreihe entwickelbar).
+	\end{thm}
+
+	\begin{proof}
+		\todor	
+	\end{proof}
+
+	
+	\begin{thm}
+		$X \neq \set{0}$ Banachraum, $T \in \BS[X]$. \\
+		$\sigma(T)$ ist kompakt und nichtleer mit "'Spektralradius"':	
+			$\sup |\sigma(T)| = \limes \norm{T^m}^{\frac{1}{m}} \leq \norm{T}$.
+	\end{thm}
+		
+	\begin{proof}
+		\todor	
+	\end{proof}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %Zusätze. Alles was man noch definieren, erklären, beweisen, oder erwähnen möchte.
