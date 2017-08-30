@@ -1,26 +1,25 @@
-%Stand: 20.06.2017
+%Stand: 31.08.2017
 
 \documentclass[ngerman]{report}
+
 %pdf language settings
 \usepackage[german]{babel}
 \usepackage[utf8]{inputenc}
 \usepackage[T1]{fontenc} %provides a better way for westeuropean characters and such 
 \setlength{\parindent}{0cm} %noindent for all paragraphs
-\usepackage[english=british]{csquotes}
+\usepackage[english=british]{csquotes} %For special quoationsmarks
 
 %pdf page settings
 \usepackage[a4paper,top=30mm,bottom=40mm,inner=25mm,outer=35mm]{geometry} 
 \usepackage{scrlayer-scrpage} %Headers and footers
-%math environments
-\usepackage{amssymb}
-\usepackage{amsthm}
-\usepackage{amsfonts}
-\usepackage{amsmath}
-\usepackage[nothm]{thmbox} %Decorate theorem statements
+
+%Headers and Footnotes
+\pagestyle{headings}
+\ihead{Funktionalanalysis - Vorlesungsmitschrift. Stand: \today}
+
 %more features for environments and other stuff
 \usepackage{tikz} %Kein Zeichenprogramm.
 	%% Todo enviroment with package todonote 
-	%\usepackage{iften} % Erstmal nur für todonote Package
 	\usepackage{xkeyval} % Erstmal nur für todonote Package
 	\usepackage{xcolor}
 	\usepackage{calc} % Erstmal nur für todonote Package
@@ -31,142 +30,150 @@
 			\newcommand{\todoy}[1][Layouten]{\todo[color=yellow]{#1}} %y ellow für schöneres Design
 			\newcommand{\todog}[1][Vollständiger Beweis]{\todo[color=green]{#1}} %g reen für kann man machen: Beispiele, Anmerkungen, etc
 \usepackage{centernot} %nicer looking not
-\usepackage{marvosym} %some 
+\usepackage{marvosym} %some Symbols
 \usepackage{paralist} %Adds more function to listing environments
 \usepackage{xstring} %If then 
-\usepackage{hyperref}
+\usepackage{hyperref} %Reference
+\usepackage{marginnote} %allows to do some nice marinnotes,
+
+%math environments
+	%% basic packages
+	\usepackage{amssymb}
+	\usepackage{amsthm}
+	\usepackage{amsfonts}
+	\usepackage{amsmath}
+	\usepackage[nothm]{thmbox} %Decorate theorem statements
+	\usepackage{thmtools} %make the math theorems appeare in tableofcontents %%
+
+	%% amsmath: Theorem,Definition, Bemerkung etc.
+	\newtheoremstyle{myStyle}% style, der die Überschrift nicht fett, sondern kursiv erscheinen lässt
+	  {\topsep}% measure of space to leave above the theorem. E.g.: 3pt
+	  {\topsep}% measure of space to leave below the theorem. E.g.: 3pt
+	  {\normalfont}% name of font to use in the body of the theorem
+	  {0pt}% measure of space to indent
+	  {\itshape}% name of head font
+	  {.}% punctuation between head and body
+	  { }% space after theorem head; " " = normal interword space
+	  {\thmname{#1}\thmnumber{ #2}\thmnote{ (#3)}}
+	  
+	\theoremstyle{plain}%Text innen wird kursiv
+	\newtheorem{thm}{Satz}[chapter]
+	\newtheorem{lemma}[thm]{Lemma}
+	\newtheorem{cor}[thm]{Korollar}
+	\newtheorem*{cor*}{Korollar}
+	
+	\theoremstyle{definition}%Lässt den Text innerhalb nicht mehr kursiv erscheinen
+	\newtheorem{definition}[thm]{Definition}
+	\newtheorem{bsp}[thm]{Beispiel}
+	
+	\theoremstyle{myStyle}
+	\newtheorem{bem}[thm]{Bemerkung}
+	\newtheorem*{bem*}{Bemerkung}
+	\newtheorem*{mbem*}{Eigene Bemerkung}
+	\newtheorem*{proof*}{Beweisskizze}
+	
+	%% Abbrv. and certain layout for mathenvi.
+		\newenvironment{hinweise}{
+			\footnotesize \begin{proof*}}{\hfill $\square$ \end{proof*}\normalsize
+			}
+	%\renewcommand\thechapter{\Roman{chapter}} %Roman numerics for chapters
 
 
-\usepackage{marginnote} %allows to do some nice marinnotes
-%Headers and Footnotes
-\pagestyle{headings}
-\ihead{Funktionalanalysis - Vorlesungsmitschrift. Stand: \today}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%% 		Marcos 		%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
+%Zahlenkörper
+	\newcommand{\C}{\mathbb{C}}
+	\newcommand{\R}{\mathbb{R}}
+	\newcommand{\pR}{\mathbb{R}_{\geq 0}} % R_0^+%
+	\newcommand{\Q}{\mathbb{Q}}
+	\newcommand{\Z}{\mathbb{Z}}
+	\newcommand{\N}{\mathbb{N}}
+	\newcommand{\K}{\mathbb{K}}
+	
+%spaces, special symbols for spaces
+	\newcommand{\hA}{\mathfrak{A}}%Script A , hA ~ hässliches A
+	\newcommand{\hL}{\mathcal{L}}
+	\newcommand{\tT}{\mathcal{T}} %topologisches T
+	\newcommand{\B}{\mathcal{B}} %Raum der beschränkten Funktion
+	\newcommand{\BS}[2][X,Y]{\mathcal{B}(#1#2)} %"Standardraum" der beschränkten Funktion
+	\newcommand{\lL}[2][\Omega,\mu]{\text{L}^{#2}(#1)} %Lebesgue L für Matheumgebgung mit Omega, mu als Standard \lL[Raum,Maß]{Dimension}
+	\newcommand{\Sobolov}{W^{1,2}_0}
 
-\newtheoremstyle{myStyle}% style, der die Überschrift nicht fett, sondern kursiv erscheinen lässt
-  {\topsep}% measure of space to leave above the theorem. E.g.: 3pt
-  {\topsep}% measure of space to leave below the theorem. E.g.: 3pt
-  {\normalfont}% name of font to use in the body of the theorem
-  {0pt}% measure of space to indent
-  {\itshape}% name of head font
-  {.}% punctuation between head and body
-  { }% space after theorem head; " " = normal interword space
-  {\thmname{#1}\thmnumber{ #2}\thmnote{ (#3)}}
-  
-%mathematical environments
-	%% make the math theorems appeare in tableofcontents %%
-		\usepackage{thmtools}
-		%\declaretheorem[numberwithin=section]{thm}
-	%%%%%%
-\theoremstyle{plain}%Text innen wird kursiv
-\newtheorem{thm}{Satz}[chapter]
-\newtheorem{lemma}[thm]{Lemma}
-\newtheorem{cor}[thm]{Korollar}
-\newtheorem*{cor*}{Korollar}
+%special variables and Abbrev., technial stuff
+	\newcommand{\dX}{\hat{X}}%Dach X
+	\newcommand{\dd}{\hat{d}}%Dach d
+	\newcommand{\olx}{\overline{x}} %OverLine x
+	\newcommand{\oly}{\overline{y}} %Overline y
+	\newcommand{\ov}[1]{\overline{#1}}
+	\newcommand{\xf}{(x_i)_{i\in I}}
+	\newcommand{\ff}[3]{(#1_#2)_{#2\in#3}}
+	\newcommand{\inner}[1]{\overset{\circ}{#1}}
 
-\theoremstyle{definition}%Lässt den Text innerhalb nicht mehr kursiv erscheinen
-\newtheorem{definition}[thm]{Definition}
-\newtheorem{bsp}[thm]{Beispiel}
+%special mathematical operators and quantities
+	\newcommand{\ess}{\textnormal{ess}}
+	\newcommand{\supp}{\textnormal{supp}}
+	\newcommand{\aufspan}{\textnormal{span}}
+	\newcommand{\seminorm}[1]{||| #1 |||}
+	\newcommand{\norm}[1]{\left \|#1\right\| }
+	\newcommand{\intl}[1]{\int_\Omega #1 d\mu} %"Standard"Lebesgue-Integral über Omega
+	\newcommand{\limes}[1][\infty]{\lim_{n \to #1}}
+	\newcommand{\toinf}[1][n]{\overset{#1\to \infty}{\to}}
+	\newcommand{\inv}[1]{#1^{-1}} %Inverse with ^-1
+	\newcommand{\abs}[1]{\left\lvert #1 \right\rvert }
+	\newcommand{\codim}{\text{codim}\:}
+	\newcommand{\ind}{\text{ind}\:}
+	\newcommand{\set}[1]{\{#1\}} %Mengen
+	%%% special for functional analysis
+		\newcommand{\SP}{\left (\cdot,\cdot \right)} %Standardskalarprodukt
+		\newcommand{\Sp}[1]{\left (#1 \right)} % Skalarprodukt mit angepassten Klammern
+		\newcommand{\fop}[1]{\left \langle #1 \right \rangle} %Funktionalauswertung
+		\newcommand{\f}[2]{\langle #1,#2 \rangle} %Konrads fop
+		\newcommand{\wkc}{\longrightarrow} %weak convergent
+		\newcommand{\wskc}{\overset{*}{\longrightarrow}} % weak star convergent
+		\newcommand{\supT}[1][a]{
+			\IfEqCase{#1}{
+			{A}{\sup_{x \in \overline{\EK}}} 
+			{R}{\sup_{x \in \partial\EK}}
+			{a}{\sup_{x \in \EK}}
+			}
+		} %sup_EK für die Operatornorm bzw mit Argumet auch Rand oder Abschluss von EK möglich
 
-\theoremstyle{myStyle}
-\newtheorem{bem}[thm]{Bemerkung}
-\newtheorem*{bem*}{Bemerkung}
-\newtheorem*{mbem*}{Eigene Bemerkung}
-\newtheorem*{proof*}{Beweisskizze}
-
-
-\newenvironment{hinweise}{\footnotesize \begin{proof*}}{\hfill $\square$ \end{proof*}\normalsize}
-%\newcommand{\hinweise}[1]{\footnotesize \begin{proof*} #1 \hfill $\square$ \end{proof*}\normalsize}
-%\renewcommand\thechapter{\Roman{chapter}}
-
-%mathematical Macros
-\newcommand{\C}{\mathbb{C}}
-\newcommand{\R}{\mathbb{R}}
-\newcommand{\pR}{\mathbb{R}_{\geq 0}} % R_0^+%
-\newcommand{\Q}{\mathbb{Q}}
-\newcommand{\Z}{\mathbb{Z}}
-\newcommand{\N}{\mathbb{N}}
-\newcommand{\K}{\mathbb{K}}
-
-\newcommand{\hA}{\mathfrak{A}}%Script A , hA ~ hässliches A
-\newcommand{\hL}{\mathcal{L}}
-\newcommand{\tT}{\mathcal{T}} %topologisches T
-\newcommand{\B}{\mathcal{B}} %Raum der beschränkten Funktion
-\newcommand{\BS}[2][X,Y]{\mathcal{B}(#1#2)} %"Standardraum" der beschränkten Funktion
-%Für (mind.) ein Beweis notwendig:
-\newcommand{\dX}{\hat{X}}%Dach X
-\newcommand{\dd}{\hat{d}}%Dach d
-\newcommand{\olx}{\overline{x}} %OverLine x
-\newcommand{\oly}{\overline{y}}
-
-\newcommand{\lL}[2][\Omega,\mu]{\text{L}^{#2}(#1)} %Lebesgue L für Matheumgebgung mit Omega, mu als Standard \lL[Raum,Maß]{Dimension}
-\newcommand{\ess}{\textnormal{ess}}
-\newcommand{\supp}{\textnormal{supp}}
-\newcommand{\aufspan}{\textnormal{span}}
- 
-\newcommand{\seminorm}[1]{||| #1 |||}
-\newcommand{\norm}[1]{\left \|#1\right\| }
-\newcommand{\intl}[1]{\int_\Omega #1 d\mu} %"Standard"Lebesgue-Integral über Omega
-\newcommand{\df}[1][]{% "daraus folgt", also Implikation
-	%\IfEqCase{#1}{
-	%	{a}{\Rightarrow}
-	%	{o}{\overset{\df}{#2}}
-	%} 
-	\overset{#1}{\Rightarrow}
-}
-\newcommand{\aq}{\Leftrightarrow} % "äquivalent zu", also Äquivalenz
-\newcommand{\U}[2][1]{U_{#1}(#2)} %Umgebung um #2 mit Abstand #1 \U{r}{a}
-\newcommand{\EK}{\U{0}} %Umgebung bzw Einheitskugel um 0
-\newcommand{\BKK}{\B(X,\K)}
-\newcommand{\limes}[1][\infty]{\lim_{n \to #1}}
-\newcommand{\toinf}[1][n]{\overset{#1\to \infty}{\to}}
-
-\newcommand{\inv}[1]{#1^{-1}}
-\newcommand{\supT}[1][a]{
-	\IfEqCase{#1}{
-	{A}{\sup_{x \in \overline{\EK}}} 
-	{R}{\sup_{x \in \partial\EK}}
-	{a}{\sup_{x \in \EK}}
+% Quantors
+	\newcommand{\df}[1][]{% "daraus folgt", also Implikation
+		%\IfEqCase{#1}{
+		%	{a}{\Rightarrow}
+		%	{o}{\overset{\df}{#2}}
+		%} 
+		\overset{#1}{\Rightarrow}
 	}
-} %sup_EK für die Operatornorm bzw mit Argumet auch Rand oder Abschluss von EK möglich
+	\newcommand{\aq}{\Leftrightarrow} % "äquivalent zu", also Äquivalenz
+	\newcommand{\lightning}{\text{\Lightning}}
 
-\newcommand{\disp}{\displaystyle}
-\newcommand{\qmarks}[1]{#1}
-\newcommand{\afs}{"{}}
-\newcommand{\TODO}{\text{$\mathbb{TODO}$}}
-
-\newcommand{\ov}[1]{\overline{#1}}
-\newcommand{\xf}{(x_i)_{i\in I}}
-\newcommand{\ff}[3]{(#1_#2)_{#2\in#3}}
-\newcommand{\SP}{\left (\cdot,\cdot \right)} %Standardskalarprodukt
-\newcommand{\Sp}[1]{\left (#1 \right)} % Skalarprodukt mit angepassten Klammern
-%\newcommand{\skp}
-
-
-\newcommand{\abs}[1]{\left\lvert #1 \right\rvert }
-\newcommand{\lightning}{\text{\Lightning}}
-\newcommand{\set}[1]{\{#1\}} %Mengen
-\newcommand{\fop}[1]{\left \langle #1 \right \rangle} %Funktionalauswertung
-\newcommand{\f}[2]{\langle #1,#2 \rangle} %Konrads fop
-\newcommand{\spcm}[1][-0.8]{\vspace{#1 em}} %technischer Befehl fürs Layout
-\newcommand{\wkc}{\longrightarrow} %weak convergent
-\newcommand{\wskc}{\overset{*}{\longrightarrow}} % weak star convergent
-\newcommand{\inner}[1]{\overset{\circ}{#1}}
-
-\newcommand{\Sobolov}{W^{1,2}_0}
-%Commands für tikz:
-\newcommand*{\rechterWinkel}[3]{% #1 = point, #2 = start angle, #3 = radius
-\draw[shift={(#2:#3)}] (#1) arc[start angle=#2, delta angle=90, radius = #3];
-\fill[shift={(#2+45:#3/2)}] (#1) circle[radius=1.25\pgflinewidth];
-}
-
-\newcommand{\codim}{\text{codim}\:}
-\newcommand{\ind}{\text{ind}\:}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Special Quantities in space, likes balls
+	\newcommand{\U}[2][1]{U_{#1}(#2)} %Umgebung um #2 mit Abstand #1 \U{r}{a}
+	\newcommand{\EK}{\U{0}} %Umgebung bzw Einheitskugel um 0
+	\newcommand{\BKK}{\B(X,\K)}
+	
+% technical commands for math envoirement or layout
+	\newcommand{\disp}{\displaystyle}
+	\newcommand{\qmarks}[1]{#1}
+	\newcommand{\afs}{"{}}
+	\newcommand{\spcm}[1][-0.8]{\vspace{#1 em}} %technischer Befehl fürs Layout
+	
+% Commands für tikz:
+	\newcommand*{\rechterWinkel}[3]{% #1 = point, #2 = start angle, #3 = radius
+	\draw[shift={(#2:#3)}] (#1) arc[start angle=#2, delta angle=90, radius = #3];
+	\fill[shift={(#2+45:#3/2)}] (#1) circle[radius=1.25\pgflinewidth];
+	}
+	
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \begin{document}
 
+%%% tables and lists
 \listoftodos
 \tableofcontents
 \listoftheorems
