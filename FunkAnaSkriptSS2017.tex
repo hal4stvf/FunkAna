@@ -35,7 +35,7 @@
 \usepackage{xstring} %If then 
 \usepackage{hyperref} %Reference
 \usepackage{marginnote} %allows to do some nice marinnotes,
-
+%
 %math environments
 	%% basic packages
 	\usepackage{amssymb}
@@ -125,6 +125,7 @@
 	\newcommand{\codim}{\text{codim}\:}
 	\newcommand{\ind}{\text{ind}\:}
 	\newcommand{\set}[1]{\{#1\}} %Mengen
+	\newcommand{\limesinf}{\underset{n\to\infty}{\lim\inf}}
 	%%% special for functional analysis
 		\newcommand{\SP}{\left (\cdot,\cdot \right)} %Standardskalarprodukt
 		\newcommand{\Sp}[1]{\left (#1 \right)} % Skalarprodukt mit angepassten Klammern
@@ -148,7 +149,7 @@
 		%} 
 		\overset{#1}{\Rightarrow}
 	}
-	\newcommand{\aq}{\Leftrightarrow} % "äquivalent zu", also Äquivalenz
+	\newcommand{\aq}[1][]{\overset{#1}{\Leftrightarrow}} % "äquivalent zu", also Äquivalenz
 	\newcommand{\lightning}{\text{\Lightning}}
 
 % Special Quantities in space, likes balls
@@ -576,6 +577,7 @@ Die Negation dieser Aussage halten wir explizit fest mit folgendem
 			\item Falls $\dim X = \dim Y = n\in \N$: $X,Y$ topologisch isomorph und topologischer Isomorphismus = lineare Bijektion.
 		\end{enumerate}
 	\end{bem}
+	
 %% Satz 1.22
 	\begin{thm}[Fortsetzung von stetigen Operatoren]
 		$X,Y$ normierte $\K-VR$, $Y$ ein Banachraum, $Z\subseteq X$, $Z$ dichter UVR.
@@ -2324,7 +2326,6 @@ Im folgenden Satz sind die Voraussetzungen zum Teil etwas stärker als sie seien
 		
 
 	\end{definition}
-\newcommand{\limesinf}{\underset{n\to\infty}{\lim\inf}}
 	\begin{bem}
 		\begin{enumerate}[a)]
 			\item  $x_n \longrightarrow x \df J_x x_n \overset{*}{\longrightarrow} J_x x_n$, da $\fop{x_n, x'} = \fop{x', J_x x_n}$
@@ -2511,7 +2512,7 @@ GANZ viel zu Beispielen in lp Räumen.
 		\end{equation}
 		Sei $f'' \in L^p(\Omega,\mu)''$, da $L^q(\Omega,\mu) \to \K,\quad g \mapsto \fop{J_pg, f''}$ ein linearer Funktional aus $L^q(\Omega,\mu)'$ beschreibt, können wir auch schreiben:
 		\begin{equation}
-		\fop{g,f'} = \fop{J_p g, f''},\quad \forall g\in L^q(\Omega, \mu)		.	
+			\fop{g,f'} = \fop{J_p g, f''},\quad \forall g\in L^q(\Omega, \mu)		.	
 		\end{equation}
 		Sei $f:= J^{-1}_q f' \in L^p(\Omega,\mu).$ Dann gilt für alle $g'\in L^p(\Omega,\mu)'$
 		$$\fop{g',f''} = \fop{J_p { J^{-1}_p g'} , f''} \overset{(4.3)}{ = } \fop{J^{-1}_p g',f'} = \int_\Omega (J^{-1}_p g') f d \mu = \int_\Omega f (J_p^{-1} g' \overset{(4.2)}{=} \fop{f,g'}.$$
@@ -2575,12 +2576,12 @@ GANZ viel zu Beispielen in lp Räumen.
 		& ca(K) := \{\mu : B \to \K : \mu\; \sigma-\text{additiv und beschränkt} \}
 		\end{split}
 	\end{equation*}
-	$M\in ba(K)$ heißt \textit{regulär}, wenn für alle $E\in \tT$ gilt
-	$$\inf \left\lbrace |\mu| (U\setminus C) : C\subseteq E \subseteq U,\, C \text{ abgeschlossen, } U \text{ offen} \right\rbrace = 0.$$
-	Zusätzlich definieren wir
-	$$rba := \left\lbrace \mu \in ba(K) : \mu \text{ regulär}\right\rbrace,\qquad 
-	rca := \left\lbrace \mu \in ca(K) : \mu \text{ regulär}\right\rbrace. $$
-	Offenbar definiert die Totalvariation $\|\mu \|_{Var}$ eine Norm auf $ba(K), ca(K), rba, rca$
+		$M\in ba(K)$ heißt \textit{regulär}, wenn für alle $E\in \tT$ gilt
+		$$\inf \left\lbrace |\mu| (U\setminus C) : C\subseteq E \subseteq U,\, C \text{ abgeschlossen, } U \text{ offen} \right\rbrace = 0.$$
+		Zusätzlich definieren wir
+		$$rba := \left\lbrace \mu \in ba(K) : \mu \text{ regulär}\right\rbrace,\qquad 
+		rca := \left\lbrace \mu \in ca(K) : \mu \text{ regulär}\right\rbrace. $$
+		Offenbar definiert die Totalvariation $\|\mu \|_{Var}$ eine Norm auf $ba(K), ca(K), rba, rca$
 	\end{definition}	
 	
 	Resultat: Für einen Ring $R$, $\mu \in ba(K)$ reellwertig ist 
@@ -2903,13 +2904,104 @@ zu c)
 	\begin{thm}
 		$X \neq \set{0}$ Banachraum, $T \in \BS[X]$. \\
 		$\sigma(T)$ ist kompakt und nichtleer mit "'Spektralradius"':	
-			$\sup |\sigma(T)| = \limes \norm{T^m}^{\frac{1}{m}} \leq \norm{T}$.
+					$\disp \sup |\sigma(T)| = \lim_{m\to \infty} \norm{T^m}^{\frac{1}{m}} \leq \norm{T}$.
 	\end{thm}
 		
 	\begin{proof}
 		\todor	
 	\end{proof}
 
+	\begin{bem}
+			\begin{enumerate}[a)]
+				\item $T\in K(X)$, $\lambda \in \sigma(T)\backslash\set{0}$ $\df \lambda \in \sigma_p (T)$. Folgt, da $\lambda I - T = \lambda(I-\frac{T}{\lambda}$
+				\item $T\in K(X)$, $\dim X = \infty$ $\df 0 \in \sigma(T)$ (Bem. 5.8)	
+				\item $\dim X < \infty \df \sigma(T) = \sigma_p (T)$
+				\item Bsp.: Betrachte $T\in \BS[\sigma([0,1])(Tf)(x) = xf(x)$, $\sigma(T) = [0,1] = \sigma_r(T)$ \todoo[So sinnvoll?]
+				\item $T\in L^p([0,1]), (Tf)(x) = xf(x)$ f.ü. $p < \infty$. $\sigma(T) = [0,1] = \sigma_c(T)$
+				\item $L\in \BS[\ell^2]$ Linksshift. $\sigma(T) = \ov{\EK}$
+					$\sigma_p(T) = \EK$; $\sigma_c(T) = \partial \EK $
+				\item $R = L^* \in \BS[\ell^2]$ Rechtsshift. $\sigma(T) = \ov{\EK}$, $\sigma_r(T) = \EK$, $\sigma_c(T) = \partial \EK$.
+			\end{enumerate}
+	\end{bem}					
+
+
+	\begin{thm}[Spektralsatz für kompakte Operatoren]
+		$X$ Banachraum, $T\in K(X)$. Dann gilt
+			\begin{enumerate}[a)]
+				\item $\sigma(T)\backslash\set{0}$ aus höchstens abzählbar vielen Eigenwerten mit $0$ als einzig möglichen Häufungspunkt. Wenn $\sigma(T)$ unendlich, dann ist $0\in\sigma(T)$.
+				\item Für $\lambda \in \sigma(T)\backslash\set{0}$ ist 
+					$1\leq n_\lambda := \max\set{n\in \N: ker(\lambda I - T)^{n-1} \neq ker(\lambda I-T)^n} < \infty$
+					\item \enquote{Riesz-Zerlegung}. Für $\lambda \in \sigma(T)\backslash\set{0}$ gilt 
+					$X = ker(\lambda I - T)^{n_\lambda} \oplus im(\lambda I - T)^{n_\lambda}$,  \\
+					 \todoo[richtig mit $n_\lambda$?]
+	 				\item $\lambda \in \sigma(T)\backslash \set{0} \df \sigma(T| _{im(\lambda I - T)^{n_\lambda}}) = \sigma(T)\backslash \set{\lambda}$
+					\item Ist $E_\lambda \in \BS[X]$ Projektor mit $ker E_\lambda = im(\lambda I - T)^{n_\lambda}$, $im E_\lambda = ker(\lambda I - T)^{n_\lambda}$, so gilt $E_{\lambda} E_{\mu} = \delta_{\lambda \mu} E_\lambda $
+			\end{enumerate}
+	\end{thm}
+	
+	Was fehlt hier denn bloß???? \todor[Es fehlen 14-17]
+	\setcounter{thm}{17}
+	\begin{cor}[Fredholm Alternative]
+		$T\in K(X)$, $\lambda \neq 0$. Dann gilt: 
+			\begin{itemize}[]
+				\item Entweder ist die Gleichung $Tx - \lambda x = y$ nach $x$ eindeutig lösbar $\forall y\in X$
+				\item oder $Tx - \lambda x = 0$ hat nicht-triviale Lösungen.
+			\end{itemize}
+	\end{cor}
+	
+	\begin{bem}[Beispiel]
+		Operatoren ohne Eigenwerte: $T\in K(C[0,1])$, wie in Bsp. 5.3.
+			$$ (Tf)(t) = \int_0^t f(\tau)d\tau$$
+	\end{bem}
+
+	%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+	\section{Kompakte normale/selbstadjungierte Operatoren}
+	%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+	Sei $X$ von nun an ein Hilbertraum und meistens $\K = \C$
+
+	\begin{definition}[selbstadjungiert, normal]
+		$A \in \BS[X]$. Dann heißt $A$ 
+			\begin{enumerate}[a)]
+				\item selbstadjungiert, wenn $A = A^*$
+				\item normal, falls $A^* A = A A^* \aq[UE10] \norm{Ax} = \norm{A^* x} \; \forall x \in X$ 
+			\end{enumerate}
+	\end{definition}
+	
+	\begin{lemma}
+		$X \neq \set{0}$ $\C$-HR, $T\in \BS[X]$ normal. Dann ist $\sup|\sigma(T)| = \norm{T}$.
+	\end{lemma}
+
+	\begin{proof}
+		\todor	
+	\end{proof}
+
+		
+	\begin{thm}[Spektralsatz für kompakte und normale Operatoren]
+		$X$ $\C$-HR, $T\in K(X)\backslash\set{0}$ normal. Dann gilt:
+			\begin{enumerate}[a)]
+				\item $\exists N\subset \N$, ONS $\ff{e}{n}{\N} \in X$, $\ff{\lambda}{n}{\N}\in \C\backslash\set{0},$ s.d. 
+				$$ T e_k = \lambda_k e_k \quad \forall k\in N, \quad \sigma(T)\backslash\set{0} = \set{\lambda_k: k \in N}$$
+				Ist $N = \N$, so gilt $\disp \limes \lambda_n = 0$
+				\item $n_{\lambda_k} = 1 \quad \forall k\in\N$
+				\item $X = ker T \perp span\set{e_n : n\in N}$
+				\item $Tx = \sum_{k\in N} \lambda_k \Sp{x,e_k} e_k \quad \forall x \in X$
+			\end{enumerate}
+	\end{thm}
+	
+	\begin{proof}
+		\todor	
+	\end{proof}
+
+	\begin{bem}
+	  $X$ $\C$-HR, $T\in\BS[X]$	
+			\begin{enumerate}[a)]
+				\item  \todor[Bemerkung zu Ende tippen]
+			\end{enumerate}
+	\end{bem}
+	
+	\begin{proof}
+		\todor	
+	\end{proof}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %Zusätze. Alles was man noch definieren, erklären, beweisen, oder erwähnen möchte.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -2948,4 +3040,6 @@ Sei $M:=\{1,2\},\dots$
 			
 	\end{enumerate} 
 \end{document}
+
 %TODO: -Layout! -Eigene Kommentare innerhalb des Skripts? 
+
