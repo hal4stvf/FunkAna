@@ -35,6 +35,7 @@
 \usepackage{xstring} %If then 
 \usepackage{hyperref} %Reference
 \usepackage{marginnote} %allows to do some nice marinnotes,
+\usepackage{multicol} %for the glossar, to have 2 columns
 %
 %math environments
 	%% basic packages
@@ -80,8 +81,9 @@
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%% 		Marcos 		%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%% 		Macros 		%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
 
 %Zahlenkörper
 	\newcommand{\C}{\mathbb{C}}
@@ -96,6 +98,7 @@
 	\newcommand{\hA}{\mathfrak{A}}%Script A , hA ~ hässliches A
 	\newcommand{\hL}{\mathcal{L}}
 	\newcommand{\tT}{\mathcal{T}} %topologisches T
+	\newcommand{\F}{\mathcal{F}} %für?
 	\newcommand{\B}{\mathcal{B}} %Raum der beschränkten Funktion
 	\newcommand{\BS}[2][X,Y]{\mathcal{B}(#1#2)} %"Standardraum" der beschränkten Funktion
 	\newcommand{\lL}[2][\Omega,\mu]{\text{L}^{#2}(#1)} %Lebesgue L für Matheumgebgung mit Omega, mu als Standard \lL[Raum,Maß]{Dimension}
@@ -110,6 +113,7 @@
 	\newcommand{\xf}{(x_i)_{i\in I}}
 	\newcommand{\ff}[3]{(#1_#2)_{#2\in#3}}
 	\newcommand{\inner}[1]{\overset{\circ}{#1}}
+	\newcommand{\xt}{x_\eta}%Eigentlich eta glaube ich
 
 %special mathematical operators and quantities
 	\newcommand{\ess}{\textnormal{ess}}
@@ -162,6 +166,7 @@
 	\newcommand{\qmarks}[1]{#1}
 	\newcommand{\afs}{"{}}
 	\newcommand{\spcm}[1][-0.8]{\vspace{#1 em}} %technischer Befehl fürs Layout
+	\newcommand{\glossar}[2]{\begin{description} \item[#1] #2 \end{description}}
 	
 % Commands für tikz:
 	\newcommand*{\rechterWinkel}[3]{% #1 = point, #2 = start angle, #3 = radius
@@ -719,7 +724,7 @@ Nun versuchen wir mit Erfolgt einer waghalsige Verallgemeinerung der geometrisch
 
 %Bem 1.30
 	\begin{bem}Rekapitulieren Sie folgende Begriffe:
-		$U_r(x)$ Kugel mit Radius $r$,	$\overline{M}$ Abschluss,	$\mathring{M}$ Innere,	$\partial M$ Rand,	Kompakt,	offene Überdeckung.
+		$U_r(x)$ Kugel mit Radius $r$,	$\overline{M}$ Abschluss,	$\mathring{M}$ Innere,	$\partial M$ Rand,	Kompakt,	offene Überdeckung. \todoo[Hinten noch definieren]
 	\end{bem}
 	
 %Definition 1.31
@@ -814,7 +819,7 @@ Der folgende Satz ist eine Verallgemeinerung des Intervallschachtelungsprinzips 
 
 	\begin{mbem*}
 		Der Heuser beschreibt den folgenden Satz folgendermaßen:\par  
-		Es gibt wohl keinen Satz in der Funktionalanalysis, der glanzloser und gleichzeitig kraftvoller wäre als der Bairesche Kategoriensatz. Von seiner Glanzlosigkeit wird sich der Leser \textit{sofort} überzeugen können; für seine Kraft müssen wir ihn auf die folgenden Nummern vertrösten.
+		\enquote{Es gibt wohl keinen Satz in der Funktionalanalysis, der glanzloser und gleichzeitig kraftvoller wäre als der Bairesche Kategoriensatz. Von seiner Glanzlosigkeit wird sich der Leser \textit{sofort} überzeugen können; für seine Kraft müssen wir ihn auf die folgenden Nummern vertrösten.}
 	\end{mbem*}
 
 %Satz 1.35
@@ -1063,7 +1068,6 @@ Der folgende Satz ist eine Verallgemeinerung des Intervallschachtelungsprinzips 
 				\end{enumerate}
 		\end{enumerate}
 	\end{bem}
-\newcommand{\xt}{x_\eta}%Eigentlich eta glaube ich
 
 	\begin{lemma}[Lemma von Riesz]%Lemmaumgebung gab es schon :O
 		$(X,\norm{\cdot})$ normierter Raum, $E\subset X$ abgeschlossener Unterraum mit $E \not = X$, $\eta\in (0,1)$. \par
@@ -1398,11 +1402,10 @@ Sei $f\in L^2([0,2\pi])$
 				\item $ a \leq a \quad\forall a\in M$
 				\item $ a \leq b \land b\leq a \df a = b\quad \forall a,b\in M$
 			\end{enumerate}
-		
-
-			\item $d \in M$ heißt \textit{obere Schranke}, wenn $a \leq d$ $\forall a\in M$% mit $a \leq d$ oder $b \leq a$.
-			\item Die Relation heißt \textit{Totalordnung}, wenn sie eine Halbordnung ist und $\forall a,b \in M: a \leq b$ oder $b \leq a$ gilt.
-
+			\begin{itemize}[]
+				\item $d \in M$ heißt \textit{obere Schranke}, wenn $a \leq d$ $\forall a\in M$% mit $a \leq d$ oder $b \leq a$.
+				\item Die Relation heißt \textit{Totalordnung}, wenn sie eine Halbordnung ist und $\forall a,b \in M: a \leq b$ oder $b \leq a$ gilt.
+			\end{itemize}
 	\end{definition}
 
 %Lemma 1.61 (Lemma von Zorn)
@@ -1670,7 +1673,6 @@ Sei $f\in L^2([0,2\pi])$
 	\end{bem}
 
 	\section{Das Prinzip der gleichmäßigen Beschränkheit, Satz von Banach-Steinhaus}
-\newcommand{\F}{\mathcal{F}}
 
 %%%%%%% 2.13
 	\begin{thm}[Satz von Osgood]
@@ -2241,15 +2243,11 @@ Welche Gleichheiten gelten für Bild und Kern von Operatoren und seinem Adjungie
 				\end{enumerate}
 	\end{thm}
 
-	\begin{hinweise}
-
-	\end{hinweise}
-
 	\begin{proof}
-		TODO
+		\todor
 	\end{proof}
 
-	Notiz:  hier motivation für folgendes Korollar mündlich.
+	Notiz:  hier Motivation für folgendes Korollar mündlich.
 	\begin{cor}
 		$X, Y$ Banachräume, $T\in \BS$. Dann gilt 
 			$$ (\inv{T} \in \B(Y,X) \aq \; ) T \text{ bijektiv } \quad \aq 
@@ -2355,7 +2353,7 @@ GANZ viel zu Beispielen in lp Räumen.
 	%\end{hinweise}
 
 	\begin{proof}
-		TODO
+		\todor
 	\end{proof}
 
 	\begin{lemma}
@@ -3009,36 +3007,34 @@ zu c)
 \appendix 
 
 \chapter{Etwaige Begriffe}
-	\begin{enumerate}
-		\item \textbf{Hausdorffsch, Hausdorffeigenschaft} - Eine Menge heißt \textit{hausdorffsch}, wenn je zwei versch. Punkte stets disjunkte Umgebungen haben. Metrische Räume sind zum Beispiel hausdorffsch, da zwei versch. Punkte stets einen Abstand $> 0$ haben. Für ein Gegenbeispiel $\nearrow$ topologischer Raum
-
-		\item \textbf{essentiell beschränkt} - 
-					$(\Omega, \hA,\mu)$ sei ein Maßraum. Eine Funktion $f: \Omega \rightarrow \R$ heißt essentiell beschränkt, falls 
-					$$\underset{x\in\Omega}{\ess \sup} |f(x)| := {\inf_{\underset{\mu(N)=0}{N \in \hA}} }  
-					\sup_{x\in \Omega\backslash N} |f(x)| < \infty$$
-					oder auch: f ist fast überall beschränkt. 
-					Ein Beispiel ist $f(x) : = x\cdot \chi_\Q(x)$ und $\mu = \lambda$, da $f$ nur auf $\Q$ nicht null ist, und $\Q$ ist Lesbesgue-Nullmenge. 
-
-		\item \textbf{topologischer Raum} $(X,\tT)$ - Sei $X$ eine Menge und $\tT\subseteq P(X)$. Die Elemente von $\tT$ sind die \textit{offenen Mengen}. $\tT$ definiert eine \textit{Topologie}, wenn folgende Eigenschaften erfüllt sind:
-	\begin{enumerate}[(i)]
-	\item $\emptyset,\,X\in \tT$
-
-\item $A_i\in\tT$ für $i\in I$, $\N \supset I$ endlich $\df$ $\cap_{i\in I} A_i\in\tT$
-
-\item $A_i\in\tT$ für $i\in I$, $I$ bel. Indexmenge $\df$ $\cup_{i\in I}A_i \in \tT$
-\end{enumerate}
-	$(X,\tT)$ ist der \textit{topologische Raum}.\par
-Ein Beispiel, für einen topologischen Raum sind die metrischen Räume $(X,d)$: $d$ induziert dann eine Topologie auf $X$, die offenen Mengen sind nämlich durch $d$ bestimmt.\par
-Sei $M:=\{1,2\},\dots$
-\begin{enumerate}[]
-\item $\tT: = \{\emptyset,M\}$. Die triviale Topologie, nur $\emptyset$ und $M$ sind offen.
-
-\item $\tT:=P(M)$. Die diskrete Topologie, alle Mengen sind offen. Die diskrete Metrik induziert genau diese Topologie.
-
-\item $\tT:=\{\emptyset,\{1\},\{1,2\}\}.$ M ist hier nicht hausdorffsch, denn egal welche Umgebung man um 2 betrachtet, man kann nicht erreichen, dass 1 nicht in der gleichen ist.
-\end{enumerate}
-			
-	\end{enumerate} 
+	
+	\begin{multicols}{2}
+		\glossar{Hausdorffsch, Hausdorffeigenschaft}{ - Eine Menge heißt \textit{hausdorffsch}, wenn je zwei versch. Punkte stets disjunkte Umgebungen haben. Metrische Räume sind zum Beispiel hausdorffsch, da zwei versch. Punkte stets einen Abstand $> 0$ haben. Für ein Gegenbeispiel $\nearrow$ topologischer Raum}
+	
+		\glossar{essentiell beschränkt}{ - 
+						$(\Omega, \hA,\mu)$ sei ein Maßraum. Eine Funktion $f: \Omega \rightarrow \R$ heißt essentiell beschränkt, falls 
+						$$\underset{x\in\Omega}{\ess \sup} |f(x)| := {\inf_{\underset{\mu(N)=0}{N \in \hA}} }  
+						\sup_{x\in \Omega\backslash N} |f(x)| < \infty$$
+						oder auch: f ist fast überall beschränkt. 
+									Ein Beispiel ist $f(x) : = x\cdot \chi_\Q(x)$ und $\mu = \lambda$, da $f$ nur auf $\Q$ nicht null ist, und $\Q$ ist Lesbesgue-Nullmenge. }
+	
+		\glossar{topologischer Raum}{ $(X,\tT)$ - Sei $X$ eine Menge und $\tT\subseteq P(X)$. Die Elemente von $\tT$ sind die \textit{offenen Mengen}. $\tT$ definiert eine \textit{Topologie}, wenn folgende Eigenschaften erfüllt sind:
+		\begin{enumerate}[(i)]
+			\item $\emptyset,\,X\in \tT$ 
+			\item $A_i\in\tT$ für $i\in I$, $\N \supset I$ endlich $\df$ $\cap_{i\in I} A_i\in\tT$ 
+			\item $A_i\in\tT$ für $i\in I$, $I$ bel. Indexmenge $\df$ $\cup_{i\in I}A_i \in \tT$
+		\end{enumerate}
+		$(X,\tT)$ ist der \textit{topologische Raum}.\par
+		Ein Beispiel, für einen topologischen Raum sind die metrischen Räume $(X,d)$: $d$ induziert dann eine Topologie auf $X$, die offenen Mengen sind nämlich durch $d$ bestimmt.\par
+		Sei $M:=\{1,2\},\dots$
+		\begin{enumerate}[]
+			\item $\tT: = \{\emptyset,M\}$. Die triviale Topologie, nur $\emptyset$ und $M$ sind offen.
+		
+			\item $\tT:=P(M)$. Die diskrete Topologie, alle Mengen sind offen. Die diskrete Metrik induziert genau diese Topologie.
+		
+			\item $\tT:=\{\emptyset,\{1\},\{1,2\}\}.$ M ist hier nicht hausdorffsch, denn egal welche Umgebung man um 2 betrachtet, man kann nicht erreichen, dass 1 nicht in der gleichen ist.
+		\end{enumerate}}
+	\end{multicols}
 \end{document}
 
 %TODO: -Layout! -Eigene Kommentare innerhalb des Skripts? 
