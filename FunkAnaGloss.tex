@@ -1,0 +1,31 @@
+\newglossaryentry{hausdorffsch}{
+	name = {Hausdorffsch, Hausdorffeigenschaft},
+	description = {Eine Menge heißt \textit{hausdorffsch}, wenn je zwei versch. Punkte stets disjunkte Umgebungen haben. Metrische Räume sind zum Beispiel hausdorffsch, da zwei versch. Punkte stets einen Abstand $> 0$ haben. Für ein Gegenbeispiel $\nearrow$ topologischer Raum}
+		}
+	
+\newglossaryentry{ess beschrk}{
+	name={essentiell beschränkt},
+	description={$(\Omega, \hA,\mu)$ sei ein Maßraum. Eine Funktion $f: \Omega \rightarrow \R$ heißt essentiell beschränkt, falls 
+						$$\underset{x\in\Omega}{\ess \sup} |f(x)| := {\inf_{\underset{\mu(N)=0}{N \in \hA}} }  
+						\sup_{x\in \Omega\backslash N} |f(x)| < \infty$$
+						oder auch: f ist fast überall beschränkt. 
+									Ein Beispiel ist $f(x) : = x\cdot \chi_\Q(x)$ und $\mu = \lambda$, da $f$ nur auf $\Q$ nicht null ist, und $\Q$ ist Lesbesgue-Nullmenge. }
+		}
+	
+\newglossaryentry{top Raum}{ 
+			name = {topologischer Raum},
+			description = {$(X,\tT)$ - Sei $X$ eine Menge und $\tT\subseteq P(X)$. Die Elemente von $\tT$ sind die \textit{offenen Mengen}. $\tT$ definiert eine \textit{Topologie}, wenn folgende Eigenschaften erfüllt sind:
+		\begin{enumerate}[(i)]
+			\item $\emptyset,\,X\in \tT$ 
+			\item $A_i\in\tT$ für $i\in I$, $\N \supset I$ endlich $\df$ $\cap_{i\in I} A_i\in\tT$ 
+			\item $A_i\in\tT$ für $i\in I$, $I$ bel. Indexmenge $\df$ $\cup_{i\in I}A_i \in \tT$
+		\end{enumerate}
+		$(X,\tT)$ ist der \textit{topologische Raum}.\\
+		Ein Beispiel, für einen topologischen Raum sind die metrischen Räume $(X,d)$: $d$ induziert dann eine Topologie auf $X$, die offenen Mengen sind nämlich durch $d$ bestimmt.\\
+		Sei $M:=\{1,2\},\dots$
+		\begin{itemize}
+			\item $\tT: = \{\emptyset,M\}$. Die triviale Topologie, nur $\emptyset$ und $M$ sind offen.
+			\item $\tT:=P(M)$. Die diskrete Topologie, alle Mengen sind offen. Die diskrete Metrik induziert genau diese Topologie.
+			\item $\tT:=\{\emptyset,\{1\},\{1,2\}\}.$ M ist hier nicht \glslink{hausdorffsch}{hausdorffsch}, denn egal welche Umgebung man um 2 betrachtet, man kann nicht erreichen, dass 1 nicht in der gleichen ist.
+		\end{itemize}
+}}

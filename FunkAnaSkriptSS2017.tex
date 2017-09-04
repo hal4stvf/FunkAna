@@ -36,6 +36,9 @@
 \usepackage{hyperref} %Reference
 \usepackage{marginnote} %allows to do some nice marinnotes,
 \usepackage{multicol} %for the glossar, to have 2 columns
+\usepackage{glossaries} %for a real glossar with hyperlinks, %Einträge extra in
+\loadglsentries{FunkAnaGloss.tex}
+\makeglossaries
 %
 %math environments
 	%% basic packages
@@ -3036,6 +3039,10 @@ zu c)
 			\item $\tT:=\{\emptyset,\{1\},\{1,2\}\}.$ M ist hier nicht hausdorffsch, denn egal welche Umgebung man um 2 betrachtet, man kann nicht erreichen, dass 1 nicht in der gleichen ist.
 		\end{enumerate}}
 	\end{multicols}
+
+\glsaddall
+\printglossary[title=Glossar]
+
 \end{document}
 
 %TODO: -Layout! -Eigene Kommentare innerhalb des Skripts? 
