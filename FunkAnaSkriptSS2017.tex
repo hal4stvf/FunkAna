@@ -36,9 +36,10 @@
 \usepackage{hyperref} %Reference
 \usepackage{marginnote} %allows to do some nice marinnotes,
 \usepackage{multicol} %for the glossar, to have 2 columns
-\usepackage{glossaries} %for a real glossar with hyperlinks, %Einträge extra in
+\usepackage[nonumberlist]{glossaries} %for a real glossar with hyperlinks, %Einträge extra in
 \loadglsentries{FunkAnaGloss.tex}
-\makeglossaries
+\loadglsentries{HeuserG.tex}
+\makenoidxglossaries
 %
 %math environments
 	%% basic packages
@@ -86,96 +87,96 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%% 		Macros 		%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\usepackage{mathmacros}
 
-
-%Zahlenkörper
-	\newcommand{\C}{\mathbb{C}}
-	\newcommand{\R}{\mathbb{R}}
-	\newcommand{\pR}{\mathbb{R}_{\geq 0}} % R_0^+%
-	\newcommand{\Q}{\mathbb{Q}}
-	\newcommand{\Z}{\mathbb{Z}}
-	\newcommand{\N}{\mathbb{N}}
-	\newcommand{\K}{\mathbb{K}}
-	
-%spaces, special symbols for spaces
-	\newcommand{\hA}{\mathfrak{A}}%Script A , hA ~ hässliches A
-	\newcommand{\hL}{\mathcal{L}}
-	\newcommand{\tT}{\mathcal{T}} %topologisches T
-	\newcommand{\F}{\mathcal{F}} %für?
-	\newcommand{\B}{\mathcal{B}} %Raum der beschränkten Funktion
-	\newcommand{\BS}[2][X,Y]{\mathcal{B}(#1#2)} %"Standardraum" der beschränkten Funktion
-	\newcommand{\lL}[2][\Omega,\mu]{\text{L}^{#2}(#1)} %Lebesgue L für Matheumgebgung mit Omega, mu als Standard \lL[Raum,Maß]{Dimension}
-	\newcommand{\Sobolov}{W^{1,2}_0}
-
-%special variables and Abbrev., technial stuff
-	\newcommand{\dX}{\hat{X}}%Dach X
-	\newcommand{\dd}{\hat{d}}%Dach d
-	\newcommand{\olx}{\overline{x}} %OverLine x
-	\newcommand{\oly}{\overline{y}} %Overline y
-	\newcommand{\ov}[1]{\overline{#1}}
-	\newcommand{\xf}{(x_i)_{i\in I}}
-	\newcommand{\ff}[3]{(#1_#2)_{#2\in#3}}
-	\newcommand{\inner}[1]{\overset{\circ}{#1}}
-	\newcommand{\xt}{x_\eta}%Eigentlich eta glaube ich
-
-%special mathematical operators and quantities
-	\newcommand{\ess}{\textnormal{ess}}
-	\newcommand{\supp}{\textnormal{supp}}
-	\newcommand{\aufspan}{\textnormal{span}}
-	\newcommand{\seminorm}[1]{||| #1 |||}
-	\newcommand{\norm}[1]{\left \|#1\right\| }
-	\newcommand{\intl}[1]{\int_\Omega #1 d\mu} %"Standard"Lebesgue-Integral über Omega
-	\newcommand{\limes}[1][\infty]{\lim_{n \to #1}}
-	\newcommand{\toinf}[1][n]{\overset{#1\to \infty}{\to}}
-	\newcommand{\inv}[1]{#1^{-1}} %Inverse with ^-1
-	\newcommand{\abs}[1]{\left\lvert #1 \right\rvert }
-	\newcommand{\codim}{\text{codim}\:}
-	\newcommand{\ind}{\text{ind}\:}
-	\newcommand{\set}[1]{\{#1\}} %Mengen
-	\newcommand{\limesinf}{\underset{n\to\infty}{\lim\inf}}
-	%%% special for functional analysis
-		\newcommand{\SP}{\left (\cdot,\cdot \right)} %Standardskalarprodukt
-		\newcommand{\Sp}[1]{\left (#1 \right)} % Skalarprodukt mit angepassten Klammern
-		\newcommand{\fop}[1]{\left \langle #1 \right \rangle} %Funktionalauswertung
-		\newcommand{\f}[2]{\langle #1,#2 \rangle} %Konrads fop
-		\newcommand{\wkc}{\longrightarrow} %weak convergent
-		\newcommand{\wskc}{\overset{*}{\longrightarrow}} % weak star convergent
-		\newcommand{\supT}[1][a]{
-			\IfEqCase{#1}{
-			{A}{\sup_{x \in \overline{\EK}}} 
-			{R}{\sup_{x \in \partial\EK}}
-			{a}{\sup_{x \in \EK}}
-			}
-		} %sup_EK für die Operatornorm bzw mit Argumet auch Rand oder Abschluss von EK möglich
-
-% Quantors
-	\newcommand{\df}[1][]{% "daraus folgt", also Implikation
-		%\IfEqCase{#1}{
-		%	{a}{\Rightarrow}
-		%	{o}{\overset{\df}{#2}}
-		%} 
-		\overset{#1}{\Rightarrow}
-	}
-	\newcommand{\aq}[1][]{\overset{#1}{\Leftrightarrow}} % "äquivalent zu", also Äquivalenz
-	\newcommand{\lightning}{\text{\Lightning}}
-
-% Special Quantities in space, likes balls
-	\newcommand{\U}[2][1]{U_{#1}(#2)} %Umgebung um #2 mit Abstand #1 \U{r}{a}
-	\newcommand{\EK}{\U{0}} %Umgebung bzw Einheitskugel um 0
-	\newcommand{\BKK}{\B(X,\K)}
-	
-% technical commands for math envoirement or layout
-	\newcommand{\disp}{\displaystyle}
-	\newcommand{\qmarks}[1]{#1}
-	\newcommand{\afs}{"{}}
-	\newcommand{\spcm}[1][-0.8]{\vspace{#1 em}} %technischer Befehl fürs Layout
-	\newcommand{\glossar}[2]{\begin{description} \item[#1] #2 \end{description}}
-	
-% Commands für tikz:
-	\newcommand*{\rechterWinkel}[3]{% #1 = point, #2 = start angle, #3 = radius
-	\draw[shift={(#2:#3)}] (#1) arc[start angle=#2, delta angle=90, radius = #3];
-	\fill[shift={(#2+45:#3/2)}] (#1) circle[radius=1.25\pgflinewidth];
-	}
+%%Zahlenkörper
+%	\newcommand{\C}{\mathbb{C}}
+%	\newcommand{\R}{\mathbb{R}}
+%	\newcommand{\pR}{\mathbb{R}_{\geq 0}} % R_0^+%
+%	\newcommand{\Q}{\mathbb{Q}}
+%	\newcommand{\Z}{\mathbb{Z}}
+%	\newcommand{\N}{\mathbb{N}}
+%	\newcommand{\K}{\mathbb{K}}
+%	
+%%spaces, special symbols for spaces
+%	\newcommand{\hA}{\mathfrak{A}}%Script A , hA ~ hässliches A
+%	\newcommand{\hL}{\mathcal{L}}
+%	\newcommand{\tT}{\mathcal{T}} %topologisches T
+%	\newcommand{\F}{\mathcal{F}} %für?
+%	\newcommand{\B}{\mathcal{B}} %Raum der beschränkten Funktion
+%	\newcommand{\BS}[2][X,Y]{\mathcal{B}(#1#2)} %"Standardraum" der beschränkten Funktion
+%	\newcommand{\lL}[2][\Omega,\mu]{\text{L}^{#2}(#1)} %Lebesgue L für Matheumgebgung mit Omega, mu als Standard \lL[Raum,Maß]{Dimension}
+%	\newcommand{\Sobolov}{W^{1,2}_0}
+%
+%%special variables and Abbrev., technial stuff
+%	\newcommand{\dX}{\hat{X}}%Dach X
+%	\newcommand{\dd}{\hat{d}}%Dach d
+%	\newcommand{\olx}{\overline{x}} %OverLine x
+%	\newcommand{\oly}{\overline{y}} %Overline y
+%	\newcommand{\ov}[1]{\overline{#1}}
+%	\newcommand{\xf}{(x_i)_{i\in I}}
+%	\newcommand{\ff}[3]{(#1_#2)_{#2\in#3}}
+%	\newcommand{\inner}[1]{\overset{\circ}{#1}} % das Innere
+%	\newcommand{\xt}{x_\eta}%Eigentlich eta glaube ich
+%
+%%special mathematical operators and quantities
+%	\newcommand{\ess}{\textnormal{ess}}
+%	\newcommand{\supp}{\textnormal{supp}}
+%	\newcommand{\aufspan}{\textnormal{span}}
+%	\newcommand{\seminorm}[1]{||| #1 |||}
+%	\newcommand{\norm}[1]{\left \|#1\right\| }
+%	\newcommand{\intl}[1]{\int_\Omega #1 d\mu} %"Standard"Lebesgue-Integral über Omega
+%	\newcommand{\limes}[1][\infty]{\lim_{n \to #1}}
+%	\newcommand{\toinf}[1][n]{\overset{#1\to \infty}{\to}}
+%	\newcommand{\inv}[1]{#1^{-1}} %Inverse with ^-1
+%	\newcommand{\abs}[1]{\left\lvert #1 \right\rvert }
+%	\newcommand{\codim}{\text{codim}\:}
+%	\newcommand{\ind}{\text{ind}\:}
+%	\newcommand{\set}[1]{\{#1\}} %Mengen
+%	\newcommand{\limesinf}{\underset{n\to\infty}{\lim\inf}}
+%	%%% special for functional analysis
+%		\newcommand{\SP}{\left (\cdot,\cdot \right)} %Standardskalarprodukt
+%		\newcommand{\Sp}[1]{\left (#1 \right)} % Skalarprodukt mit angepassten Klammern
+%		\newcommand{\fop}[1]{\left \langle #1 \right \rangle} %Funktionalauswertung
+%		\newcommand{\f}[2]{\langle #1,#2 \rangle} %Konrads fop
+%		\newcommand{\wkc}{\longrightarrow} %weak convergent
+%		\newcommand{\wskc}{\overset{*}{\longrightarrow}} % weak star convergent
+%		\newcommand{\supT}[1][a]{
+%			\IfEqCase{#1}{
+%			{A}{\sup_{x \in \overline{\EK}}} 
+%			{R}{\sup_{x \in \partial\EK}}
+%			{a}{\sup_{x \in \EK}}
+%			}
+%		} %sup_EK für die Operatornorm bzw mit Argumet auch Rand oder Abschluss von EK möglich
+%
+%% Quantors
+%	\newcommand{\df}[1][]{% "daraus folgt", also Implikation
+%		%\IfEqCase{#1}{
+%		%	{a}{\Rightarrow}
+%		%	{o}{\overset{\df}{#2}}
+%		%} 
+%		\overset{#1}{\Rightarrow}
+%	}
+%	\newcommand{\aq}[1][]{\overset{#1}{\Leftrightarrow}} % "äquivalent zu", also Äquivalenz
+%	\newcommand{\lightning}{\text{\Lightning}}
+%
+%% Special Quantities in space, likes balls
+%	\newcommand{\U}[2][1]{U_{#1}(#2)} %Umgebung um #2 mit Abstand #1 \U{r}{a}
+%	\newcommand{\EK}{\U{0}} %Umgebung bzw Einheitskugel um 0
+%	\newcommand{\BKK}{\B(X,\K)}
+%	
+%% technical commands for math envoirement or layout
+%	\newcommand{\disp}{\displaystyle}
+%	\newcommand{\qmarks}[1]{#1}
+%	\newcommand{\afs}{"{}}
+%	\newcommand{\spcm}[1][-0.8]{\vspace{#1 em}} %technischer Befehl fürs Layout
+%	\newcommand{\glossar}[2]{\begin{description} \item[#1] #2 \end{description}}
+%	
+%% Commands für tikz:
+%	\newcommand*{\rechterWinkel}[3]{% #1 = point, #2 = start angle, #3 = radius
+%	\draw[shift={(#2:#3)}] (#1) arc[start angle=#2, delta angle=90, radius = #3];
+%	\fill[shift={(#2+45:#3/2)}] (#1) circle[radius=1.25\pgflinewidth];
+%	}
 	
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -236,7 +237,7 @@ Eine Norm efüllt zusätzlich noch die Bedingung, dass sie nur dann verschwindet
 						$L^p(\Omega,\mu)$ ist ein vollständiger normierter Raum ($\nearrow$ Ana III).
 
 			\item $\hL^\infty(\Omega,\mu) := \{f:\Omega \rightarrow \C 
-						\text{ messbar und essentiell beschränkt} \}$ ist ebenfalls seminormiert mit 
+						\text{ messbar und \glslink{ess beschrk}{essentiell beschränkt} }$ ist ebenfalls seminormiert mit 
 						$\seminorm{f}_\infty := \underset{x\in\Omega}{\ess \sup} |f(x)|$.\\
 						$L^\infty(\Omega,\mu)$ ist ein vollständiger normierter Raum.
 
@@ -3012,37 +3013,38 @@ zu c)
 
 \chapter{Etwaige Begriffe}
 	
-	\begin{multicols}{2}
-		\glossar{Hausdorffsch, Hausdorffeigenschaft}{ - Eine Menge heißt \textit{hausdorffsch}, wenn je zwei versch. Punkte stets disjunkte Umgebungen haben. Metrische Räume sind zum Beispiel hausdorffsch, da zwei versch. Punkte stets einen Abstand $> 0$ haben. Für ein Gegenbeispiel $\nearrow$ topologischer Raum}
-	
-		\glossar{essentiell beschränkt}{ - 
-						$(\Omega, \hA,\mu)$ sei ein Maßraum. Eine Funktion $f: \Omega \rightarrow \R$ heißt essentiell beschränkt, falls 
-						$$\underset{x\in\Omega}{\ess \sup} |f(x)| := {\inf_{\underset{\mu(N)=0}{N \in \hA}} }  
-						\sup_{x\in \Omega\backslash N} |f(x)| < \infty$$
-						oder auch: f ist fast überall beschränkt. 
-									Ein Beispiel ist $f(x) : = x\cdot \chi_\Q(x)$ und $\mu = \lambda$, da $f$ nur auf $\Q$ nicht null ist, und $\Q$ ist Lesbesgue-Nullmenge. }
-	
-		\glossar{topologischer Raum}{ $(X,\tT)$ - Sei $X$ eine Menge und $\tT\subseteq P(X)$. Die Elemente von $\tT$ sind die \textit{offenen Mengen}. $\tT$ definiert eine \textit{Topologie}, wenn folgende Eigenschaften erfüllt sind:
-		\begin{enumerate}[(i)]
-			\item $\emptyset,\,X\in \tT$ 
-			\item $A_i\in\tT$ für $i\in I$, $\N \supset I$ endlich $\df$ $\cap_{i\in I} A_i\in\tT$ 
-			\item $A_i\in\tT$ für $i\in I$, $I$ bel. Indexmenge $\df$ $\cup_{i\in I}A_i \in \tT$
-		\end{enumerate}
-		$(X,\tT)$ ist der \textit{topologische Raum}.\par
-		Ein Beispiel, für einen topologischen Raum sind die metrischen Räume $(X,d)$: $d$ induziert dann eine Topologie auf $X$, die offenen Mengen sind nämlich durch $d$ bestimmt.\par
-		Sei $M:=\{1,2\},\dots$
-		\begin{enumerate}[]
-			\item $\tT: = \{\emptyset,M\}$. Die triviale Topologie, nur $\emptyset$ und $M$ sind offen.
-		
-			\item $\tT:=P(M)$. Die diskrete Topologie, alle Mengen sind offen. Die diskrete Metrik induziert genau diese Topologie.
-		
-			\item $\tT:=\{\emptyset,\{1\},\{1,2\}\}.$ M ist hier nicht hausdorffsch, denn egal welche Umgebung man um 2 betrachtet, man kann nicht erreichen, dass 1 nicht in der gleichen ist.
-		\end{enumerate}}
-	\end{multicols}
+%	\begin{multicols}{2}
+%		\glossar{Hausdorffsch, Hausdorffeigenschaft}{ - Eine Menge heißt \textit{hausdorffsch}, wenn je zwei versch. Punkte stets disjunkte Umgebungen haben. Metrische Räume sind zum Beispiel hausdorffsch, da zwei versch. Punkte stets einen Abstand $> 0$ haben. Für ein Gegenbeispiel $\nearrow$ topologischer Raum}
+%	
+%		\glossar{essentiell beschränkt}{ - 
+%						$(\Omega, \hA,\mu)$ sei ein Maßraum. Eine Funktion $f: \Omega \rightarrow \R$ heißt essentiell beschränkt, falls 
+%						$$\underset{x\in\Omega}{\ess \sup} |f(x)| := {\inf_{\underset{\mu(N)=0}{N \in \hA}} }  
+%						\sup_{x\in \Omega\backslash N} |f(x)| < \infty$$
+%						oder auch: f ist fast überall beschränkt. 
+%									Ein Beispiel ist $f(x) : = x\cdot \chi_\Q(x)$ und $\mu = \lambda$, da $f$ nur auf $\Q$ nicht null ist, und $\Q$ ist Lesbesgue-Nullmenge. }
+%	
+%		\glossar{topologischer Raum}{ $(X,\tT)$ - Sei $X$ eine Menge und $\tT\subseteq P(X)$. Die Elemente von $\tT$ sind die \textit{offenen Mengen}. $\tT$ definiert eine \textit{Topologie}, wenn folgende Eigenschaften erfüllt sind:
+%		\begin{enumerate}[(i)]
+%			\item $\emptyset,\,X\in \tT$ 
+%			\item $A_i\in\tT$ für $i\in I$, $\N \supset I$ endlich $\df$ $\cap_{i\in I} A_i\in\tT$ 
+%			\item $A_i\in\tT$ für $i\in I$, $I$ bel. Indexmenge $\df$ $\cup_{i\in I}A_i \in \tT$
+%		\end{enumerate}
+%		$(X,\tT)$ ist der \textit{topologische Raum}.\par
+%		Ein Beispiel, für einen topologischen Raum sind die metrischen Räume $(X,d)$: $d$ induziert dann eine Topologie auf $X$, die offenen Mengen sind nämlich durch $d$ bestimmt.\par
+%		Sei $M:=\{1,2\},\dots$
+%		\begin{enumerate}[]
+%			\item $\tT: = \{\emptyset,M\}$. Die triviale Topologie, nur $\emptyset$ und $M$ sind offen.
+%		
+%			\item $\tT:=P(M)$. Die diskrete Topologie, alle Mengen sind offen. Die diskrete Metrik induziert genau diese Topologie.
+%		
+%			\item $\tT:=\{\emptyset,\{1\},\{1,2\}\}.$ M ist hier nicht hausdorffsch, denn egal welche Umgebung man um 2 betrachtet, man kann nicht erreichen, dass 1 nicht in der gleichen ist.
+%		\end{enumerate}}
+%	\end{multicols}
 
 \glsaddall
-\printglossary[title=Glossar]
+%\printglossary[title=Glossar]
 
+\printnoidxglossary
 \end{document}
 
 %TODO: -Layout! -Eigene Kommentare innerhalb des Skripts? 
