@@ -29,3 +29,172 @@
 			\item $\tT:=\{\emptyset,\{1\},\{1,2\}\}.$ M ist hier nicht \glslink{hausdorffsch}{hausdorffsch}, denn egal welche Umgebung man um 2 betrachtet, man kann nicht erreichen, dass 1 nicht in der gleichen ist.
 		\end{itemize}
 }}
+
+\newglossaryentry{stetig}{
+	name = {stetig},
+	description = {
+		hier alle sache wegen Stetigkeit
+		}
+	}
+
+
+\newglossaryentry{glm stetig}{
+	name = {gleichmäßige Stetigkeit},
+	description = {
+		hallo		
+	},
+	sort = stetig
+}
+
+\newglossaryentry{glm konvergenz}{
+	name = {gleichmäßige Konvergenz von Funktionenfolgen},
+	description = {
+		Sei $x_k : T \to \R$\\
+		Ein Funktionsfolge $\ff{x}{k}{\N}$ \textit{konvergiert gleichmäßig} auf $T$ gegen $x$, wenn
+			$$ \forall \varepsilon > 0 \exists k_0 = k_0(\varepsilon): \forall k \geq k_0 \; 
+					\forall t\in T : | x_k(t) - x(t) | < \varepsilon$$
+			Man schreibt dafür $f_n \to f$ gleichmäßig auf $T$.\\
+		Dazu äquivalent ist die Beschreibung durch die Supremumsnorms:
+			$$ \forall \varepsilon > 0 \exists k_0 = k_0(\varepsilon): \forall k \geq k_0:
+					\| x_k(t) - x(t) \|_{\infty} := \sup_{t\in T} |x_k(t) - x(t)| < \varepsilon$$
+			$$\aq \norm{x_k - x}_\infty \to 0 $$
+		\begin{proof}
+			\begin{description}
+				\item[$\Leftarrow$:] 
+				\item[$\Rightarrow$:] \footnotesize Sei $\varepsilon > 0$, $k_0 = k_0(\varepsilon)$, so dass $\forall k > k_0$ und $\forall t\in T$ ist. Dann ist für dieses $k$ somit $y_k := x_k - x$ auf $T$ beschränkt und 
+					$$ \norm{y_k}_\infty = \norm{x_k - x}_\infty = \sup_{t\in T} |x_k(t) - x(t)| \leq \varepsilon,$$
+				 	damit konvergiert die Zahlenfolge $B(T) \ni (\norm{y_m}_\infty, \norm{y_{m+1}}_\infty, \ldots) \to 0$ für $m\to \infty$.\\
+				\scriptsize
+				Was ausgeschrieben ja genau heißt:
+				$$ \forall \varepsilon > 0 \exists k_0 \in \N: \forall k > k_0: |\|g_k\|_\infty - 0| = \|g_k\|_\infty < \varepsilon$$ \normalsize
+			\end{description}
+		\end{proof}
+	},
+	sort = Konvergenz
+}
+
+\newglossaryentry{Supremum}{
+	name = {Supremum},
+	description = {
+	Sei $M \subset \R$. 
+	Eine reelle Zahl $S$ heißt kleinste obere Schranke oder Supremum von $M$, wenn gilt das 
+	\begin{enumerate}[1)]
+		\item $S$ obere Schranke von $M$ ist, d.h. $\forall x\in M: x \leq S$ und überdies
+		\item keine Zahl $< S$ noch obere Schranke von $M$ sein kann, 
+			d.h. $\forall \varepsilon > 0 \exists x\in M: x > S - \varepsilon$
+	\end{enumerate}
+	Ein Supremum ist eindeutig.
+	\todoo[Sätze und Beispiele]
+	}
+}
+
+\newglossaryentry{Infimum}{
+	name = {Infimum},
+	description = {
+	Sei $M \subset \R$. 
+	Eine reelle Zahl $s$ heißt größte untere Schranke oder Infimum von $M$, wenn gilt das 
+	\begin{enumerate}[1)]
+		\item $s$ untere Schranke von $M$ ist, d.h. $\forall x\in M: x \geq s$ und überdies
+		\item keine Zahl $> S$ noch untere Schranke von $M$ sein kann, 
+			d.h. $\forall \varepsilon > 0 \exists x\in M: x < S - \varepsilon$
+	\end{enumerate}
+	Ein Infimum ist eindeutig.
+	}
+}
+\newglossaryentry{Cauchy-Folge}{
+	name = {Cauchy-Folge},
+	description = {Sei (X,d) ein metrischer Raum. Eine Folge $\ff{x}{n}{\N}$ in $X$ heißt Cauchy-Folge, wenn gilt
+	$$\forall \varepsilon > 0 \exists n \in \N: \forall m \geq  n : |x_m - x_n| < \varepsilon$$
+	%
+	\begin{itemize}[$\aq$]
+		\item $\forall \varepsilon > 0 \exists a \in X, N\in \N: \forall n > N: x_n \in \U[\varepsilon]{a}$
+		\item $ d(x_k,x_l) \longrightarrow 0$ für $(k,l) \longrightarrow (\infty, \infty)$
+	\end{itemize}
+	}
+}
+
+\newglossaryentry{vollstandig}{
+	name = {vollstandig},
+	description = {vollständig}
+}
+
+\newglossaryentry{Hilbertraum}{
+	name = Hilbertraum,
+	description = {Hilbertraum}
+}
+
+\newglossaryentry{Banachraum}{
+	name = Banachraum,
+	description = {Banachraum}
+}
+
+\newglossaryentry{metrischer Raum}{
+	name = {Metrischer Raum},
+	description = {Metrischer Raum},
+	sort = {Metrischer Raum}
+}
+
+\newglossaryentry{Kugel mit Radius r}{
+	name = {Kugel mit Radius r},
+	description = {
+		Sei $(X,d)$ ein \gls{metrischer Raum}. Für $r > 0$ ist die $r$-Umgebung des Punktes x bzw. \textbf{Kugel um $x$ mit Radius $\mathbf{r}$}.
+	},
+	sort = Metrischer Raum
+}
+
+\newglossaryentry{Abschluss}{
+	name = {Abschluss},
+	description = {$\ov{M}$ Abschluss},
+	sort = {Metrischer Raum}
+}
+
+\newglossaryentry{Inneres}{
+	name = {Inneres},
+	description = {$\inner{M}$ Inneres},
+	sort = {Metrischer Raum}
+}
+
+\newglossaryentry{Rand}{
+	name = {Rand},
+	description = {$\delta M$ Rand},
+	sort = {Metrischer Raum}
+}
+
+\newglossaryentry{kompakt}{
+	name = {kompakt},
+	description = {kompakt}
+}
+
+\newglossaryentry{offene Uberdeckung}{
+	name = {offene Uberdeckung},
+	description = {offene Überdeckung}
+}
+
+\newglossaryentry{Stetigkeit}{
+	name = {Stetigkeit},
+	description = {Stetigkeit}
+}
+
+\newglossaryentry{Restklassenbildung}{
+	name = {Restklassenbildung},
+	description = {Restklassenbildung}
+}
+
+
+\newglossaryentry{Sesquilinearform}{
+	name = Sesquilinearform,
+	description = {siehe \Gls{Skalarprodukt}},
+	sort = Skalarprodukt
+}
+
+\newglossaryentry{Hermitesche Form}{
+	name = Hermitesche Form,
+	description = {siehe \Gls{Skalarprodukt}},
+	sort = Skalarprodukt
+}
+
+\newglossaryentry{Skalarprodukt}{
+	name = Skalarprodukt,
+	description = {Skalarprodukt}
+}
+

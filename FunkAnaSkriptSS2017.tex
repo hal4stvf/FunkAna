@@ -38,7 +38,6 @@
 \usepackage{multicol} %for the glossar, to have 2 columns
 \usepackage[nonumberlist]{glossaries} %for a real glossar with hyperlinks, %Einträge extra in
 \loadglsentries{FunkAnaGloss.tex}
-\loadglsentries{HeuserG.tex}
 \makenoidxglossaries
 %
 %math environments
@@ -73,6 +72,7 @@
 	
 	\theoremstyle{myStyle}
 	\newtheorem{bem}[thm]{Bemerkung}
+	\newtheorem*{beh}{Behauptung}
 	\newtheorem*{bem*}{Bemerkung}
 	\newtheorem*{mbem*}{Eigene Bemerkung}
 	\newtheorem*{proof*}{Beweisskizze}
@@ -3045,6 +3045,9 @@ zu c)
 %\printglossary[title=Glossar]
 
 \printnoidxglossary
+
+	\include{./FunkAna_Uebungen}
+
 \end{document}
 
 %TODO: -Layout! -Eigene Kommentare innerhalb des Skripts? 
