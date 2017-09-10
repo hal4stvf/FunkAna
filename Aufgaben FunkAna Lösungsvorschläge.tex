@@ -68,12 +68,15 @@
 \newcommand{\limes}[1][\infty]{\lim_{n \to #1}}
 \newcommand{\afs}{"{}}
 \newcommand{\im}{\textnormal{im }}
+\newcommand{\fop}[1]{\left \langle #1 \right \rangle}
+
 \newcommand{\aufspan}{\textnormal{span}}
 
 \newcommand{\semi}[1]{\interleave{#1}\interleave}
 
 \renewcommand{\{ }{\left\lbrace}
 \renewcommand{\}}{\right\rbrace}
+
 
 \begin{document}
 \tableofcontents
@@ -552,6 +555,7 @@ Und es gelten die Resultate:
 \newpage
 \section{Blatt 5}
 
+%%%%%%%%%%%%%%%%%%%%%%%%% Aufgabe 1
 \subsection{ Beispiel für einen Hilbertraum}
 Es sei $J$ eine beliebige nichtleere Menge und
 	$$X:=\{ f: J \to \R : f(j) \not = 0 \text{ für höchstens abzählbar viele } j\in J,\; \sum_{j\in J} \abs{f(j)} ^2 < \infty\}.$$
@@ -573,6 +577,432 @@ Es sei $J$ eine beliebige nichtleere Menge und
 	\end{enumerate}		
 	
 	\end{proof}
+	
+%%%%%%%%%%%%%%%%%%%%%%%%% Aufgabe 2
+\subsection{ separable Hilberträume und der $\ell ^2$}
+	Jeder unendlich-dimensionale Hilbertraum ist isometrisch isomorph zu $\ell^2$
+	\begin{proof}
+		Mit einem geschicktem Isomorphismus, der Basis auf Basis abbildet.
+	\end{proof}
+	
+%%%%%%%%%%%%%%%%%%%%%%%%%% Aufgabe 3
+\subsection{ Gram-Schmidt-Orthonormalisierung}
+	$H$ sei ein Hilbertraum und $(x_n)_{n\in \N}$ eine Familie linear unabhängiger Vektoren in $H$. Dann existiert ein Orthonormalsystem $(y_n)_{n\in \N}$, so dass
+	\begin{enumerate}
+		\item $\aufspan \{ y_k : k = 1, \dots, n \} = \aufspan \{ x_k : k = 1,\dots , n\} \quad \forall n\in \N$
+		\item $(y_n)_{n\in\N}$ ist eine Orthonormalbasis $\Leftrightarrow \; \overline{\aufspan \{ x_n : n\in\N\} } = X$
+	\end{enumerate}
+	
+	\begin{proof}
+		trivial.
+	\end{proof}
+	
+	
+	
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%% Blatt 6
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newpage
+\section{Blatt 6}
+
+%%%%%%%%%%%%%%%%%% Aufgabe 1
+\subsection{ Parallelogrammgleichung und Skalarprodukt}
+	$(X,\norm{\cdot})$ sei ein normierter Raum, in dem die Parallelogrammgleichung 
+	$$\norm{x+y}^2 + \norm{x-y}^2 = 2\norm{x}^2 + 2\norm{y}^2\quad \forall x,y \in X$$	
+	gilt. Dann wird durch 
+	$$(x,y) := \frac{1}{4} \left( \norm{x+y}^2 - \norm{x-y}^2 + i\norm{x+iy}^2 - \norm{x-iy}^2 \right)$$
+	ein Skalarprodukt definiert, welches die Norm $\norm{\cdot}$ induziert.
+	
+	\begin{proof}
+	Leicht zu zeigen.
+	\end{proof}
+
+%%%%%%%%%%%%%%%%%%%%%%% Aufgabe 2
+\subsection{ Orthogonales Komplement}
+	$(X,(\cdot, \cdot) )$ sei ein Skalarproduktraum \marginpar{ vollständig?!} und $M\subseteq X$ ein Unterraum. Dann gilt
+	$$\left( M^{\perp} \right)^{\perp} = \overline{M}.$$ 
+	\begin{proof}
+	...
+	\end{proof}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%% Aufgabe 3
+\subsection{ Orthogonale Projektion}
+	$X$ sei ein normierter Raum und $P: X \to X$ ein linearer Operator mit $P^2 = P$, dann gelten die folgenden Eigenschaften:
+	\begin{enumerate}[(a)]
+		\item $X = \im P \oplus \ker P$
+		\item Ist $P$ beschränkt, dann sind $\im P,\; \ker P$ abgeschlossen und $\norm{ P } \geq 1$ oder $\norm{ P } = 0.$
+		\item Ist $X$ vollständig, so folgt aus der Abgeschlossenheit von $\ker P$ und $\im P$, dass $P$ beschränkt ist.
+		\item Sei $X$ ein Hilbertraum. Dann sind die folgenden Aussagen äquivalent: 
+		\begin{enumerate}[(i)]
+			\item $P$ ist eine orthogonale Projektion (d.h. $\im P \perp \ker P$)
+			\item $\norm{ P } \leq 1$
+			
+			\item $(Px, y) = (x, Py) \quad  \forall x,y \in X$
+		\end{enumerate}
+		\item Für jeden abgeschlossenen Unterraum $U$ eines Hilbertraumes existiert eine eindeutige orthogonale Projektion $P$ mit $\im P = U$.
+	\end{enumerate}
+	
+%%%%%%%%%%%%%%%%%%%%%%%% Aufgabe 4
+\subsection{ Unbeschränkter Projektor}
+	Die Vollständigkeit in Aufgabe 3 c) ist notwendig. Denn:
+	\begin{enumerate}
+		\item Es gibt zwei abgeschlossene Teiläume eines Hilbertraumes, so dass $M \cap N = \{0 \}$ und $M+N$ ist nicht abgeschlossen.
+		\item Es gibt eine unstetige Projektion $P$ auf einem Skalarproduktraum, so dass $\im P,\, \ker P$ abgeschlossen sind.
+	\end{enumerate}
+
+	\begin{proof}
+	Nein.
+	\end{proof}
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%% Blatt 7 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newpage
+\section{ Blatt 7}
+
+%%%%%%%%%%%%%%%%%%% Aufgabe 1
+\subsection{ Abgeschlossenes Bild eines beschränkten Operators}
+	$X,Y$ seien Banachräume und $T\in \B(X,Y)$. Es ist äquivalent:
+	\begin{enumerate}
+		\item $\im T$ ist abgeschlossen.
+		\item $\inf_{x\in X\setminus \ker T} \frac{\norm{Tx}}{\delta(x, \ker T )} > 0$, wobei $\delta(x, \ker T) = \inf_{z\in \ker T} \norm {x-z}$
+	\end{enumerate}
+	
+	\begin{proof}
+	Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.
+	\end{proof}
+	
+	
+%%%%%%%%%%%%%%%%%%% Aufgabe 2
+\subsection{ Beispiel eines graphenabgeschlossenen, nicht stetigen Operators}
+	Der Operator 
+	$$T: (C^1([0,1]),\norm{\cdot}_\infty ) \to (C([0,1]),\norm{\cdot}_\infty ),\quad f \mapsto f'  $$
+	ist graphenabgeschlossen, aber nicht stetig.
+	
+	\begin{proof}
+	siehe Analysis $I, \quad I \in \N$
+	\end{proof}
+
+
+%%%%%%%%%%%%%%%%%%% Aufgabe 3
+\subsection{ Notwendigkeit der Vollständigkeit im Satz der offenen Abbildung}
+	Im Satz der offenen Abbildung ist die Vollständigkeit notwendig.
+	
+	\begin{proof}
+	Trivial \dots
+	\end{proof}
+
+
+%%%%%%%%%%%%%%%%%%%%% Aufgabe 4
+\subsection{ Sowas wie die verallgemeinerte Exponentialfunktion ???????}
+	$X$ sei ein Banachraum und $T:[0,\infty ) \to \B(X)$ eine Abbildung mit
+	\begin{enumerate}
+		\item $\forall t,s \geq 0 : T(t+s) = T(t)T(s)$
+		\item $\forall x\in X : \lim_{t\searrow 0} T(t)x = x$
+	\end{enumerate}
+	Es gelten die Eigenschaften
+	\begin{enumerate}[(a)]
+		\item $\forall x \in X :[0,\infty) \ni t \mapsto T(t)x$ ist stetig.
+		\item $T(0) = I_X$
+		\item $\exists M \geq 0 \; \exists \omega \in \R \; \forall t \geq 0 : \norm{T(t)} \leq M e^{\omega t}$
+	\end{enumerate}
+
+
+%%%%%%%%%%%%%%%%%%%% Aufgabe 5
+\subsection{ Symmetrische Operatoren im Hilbertraum }
+	In einem Hilbertraum $X$ ist ein selbstadjungierter Operator $T : X\to X$ beschränkt.
+	
+	\begin{proof}
+	Fast trivial
+	\end{proof}		
+	
+	
+	
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%% Blatt 8 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newpage
+\section{ Blatt 8}
+
+
+%%%%%%%%%%%%%%%%%%% Aufgabe 1
+\subsection{ Funktional und Beschränktheit}
+	$X$ sei ein Vektorraum, $x' : X\to \K$ ein lineares Funktional. Es gilt
+	$$x' \text{ beschränkt} \Leftrightarrow \ker x' \text{ abgeschlossen}$$
+
+	\begin{proof}
+		Dein Part Dennis!
+	\end{proof}
+	
+
+%%%%%%%%%%%%%%%%%%% Aufgabe 2
+\subsection{ Hmm}
+	$X$ sei ein normierter Raum, $E\subseteq X$ ein Unterraum und $x\in X$ mit $\delta(x,E) > 0$. \\
+	Es existiert ein $x'\in X$ mit $\left \langle x,x' \right \rangle = 1$ und $\norm{ x' } = \frac{1}{\delta(x,E)}.$
+	
+	\begin{proof}
+	
+	\end{proof}
+
+%%%%%%%%%%%%%%%%%%%%%% Aufgabe 3
+\subsection{ Der Banach-Limes}
+	$S: \ell_\infty \to \ell_\infty$ sei der Links-Shift. Es existiert ein $x' \in \ell'_\infty$ mit
+	\begin{enumerate}
+		\item $\forall x \in \ell_\infty : \left \langle Sx, x' \right  \rangle \left \langle x,x' \right \rangle$
+		\item $\forall \in \ell_\infty : \liminf_{n \to \infty} x_n \leq \fop{x,x'} \leq \limsup_{n\to\infty} x_n$
+	\end{enumerate}
+	Es ist $\norm{x'} = 1$
+	
+	
+%%%%%%%%%%%%%%%%%%%%%%%%%% Aufgabe 4 
+\subsection{ Orthogonalräume oder so}
+	$X$ sei ein normierter Raum und $E$ ein abgeschlossener Unterraum von $X$.
+	\begin{enumerate}[(a)]
+		\item $E'$ und $X'/E^\perp$ sind isometrisch isomorph.
+		\item $E^\perp$ und $(X/E)'$ sind isometrisch isomorph.
+	\end{enumerate}
+	
+	\begin{proof}
+	easy peasy
+	\end{proof}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%% Blatt 9
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newpage 
+\section{ Blatt 9}
+
+%%%%%%%%%%%%%%%%%%%%% Aufgabe 1
+\subsection{ $\ell^1$ ist nicht reflexiv}
+	$\ell^1$ ist nicht reflexiv.
+	
+	\begin{proof}
+	Kinderleicht.
+	\end{proof}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%% Aufgabe 2
+\subsection{ Schwache Cauchy-Folgen}
+	Sei $X$ ein normierter Raum.
+	\begin{enumerate}[(a)]
+	\item Schwache Cauchy-Folgen in $X$ sind beschränkt.
+	\item Ist $X$ reflexiv, so ist eine schwache Cauchy-Folge in $X$ schwach konvergent.	
+	\end{enumerate}	 
+
+	\begin{proof}
+	Man nehme eine Portion Vollständigkeitssätze mit einer Prise Banach-Steinhaus, und fertig ist die Laube!
+	\end{proof}
+	
+%%%%%%%%%%%%%%%%%%%%%%% Aufgabe 3
+\subsection{ Nicht-Existenz von $T^*$}
+	Es gibt Skalarprodukträume $X,\,Y$, und einen Operator $T\in \B(X,Y)$, so dass $T^* : Y \to X$ nicht existiert.
+	
+	\begin{proof}
+	:P
+	\end{proof}
+
+
+%%%%%%%%%%%%%%%%%%%%%% Aufgabe 4
+\subsection{ Die Adjungierte des Rechts-Shifts}
+	Die Adjungierte des Rechts-Shifts $R:\ell^2 \to \ell ^2$ ist der Links-Shift.
+	\begin{proof}
+	Nachrechnen!
+	\end{proof}
+
+
+%%%%%%%%%%%%%%%%%%%%% Aufgabe 5
+\subsection{ Spektrum der Adjungierten und Dualen}
+	$X$ sei ein Banachraum und $T\in \B(X,Y)$. Die Spektren von $T$ und $T'$ stimmen überein. In einem Hilbertraum ist das Spektrum von $T^*$ das komplex konjugierte Spektrum von $T$. (Wobei wir hier komplex konjugierte der Menge als komplex konjugierte der Elemente verstehen.)
+	
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%% Blatt 10
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newpage
+\section{ Blatt 10}
+
+%%%%%%%%%%%%%%%%%%%%%%%% Aufgabe 1
+\subsection{ selbstadjungiert oder so}
+	$X$ sei ein Skalarproduktraum (vollständig ?! ) und $A \in \B(X)$. 
+	$$ A \text{ selbstadjungiert} \Leftrightarrow \forall x \in X : \fop{x,Ax} \in \R $$
+	\begin{proof}
+	
+	\end{proof}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% Aufgabe 2
+\subsection{ Advanced Aufgabe 1}
+	$X$ sei ein komplexer Skalarproduktraum und $A_1, A_2 \in \B(X)$, so dass $\fop{x, A_1 x} = \fop{x, A_2 x}$ für alle $x\in X$.
+	\begin{enumerate}[(a)]
+		\item $A_1 = A_2$
+		\item (a) gilt nicht bei reellen Skalarprodukträumen.
+		\item (a) gilt bei reellen Skalarprodukträumen, wenn $A_1,A_2$ selbstadjungiert sind.
+	\end{enumerate}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%% Aufgabe 3
+\subsection{ Normale Operatoren}
+	$X$ sei ein Hilbertraum, $A\in \B(X)$
+	$$A \text{ normal} \Leftrightarrow \norm{ Ax } = \norm{ A^* x} \quad \forall x\in X.$$
+	Wobei $A$ normal ist, wenn $AA^* = A^* A$.
+	
+	\begin{proof}
+	zu 78\% trivial.
+	\end{proof}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%% Aufgabe 4
+\subsection{ Hmm}
+	Sei $(\Omega, \hA, \mu )$ ein Hilbertraum und $p,q \in [1,\infty]$, so dass $1/p + 1/q = 1$. Für $f\in L^p(\Omega , \mu )$ gilt
+	$$ \norm{f}_p = \sup \{ \abs{ \int_{\Omega } fg\,d\mu } : g \in L^q(\Omega, \mu ) \text{ mit } \norm{g}_q \leq 1 \}.$$
+	
+	
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% Aufgabe 5
+\subsection{ Der Dualraum von $c_0$}
+	$c_0$ sei versehen mit der Maximumsnorm. Der Dualraum von $c_0$ ist isometrisch isomorph zu $\ell^1$.
+	
+	\begin{proof}
+	Ähem...
+	\end{proof}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%% Blatt 11
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newpage
+\section{ Blatt 11}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%% Aufgabe 1
+\subsection{ Der Fredholm-Operator}
+	Sei $k [a,b] \times [c,d] \to\R$ stetig und
+	$$ T : L^p[c,d] \to L^p[a,b], \quad f \mapsto T(f) \text{, mit } T(f)(s)= \int^d_c k(s,t) f(t) dt$$
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%% Aufgabe 2
+\subsection{ Spektrumseigenschaften}
+TODO
+	\begin{proof}
+	Leicht zu zeigen.
+	\end{proof}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%% Aufgabe 3
+\subsection{ Verallgemeinerter Hauptsatz der Differential- und Integralrechnung}
+	Sei $I\subseteq \R$ ein offenes Intervall.
+	\begin{enumerate}
+		\item $f \in W^{1,1}(I)$ dann gilt für fast alle $x_1, x_2 \in I$ 
+		$$f(x_2) - f(x_1) = \int^{x_2}_{x_1} f'(t) dt$$
+		\item $f,g \in L^1(I)$ und  gilt
+		$$f(x_2) - f(x_1) = \int^{x_2}_{x_1} g(s) ds$$
+		für fast alle $x_1,x_2 \in I$, so folgt, dass $f \in W^{1,1}(I)$ und $f' = g$.
+	\end{enumerate}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%% Blatt 12
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newpage 
+\section{ Blatt 12}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%% Aufgabe 1
+\subsection{ Satz von Lax-Milgram}
+	Sei $X$ ein Hilbertraum über $\K$ und $a : X \times X \to \K$ sequilinear. D.h. für alle $x,y,z \in X$ und $\lambda,\mu \in\K$ gilt
+	 $$ (a)\quad a(\lambda x + \mu y ,z) = \lambda \cdot a(x,z) + \mu \cdot a(y,z),\qquad
+		(b)\quad a(z, \lambda x + \mu y ) = \overline{\lambda} \cdot a(z,x) + \overline{\mu} \cdot a(z,y)$$
+	Außerdem seien $c_1, c_2 \in \R$ mit $0< c_1 \leq c_2$ derart, dass für alle $x,y \in X$ gilt:
+	\begin{enumerate}[(i)]
+	\item $\abs{a(x,y)} \leq c_2 \norm{x} \norm{y}$
+	\item $\Re \, a(x,x) \geq c_1 \norm{x}^2$.
+	\end{enumerate}
+	
+	Dann existiert genau eine Abbildung $A: X\to X$ mit
+	$$a(y,x) = \fop{y,Ax} \quad \forall x,y \in X$$
+	
+	Des Weiteren ist $A \in \B(X)$ invertierbar mit
+	$$\norm{A} \leq c_2 \text{ und } \norm{A^{-1}} \leq \frac{1}{c_1}.$$	 
+	
+	
+
+%%%%%%%%%%%%%%%%%%%%%%%%% Aufgabe 2
+\subsection{ Ein elliptisches Randwertproblem}
+	Diese Aufgabe wird boykottiert.
+	
+
+%%%%%%%%%%%%%%%%%%%%%%%%% Aufgabe 3
+\subsection{ Zeug für die Schwache Ableitung}
+	Sei $\Omega \subseteq \R^n$ offen, $f \in L^\infty (\Omega)$, so dass für alle $\varphi \in C^\infty_0 (\Omega)$ gilt, dass
+	$$ \int_\Omega f \varphi d\lambda^n = 0 .$$
+	Dann gilt $f = 0$ (fü) .
+	
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%% Aufgabe 4
+\subsection{ Hmm}
+	Sei $(\Omega, \hA, \mu )$ ein Maßraum. Wir  betrachten die Abbildung
+	$$ J_1: L^\infty (\Omega, \mu ) \to L^1 (\Omega , \mu)'  \quad g \mapsto J_1(g), \quad J_1(g)(f) = \int_\Omega fg d\mu .$$
+	Die folgenden Aussagen sind äquivalent:
+	\begin{enumerate}
+		\item $J_1$ ist normerhaltend,
+		\item $J_1$ ist injektiv,
+		\item $(\Omega, \hA , \mu ) $ ist semi-endlich.
+	\end{enumerate}
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%% Blatt 13
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newpage
+\section{ Blatt 13}
+
+
+%%%%%%%%%%%%%%%%%% Aufgabe 1
+\subsection{ Kompakter Operator - Eigenschaften}
+	Sei $X$ ein Banachraum und $K\in K(X)$. Es gilt:
+	\begin{enumerate}
+	\item $K$ bijektiv $\df $ $X$ ist endlichdimensional.
+	\item $X$ unendlichdimensional $\df $ 
+		$d(I,K(X)) = \inf \{ \norm{I-K } : K\in K(X) \} = 1 $
+	\end{enumerate}
+	
+
+%%%%%%%%%%%%%%%%%%%%%%%% Aufgabe 2
+\subsection{ Abschätzung der Norm kompakter Operatoren}
+	$X,Y,Z$ seien Banachräume und $T\in K(X,Y)$. $J\in \B(Y,Z)$ sei injektiv. 
+	Für alle $\varepsilon > 0$ existiert eine Konstante $C_\varepsilon$, so dass 
+	$$\norm{Tx} \leq \varepsilon \norm{x} + C_\varepsilon \norm{JTx},\qquad x\in X.$$
+
+
+%%%%%%%%%%%%%%%%%%%%%%%% Aufgabe 3
+\subsection{ Kompakter Operator - Eigenschaft}
+	Sei $p\in [1,\infty],\, z\in \ell^\infty$ und $T_z : \ell^p \to \ell^p$ sei durch 
+	$$(T_z x) (n) = z(n)x(n)$$\marginpar{$z(n) = z_n$ ??}
+	Dann gilt: $T_z$ ist kompakt $\Leftrightarrow$ $z\in c_0$
+	
+	
+%%%%%%%%%%%%%%%%%%%%%%%%%% Aufgabe 4 
+\subsection{ Beispiele kompakter Operatoren}
+	\begin{enumerate}
+	\item $C_1([0,1])$ sei mit der Norm $\norm{f} := \norm{f}_\infty + \norm{f'}_\infty$ versehen. Die Einbettung
+	$$J : (C^1([0,1]),\norm{\cdot}) \to (C([0,1]) , \norm{\cdot}_\infty),\quad f \mapsto f'$$
+	ist kompakt
+	\item $k:[0,1]^2 \to \R$ sei stetig. Der Integraloperator $T_k : C([0,1]) \to C([0,1]),$
+	$$(T_kx)(s) = \int^s_0 k(s,t)x(t) dt$$
+	ist wohldefiniert und kompakt.
+	\end{enumerate}
+
+
+
+
+
+
+
+
+
 
 
 
