@@ -33,15 +33,12 @@
 \usepackage{marvosym} %some Symbols
 \usepackage{paralist} %Adds more function to listing environments
 \usepackage{xstring} %If then 
-\usepackage[colorlinks=true,linkcolor=blue]{hyperref} %Reference
+\usepackage{hyperref} %Reference
 \usepackage{marginnote} %allows to do some nice marinnotes,
 \usepackage{multicol} %for the glossar, to have 2 columns
-	%% Glossar
-	\usepackage[nonumberlist]{glossaries} %for a real glossar with hyperlinks, %Einträge extra in
-	\loadglsentries{FunkAnaGloss.tex}
-	\makenoidxglossaries
-	%% Projektstruktur
-	\usepackage{subfiles}
+\usepackage[nonumberlist]{glossaries} %for a real glossar with hyperlinks, %Einträge extra in
+\loadglsentries{FunkAnaGloss.tex}
+\makenoidxglossaries
 %
 %math environments
 	%% basic packages
@@ -51,7 +48,6 @@
 	\usepackage{amsmath}
 	\usepackage[nothm]{thmbox} %Decorate theorem statements
 	\usepackage{thmtools} %make the math theorems appeare in tableofcontents %%
-	\usepackage{stmaryrd}
 
 	%% amsmath: Theorem,Definition, Bemerkung etc.
 	\newtheoremstyle{myStyle}% style, der die Überschrift nicht fett, sondern kursiv erscheinen lässt
@@ -88,10 +84,100 @@
 	%\renewcommand\thechapter{\Roman{chapter}} %Roman numerics for chapters
 
 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%% 		Macros 		%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \usepackage{mathmacros}
 
+%%Zahlenkörper
+%	\newcommand{\C}{\mathbb{C}}
+%	\newcommand{\R}{\mathbb{R}}
+%	\newcommand{\pR}{\mathbb{R}_{\geq 0}} % R_0^+%
+%	\newcommand{\Q}{\mathbb{Q}}
+%	\newcommand{\Z}{\mathbb{Z}}
+%	\newcommand{\N}{\mathbb{N}}
+%	\newcommand{\K}{\mathbb{K}}
+%	
+%%spaces, special symbols for spaces
+%	\newcommand{\hA}{\mathfrak{A}}%Script A , hA ~ hässliches A
+%	\newcommand{\hL}{\mathcal{L}}
+%	\newcommand{\tT}{\mathcal{T}} %topologisches T
+%	\newcommand{\F}{\mathcal{F}} %für?
+%	\newcommand{\B}{\mathcal{B}} %Raum der beschränkten Funktion
+%	\newcommand{\BS}[2][X,Y]{\mathcal{B}(#1#2)} %"Standardraum" der beschränkten Funktion
+%	\newcommand{\lL}[2][\Omega,\mu]{\text{L}^{#2}(#1)} %Lebesgue L für Matheumgebgung mit Omega, mu als Standard \lL[Raum,Maß]{Dimension}
+%	\newcommand{\Sobolov}{W^{1,2}_0}
+%
+%%special variables and Abbrev., technial stuff
+%	\newcommand{\dX}{\hat{X}}%Dach X
+%	\newcommand{\dd}{\hat{d}}%Dach d
+%	\newcommand{\olx}{\overline{x}} %OverLine x
+%	\newcommand{\oly}{\overline{y}} %Overline y
+%	\newcommand{\ov}[1]{\overline{#1}}
+%	\newcommand{\xf}{(x_i)_{i\in I}}
+%	\newcommand{\ff}[3]{(#1_#2)_{#2\in#3}}
+%	\newcommand{\inner}[1]{\overset{\circ}{#1}} % das Innere
+%	\newcommand{\xt}{x_\eta}%Eigentlich eta glaube ich
+%
+%%special mathematical operators and quantities
+%	\newcommand{\ess}{\textnormal{ess}}
+%	\newcommand{\supp}{\textnormal{supp}}
+%	\newcommand{\aufspan}{\textnormal{span}}
+%	\newcommand{\seminorm}[1]{||| #1 |||}
+%	\newcommand{\norm}[1]{\left \|#1\right\| }
+%	\newcommand{\intl}[1]{\int_\Omega #1 d\mu} %"Standard"Lebesgue-Integral über Omega
+%	\newcommand{\limes}[1][\infty]{\lim_{n \to #1}}
+%	\newcommand{\toinf}[1][n]{\overset{#1\to \infty}{\to}}
+%	\newcommand{\inv}[1]{#1^{-1}} %Inverse with ^-1
+%	\newcommand{\abs}[1]{\left\lvert #1 \right\rvert }
+%	\newcommand{\codim}{\text{codim}\:}
+%	\newcommand{\ind}{\text{ind}\:}
+%	\newcommand{\set}[1]{\{#1\}} %Mengen
+%	\newcommand{\limesinf}{\underset{n\to\infty}{\lim\inf}}
+%	%%% special for functional analysis
+%		\newcommand{\SP}{\left (\cdot,\cdot \right)} %Standardskalarprodukt
+%		\newcommand{\Sp}[1]{\left (#1 \right)} % Skalarprodukt mit angepassten Klammern
+%		\newcommand{\fop}[1]{\left \langle #1 \right \rangle} %Funktionalauswertung
+%		\newcommand{\f}[2]{\langle #1,#2 \rangle} %Konrads fop
+%		\newcommand{\wkc}{\longrightarrow} %weak convergent
+%		\newcommand{\wskc}{\overset{*}{\longrightarrow}} % weak star convergent
+%		\newcommand{\supT}[1][a]{
+%			\IfEqCase{#1}{
+%			{A}{\sup_{x \in \overline{\EK}}} 
+%			{R}{\sup_{x \in \partial\EK}}
+%			{a}{\sup_{x \in \EK}}
+%			}
+%		} %sup_EK für die Operatornorm bzw mit Argumet auch Rand oder Abschluss von EK möglich
+%
+%% Quantors
+%	\newcommand{\df}[1][]{% "daraus folgt", also Implikation
+%		%\IfEqCase{#1}{
+%		%	{a}{\Rightarrow}
+%		%	{o}{\overset{\df}{#2}}
+%		%} 
+%		\overset{#1}{\Rightarrow}
+%	}
+%	\newcommand{\aq}[1][]{\overset{#1}{\Leftrightarrow}} % "äquivalent zu", also Äquivalenz
+%	\newcommand{\lightning}{\text{\Lightning}}
+%
+%% Special Quantities in space, likes balls
+%	\newcommand{\U}[2][1]{U_{#1}(#2)} %Umgebung um #2 mit Abstand #1 \U{r}{a}
+%	\newcommand{\EK}{\U{0}} %Umgebung bzw Einheitskugel um 0
+%	\newcommand{\BKK}{\B(X,\K)}
+%	
+%% technical commands for math envoirement or layout
+%	\newcommand{\disp}{\displaystyle}
+%	\newcommand{\qmarks}[1]{#1}
+%	\newcommand{\afs}{"{}}
+%	\newcommand{\spcm}[1][-0.8]{\vspace{#1 em}} %technischer Befehl fürs Layout
+%	\newcommand{\glossar}[2]{\begin{description} \item[#1] #2 \end{description}}
+%	
+%% Commands für tikz:
+%	\newcommand*{\rechterWinkel}[3]{% #1 = point, #2 = start angle, #3 = radius
+%	\draw[shift={(#2:#3)}] (#1) arc[start angle=#2, delta angle=90, radius = #3];
+%	\fill[shift={(#2+45:#3/2)}] (#1) circle[radius=1.25\pgflinewidth];
+%	}
+	
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
@@ -142,7 +228,7 @@ Eine Norm efüllt zusätzlich noch die Bedingung, dass sie nur dann verschwindet
 \end{bem}
 
 %Beispiele wichtiger Vektorräume
-\begin{bsp}[wichtige Vektorräume]\label{wichtige Vektorräume}
+\begin{bsp}[wichtige Vektorräume]
 	Sei $(\Omega,\hA,\mu)$ ein Maßraum
 		\begin{enumerate}[(a)]
 			\item $p\in[1,\infty)\; \hL^p(\Omega,\mu) = \{f:\Omega \rightarrow \C$ messbar, 
@@ -2960,8 +3046,7 @@ zu c)
 
 \printnoidxglossary
 
-	%\include{./FunkAna_Uebungen}
-	\subfile{./FunkAna_Uebungen}
+	\include{./FunkAna_Uebungen}
 
 \end{document}
 
