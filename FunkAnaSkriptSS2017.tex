@@ -36,9 +36,12 @@
 \usepackage{hyperref} %Reference
 \usepackage{marginnote} %allows to do some nice marinnotes,
 \usepackage{multicol} %for the glossar, to have 2 columns
-\usepackage[nonumberlist]{glossaries} %for a real glossar with hyperlinks, %Einträge extra in
-\loadglsentries{FunkAnaGloss.tex}
-\makenoidxglossaries
+	%Glossar
+	\usepackage[nonumberlist]{glossaries} %for a real glossar with hyperlinks, %Einträge extra in
+	\loadglsentries{FunkAnaGloss.tex}
+	\makenoidxglossaries
+	%Modul
+	\usepackage{subfiles}
 %
 %math environments
 	%% basic packages
@@ -48,7 +51,7 @@
 	\usepackage{amsmath}
 	\usepackage[nothm]{thmbox} %Decorate theorem statements
 	\usepackage{thmtools} %make the math theorems appeare in tableofcontents %%
-
+	\usepackage{stmaryrd} %?
 	%% amsmath: Theorem,Definition, Bemerkung etc.
 	\newtheoremstyle{myStyle}% style, der die Überschrift nicht fett, sondern kursiv erscheinen lässt
 	  {\topsep}% measure of space to leave above the theorem. E.g.: 3pt
@@ -3046,7 +3049,7 @@ zu c)
 
 \printnoidxglossary
 
-	\include{./FunkAna_Uebungen}
+	\subfile{./FunkAna_Uebungen}
 
 \end{document}
 
