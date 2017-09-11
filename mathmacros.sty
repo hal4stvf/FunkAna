@@ -39,13 +39,19 @@
 	\newcommand{\ess}{\textnormal{ess}}
 	\newcommand{\supp}{\textnormal{supp}}
 	\newcommand{\aufspan}{\textnormal{span}}
-	\newcommand{\seminorm}[1]{||| #1 |||}
-	\newcommand{\norm}[1]{\left \|#1\right\| }
+
+	%\newcommand{\seminorm}[1]{||| #1 |||}
+	\newcommand{\seminorm}[1]{\interleave{#1}\interleave}
+	\newcommand{\semi}[1]{\interleave{#1}\interleave}
+		
+	\newcommand{\abs}[1]{\left\lvert #1 \right\rvert }
+	\newcommand{\norm}[1]{\left\lvert \left\lvert #1 \right\rvert \right\rvert}
+	%\newcommand{\norm}[1]{\left \|#1\right\| }
+
 	\newcommand{\intl}[1]{\int_\Omega #1 d\mu} %"Standard"Lebesgue-Integral über Omega
 	\newcommand{\limes}[1][\infty]{\lim_{n \to #1}}
 	\newcommand{\toinf}[1][n]{\overset{#1\to \infty}{\to}}
 	\newcommand{\inv}[1]{#1^{-1}} %Inverse with ^-1
-	\newcommand{\abs}[1]{\left\lvert #1 \right\rvert }
 	\newcommand{\codim}{\text{codim}\:}
 	\newcommand{\ind}{\text{ind}\:}
 	\newcommand{\set}[1]{\{#1\}} %Mengen
@@ -64,6 +70,7 @@
 			{a}{\sup_{x \in \EK}}
 			}
 		} %sup_EK für die Operatornorm bzw mit Argumet auch Rand oder Abschluss von EK möglich
+		\newcommand{\im}{\textnormal{im }} %??
 
 % Quantors
 	\newcommand{\df}[1][]{% "daraus folgt", also Implikation
@@ -74,7 +81,7 @@
 		\overset{#1}{\Rightarrow}
 	}
 	\newcommand{\aq}[1][]{\overset{#1}{\Leftrightarrow}} % "äquivalent zu", also Äquivalenz
-	\newcommand{\lightning}{\text{\Lightning}}
+	%\newcommand{\lightning}{\text{\Lightning}}
 
 % Special Quantities in space, likes balls
 	\newcommand{\U}[2][1]{U_{#1}(#2)} %Umgebung um #2 mit Abstand #1 \U{r}{a}
@@ -86,8 +93,10 @@
 	\newcommand{\qmarks}[1]{#1}
 	\newcommand{\afs}{"{}}
 	\newcommand{\spcm}[1][-0.8]{\vspace{#1 em}} %technischer Befehl fürs Layout
-	\newcommand{\glossar}[2]{\begin{description} \item[#1] #2 \end{description}}
-	
+	 %\newcommand{\glossar}[2]{\begin{description} \item[#1] #2 \end{description}}
+	%\renewcommand{\{ }{\left\lbrace}
+	%\renewcommand{\}}{\right\rbrace}
+		
 % Commands für tikz:
 	\newcommand*{\rechterWinkel}[3]{% #1 = point, #2 = start angle, #3 = radius
 	\draw[shift={(#2:#3)}] (#1) arc[start angle=#2, delta angle=90, radius = #3];
