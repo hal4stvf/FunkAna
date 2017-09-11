@@ -7,3 +7,5 @@ FunkAnaGloss.tex - enthält wesentliche Definitionen
 mathmacros.sty - enthält alle mathematischen Macros
 
 FunkAna_Uebungen.tex - darin werden die Uebungen geschrieben. Sie erscheinen als Anhang B im FunkAnaSkript.
+
+Kann nun auch als standalone Datei einzelt kompilliert werden.
