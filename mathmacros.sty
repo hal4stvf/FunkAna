@@ -10,9 +10,11 @@
 	\usepackage{amsthm}
 	\usepackage{amsfonts}
 	\usepackage{amsmath}
-	\usepackage[nothm]{thmbox} %Decorate theorem statements
+	%\usepackage[nothm]{thmbox} %Decorate theorem statements
+	\usepackage{mdframed}
 	\usepackage{thmtools} %make the math theorems appeare in tableofcontents %%
 	\usepackage{stmaryrd} %?
+	%\usepackage[most]{tcolorbox}
 	%% amsmath: Theorem,Definition, Bemerkung etc.
 	\newtheoremstyle{myStyle}% style, der die Überschrift nicht fett, sondern kursiv erscheinen lässt
 	  {\topsep}% measure of space to leave above the theorem. E.g.: 3pt
@@ -25,7 +27,8 @@
 	  {\thmname{#1}\thmnumber{ #2}\thmnote{ (#3)}}
 	  
 	\theoremstyle{plain}%Text innen wird kursiv
-	\newtheorem{thm}{Satz}[chapter]
+	\newmdtheoremenv{thm}{Satz}[chapter]
+	%\newtheorem{thm}{Satz}[chapter]
 	\newtheorem{lemma}[thm]{Lemma}
 	\newtheorem{cor}[thm]{Korollar}
 	\newtheorem*{cor*}{Korollar}

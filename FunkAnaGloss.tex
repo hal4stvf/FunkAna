@@ -12,7 +12,7 @@
 									Ein Beispiel ist $f(x) : = x\cdot \chi_\Q(x)$ und $\mu = \lambda$, da $f$ nur auf $\Q$ nicht null ist, und $\Q$ ist Lesbesgue-Nullmenge. }
 		}
 	
-\newglossaryentry{top Raum}{ 
+\newglossaryentry{topologisch}{ 
 			name = {topologischer Raum},
 			description = {$(X,\tT)$ - Sei $X$ eine Menge und $\tT\subseteq P(X)$. Die Elemente von $\tT$ sind die \textit{offenen Mengen}. $\tT$ definiert eine \textit{Topologie}, wenn folgende Eigenschaften erfüllt sind:
 		\begin{enumerate}[(i)]
@@ -37,6 +37,10 @@
 		}
 	}
 
+\newglossaryentry{Konvergenz}{
+  name={Konvergenz},
+  description = {}	
+}
 
 \newglossaryentry{glm stetig}{
 	name = {gleichmäßige Stetigkeit},
@@ -101,7 +105,7 @@
 	Ein Infimum ist eindeutig.
 	}
 }
-\newglossaryentry{Cauchy-Folge}{
+\newglossaryentry{CF}{
 	name = {Cauchy-Folge},
 	description = {Sei (X,d) ein metrischer Raum. Eine Folge $\ff{x}{n}{\N}$ in $X$ heißt Cauchy-Folge, wenn gilt
 	$$\forall \varepsilon > 0 \exists n \in \N: \forall m \geq  n : |x_m - x_n| < \varepsilon$$
@@ -120,12 +124,12 @@
 
 \newglossaryentry{Hilbertraum}{
 	name = Hilbertraum,
-	description = {Hilbertraum}
+	description = {vollständiger Skalarproduktvektorraum mit $\norm{\cdot } = \sqrt{(\cdot , \cdot )_X}$.  Wobei $(\cdot , \cdot )$ das Skalarprodukt bezeichnet.}
 }
 
 \newglossaryentry{Banachraum}{
 	name = Banachraum,
-	description = {Banachraum}
+	description = {vollständiger normierter Vektorraum (wir schreiben $(X,\norm{\cdot }_X$)}
 }
 
 \newglossaryentry{metrischer Raum}{
@@ -180,7 +184,6 @@
 	description = {Restklassenbildung}
 }
 
-
 \newglossaryentry{Sesquilinearform}{
 	name = Sesquilinearform,
 	description = {siehe \Gls{Skalarprodukt}},
@@ -197,4 +200,3 @@
 	name = Skalarprodukt,
 	description = {Skalarprodukt}
 }
-

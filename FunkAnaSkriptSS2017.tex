@@ -13,18 +13,16 @@
 \listoftheorems
 
 \chapter{Arbeit im Gange - Grundlagen}
-\section{is' klar 'ne?}
-
-\paragraph{Bekannt aus Analysis I-III}
-
-\begin{enumerate}[-]
-	\item Banachraum: vollständiger normierter Vektorraum (wir schreiben $(X,\norm{\cdot }_X$) 
-	\item Hilbertraum: vollständiger Skalarproduktvektorraum mit $\norm{\cdot } = \sqrt{(\cdot , \cdot )_X}$.  Wobei $(\cdot , \cdot )$ das Skalarprodukt bezeichnet.
-	\item Cauchy-Folge: 
-					$(x_n),\,  \forall \varepsilon > 0\; \exists n \in \N : \forall m \geq n : \norm{x_m-x_n}<\varepsilon$
-	\item vollständiger metrischer Raum, Topologie.
-\todo{Diese Begriffe hinten noch definieren?}
-\end{enumerate}
+\section{Normierte Räume}
+{
+\footnotesize
+Was macht man in der Funktionalanalysis? man definiert sich einen vernünfitgen Abstandsbegriff: z.B. den Begriff der \glslink{metrischer Raum}{Metrik} auf (zunächst einmal) einer beliebigen Mengen $E$. Damit hat man einen \glslink{metrischer Raum}{metrischen Raum} geschaffen.
+}
+\paragraph{Arsenal an Begriffen}
+Der nötige Apparat für die Entwicklung der Funktionanalysis ist nicht groß,
+er besteht im wesentlichen aus den Begriffen \gls{metrischer Raum},
+\glslink{topologisch}{Topologie}, \gls{Konvergenz}, \glslink{CF}{Cauchy-Folge} und \glslink{stetig}{Stetigkeit}.\par
+Einige weitere Begriffe sind in \ref{bem:1.28} und \ref{bem:1.30} festgehalten.
 
 %Definition der Seminorm
 \begin{definition}[Halbnorm, Seminorm]
@@ -533,10 +531,8 @@ Nun versuchen wir mit Erfolgt einer waghalsige Verallgemeinerung der geometrisch
 
 \section{Metrische und topologische Räume, Satz von Baire}
 	% Bem 1.28
-	\begin{bem}[Erinnerung]
+	\begin{bem}[Erinnerung]\label{bem:1.28}
 		\begin{enumerate}[-]
-			\item $(X,d)$ metrischer Raum mit Metrik $d$.
-			
 			\item Kompaktheit, Satz von Bolzano-Weierstraß
 		\end{enumerate}
 	\end{bem}
@@ -552,7 +548,7 @@ Nun versuchen wir mit Erfolgt einer waghalsige Verallgemeinerung der geometrisch
 	\end{proof}
 
 %Bem 1.30
-	\begin{bem}Rekapitulieren Sie folgende Begriffe:
+	\begin{bem}\label{bem:1.30} Rekapitulieren Sie folgende Begriffe:
 		$U_r(x)$ Kugel mit Radius $r$,	$\overline{M}$ Abschluss,	$\mathring{M}$ Innere,	$\partial M$ Rand,	Kompakt,	offene Überdeckung. \todoo[Hinten noch definieren]
 	\end{bem}
 	
@@ -843,7 +839,7 @@ Der folgende Satz ist eine Verallgemeinerung des Intervallschachtelungsprinzips 
 %Definition 1.44
 	\begin{definition}
 		$(X,d)$ vollständiger metrischer Raum, $M \subseteq X$ relativ kompakt. \par
-\marginpar{Was genau wird hier definiert?}
+\todo{Was genau wird hier definiert?}
 			$\Leftrightarrow$ jede Folge in $M$ besitzt eine in $X$ konvergente Teilfolge.
 	\end{definition}
 
@@ -1154,7 +1150,7 @@ Erinnerung:\\
 	\begin{proof}
 		\begin{itemize}[]
 		\item $"'(i)\df(ii)"':$ Sei $\varepsilon > 0$ gegeben. Da $(u_i)_{i\in I}$ eine ONB ist, gibt es $i_1,\dots,i_n\in I,\;\alpha_1,\dots \alpha_n \in \K$ so dass $\|x- \sum^n_{k=1} \alpha_k u_{i_k}\| < \varepsilon$ wegen Korollar 1.56 ist
-		\marginpar{nochmal anschauen!}
+		\todo{nochmal anschauen!}
 		$$\|x- \sum^n_{k=1} (x, u_{i_k})\| \leq \|x-\sum^n_{k=1} \alpha_k u_{i_k}\| < \varepsilon$$
 		\item $"'(ii) \df (iii)"':$ Es ist:
 		$$x = \sum_{i\in I} (x, u_i)u \overset{(\cdot, y)}{\df} (x,y)=\left(\sum_{i\in I} (x, u_i)u_i,y\right)=\sum_{i\in I} (x,u_i)(u_i,y)\quad \forall x,y\in X$$
@@ -2333,7 +2329,7 @@ GANZ viel zu Beispielen in lp Räumen.
 		Wir betrachten die Abbildungen 
 		$$J_p : L^q(\Omega,\mu) \to L^p(\Omega,\mu)',\qquad J_q:L^p(\Omega,\mu)\to L^q(\Omega,\mu)'$$	
 		gemäß (4.1) . Dann gilt:
-		\marginpar{richtige Querverweise?}
+		\todo{richtige Querverweise?}
 		\begin{equation}
 			\fop{f,J_p g} = \int_\Omega fgd\mu  = \fop{g,J_q f}
 		\end{equation}
@@ -2759,8 +2755,8 @@ zu c)
 				\item Für $\lambda \in \sigma(T)\backslash\set{0}$ ist 
 					$1\leq n_\lambda := \max\set{n\in \N: ker(\lambda I - T)^{n-1} \neq ker(\lambda I-T)^n} < \infty$
 					\item \enquote{Riesz-Zerlegung}. Für $\lambda \in \sigma(T)\backslash\set{0}$ gilt 
-					$X = ker(\lambda I - T)^{n_\lambda} \oplus im(\lambda I - T)^{n_\lambda}$,  \\
-					 \todoo[richtig mit $n_\lambda$?]
+					$X = ker(\lambda I - T)^{n_\lambda} \oplus im(\lambda I - T)^{n_\lambda}$, 
+					 \todo[inline]{richtig mit $n_\lambda$?}
 	 				\item $\lambda \in \sigma(T)\backslash \set{0} \df \sigma(T| _{im(\lambda I - T)^{n_\lambda}}) = \sigma(T)\backslash \set{\lambda}$
 					\item Ist $E_\lambda \in \BS[X]$ Projektor mit $ker E_\lambda = im(\lambda I - T)^{n_\lambda}$, $im E_\lambda = ker(\lambda I - T)^{n_\lambda}$, so gilt $E_{\lambda} E_{\mu} = \delta_{\lambda \mu} E_\lambda $
 			\end{enumerate}
@@ -2822,13 +2818,14 @@ zu c)
 	\begin{bem}
 	  $X$ $\C$-HR, $T\in\BS[X]$	
 			\begin{enumerate}[a)]
-				\item  \todor[Bemerkung zu Ende tippen]
+				\item  \todor[Bemerkung]
 			\end{enumerate}
 	\end{bem}
 	
 	\begin{proof}
 		\todor	
 	\end{proof}
+\newpage
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %Zusätze. Alles was man noch definieren, erklären, beweisen, oder erwähnen möchte.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -2836,41 +2833,12 @@ zu c)
 \appendix 
 
 \chapter{Etwaige Begriffe}
-	
-%	\begin{multicols}{2}
-%		\glossar{Hausdorffsch, Hausdorffeigenschaft}{ - Eine Menge heißt \textit{hausdorffsch}, wenn je zwei versch. Punkte stets disjunkte Umgebungen haben. Metrische Räume sind zum Beispiel hausdorffsch, da zwei versch. Punkte stets einen Abstand $> 0$ haben. Für ein Gegenbeispiel $\nearrow$ topologischer Raum}
-%	
-%		\glossar{essentiell beschränkt}{ - 
-%						$(\Omega, \hA,\mu)$ sei ein Maßraum. Eine Funktion $f: \Omega \rightarrow \R$ heißt essentiell beschränkt, falls 
-%						$$\underset{x\in\Omega}{\ess \sup} |f(x)| := {\inf_{\underset{\mu(N)=0}{N \in \hA}} }  
-%						\sup_{x\in \Omega\backslash N} |f(x)| < \infty$$
-%						oder auch: f ist fast überall beschränkt. 
-%									Ein Beispiel ist $f(x) : = x\cdot \chi_\Q(x)$ und $\mu = \lambda$, da $f$ nur auf $\Q$ nicht null ist, und $\Q$ ist Lesbesgue-Nullmenge. }
-%	
-%		\glossar{topologischer Raum}{ $(X,\tT)$ - Sei $X$ eine Menge und $\tT\subseteq P(X)$. Die Elemente von $\tT$ sind die \textit{offenen Mengen}. $\tT$ definiert eine \textit{Topologie}, wenn folgende Eigenschaften erfüllt sind:
-%		\begin{enumerate}[(i)]
-%			\item $\emptyset,\,X\in \tT$ 
-%			\item $A_i\in\tT$ für $i\in I$, $\N \supset I$ endlich $\df$ $\cap_{i\in I} A_i\in\tT$ 
-%			\item $A_i\in\tT$ für $i\in I$, $I$ bel. Indexmenge $\df$ $\cup_{i\in I}A_i \in \tT$
-%		\end{enumerate}
-%		$(X,\tT)$ ist der \textit{topologische Raum}.\par
-%		Ein Beispiel, für einen topologischen Raum sind die metrischen Räume $(X,d)$: $d$ induziert dann eine Topologie auf $X$, die offenen Mengen sind nämlich durch $d$ bestimmt.\par
-%		Sei $M:=\{1,2\},\dots$
-%		\begin{enumerate}[]
-%			\item $\tT: = \{\emptyset,M\}$. Die triviale Topologie, nur $\emptyset$ und $M$ sind offen.
-%		
-%			\item $\tT:=P(M)$. Die diskrete Topologie, alle Mengen sind offen. Die diskrete Metrik induziert genau diese Topologie.
-%		
-%			\item $\tT:=\{\emptyset,\{1\},\{1,2\}\}.$ M ist hier nicht hausdorffsch, denn egal welche Umgebung man um 2 betrachtet, man kann nicht erreichen, dass 1 nicht in der gleichen ist.
-%		\end{enumerate}}
-%	\end{multicols}
-
 \glsaddall
 %\printglossary[title=Glossar]
 
 \printnoidxglossary
 
-	\subfile{./FunkAna_Uebungen}
+\subfile{./FunkAna_Uebungen}
 
 \end{document}
 
