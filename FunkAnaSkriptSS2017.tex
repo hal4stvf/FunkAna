@@ -18,6 +18,7 @@
 \footnotesize
 Was macht man in der Funktionalanalysis? man definiert sich einen vernünfitgen Abstandsbegriff: z.B. den Begriff der \glslink{metrischer Raum}{Metrik} auf (zunächst einmal) einer beliebigen Mengen $E$. Damit hat man einen \glslink{metrischer Raum}{metrischen Raum} geschaffen.
 }
+
 \paragraph{Arsenal an Begriffen}
 Der nötige Apparat für die Entwicklung der Funktionanalysis ist nicht groß,
 er besteht im wesentlichen aus den Begriffen \gls{metrischer Raum},
@@ -26,7 +27,7 @@ Einige weitere Begriffe sind in \ref{bem:1.28} und \ref{bem:1.30} festgehalten.
 
 %Definition der Seminorm
 \begin{definition}[Halbnorm, Seminorm]
-
+\label{Halbnorm}
 	Sei $X$ ein $\K-Vektorraum$, wobei $\K = \R$ oder $\K = \C$. 
 	Für $x,y\in X$, $\lambda \in \K$ ist eine Halbnorm oder Seminorm eine Abbildung
 	$\seminorm{\cdot}:X \rightarrow \R$, die die folgenden Eigenschaften erfüllt:
@@ -42,6 +43,7 @@ Eine Norm efüllt zusätzlich noch die Bedingung, dass sie nur dann verschwindet
 
 %Der Kern einer Seminorm bildet einen Unterraum
 \begin{bem}
+\label{KernSeminorm}
 	\begin{enumerate}[(a)]
 		\item $N:=\{x\in X: \seminorm{x}=0\}$ bildet einen Unterraum von $X$.
 		\item $X/N$ ist ein normierter Raum über(?) $\norm{x+N} := \seminorm{x}$
@@ -51,6 +53,7 @@ Eine Norm efüllt zusätzlich noch die Bedingung, dass sie nur dann verschwindet
 
 %Beispiele wichtiger Vektorräume
 \begin{bsp}[wichtige Vektorräume]
+\label{wichtige Vektorräume}
 	Sei $(\Omega,\hA,\mu)$ ein Maßraum
 		\begin{enumerate}[(a)]
 			\item $p\in[1,\infty)\; \hL^p(\Omega,\mu) = \{f:\Omega \rightarrow \C$ messbar, 
@@ -94,12 +97,11 @@ Eine Norm efüllt zusätzlich noch die Bedingung, dass sie nur dann verschwindet
 		\end{enumerate}
 	\end{bem}
 
-
-
 \section{Lineare Operatoren}
-
+\subsection{Definitionen und grundlegende Eigenschaften}
 %Definition linearer Operator
 	\begin{definition}[linearer Operator]
+	\label{linearer Opererator}
 		Seien $X,Y\; \K-$Vektorräume. Eine Abbildung $T:X\rightarrow Y$ heißt \textit{linearer Operator} wenn 
 		$$T(\lambda x+\mu y) = \lambda T(x) + \mu T(y)\quad \forall \lambda,\mu \in \K,\,x,y\in X$$ 
 		wir schreiben auch $Tx$ statt $T(x)$.\\
@@ -107,14 +109,15 @@ Eine Norm efüllt zusätzlich noch die Bedingung, dass sie nur dann verschwindet
 		Wenn $X,Y$ normierte $\K-$Vektorräume sind, heißt ein linearer Operator $T$ \textit{beschränkt}, wenn $T(U_1(0)) \subseteq Y$ beschränkt ist. In Quantoren lautet diese Aussage
 			$$ \exists M \geq 0, \text{ so dass } \forall x\in X :\; \norm{Tx}_Y \leq M \text{ mit } \norm{x}_X < 1$$
 	\end{definition}
-
+	
 	\begin{bem*} 
 	Die Bilder beschränkter Mengen $M$ unter einem beschränkten linearen Operator $T$ sind beschränkt. Denn existiert ein $R>0$ mit $M \subseteq  U_R(0)$, sodass 
 		$$T(M) \subseteq T(U_R(0))=T(R\cdot U_1(0))=R\cdot T(U_1(0))$$
 		und dies ist beschränkt.
 	\end{bem*}
 
-	\begin{bsp}
+	\begin{bsp}[Lineare Operator]
+	\label{bsp:Lineare Operator}
 		\begin{enumerate}[a)]
 			\item $X = \K^n$, $Y = \K^m$, $\{T: X\to Y: T \text{ linearer Operator}\} = \K^{m \times n}.$ $T\in\K^{n \times m}$ ist beschränkt. 
 			%(Betrachtung nur für den Fall $\K\in\{\R,\C\}$) 
@@ -126,7 +129,8 @@ Eine Norm efüllt zusätzlich noch die Bedingung, dass sie nur dann verschwindet
 		\end{enumerate}
 	\end{bsp}
 
-	\begin{thm}
+	\begin{thm}[Charakterisierung der Stetigkeit]
+	\label[thm:Charakterisierung der Stetigkeit]						
 		Seien $X,Y$ normierte Räume, $T: X\to Y$ ein linearer Operator. Dann sind äquivalent:
 			\begin{enumerate}[(i)]
 				\item $T$ beschränkt,
@@ -189,6 +193,7 @@ An dieser Stelle werden einige Definition und Bemerkung festgehalten, die in sp�
 
 %%%%%%%%%%%	Satz 1.10
 	\begin{thm}[Operatornormen]
+	\label{Operatornormen}
 		$X,Y$ normierte Räume. $\BS$ normierter Raum mit folgendener Norm
 		 $$\norm{T} := \disp \sup_{x \in \EK}\norm{Tx}_Y.$$
 	\end{thm}
@@ -440,9 +445,6 @@ Die Negation dieser Aussage halten wir explizit fest mit folgendem
 	\begin{thm}
 					Ist $T$ normerhaltend (in $\R^n$ die unitären Matrizen $\norm{Tx} = \norm{x}$), so ist $\tilde{T}$ ebenfalls normerhaltend.
 	\end{thm}
-		\begin{proof}
-						TODO: Kurze Begründung. Eigentlich Korollar?%folgt glaube ich, direkt aus dem Beweis hierüber
-		\end{proof}
 
 	\begin{bsp}[Konstruktion eines unbeschränkten Funktionals]
 		Sei $X= \ell^1$ ({Raum der absolut konvergenten Folgen})\par
@@ -461,6 +463,10 @@ Die Negation dieser Aussage halten wir explizit fest mit folgendem
 		$\df x_n\in Ker f \; \forall n\in\N$, da $x_n\in span\{e_k\}_{k\in\N}$. 
 		Es gilt jedoch $x_n \to x_0 \not\in Ker f$, da $f(x_0) = 1$. \hfill $\square$ 
 	\end{bsp}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Neumannsche Reihe}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 Nun versuchen wir mit Erfolgt einer waghalsige Verallgemeinerung der geometrischen Reihe im Reellen für Operatoren und Banachräume. 
 	$\sum_{k=0}^\infty q^k = \frac{1}{1-q} \; \forall q\in\C$ mit $\norm{q} < 1$
@@ -530,6 +536,9 @@ Nun versuchen wir mit Erfolgt einer waghalsige Verallgemeinerung der geometrisch
 	\end{bsp}
 
 \section{Metrische und topologische Räume, Satz von Baire}
+
+	\subsection{Grundbegriffe:metrischer Raum und Vervollständigung}	
+
 	% Bem 1.28
 	\begin{bem}[Erinnerung]\label{bem:1.28}
 		\begin{enumerate}[-]
@@ -564,7 +573,7 @@ Nun versuchen wir mit Erfolgt einer waghalsige Verallgemeinerung der geometrisch
 \end{definition}
 
 %Satz 1.32
-\begin{thm}%Der große Vervollständigungssatz
+\begin{thm} %Der große Vervollständigungssatz
 	Jeder metrische Raum $(X,d)$ lässt sich in einen bis auf Isometrie eindeutig bestimmten vollständigen metrischen Raum $(\dX,\dd)$ dicht einbetten. $(\dX,\dd)$ heißt Vervollständigung von $(X,d)$.
 \end{thm}
 \begin{proof}
@@ -617,6 +626,10 @@ Nun versuchen wir mit Erfolgt einer waghalsige Verallgemeinerung der geometrisch
 		$$\dd([x],[y])=\lim_{n\to\infty} d_X(x_n,y_n) = \lim_{n\to\infty} d_H(x_n,y_n)=d_H(g([x]),g([y])).$$
 	\end{enumerate}
 \end{proof}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Der Bairesche Kategoriesatz und grundlegendes zu Vollständigkeit und Kompaktheit}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 %Definition 1.33
 \begin{definition}%Durchmesser
@@ -948,7 +961,7 @@ Sei $\eta \in (0,1) \df \frac{\delta}{\eta} > \delta $ $\df \exists z\in E$ mit 
 	\end{proof}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-	\subsection{Skalarprodukträume}
+	\section{Skalarprodukträume}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 Erinnerung:\\
 	Sei $X$ ein $\K$-VR. Ein \textit{Skalarprodukt} ist eine Abb $(\cdot,\cdot) \to \K$ mit 
