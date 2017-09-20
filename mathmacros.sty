@@ -25,25 +25,77 @@
 	  {.}% punctuation between head and body
 	  { }% space after theorem head; " " = normal interword space
 	  {\thmname{#1}\thmnumber{ #2}\thmnote{ (#3)}}
-	  
+
 	\theoremstyle{plain}%Text innen wird kursiv
-	\newmdtheoremenv{thm}{Satz}[chapter]
-	%\newtheorem{thm}{Satz}[chapter]
-	\newtheorem{lemma}[thm]{Lemma}
-	\newtheorem{cor}[thm]{Korollar}
-	\newtheorem*{cor*}{Korollar}
+	\mdfdefinestyle{theoremstyle}{%
+		frametitlerule							= true		,%				
+		linewidth										= 2pt			,%
+		outerlinewidth							=	7				,% 
+		frametitlebackgroundcolor   =	red!50,%
+	}
+
+	\mdfdefinestyle{corstyle}{%
+		frametitlerule							= true		,%				
+		linewidth										= 2pt			,%
+		outerlinewidth							=	7				,% 
+		frametitlebackgroundcolor   =	red!30 	,%
+	}
+
+	\global\mdfdefinestyle{bemstyle}{
+		linecolor										=	black		,%
+		linewidth										= 2pt     ,%
+					}
+	\global\mdfdefinestyle{defstyle}{
+		frametitlerule							= true		,%				
+		linecolor										=	black		,%
+		linewidth										= 2pt			,%
+		outerlinewidth							=	2				,% 
+		frametitlebackgroundcolor	  =	blue!30	,%
+		%backgroundcolor							=	blue!3	,%
+					}
+
+	%\def\nocolor{}
+
+	\ifx\nocolor\undefined
+		\mdtheorem[style=theoremstyle]{thm}{Satz}[chapter]
+	\else
+		\newtheorem{thm}{Satz}[chapter]
+	\fi
+
+	\ifx\nocolor\undefined
+		\mdtheorem[style=corstyle]{lemma}[thm]{Lemma}
+		\mdtheorem[style=corstyle]{cor}[thm]{Korollar}
+	\else
+		\newtheorem{lemma}[thm]{Lemma}
+		\newtheorem{cor}[thm]{Korollar}
+		\newtheorem*{cor*}{Korollar}
+	\fi	
 	
 	\theoremstyle{definition}%Lässt den Text innerhalb nicht mehr kursiv erscheinen
-	\newtheorem{definition}[thm]{Definition}
-	\newtheorem{bsp}[thm]{Beispiel}
+
+	\ifx\nocolor\undefined
+		\mdtheorem[style=defstyle]{definition}[thm]{Definition}
+		\mdtheorem[style=corstyle]{bsp}[thm]{Beispiel}
+	\else
+		\newtheorem{definition}[thm]{Definition}
+		\newtheorem{bsp}[thm]{Beispiel}
+	\fi
 	
 	\theoremstyle{myStyle}
-	\newtheorem{bem}[thm]{Bemerkung}
+
+	\ifx\nocolor\undefined
+		\mdtheorem[style=bemstyle]{bem}[thm]{Bemerkung}
+	\else
+		\newtheorem{bem}[thm]{Bemerkung}
+		\newtheorem*{bem*}{Bemerkung}
+	\fi
+
 	\newtheorem*{beh}{Behauptung}
-	\newtheorem*{bem*}{Bemerkung}
 	\newtheorem*{mbem*}{Eigene Bemerkung}
 	\newtheorem*{proof*}{Beweisskizze}
 	
+	%% Commands für mdfsetup
+		%\renewenvironment{thm}[1]{\begin{thm}[#1]}{\end{thm}}
 	%% Abbrv. and certain layout for mathenvi.
 		\newenvironment{hinweise}{
 			\footnotesize \begin{proof*}}{\hfill $\square$ \end{proof*}\normalsize
