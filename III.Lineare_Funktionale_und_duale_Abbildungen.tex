@@ -1,0 +1,660 @@
+\chapter{Lineare Funktionale und duale Abbildungen}
+
+	Thema dieses Kaptiels sind lineare Funktionale und duale Abbildung. Die linearen Funktionale sind eine besondere \enquote{Klasse} von Operatoren, nämlich solche die in die zugrundliegende Körper eines $\K$-VR $X$ abbilden.
+	Dazu schreiben man kurz $X' = \B(X,\K)$ und benutzen (gerne) kleine Buchstaben für Funktionale, also $x' \in X'$. \\
+	In diesem Kapitel kommt Bemerkung 3.11 besonders zum Tragen, daher hier noch einmal die Aussage
+	\spcm $$ \norm{x'} = \norm{x'}_{\B(X,\K)} = \sup_{x\in \EK \subset X}|x'(x)| = \sup_{x\in X, \norm{x} = 1} |x'(x)| = \sup_{x\in \overline{\EK}}|x'(x)|. \spcm$$
+	Zur besseren Übersicht schreibt man die Auswertung eines Funktional wie folgt 
+		$$x'(x) =: \langle x,x' \rangle _{X,X'}, \quad x' \in X', x\in X.$$ 
+	Wobei man die Räume häufig weglässt, wenn klar ist, welche gemeint sind.\\
+	$E_\R:$ $E$ aufgefasst als Vektorraum über $\R$.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Fortsetzungssätze von Hahn-Banach}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\footnotesize
+	Thema dieses Kapitels ist Fragen nach Fortsetzbarkeit eines Funktionals. Genauer, angenommen man hat einen normierter Raum $X$ und ein lineares Funktional auf einem Untervektorraum $E\subseteq X$, $f: E \to \K$ gegeben.
+	Kann man dann $f$ auf $X$ so fortsetzen, dass die Fortsetzung auf kann X linear ist ? Die positive Beantwortung gibt der mächtige Satz von \textit{Hahn-Banach}, der in zunächst in sehr allgemeiner topologischen Form dargestellt, dann aber auch konkreter formuliert wird.
+\normalsize
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+	
+%%%%%% 3.1
+	\begin{lemma}
+		Sei $X$ $\R$-Vektorraum und $p : X \to \R$ wie folgt 
+			\begin{enumerate}[1)]
+				\item $p(\lambda x) = \lambda p(x)$ $\; \forall \lambda \geq 0, x\in X$ \hfill (Homogenität)
+				\item $p(x + y) \leq p(x) + p(y)$ $\; \forall x,y \in X$ \hfill (Subadditivität)
+			\end{enumerate}
+	 Weiter sei $E \subseteq X$ UVR und $f: E \to \R$ linear sowie 
+		 $$f(x) \leq p(x) \quad \forall x \in E.$$ 
+	 Dann existiert ein lineares Funktional $F: X\to \R$ für das gilt
+		 $$F|_{E} = f \text{ und } F(x) \leq p(x) \quad \forall x \in X$$.
+	\end{lemma}
+
+	\begin{hinweise}
+		Falls $E = X$ $\df$ klar. $(F = f)$.	
+		Angenommen $E \subsetneq X \df x_0 \in X\backslash E, x_0 \neq 0.$
+		\begin{enumerate}[1 {Schritt:}]
+			\item Zunächst Forsetztung auf eindimensional größeren Raum. 
+			\item Definiere Menge von Abbildungen und Unterräume, definiere und zeige Halbordnung, und prüfe dann Voraussetzung vom Lemma von Zorn. 
+			Das liefert ein maximales Element, dass dann schon der ganze Raum sein muss. Sonst fände mein mit Schritt eins einen größeren Raum, was aber ein Widerspruch zur Annahme bereits das maximale Element benutzt zu haben. 	
+		\end{enumerate}
+	\end{hinweise}
+
+	\begin{proof}
+		Falls $E=X$: klar(Wähle $F=f$). Sei also $E\subsetneq X \df ~\exists x_0 \in X\setminus E$.
+		\begin{itemize}[]
+			\item Schritt 1: \\
+				Setze $f$ auf $E\oplus span\{x_0\}$ fort (Bezeichnung wieder mit $f$) mit $f(z+\alpha x_0)=f(z)+\alpha\gamma ~z\in E, \alpha \in \R$. Wähle $\gamma \in \R$ so, dass $f(z+\alpha x_0)\leq p(z + \alpha x_0).$ Dabei gilt:
+
+				\begin{itemize}[]
+					\item $\alpha > 0: ~\gamma\leq\frac{1}{\alpha}p(z+\alpha x_0)-f(z))=p(\frac{z}{\alpha} +x_0)-f(\frac{z}{\alpha}) \Leftrightarrow \gamma\leq p(z_1+ x_0)-f(z_1) ~\forall z_1 \in E$
+					\item $\alpha < 0: ~\alpha\gamma\leq p(z+\alpha x_0)-f(z) \Leftrightarrow -\gamma \leq p(-\frac{z}{\alpha} -x_0)+f(\frac{z}{\alpha}) \Leftrightarrow \gamma\geq -p(-z_2 -x_0)-f(z_2) ~\forall z_2 \in E$
+				\end{itemize}
+
+		Also existiert ein geeignetes $\gamma \in \R$, falls $\forall z_1,z_2 \in E$ gilt:
+		$$-p(-z_2 -x_0)-f(z_2) \leq p(z_1+ x_0)-f(z_1) \Leftrightarrow f(z_1-z_2) \leq p(-z_2-x_0)+p(z_1+x_0). $$ 
+		Dies gilt, da $ f(z_1-z_2) \overset{Vor.}{\leq} p(z_1-z_2) \overset{2.}{\leq} p(-z_2-x_0) + p(z_1 + x_0)$.\\
+		Also $\exists \gamma = \disp \sup_{z \in E} -p(-z+x_0)-f(z) \df f:E \oplus span\{x_0\}$ ist linear und $f(x)\leq p(x) ~\forall x \in E \oplus span\{x_0\}$.
+	
+		\item Schritt 2: \\
+		Sei $\F:=\{(H,g_H):E \subset H \subset X ~UVR, g_H|_E=f, g_H(x) \leq p(x) ~\forall x \in H\}$. \\
+		Sei $(H_1,g_{H_1}) \leq (H_2,g_{H_2}) :\Leftrightarrow H_1 \leq H_2$ mit $g_{H_2}|_{H_1} = g_{H_1}$ eine Halbordnung (ÜA). Falls $\mathcal{G} \subset \F$ totalgeordnet ist, dann ist $\disp H_0=\bigcup_{(H,g_H) \in \mathcal{G}} H$ mit $g_{H_0}z=g_H z ~\forall z \in H, (H,g_H) \in \mathcal{G}$ eine obere Schranke von $\mathcal{G}$ (Wohldefiniertheit folgt aus Totalordnung). \\
+		Mit dem Lemma von Zorn folgt nun: $\F$ hat ein maximales Element $(X_0,g_{x_0})$.
+		Falls $X_0 \subsetneq X_1$, so kann mit Schritt 1 auf $\tilde{X_0}=X_0 \oplus span\{x_0\} ~x_0 \in X\setminus X_0$ linear fortgesetzt werden.  Also ist $(\tilde{X_0},f_{\tilde{X_0}})\succeq(X_0,g_{X_0}) $ und dies ist ein Widerspruch zur Maximalität von $(X_0,g_{X_0})$.
+		\end{itemize}
+	\end{proof}
+
+%%%%%%%%%%%%%%%%%% 3.2  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+	\begin{thm}[Satz von Hahn-Banach]
+		$X$ ein $\K$-VR, $p: X \to \R$ Halbnorm, $E$ UVR, $f: E \to \K$ linear und
+			$$ f(x) \leq p(x) \; \forall x \in E$$
+	Dann existiert $F: X \to \K$, so dass 
+		\begin{enumerate}[(i)]
+			\item $F|_E = f$
+			\item $|F(x)| \leq p(x) \; \forall x \in X$
+		\end{enumerate}
+	\end{thm}
+
+	\begin{hinweise}
+		\begin{enumerate}[{Fall} 1]
+			\item $\K = \R$: Nutze wesentliche Lemma 3.1, dann sind $i)$, $ii)$ Konsequenzen.
+			\item $\K = \C$: Setze $f(x) = f_1(x) + i f_2(x)$ Etwas rechnen ergibt mit der $\R$-Linearität 
+				$f(x) = f_1(x) - i f_1(ix)$. Damit ist auch dieser Fall wesentlich auf den reellen Fall zurückgeführt. Und Lemma 3.1 rechtfertig folgendes :
+				Definiere dann $F(x) := F_1(x) - i F_1(ix)$. Prüfe daran alle Eigenschaften \textit{leicht nach}.
+		\end{enumerate}
+	\end{hinweise}
+
+		\begin{proof}
+		\begin{enumerate}
+			\item $\K=\R$: ~Mit Lemma 3.1. $\exists F:X \to \R$ linear mit $F|_E=f$ und $F(x)\leq p(x)~\forall x \in X$. Außerdem gilt
+			$$-F(x)=F(-x)\leq p(-x)=p(x) \df |F(x)|\leq p(x).$$
+			\item $\K=\C: ~f(x)=f_1(x)+if_2(x)$ mit $f_1,f_2: E \to \R$ sind $\R$-linear. Da $f$ linear ist gilt:
+			$$ f(ix)=if(x)=if_1(x)-f_2(x) \wedge f(ix)=f_1(ix)+if_2(ix) \df f_2(x)=-f_1(ix) \df f(x)=f_1(x)-if_1(ix).$$
+			Also ist $f_1:E_\R \to \R ~ \R$-linear und $|f_1(y)|\leq p(y) ~\forall y \in E_\R$. Mit Schritt 1 angewandt auf $f_1$ an $X_\R$ gilt:
+			$$ \exists \F:X_\R \to\R \text{ sodass } F_1|_{E_\R}=f_1 \text{ und } |F_1(x)| \leq p(x) ~\forall x \in X_\R.$$
+			Sei $F(x)=f_1(x)-iF_1(ix)$. zZ.: $F:X\to\C$ ist linear mit $F|_E=f$ und $|F(x)| \leq p(x) ~\forall x \in X$.
+			Linearität: Für $x,y \in X, ~\alpha=\underbrace{\alpha_1}_{\in \R} + i ~\underbrace{\alpha_2}_{\in \R} \in \C$ gilt:
+		$$ F(x+y)=F_1(x+y)-i(F_1((x+y)i))\overset{F_1 lin.}{=}F_1(x)+F_2(y)-i(F_1(ix)+F_1(iy))=F(x)+F(y).  $$ und
+			\begin{align*}
+				F(\alpha x) &= F_1(\alpha x) -iF_1(\alpha ix)=F_1((\alpha_1+i\alpha_2)x) - iF_1(\underbrace{(\alpha_1+i\alpha_2)ix}_{=(\alpha_1 i-\alpha_2)x})\\
+				&=\alpha_1 F_1(x)+ \alpha_2 F_1(x)-\alpha_1 i F_1(ix) + \alpha_2 i F_1(x)= \alpha_1 F(x) +\alpha_2 i \underbrace{(-i F_1(ix)+F_1(x))}_{=F(x)}\\
+				&= \alpha F(x).
+			\end{align*}
+			$F|_E=f$ folgt aus der Darstellung von $F$ und $f$.\\
+			Für $z \in \C$ mit $|z|=1$ und $x \in X$ fest ($F(x) \in \C$) gilt:\\
+			$|F(x)|=zF(x)=F(zx)\overset{F(zx) \in \R}{=} F_1(zx) \leq p(zx)=p(x)$.
+		\end{enumerate}
+	\end{proof}
+
+%%%%%%%%%%%%%%%%%% 3.3  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+	\begin{thm}[topologische Verssion von Satz 5.2]
+		$X$ normierter $\K-VR$, $E$ UVR, $f: E\to \K$ stetig und linear. Dann exisitiert $F : X\to \K$ linear stetig mit 
+				\begin{enumerate}[(i)]
+					\item $\norm{F} = \norm{f}$
+					\item $F|_E = f$
+				\end{enumerate}
+	\end{thm}
+	
+	\begin{hinweise}
+		Betrache $p(x) := \norm{f}\cdot \norm{x}$. Stetigkeit zeigt man über die Beschränktheit von $F$. Das liefert auch bereits $\norm{F} \leq \norm{f}$. Die andere Ungleichung folgt, da $f$ eine Einschränkung von $F$ ist. 
+	\end{hinweise}
+	
+	\begin{proof}
+		Betrachte $p(x)=\norm{f} \cdot \norm{x}$ ist Halbnorm und 
+		$|f(x)|\leq \norm{f} \cdot \norm{x} = p(x)$ 
+		(folgt aus Definition des beschränkten Operators, also Stetigkeit von $f$). Mit Satz 3.2. folgt:\\
+		$\exists F: X \to \K$ mit $F|_E=f$ und $|F(x)| \leq p(x) = \norm{f} \cdot \norm{x} ~\forall x \in X \df \disp \sup_{\underset{x \neq 0}{x\in X}} \frac{|F(x)|}{\norm{x}} \leq \norm{f} $\\
+		Damit ist $F$ beschränkt, also stetig und $\norm{F} \leq \norm{f}$. 
+		Außerdem gilt:
+		\[ \norm{F}=\sup_{\underset{x \neq 0}{x\in X}} \frac{|F(x)|}{\norm{x}} \geq \sup_{\underset{x \neq 0}{x\in E}} \frac{|F(x)|}{\norm{x}}=\sup_{x\in E\setminus\{0\}} \frac{|f(x)|}{\norm{x}}=\norm{f}.  \]
+\end{proof}
+
+%%%%%%%%%%%%%%%%%% 3.4  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+	\begin{cor}
+		$X$ normierter $\K-VR$, $x_0 \in X$. Dann existiert $x' \in X'$, so dass $\norm{x'} =1$ und $\langle x_0, x' \rangle = \norm{x_0}$.
+	\end{cor}
+
+	\begin{proof}
+		Für $x_0=0$ is die Aussage klar. Sei also $x_0 \neq 0, E:=span\{x_0\}, f:E \to \K: cx_0 \mapsto c\norm{x_0} ~c\in\K$.\\
+		Dann ist $f(x)=\norm{x_0}$ und $ \norm{f} = \disp \sup_{\underset{x = 1}{x\in E}} |f(x)|=1$ (ÜA). Mit Satz 3.3. folgt:\\
+		$\exists x':X\to\K, x'|_E=f$ und $\norm{x'}=\norm{f}=1 \df x'(x_0)=\f{x_0}{x'}=f(x_0)=\norm{x_0}.$
+	\end{proof}
+
+
+%%%%%%%%%%%%%%%%%% 3.5  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+	\begin{cor}
+		$X$ normierter VR, $x_0 \in X$. Dann gilt, dass $\norm{x_0} = \sup_{x' \in X, \norm{x'} \leq 1}|\langle x_0, x' \rangle | = \sup_{x' \in X, \norm{x'} = 1}|\langle x_0, x' \rangle |$
+	\end{cor}		
+
+	\begin{proof}
+	$\geq...\geq$ ist klar. Sei $x' \in X'$ mit $\norm{x'}=1 \overset{Def.~Op.Norm}{\Longrightarrow} |\f{x_0}{x'}| \leq \norm{x'}\cdot\norm{x_0}\leq \norm{x_0}$.\\
+	Wähle $x'$ wie in Korollar 3.4., dann ist $|\f{x_0}{x'}|=\norm{x_0}$.
+	\end{proof}
+
+%%%%%%%%%%%%%%%%%% 3.6  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+	\begin{thm}
+	$X$ normierter $\K-VR$. $X'$ separabel $\df$ $X$ separabel.
+	\end{thm}
+
+	\begin{hinweise}
+		\begin{enumerate}[(i)]
+			\item $X'$ seperabel $\df$ $S := \set{x' \in X': \norm{x'} = 1}$ ist separabel.
+			\item Schreibe S als Abschluss einer abzählbaren Mengen. Alle Element haben Norm 1 und damit exisitieren Werte von den Operatoren die größer sind als $\frac{1}{2}$. Die Elemente aus S aufgespannt über eine abzählbare Menge von K ist abzählbare. Nun muss der Abschluss dieses Spannes schon X selber sein. 
+			Wäre dies nicht so, dann gäbe es ein Element das weder im Abschluss des Spannes noch X ist.
+			\item ÜA: $\exists x' \in X'$ mit $\norm{x'} = 1,$ $ker x' > E$, $\langle x_0, x' \rangle \neq 0$ \\
+			Dann null der Operatoren dieser Operator als Elemente in E. Wegen der Norm 1 ist dieser Operator in S und hat wegen einer Ungleichungskette echten Abstand von allen anderen Elementen in S. Dies ist ein Widerspruch zur Dichtheit von S. 
+		\end{enumerate}
+	\end{hinweise}
+
+	\begin{proof}
+		\begin{enumerate}[1)]
+			\item $X'$ separabel $\df \{\underbrace{x' \in X': \norm{x'}=1}_{=:S}\}$ ist separabel (Dreiecksungleichung).
+			
+			\item $S=\overline{\{x'_n : n \in \N\}}, x'_n \in S.$ Da $\norm{x'_n}=1 ~\forall n \in \N$ existieren $x_n \in X: \norm{x_n}=1$ und $\f{x_n}{x'_n} \geq \frac{1}{2} ~\forall n$ (Definition der Operatornorm $\B(X,\K)=x'$.\\
+			Sei $E:=span\{x_n : n \in \N\} \subset X.$ Angenommen $E=X \df span_{\Q + i\Q}\{x_n : n \in \N\}$ ist Dicht in $X$. \\
+			Falls $E\neq X$, so existiert $x_0 \in X\setminus E$.
+			
+			\item $x' \in X'$ mit $\norm{x'}=1, Ker x' \supset E$ (ÜA), $\f{x_0}{x'}\neq 0 \overset{x_n \in E}{\df}\f{x_n}{x'}=0 ~\forall n \in \N$. Also ist
+			\[
+			\frac{1}{2}\leq \f{x_n}{x'_n} = \f{x_n}{x_n'} - \f{x_n}{x'}= \f{x_n}{x'_n-x} \leq \underbrace{\norm{x_n}}_{=1} \cdot \norm{x'_n-x'} ~\forall n \in \N.
+			\]
+			$\df x' \in S=\{x'_n : n \in \N\} ~\underline{\text{aber}}~ \norm{x'-x'_n}\geq \frac{1}{2} ~\forall n \in \N \\
+			\df$ Widerspruch zur Dichtheit von $\{x'_n : n \in \N\}$ in $S$.
+		\end{enumerate}
+	\end{proof}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Dualraum und Reflexivität}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\footnotesize
+Es wird de Dualraum genauer untersucht. Der Bidualraum wird als Dualraum des Dualraums eingeführt. Man findet eine kanonische Injektion von Raum in den Bidualraum (über das Funktional zu einem Funktional). 
+Ist die Bidualraum immer gleich dem Raum? 
+Diese Eigenschaft soll reflexiv heißen. Welchen Zusammenhang besteht zwischen reflexiv und vollständig?\\
+Hat man mehr Struktur durch einen Hilbertraum findet man eine explizite Darstellung eines Funktionals über das Skalarprodukt. Wie stehen da reflexiv und vollständig in Beziehung?\\
+Wir verallgemeiner den Orthogonalraum auf normierter Räume und seinen Dualraum. Welche topologische Eigenschaften haben solche Räume? Gibt es Normisomorphien?
+
+\normalsize
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+		\begin{definition}
+			$X'' = (X')' $ heißt Bidualraum. \\
+			Bemerkung: $X = \R^{n\times 1}$ und $X' = \R^{1 \times n}$ \\
+			Frage: $X'' = X$	
+		\end{definition}
+
+		\begin{bem}
+		Vorüberlegung: Sei $x_0 \in X$ betrachte $f_{x_0}: X' \to \K, y' \mapsto \langle x_0, y' \rangle$. 
+		$f_{x_0} \in (X')'$ ?, Ja, weil $\norm{f_{x_0}} = \norm{f_{x_0}}_{\B(X',\K)} = \sup_{}|\langle  x_0, x' \rangle| = \norm{x_0}$. $f_0$ linear klar. \\
+		$\df {J}_{X}: X \to X'': x \mapsto f_X = \langle x, \cdot \rangle$ ist linear, isometrisch. \\ 
+		$\df {J}_X \subset X''$ auf diese Art kann $X$ als Teilraum von $X''$ aufgefasst werden.
+		\end{bem}
+
+	\begin{definition}
+		$X$ normierte Vr heißt reflexiv, falls ${J}_X(X) = X''$. In diesem Fall ist $J_X :X \to X''$ ein Isomorphismus.
+	\end{definition}
+
+	\begin{lemma}
+		$X$ normierter VK. Dann gilt : $X$ reflexiv $\df$ $X$ vollständig.
+	\end{lemma}
+
+	\begin{proof}
+		$X''$ ist vollständig (weil $X''=\B(X',\K)$ und da $\K$ vollständig ist). \\
+		da $J_X: X \to X''$ isometrisch isomorph ist, ist auch $X$ vollständig. 
+	\end{proof}
+
+	Zunächst Charakterisierung des HR-Falls
+
+%%%%%%%%%%%%%%%%%%%%%%%% 3.11
+	\begin{thm}[Darstellungssatz Frächet-Riesz]
+		Sei $X$ Hilbertraum. Dann ist 
+			$$R_X : X \to X', \; x \mapsto \Sp{\cdot, x} = (y \mapsto \Sp{y,x})$$
+			anti-linear, isometrische Bijektion. D.h.
+						\begin{enumerate}[(i)]
+							\item $R_X(x) = (y \mapsto \Sp{y,x}) \in X' \quad \forall x\in X$
+							\item $\forall x' \in X' \;\exists ! \; x \in X : \; \fop{y,x'} = \Sp{y,x} \quad \forall y \in X$
+						\end{enumerate}
+	\end{thm}
+
+	\begin{hinweise}
+			\begin{enumerate}[(i)]
+				\item $R_x$ wohldefiniert, isometrisch, anti-linear: nachrechnen !
+				\item $R_x$ surjektiv: Wenn wir nicht das Nullfunktional haben, denn finden wir ein $z \neq 0$ im orthogonalen Komplement des Kerns. Konstruiere für dieses z ein Funktional durch $x' = (\cdot, x z)$ mit $c \in \C$. Diese Konstruktion gilt dann auch für Elemente im Kern.
+			\end{enumerate}
+	\end{hinweise}
+
+	\begin{proof}
+		\begin{enumerate}[1)]
+		\item $R_X$ ist wohldefiniert, semilinear und isometrisch.\\
+		\begin{itemize}[]
+		\item Sei $x \in X$. Dann ist $y \mapsto (y,x)$ linear (folgt aus der Linearität des Skalarprodukts). Es gilt
+		\[
+		|\f{y}{R_X x}| \overset{Def. R_X}{=} |(y,x)| \overset{C.S.}{\leq} \norm{y} \cdot \norm{x} \overset{\forall y \in X}{\df} R_X x \in X' \text{ mit } \norm{R_X x}\leq \norm{x}.
+		\]
+		Setze $y=x$ ein: $|\f{x}{R_X x}| = |(x,x)| = \norm{x}^2 \overset{Def.~Op.Norm}{\Longrightarrow} \norm{R_X x}\geq\norm{x} \df \norm{R_X x}=\norm{x}$.\\
+		\item $R_X (x+y) ) = R_X x+ R_X y$ klar. Sei $\alpha \in \C$. Dann gilt:
+		\[
+		\f{y}{R_X \alpha x}=(y, \alpha x) = \overline{\alpha}(y,x)=\overline{\alpha}\f{y}{R_X x} \df R_X \alpha x = \overline{\alpha} R_X x.
+		\]
+		\end{itemize}
+		\item $R_X$ ist surjektiv.
+		\begin{itemize}[]
+		\item Sei $ x' \in X'$. Falls $x'=0$, dann wähle $x=0$ und es gilt $R_X 0=0.$ \\
+		Angenommen $x' \neq 0 \df Ker x' \neq X.$ Weil $X$ Hilbertraum ist, gilt:
+		\[
+		X= Ker x' \oplus (Ker x')^{\perp} \df ~\exists z \neq 0, z \in (Ker x')^{\perp}.
+		\]
+		Ansatz: $x' = (\cdot, cz)$ mit $c \in \C$ (OBdA ist $X$ ein $\C-HR$), also $\f{y}{x'}=(y,cz) ~\forall y \in X$.\\
+		Für $y=z: \f{z}{x'}=(z,zc) \df \overline{c}=\dfrac{\f{z}{x'}}{(z,z)} \df c= \dfrac{\overline{\f{z}{x'}}}{(z,z)}$.
+		\item Beh.: $\forall y \in X: \f{y}{x'}\overset{!}{=}(y,cz)$
+		\begin{align*}
+		\f{y}{x'}=\overline{c}(y,z)=\frac{\f{z}{x'}}{(z,z)}(y,z) &\Leftrightarrow \f{y}{x'}(z,z)=\f{z}{x'}(y,z) \\
+		&\Leftrightarrow (\f{y}{x'}z - \f{z}{x'}y, z)=0 \\
+		&\Leftrightarrow \f{y}{x'}z - \f{z}{x'}y \perp z
+		\end{align*}
+		Da $z \in (Ker x')^{\perp}$ verbleibt zu Zeigen, dass $\f{y}{x'}z - \f{z}{x'}y \in Ker x'$:
+		\[
+		0=\f{y}{x'} \f{z}{x'} - \f{z}{x'} \f{y}{x'} = \f{\f{y}{x'}z - \f{z}{x'}y}{x'}.
+		\]
+		Wir haben für $x'\in X'$ also ein $x\in X x=cz$ konstruiert, sodass $x'=\underbrace{(\cdot,x)}_{R_X x}$. Daraus folgt die Surjektivität.
+		\end{itemize}
+		\end{enumerate}
+	\end{proof}	
+
+	\begin{cor*}
+		Beschränkte lineare Abbildung $L^2(\Omega, \mu) \to \K)$. Dann wird diese beschrieben durch ein Element aus $L^2(\Omega, \mu) \to \K)$.
+	\end{cor*}
+
+	\begin{thm}
+		$X$ Hilbertraum $\df$ $X$ relfexiv ($J_X X = X''$)
+	\end{thm}
+
+	\begin{hinweise}
+		Zu zeigen: $J_x$ surjektiv.
+		\begin{enumerate}[(i)]
+			\item Z.z.: $X'$ Hilbertraum. Nutze bijektivität von $R_x$ und Isometrie.\\ 
+			Wende dann als nächstes Satz 5.11 zweimal an, das liefert einen Kanditaten für $x$ und $x''$.
+			Dann bleibt zu zeigen, dass $J_x x = x''$ erfüllt.
+			Dies sind zwei Funktionale und ihre Gleichheit zeigt man durch nachrechnen, dass sie punktweise gleich sind.
+		\end{enumerate}
+	\end{hinweise}
+
+	\begin{proof}z.Z.: $J_X$ ist surjektiv.
+		\begin{enumerate}[1)]
+			\item $X'$ ist Hilbertraum.\\
+			Seien $x',y' \in X'$. Definiere $(x',y')_X':=(R^{-1}_X y', R^{-1}_X x')$. \\
+			$(\cdot,\cdot)_X'$ ist Skalarprodukt (folgt aus den Eigenschaften von $R_X$) mit $(x',x')_X' = \norm{R^{-1}_X x'}^2 = \norm{x}^2$.
+			\item Sei $x'' \in X''$. Gesucht ist $x \in X: J_X x= x''$. Wende Satz 3.11. auf HR $X'$ folgendermaßen an:\\
+			Sei $x':= R^{-1}_{X'} x''$. Wende Satz 3.11. nun auf $X$ an:
+			$x:= R^{-1}_X x' \in X$.\\
+			\begin{align*}
+				\forall y' \in X': \f{y'}{x''}&=(y',x')_X' \overset{Def. (\cdot, \cdot)_X'}{=}(R^{-1}_X x', R^{-1}_X y')_X \\
+				&= \f{\underbrace{R^{-1}_X x'}_{=x}}{y'}= \f{x}{y'} \overset{Def. J_X}{=}\f{y'}{J_X x} 
+			\end{align*}
+			$\df x''=J_X x$
+		\end{enumerate}
+		
+	\end{proof}
+
+	\begin{definition}
+		$X$ normierter $\K-VR$, $M \subset X$, $N \subset X'$. Dann heißt 
+			$$ M^\perp := \set{x' \in X' : \fop{x,x'} = 0 \; \forall x\in M}$$
+			Orthogonalraum von M.
+			$$ N_\perp := \set{ x\in X : \fop{x,x'} = 0 \; \forall x' \in N}$$
+			Orthogonalraum von N. \\
+			Klar: $M^\perp \subset X', N_\perp \subset X$.
+	\end{definition}
+
+	\begin{lemma}
+		$X$ normierter Raum. $M\subset X$, $N \subset X'$. Dann
+				\begin{enumerate}[(i)]
+					\item $M^\perp \subset X'$ abgeschlossen UVR.
+					\item $N_\perp \subset X$ abgeschlossen UVR.
+					\item $M \subset (M^\perp)_\perp$
+					\item $N_\perp \subset N^\perp$, wobei : $N_\perp \subset X, N^\perp \subset X''$ als UVRe von $X''$ aufgefasst werden.
+				\end{enumerate}
+	\end{lemma}
+
+	\begin{hinweise}
+			\begin{enumerate}[(i)]
+				\item Folge nehmen und sehen das sie in der Menge bleibt.
+				\item Schnitt über die Kerne, die als abgeschlossenen Mengen abgeschlossen bleiben.
+				\item Mengeinklusion
+				\item Mengeninklusion
+			\end{enumerate}
+	\end{hinweise}
+
+	\begin{proof}
+		TODO
+	\end{proof}
+
+	ÜA: $X$ normierter Raum, $x_0 \not\in \overline{E}$, $E\subset X$ UVR. Dann existiert $x' \in X'$ mit  $Kern x' \subset \overline{E}$ und $\fop{x_0, x'} \neq 0.$
+
+	\begin{thm} $X$ normierter Raum, $M \subset X$ UVR. Dann gilt 
+		$$\overline{E} = (E^\perp)_\perp $$
+	\end{thm}
+
+	\begin{hinweise}
+		Mengeninklusion in beide Richtung. Die eine mit Lemma 3.14 (iii), die andere braucht die ÜA. 
+	\end{hinweise}
+
+	\begin{proof}
+		TODO
+	\end{proof}
+
+	\begin{cor} 
+		$X$ normierter Raum, $E\subset X$ UVR. Dann gilt $E$ abgeschlossen $\aq$	$ E = (E^\perp)_\perp)$
+	\end{cor}
+
+	\begin{thm}[Übung]
+		$X$ normierter Raum. $M \subset X$ abgeschlossen UVR. Dann 
+					\begin{enumerate}[(i)]
+						\item $X' / M^\perp$ ist normisomorph zu $M'$.
+						\item $(X / M)'$ ist normisomorph zu $M^\perp$.
+					\end{enumerate}
+	\end{thm}
+
+	\begin{thm}
+		$X$ reflexiv normierter Raum. Dann
+					\begin{enumerate}[(i)]
+						\item $X$ Banachraum
+						\item $X'$ reflexiv.
+					\end{enumerate}
+
+	\end{thm}
+
+	\begin{hinweise}
+		\begin{enumerate}[(i)]
+			\item Folgt aus Satz 1.12.
+			\item Betrachte kanonische Injektion und zeige dann die Surjektivität.
+		\end{enumerate}
+\end{hinweise}
+
+	\begin{proof}
+		TODO
+	\end{proof}
+
+	\begin{thm}
+		$X$ Banachraum. Dann gilt 
+			$$ X \text{ reflexiv } \aq X' \text{ reflexiv }.$$
+	\end{thm}
+
+	\begin{hinweise}
+	$\df$ Satz 3.18\\
+	$\Leftarrow$ nerviger Beweis.
+	\end{hinweise}
+
+	\begin{proof}
+		TODO
+	\end{proof}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+	\section{Duale und adjungierte Abbildungen}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\footnotesize
+In diesem Abschnitt wird die duale Abbildung definiert. Wann ist dieser stetig? 
+Was wissen über sein Kern und sein Bild? 
+Wie hängen Injektivität und Surjektivität vom Operator und seinem Dualen zusammen. Was ist mit dem Dualen des Dualen?
+Welche Rechenregeln gelten ? Folgt aus der Bijektivität eines Operatoren die Bijektivität seines Dualen und umgekehrt? \\
+Wenn wir sogar einen Hilbertraum haben, können wir (noch stärker) einen adjungiert Operator einführen und diesen mit Hilfe der Riesz-Einbettung eindeutig charakterisieren.
+Auch für den adjungierten Operatoren werden einige Rechenregel gezeigt.
+Welche Gleichheiten gelten für Bild und Kern von Operatoren und seinem Adjungierten?
+\normalsize
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+	\begin{definition}
+	$X,Y$ normierte Räume, $T\in \BS$. Die Abb $T' : Y' \to X'$ mit 
+		$$\fop{x',T' y'} = \fop{Tx, y'} \; \forall y'\in Y', x \in X.$$
+		heißt der zu $T$ duale Operator.\\
+		Einfach zu sehen: $T'$ ist eine linearer Operator, weil TODO.
+	\end{definition}
+
+	\begin{thm}
+		$X, Y$ normierter Räume, $T\in \BS$. Dann gilt 
+			\begin{enumerate}[(i)]
+				\item $T' \in \B(Y', X')$ mit $\norm{T'} = \norm{T}$
+				\item $Ker\: T' = \set{0} \aq \overline{Im\: T} = Y$
+			\end{enumerate}
+	\end{thm}
+
+	\begin{hinweise}
+		\begin{enumerate}[(i)]
+			\item Abschätzung in beide Richtung.
+			\item Injektivität vom dualen Operatoren voraussetzen; ein Funktional das alle Elemente von x null, ist es das Nullfunktional. Angenommen das Bild ist nicht abgeschlossen, dass muss es ein Element geben, dass ungleich null ist. Widerspruch. \\
+			Andere Richtung, irgendetwas mit Stetigkeit und Dichtheit vom Bild.
+		\end{enumerate}
+	\end{hinweise}
+
+	\begin{proof}
+		TODO
+	\end{proof}
+
+	\begin{cor}
+		$X$ Banachraum, $Y$ normierter Raum. $T\in \BS$, so dass ein $m > 0$ existiert mit 
+			$$m \norm{x} \leq \norm{Tx} \; \forall x \in X$$. ($T$ injektiv und hat abgeschlossenes Bild)
+			Dann sind äquivalent 
+						\begin{enumerate}[(i)]
+							\item T surjekiv
+							\item T' injekitv
+						\end{enumerate}
+	\end{cor}
+
+	\begin{hinweise}
+		$T'$ injektiv gilt genau dann wenn der Abschluss vom Bild Y ist und dies gilt wegen der geforderten Ungleichung genau dann wenn, bereits nur das Bild gleich Y.
+	\end{hinweise}
+
+	\begin{proof}
+		TODO
+	\end{proof}
+
+	\begin{thm}
+		$X, Y$ normierter Räume, $T\in \BS$. Dann
+				\begin{enumerate}[(i)]
+					\item $T'' \in \B(X'',Y'')$ und $T = T''|_{imJ_X}$ (genauer: $T''J_X = J_Y T$). Insbesondere $T'' = T$, wenn $X$ reflexiv ist.
+					\item $S\in \BS$, $\alpha, \beta \in \K \df (\alpha S + \beta T)' = \alpha S' + \beta T'$
+					\item $S\in \B(Y,Z) \df (ST)' = T' S'$
+				\end{enumerate}
+	\end{thm}
+
+	\begin{proof}
+		\todor
+	\end{proof}
+
+	Notiz:  hier Motivation für folgendes Korollar mündlich.
+	\begin{cor}
+		$X, Y$ Banachräume, $T\in \BS$. Dann gilt 
+			$$ (\inv{T} \in \B(Y,X) \aq \; ) T \text{ bijektiv } \quad \aq 
+				\quad T' \text{ bijektiv } (\aq \inv{(T')} \in \B(X',Y'))$$
+	\end{cor}
+
+	\begin{proof}
+		TODO
+	\end{proof}
+	
+	Jetzt Fokus auf den Hilbertraum. Grob ist der Hilbertraum sein eigener Dualraum. 
+	\begin{definition}
+		$(X, \SP_X), (Y, \SP_Y)$ Skalarprodukträume. 
+		$T\in \BS$. Ein Operator $T^*\in \B(Y,X)$ heißt zu $T$ adjungierter Operator, wenn 
+			$$ (Tx,y)_Y = (x,T^* y)_X \quad \forall x\in X, y\in Y.$$
+	\end{definition}
+
+	\begin{bsp}
+	 $\K^n, \K^m$ mit euklidschem Skalarprodukt. $A\in \K^{n\times m} = \B(\K^m, \K^n)$
+	 $\df A^* = \ov{A}^T$
+	\end{bsp}
+	
+	\begin{thm}
+		$(X,\SP_X)$ Hilbertraum, $(Y,\SP)$ Skalarproduktraum. Dann existiert ein eindeutiges $T^* \in \B(Y,X)$. Für die Riesz-Einbettung $R_X : X\to X'$, $R_Y : Y \to Y'$ gilt
+			$$ T^* = \inv{R_x} T' R_Y.$$
+	\end{thm}
+Im folgenden Satz sind die Voraussetzungen zum Teil etwas stärker als sie seien müssten.
+	\begin{thm}
+		$X,Y,Z$ Hilberträume, $S,T \in \BS, U \in \B(Y,Z)$ und $\alpha \in \K$. Dann gilt
+			\begin{enumerate}[(i)]
+				\item $(S+T)^* = S^* + T^*$, da $(S+T)^* = \inv{R_X}(S+T)' R_Y = \inv{R_X}S' R_Y + \inv{R_X}T' R_Y = S^* + T^*$.
+				\item $(UT)^* = T^* U^*$, da $(UT)^* = \inv{R_Y}(UT)' R_Z = \inv{R_X}T'R_Y \inv{R_Y} U' R_Z = T^* U^*$
+				\item $(\alpha T)^* = \ov{\alpha} T^*$, da $(\alpha T)^* = \inv{R_X} (\alpha T)' R_Y = \inv{R_X} \alpha T' R_Y = \ov{\alpha} \inv{R_X} T' R_Y = \alpha T^*$
+				\item $(id_X)^* = id_X$, da TODO
+				\item $T^{**} = T$, da TODO
+				\item $\norm{T^*} = \norm{T}$, da TODO
+				\item Existiert $\inv{T}$, dann auch $\inv{(T^*)}$, und es gilt $\inv{(T^*)} = (\inv{T})^*$ (Folgt aus Kor. 3.24)
+			\end{enumerate}
+	\end{thm}
+
+	\begin{thm}
+		$X,Y$ Hilberträume, $A\in \BS$. Dann gilt
+			\begin{enumerate}[(i)]
+				\item $(imA)^\perp = Ker A^*$
+				\item $(imA^*)^\perp = Ker A$
+				\item $\ov{imA} = (KerA^*)^\perp$
+				\item $\ov{imA^*} = (KerA)^\perp$
+			\end{enumerate}
+	\end{thm}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+	\section{Schwache Konvergenz}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+	\begin{definition}
+		$X$ normierter Raum. 
+		Eine Folge $(x_n)$ in $X$ heißt 
+			\begin{enumerate}[a)]
+				\item \textit{schwache Cauchy-Folge}, wenn 
+					$$ \fop{x_n,x'} CF \text{ ist }  \forall x' \in X$$
+				\item \textit{schwach konvergent} gegen $x\in X$, wenn
+					$$ \fop{x_n, x'} \to \fop{x,x'} \quad \forall x' \in X'$$
+					$$(\text{schreibe } x_n \longrightarrow x )$$
+			\end{enumerate}
+		Eine Folge $(x_n')$ in $X'$ heißt
+			\begin{enumerate}[a)]
+				\item \textit{schwach$^*$ Cauchy-Folge}, wenn 
+					$$ \fop{x,x_n'} \text{ CF ist } \quad \forall x\in X$$
+				\item \textit{schwach$^*$ konvergent} gege $x' \in X'$, wenn
+					$$ \fop{x,x_n'} \to \fop{x,x'} \quad \forall x\in X $$
+					$$(\text{schreibe } x_n' \overset{*}{\longrightarrow} x')$$
+			\end{enumerate}
+			Eine Menge $M\subset X$ $(M \subset X')$ heißt \textit{schwach (schwach$^*$) Folgenkompakt}, wenn jede Folge in $M$ eine schwach (schwach$^*$) konvergente Teilfolge besitzt, deren schwacher (schwacher $^*$) Grenzwert in $M$ liegt.
+		
+
+	\end{definition}
+	\begin{bem}
+		\begin{enumerate}[a)]
+			\item  $x_n \longrightarrow x \df J_x x_n \overset{*}{\longrightarrow} J_x x_n$, da $\fop{x_n, x'} = \fop{x', J_x x_n}$
+			\item Wenn $(x_n)$ schwach konvergiert, dann ist der schwache Limes eindeutig. $x_n \to x, x_n \wkc y$ $\fop{x,x'} =\limes \fop{x_n,x'} = \fop{y, x'} \; \forall x' \in X'$ 
+				$\df 0 = \fop{x-y,x'} \; \forall x' \in X' \df[Kor3.4] x-y = 0 \df x = y$
+			\item $x_n' \wskc x'$, dann $(\norm{x_n'})$ beschränkt und $\norm{x'} \limesinf \norm{x_n'}$ (Banach-Steinhaus)
+			\item $x_n \to x$, dann $(\norm{x_n})$ beschränkt und $\norm{x} \leq \limesinf \norm{x_n}$(gilt wegen a) und c))
+			\item $x_n \to x \df x_n \wkc x$\\
+			$x_n' \to x' \df x_n' \wskc x'$
+			\item Umkehrung in e) gilt i.A nicht: z.B. betrachte $e_n = (\delta_{in})_{n\in \N} \in \ell^2$. Dann gilt für $x' \in \ell^2{'}: x = \inv{R_{\ell^2}} x' = (x_i)_{i\in\N}\in \ell^2$.
+			$\limes \fop{e_n, x'} = \limes (e_n,x) = \limes \ov{x} = 0$ $\df e_n \wkc 0$
+			\item $x_n \to x, x_n' \wskc x'$ $df \fop{x_n,x_n'} \to \fop{x,x'}$, weil $|\fop{x_n,x_n'} - \fop{x,x'}| \leq |\fop{x,x' - x_n'}| + \norm{x_n} \cdot \norm{x_n'} \to 0$
+			\item $x_n \wkc x, x_n' \to x'$ $\df$ $\fop{x_n,x_n'} \to \fop{x,x'}$ wie in g).
+			\item Aus $x_n \wkc x$, $x_n' \wskc x'$ folgt i.A. \underline{nicht} $\fop{x_n,x_n'} \to \fop{x,x'}$. \\
+			Bsp. $x_n = e_n \in \ell^2, x_n' = R_{\ell^2} e_n$ $\df$ $x_n \wkc 0, x_n' \wskc 0$, aber $\fop{x_n,x_n'} = 1 \; \forall \in \N.$
+			\item $\dim X < \infty \df  (x_n \wkc \aq x_n \to x) \& (x_n' \wskc x \aq x_n' \wkc x')$
+			\item $X$ reflexiv, dann $x_n' \wkc x \aq x_n' \wskc x'$ ($"' \df "'$ gilt auch ohne Reflexivität)
+		\end{enumerate}
+	\end{bem}
+GANZ viel zu Beispielen in lp Räumen.
+	\begin{thm}[Satz von Banach-Alaoglu]
+		$X$ separabler Banachraum. Dann gilt $\ov{U_1^{x'}(0)} = \set{x' \in X' : \norm{x'} \leq 1 }$ ist schwach$^*$ folgenkompakt.	
+	\end{thm}
+
+	%\begin{hinweise}
+		%Nehme solange Teilfolgen bis man nicht mehr weiß was die Folge eigentlich ist. Und dann mit Banach-Steinhaus argumentieren: Fertig.	
+	%\end{hinweise}
+
+	\begin{proof}
+		\todor
+	\end{proof}
+
+	\begin{lemma}
+		$X$ normierter Raum. Dann 
+			$$ X \text{ reflexiv } \aq \text{ Jeder abgeschlossen UVR von } X \text{ ist reflexiv}.$$
+	\end{lemma}
+
+	\begin{hinweise}
+%		Von rechts nach links.  klaro\\
+%		Von links nach rechts: Nehme abgeschlossene UR. Dies ist ein Banachraum. Dann nehme eine x', das definiert ein y'' aus dem Bidualraum. Dann finde ein x 
+	\end{hinweise}
+
+	\begin{thm}
+		$X$ reflexiv. Dann ist $\ov{\EK} \subset X$ schwach folgenkompakt.
+	\end{thm}
+	
+	\begin{proof}
+		\todor	
+	\end{proof}
+
+	\begin{cor}
+		$X$ Hilbertraum. Dann ist $\ov{\EK} \subset X$ schwach folgenkompakt.
+	\end{cor}
+
+	\begin{cor}
+		$X$ reflexiv, $(x_n)$ beschränkte Folge. Dann existiert schwach konvergente Teilfolge.
+	\end{cor}
+
+	\begin{cor}
+		$X$ separabel, $(x_n')$ beschränkte Folge in $X'$. Dann existiert schwach$^*$ konvergente Teilfolge.
+	\end{cor}
+
+	Nun: Charakterisierung schwacher Abgeschlossenheit.
+	
+	\begin{thm}[Trennungssatz]
+		$X$ normierter Raum, $M \subset X$ nichtleer, abgeschlossen und konvex. Sei $x_0 \in X\backslash M$. Dann existiert $x' \in X'$, $\alpha\in \R$ mit
+			$$Re\fop{x,x'} \leq \alpha < Re\fop{x_0, x'} \quad \forall x\in M$$
+	\end{thm}
+	\begin{proof}
+		\todor	
+	\end{proof}
+
+	\begin{cor}
+		$X$ normierter Raum, $M\subset X$. Konvex, abgeschlossen, dann ist $M$ schwach folgenabgeschlossen, d.h. $(x_n)$ Folge in $M$, $x_n \wkc x \df x \in M$.
+	\end{cor}
+
+	\begin{definition}
+		$X$ Vektorraum, $M \subset X$. Die \textit{konvexe Menge} von $M$ ist. 
+			$$conv(M) = \bigcap_{\overset{M \subset C \subset X}{C \text{ konvex}}} C$$ 
+			Leicht zu zeigen: \todog[Leicht zu zeigen]
+	\end{definition}
+
+	Klar: $M$ konvex $\df$ $\ov{M}$ konvex. \todog[Klar]
+
+	\begin{thm}[Lemma von Maza]
+		$X$ normierter Raum. $(x_n)$ Folge in X mit $x_n \wkc x$. Dann gilt 
+				$$ x\in \ov{conv\set{x_k: k\in\N}} =: M$$
+	\end{thm}
+
+	\begin{proof}
+		\todor
+	\end{proof}
+
+	\begin{thm}
+		$X$ reflexiv, $M\subset X$ nichtleere, konvex, abgeschlossen. $x_0 \in X$ beliebig. Dann existiert ein $x\in M$ mit  
+		$$ \norm{x - x_0} = dist(x_0,M)$$
+	\end{thm}
+
+	\begin{proof}
+		\todor	
+	\end{proof}

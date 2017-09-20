@@ -1,0 +1,208 @@
+	\chapter{Kompakte Operatoren und Spektraltheorie}
+	\section{Kompakte Operatoren}
+
+	\begin{definition}
+		$X,Y$ normierte Räume. $T: X\to Y$ linearer Operatoren. $T$ heißt \textit{kompakt}, wenn 
+		$\ov{T U_1(0)}$ kompakt. 
+			$$ K(X,Y) := \set{T: X\to Y, T \text{ kompakt }}, \quad K(X) = K(X,X)$$
+	\end{definition}
+
+	\begin{bem}
+		\begin{enumerate}[a)]
+			\item $K(X,Y) \subset \BS$
+			\item Äquivalent sind für $T: X\to Y$
+				\begin{enumerate}[(i)]
+					\item $T\in K(X,Y)$
+					\item $M \subset X$ beschränkt $\df$ $T(M)$ präkompakt
+					\item $TU_1(0)$ präkompakt
+					\item $(x_n)$ beschränkt Folge $\df$ $(Tx_n)$ hat konvergente Teilfolge.
+				\end{enumerate}
+			\item $id \in K(x) \aq \dim X < \infty$ (Lema von Riesz)
+		\end{enumerate}
+	\end{bem}
+	
+	\begin{bsp}
+		$X: C([0,1])$ mit $\norm{\cdot}_\infty$. 
+			$$(Tf)(t) = \int_0^t f(\tau)d\tau \df T\in \B(C([0,1]))$$
+		Für $f\in C([0,1])$, $\norm{f}_\infty \leq 1$, $t_1,t_2 \in [0,1]$ gilt 
+			$$|(Tf)(t_1) - (Tf)(t_2)| =|\int_{t_1}^{t_2} f(\tau) d\tau| \leq |t_2 - t_1|$$
+		$\df \set{Tf: \norm{f}_\infty \leq 1}$ ist gleichgeradig stetig. $\df[Arz. Arc]$ präkompakt.
+		$\df$ kompakt.
+	\end{bsp}
+
+	\begin{thm}
+		\begin{enumerate}[a)]
+			\item $K(X,Y)$ abgeschlossener UVR von $\B(X,Y)$.
+			\item $T\in K(X,Y)$ ist vollstetig. D.h. $x_n \wkc x \df Tx_n \to Tx$
+			\item $X$ reflexiv, $T: X \to Y$ vollstetig $\df$ $T\in K(X,Y)$
+			\item $T\in \BS$ mit $rang T < \infty$, dann $T\in K(X,Y)$ (rangT = dim im T)
+			\item $Y$ Hilbertraum, $T\in \BS$. Dann $T\in K(X,Y) \aq \exists (T_n) in \BS$, so dass 
+			$rang T_n < \infty$ $\forall n\in \N$ und $\norm{T - T_n} \to 0$
+			\item $p \in \BS$. Projektor (d.h. $P^2 = P$). Dann $P\in K(X) \aq rang P < \infty$.
+			\item $T\in K(X,Y)$, $U\in \B(Y,Z)$, $S \in\B(V,X) \df UTS \in K(V,Z)$
+		\end{enumerate}
+	\end{thm}
+	\begin{proof}
+		\todor
+	\end{proof}
+
+	\begin{thm}[Satz von Schauder]
+		$X,Y$ normierte Räume
+			\begin{enumerate}[a)]
+				\item $T\in K(X,Y) \df T' \in K(Y',X')$
+				\item $T' \in K(Y',X')$, $Y$ vollständig $\df$ $T$ kompakt
+			\end{enumerate}
+	\end{thm}
+
+	\begin{proof}
+		\todor	
+	\end{proof}
+
+	\begin{definition}[Fredholm-Operator] 	
+		$A\in \BS$ heißt \emph{Fredholm-Operator}, falls 
+			\begin{enumerate}[a)]
+				\item $\dim(ker A) < \infty$
+				\item $im(A)$ abgeschlossen
+				\item $\codim(im A) < \infty$ ($V\subset X$ UVR, $\codim V := \dim X/V)$
+			\end{enumerate}
+		\emph{Fredholmindex}: $\ind(A) := \dim Ker A - \codim im A$
+	\end{definition}
+
+	\begin{thm}
+		$T\in K(X)$. Dann ist $A := I - T$ ein Fredholm-Operator mit $\ind(A) = 0$.
+	\end{thm}
+
+	\begin{proof}
+		\todor	
+	\end{proof}
+
+	\begin{bem}
+		$X$ normierter Raum, $\dim X = \infty$, $T\in K(X)$. Dann folgt
+			$T$ hat keine beschränkte Inverse. \todor[Beweis Übung]
+	\end{bem}
+
+	\begin{bem*}
+		$$T:C([0,1]) \to C([0,1]),\; f\mapsto (t\mapsto \int_0^t f(\tau) d\tau)$$
+		$(\lambda I - T)f = 0 \df \lambda f(t) = \int_0^t f(\tau) d\tau$, $\lambda = 0 \df f=0$; \{$\lambda \neq 0, f(0) = 0$ und $f'(t) = \frac{1}{\lambda}\}$ $\df f = 0$.
+	\end{bem*}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%	
+	\section{Das Spektrum von beschränkten Operatoren}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%	
+
+	\begin{definition}
+		$T\in \BS[X]$ \todor[lange Definition, Resolventenmenge, etc]
+	\end{definition}
+
+	\begin{thm}
+		$T\in \BS[X]$, $X$ Banachraum. Dann ist $\rho(T)$ offen und die "'Resolventenfunktion"' 
+			$ R(\lambda, T) := \inv{(\lambda I - T)} : \rho(T) \to \BS[X] $ 
+		ist komplex-analytisch (d.h. in Potenzreihe entwickelbar).
+	\end{thm}
+
+	\begin{proof}
+		\todor	
+	\end{proof}
+
+	
+	\begin{thm}
+		$X \neq \set{0}$ Banachraum, $T \in \BS[X]$. \\
+		$\sigma(T)$ ist kompakt und nichtleer mit "'Spektralradius"':	
+					$\disp \sup |\sigma(T)| = \lim_{m\to \infty} \norm{T^m}^{\frac{1}{m}} \leq \norm{T}$.
+	\end{thm}
+		
+	\begin{proof}
+		\todor	
+	\end{proof}
+
+	\begin{bem}
+			\begin{enumerate}[a)]
+				\item $T\in K(X)$, $\lambda \in \sigma(T)\backslash\set{0}$ $\df \lambda \in \sigma_p (T)$. Folgt, da $\lambda I - T = \lambda(I-\frac{T}{\lambda}$
+				\item $T\in K(X)$, $\dim X = \infty$ $\df 0 \in \sigma(T)$ (Bem. 5.8)	
+				\item $\dim X < \infty \df \sigma(T) = \sigma_p (T)$
+				\item Bsp.: Betrachte $T\in \BS[\sigma([0,1])(Tf)(x) = xf(x)$, $\sigma(T) = [0,1] = \sigma_r(T)$ \todoo[So sinnvoll?]
+				\item $T\in L^p([0,1]), (Tf)(x) = xf(x)$ f.ü. $p < \infty$. $\sigma(T) = [0,1] = \sigma_c(T)$
+				\item $L\in \BS[\ell^2]$ Linksshift. $\sigma(T) = \ov{\EK}$
+					$\sigma_p(T) = \EK$; $\sigma_c(T) = \partial \EK $
+				\item $R = L^* \in \BS[\ell^2]$ Rechtsshift. $\sigma(T) = \ov{\EK}$, $\sigma_r(T) = \EK$, $\sigma_c(T) = \partial \EK$.
+			\end{enumerate}
+	\end{bem}					
+
+
+	\begin{thm}[Spektralsatz für kompakte Operatoren]
+		$X$ Banachraum, $T\in K(X)$. Dann gilt
+			\begin{enumerate}[a)]
+				\item $\sigma(T)\backslash\set{0}$ aus höchstens abzählbar vielen Eigenwerten mit $0$ als einzig möglichen Häufungspunkt. Wenn $\sigma(T)$ unendlich, dann ist $0\in\sigma(T)$.
+				\item Für $\lambda \in \sigma(T)\backslash\set{0}$ ist 
+					$1\leq n_\lambda := \max\set{n\in \N: ker(\lambda I - T)^{n-1} \neq ker(\lambda I-T)^n} < \infty$
+					\item \enquote{Riesz-Zerlegung}. Für $\lambda \in \sigma(T)\backslash\set{0}$ gilt 
+					$X = ker(\lambda I - T)^{n_\lambda} \oplus im(\lambda I - T)^{n_\lambda}$, 
+					 \todo[inline]{richtig mit $n_\lambda$?}
+	 				\item $\lambda \in \sigma(T)\backslash \set{0} \df \sigma(T| _{im(\lambda I - T)^{n_\lambda}}) = \sigma(T)\backslash \set{\lambda}$
+					\item Ist $E_\lambda \in \BS[X]$ Projektor mit $ker E_\lambda = im(\lambda I - T)^{n_\lambda}$, $im E_\lambda = ker(\lambda I - T)^{n_\lambda}$, so gilt $E_{\lambda} E_{\mu} = \delta_{\lambda \mu} E_\lambda $
+			\end{enumerate}
+	\end{thm}
+	
+	Was fehlt hier denn bloß???? \todor[Es fehlen 14-17]
+	\setcounter{thm}{17}
+	\begin{cor}[Fredholm Alternative]
+		$T\in K(X)$, $\lambda \neq 0$. Dann gilt: 
+			\begin{itemize}[]
+				\item Entweder ist die Gleichung $Tx - \lambda x = y$ nach $x$ eindeutig lösbar $\forall y\in X$
+				\item oder $Tx - \lambda x = 0$ hat nicht-triviale Lösungen.
+			\end{itemize}
+	\end{cor}
+	
+	\begin{bem}[Beispiel]
+		Operatoren ohne Eigenwerte: $T\in K(C[0,1])$, wie in Bsp. 5.3.
+			$$ (Tf)(t) = \int_0^t f(\tau)d\tau$$
+	\end{bem}
+
+	%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+	\section{Kompakte normale/selbstadjungierte Operatoren}
+	%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+	Sei $X$ von nun an ein Hilbertraum und meistens $\K = \C$
+
+	\begin{definition}[selbstadjungiert, normal]
+		$A \in \BS[X]$. Dann heißt $A$ 
+			\begin{enumerate}[a)]
+				\item selbstadjungiert, wenn $A = A^*$
+				\item normal, falls $A^* A = A A^* \aq[UE10] \norm{Ax} = \norm{A^* x} \; \forall x \in X$ 
+			\end{enumerate}
+	\end{definition}
+	
+	\begin{lemma}
+		$X \neq \set{0}$ $\C$-HR, $T\in \BS[X]$ normal. Dann ist $\sup|\sigma(T)| = \norm{T}$.
+	\end{lemma}
+
+	\begin{proof}
+		\todor	
+	\end{proof}
+
+		
+	\begin{thm}[Spektralsatz für kompakte und normale Operatoren]
+		$X$ $\C$-HR, $T\in K(X)\backslash\set{0}$ normal. Dann gilt:
+			\begin{enumerate}[a)]
+				\item $\exists N\subset \N$, ONS $\ff{e}{n}{\N} \in X$, $\ff{\lambda}{n}{\N}\in \C\backslash\set{0},$ s.d. 
+				$$ T e_k = \lambda_k e_k \quad \forall k\in N, \quad \sigma(T)\backslash\set{0} = \set{\lambda_k: k \in N}$$
+				Ist $N = \N$, so gilt $\disp \limes \lambda_n = 0$
+				\item $n_{\lambda_k} = 1 \quad \forall k\in\N$
+				\item $X = ker T \perp span\set{e_n : n\in N}$
+				\item $Tx = \sum_{k\in N} \lambda_k \Sp{x,e_k} e_k \quad \forall x \in X$
+			\end{enumerate}
+	\end{thm}
+	
+	\begin{proof}
+		\todor	
+	\end{proof}
+
+	\begin{bem}
+	  $X$ $\C$-HR, $T\in\BS[X]$	
+			\begin{enumerate}[a)]
+				\item  \todor[Bemerkung]
+			\end{enumerate}
+	\end{bem}
+	
+	\begin{proof}
+		\todor	
+	\end{proof}

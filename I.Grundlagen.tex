@@ -1,0 +1,1276 @@
+\chapter{Arbeit im Gange - Grundlagen}
+\section{Normierte Räume}
+{
+\footnotesize
+Was macht man in der Funktionalanalysis? man definiert sich einen vernünfitgen Abstandsbegriff: z.B. den Begriff der \glslink{metrischer Raum}{Metrik} auf (zunächst einmal) einer beliebigen Mengen $E$. Damit hat man einen \glslink{metrischer Raum}{metrischen Raum} geschaffen.
+}
+
+\paragraph{Arsenal an Begriffen}
+Der nötige Apparat für die Entwicklung der Funktionanalysis ist nicht groß,
+er besteht im wesentlichen aus den Begriffen \gls{metrischer Raum},
+\glslink{topologisch}{Topologie}, \gls{Konvergenz}, \glslink{CF}{Cauchy-Folge} und \glslink{stetig}{Stetigkeit}.\par
+Einige weitere Begriffe sind in \ref{bem:1.28} und \ref{bem:1.30} festgehalten.
+
+%Definition der Seminorm
+\begin{definition}[Halbnorm, Seminorm]
+\label{Halbnorm}
+	Sei $X$ ein $\K-Vektorraum$, wobei $\K = \R$ oder $\K = \C$. 
+	Für $x,y\in X$, $\lambda \in \K$ ist eine Halbnorm oder Seminorm eine Abbildung
+	$\seminorm{\cdot}:X \rightarrow \R$, die die folgenden Eigenschaften erfüllt:
+
+		\begin{enumerate}[(i)]
+			\item $\seminorm{x}\geq 0$
+			\item $\seminorm{\lambda x} = |\lambda|\cdot \seminorm{x}$
+			\item $\seminorm{x+y} \leq \seminorm{x} + \seminorm{y}$
+		\end{enumerate}
+\end{definition}
+
+Eine Norm efüllt zusätzlich noch die Bedingung, dass sie nur dann verschwindet, wenn das Argument verschwindet.
+
+%Der Kern einer Seminorm bildet einen Unterraum
+\begin{bem}
+\label{KernSeminorm}
+	\begin{enumerate}[(a)]
+		\item $N:=\{x\in X: \seminorm{x}=0\}$ bildet einen Unterraum von $X$.
+		\item $X/N$ ist ein normierter Raum über(?) $\norm{x+N} := \seminorm{x}$
+		\item X ist ein vollständiger seminormierter Raum $\Rightarrow$ $X/N$ ist ein Banachraum 
+	\end{enumerate}
+\end{bem}
+
+%Beispiele wichtiger Vektorräume
+\begin{bsp}[wichtige Vektorräume]
+\label{wichtige Vektorräume}
+	Sei $(\Omega,\hA,\mu)$ ein Maßraum
+		\begin{enumerate}[(a)]
+			\item $p\in[1,\infty)\; \hL^p(\Omega,\mu) = \{f:\Omega \rightarrow \C$ messbar, 
+						$\int_\Omega |f|^p d\mu < \infty \}$ ist ein seminormierter Raum mit 
+						$\seminorm{f}_p := (\int_\Omega |f|^p d\mu )^{\frac{1}{p}}$.\\
+						$L^p(\Omega,\mu)$ ist ein vollständiger normierter Raum ($\nearrow$ Ana III).
+
+			\item $\hL^\infty(\Omega,\mu) := \{f:\Omega \rightarrow \C 
+						\text{ messbar und \glslink{ess beschrk}{essentiell beschränkt} }$ ist ebenfalls seminormiert mit 
+						$\seminorm{f}_\infty := \underset{x\in\Omega}{\ess \sup} |f(x)|$.\\
+						$L^\infty(\Omega,\mu)$ ist ein vollständiger normierter Raum.
+
+			\item $p\in [1,\infty],\, |\cdot|$ sei das Zählmaß auf $\N$ und der Maßraum sei gegeben durch 
+						$(\N, P(\N), |\cdot|)$.\\
+						$\ell^p := \hL^p(\N, |\cdot|)$ heißt Folgenraum und ist ein normierter unendlichdimensionaler Raum.
+
+			\item $\Omega \subseteq \R$ messbar, $\lambda^n$ Lebesgue-Maß auf $\R^n$.
+						$L^p(\Omega) := L^p(\Omega,\lambda^n)$ heißt Lebesgue-Raum.
+
+			\item Sei $(\Omega, \tT)$ ein topologischer Raum. 
+						$BC(\Omega) := \{ f: \Omega \rightarrow \C\;|\;f 
+						\text{ stetig und beschränkt} \}$ versehen mit der Suprenumsnorm ist ein Banachraum.
+	\end{enumerate}
+\end{bsp}
+
+%Trivia Fakten
+	\begin{bem}[diverse Fakten]
+		Seien $p,q,r\in [1,\infty)$
+		\begin{enumerate}[(a)]
+			\item $L^p(\Omega,\mu)$ ist ein Banachraum, $L^2(\Omega,\mu)$ ist ein Hilbertraum mit $(f,g)_2 := \int_\Omega f \overline{g} d\mu$
+			
+			\item Falls $\mu(\Omega) < \infty,\, p\geq r \Rightarrow\; L^p(\Omega,\mu)\subseteq L^r(\Omega,\mu)$
+			
+			\item Wenn $p\geq r\Rightarrow\; L^r(\Omega,\mu)\cap L^\infty(\Omega,\mu)\subseteq L^p(\Omega,\mu)$
+			
+			\item $\frac{1}{p}+\frac{1}{q}=1,\,f\in L^p(\Omega,\mu),\,g\in L^q(\Omega,\mu)\Rightarrow\;fg\in 		 L^1(\Omega,\mu)$ mit $\norm{fg}_1\leq\norm{f}_p\norm{g}_q$ (Hölder-Ungleichung). Dies gilt auch für $p=1, q=\infty$ wobei \underline{hier} $\frac{1}{\infty}:=0$.
+			
+			\item Sei $\Omega\subseteq \R^n$ ein Gebiet. $C^k_0:=\{f:\Omega \rightarrow \C\,|\, \supp f$ kompakt und $f\in C^k(\Omega,\C)\}$ ist dicht in $L^p(\Omega)\;\forall p\in[1,\infty)$. Dies gilt nicht für $p=\infty$, da $f=\textnormal{const}$ oder $f=sign$ sich nicht durch Funktionen aus $C^k_0$ approximieren lassen.
+			
+			\item $BC(\Omega)$ ist abgeschlossen in $L^\infty (\Omega)$, aber nicht in $L^p(\Omega)$ für $p<\infty$, dennoch ist $BC(\Omega)$ in beiden Fällen ein Unterraum.
+		\end{enumerate}
+	\end{bem}
+
+\section{Lineare Operatoren}
+\subsection{Definitionen und grundlegende Eigenschaften}
+%Definition linearer Operator
+	\begin{definition}[linearer Operator]
+	\label{linearer Opererator}
+		Seien $X,Y\; \K-$Vektorräume. Eine Abbildung $T:X\rightarrow Y$ heißt \textit{linearer Operator} wenn 
+		$$T(\lambda x+\mu y) = \lambda T(x) + \mu T(y)\quad \forall \lambda,\mu \in \K,\,x,y\in X$$ 
+		wir schreiben auch $Tx$ statt $T(x)$.\\
+		Wenn $Y=\K$ dann heißt ein linearer Operator $T:X\rightarrow \K$\textit{ Funktional}.\\
+		Wenn $X,Y$ normierte $\K-$Vektorräume sind, heißt ein linearer Operator $T$ \textit{beschränkt}, wenn $T(U_1(0)) \subseteq Y$ beschränkt ist. In Quantoren lautet diese Aussage
+			$$ \exists M \geq 0, \text{ so dass } \forall x\in X :\; \norm{Tx}_Y \leq M \text{ mit } \norm{x}_X < 1$$
+	\end{definition}
+	
+	\begin{bem*} 
+	Die Bilder beschränkter Mengen $M$ unter einem beschränkten linearen Operator $T$ sind beschränkt. Denn existiert ein $R>0$ mit $M \subseteq  U_R(0)$, sodass 
+		$$T(M) \subseteq T(U_R(0))=T(R\cdot U_1(0))=R\cdot T(U_1(0))$$
+		und dies ist beschränkt.
+	\end{bem*}
+
+	\begin{bsp}[Lineare Operator]
+	\label{bsp:Lineare Operator}
+		\begin{enumerate}[a)]
+			\item $X = \K^n$, $Y = \K^m$, $\{T: X\to Y: T \text{ linearer Operator}\} = \K^{m \times n}.$ $T\in\K^{n \times m}$ ist beschränkt. 
+			%(Betrachtung nur für den Fall $\K\in\{\R,\C\}$) 
+			Denn: 
+			$$\norm{T}_\infty = \max_{1\leq i \leq m} \sum^n_{j=1} |t_{ij}| < \infty,\; t_{ij} \text{ sind die Einträge der Matrix }T.$$ Da auf einem endlichdimensionalen Vektorraum alle Normen äquivalent sind, ist $T$ beschränkt.
+			\item $T: \lL{1} \to \K, \; Tf := \intl{f}.$ 
+				Es gilt $|Tf| = |\intl{f}| \leq \intl{|f|} = \norm{f}_1.$
+				Also ist $|Tf| < 1 \; \forall f \in \lL{1}: \norm{f}_1 < 1$ und damit ist $T$ beschränkt.
+		\end{enumerate}
+	\end{bsp}
+
+	\begin{thm}[Charakterisierung der Stetigkeit]
+	\label[thm:Charakterisierung der Stetigkeit]						
+		Seien $X,Y$ normierte Räume, $T: X\to Y$ ein linearer Operator. Dann sind äquivalent:
+			\begin{enumerate}[(i)]
+				\item $T$ beschränkt,
+				\item $T$ ist lipschitz stetig,
+				\item $T$ ist gleichmäßig stetig,
+				\item $T$ ist stetig,
+				\item $T$ stetig in $0$,
+				\item $\exists x \in X: T$ stetig in $x$.
+			\end{enumerate}
+	\end{thm}
+
+	\begin{proof}
+		\begin{itemize}[]
+			\item $"(i) \df (ii)":$ 
+				Sei $M > 0$, so dass $\norm{Tx}_Y \leq M \; \forall x \in U_1(0)$. Es gilt $T0 = 0$.
+				Weiterhin gilt für $x \in X\backslash \{0\}$: 
+				$$\norm{Tx}_Y = \norm{\: 2 \: \norm{x}_X \: T\left(\frac{x}{2 \norm{x}_X}\right)}
+			  =	2 \: \norm{x}_X\norm{T\underbrace{\left(\frac{x}{2 \norm{x}_X}\right)}_{\in \EK}}_Y
+				\leq 2 M \norm{x}_X.$$
+				Also gilt $\norm{Tx}_Y \leq 2M \norm{x}_X \; \forall x \in \norm{x}_X$ 
+				und daraus folgt die Lipschitz Stetigkeit wegen 
+				$$ \norm{Tx_1 - Tx_2} = \norm{ T(x_1 - x_2)} \leq 2 M \norm{x_1 - x_2}_X \; \forall x_1, x_2\in X$$ 
+											
+			\item $"(ii) \df (iii) \df (iv) \df (v) \df (vi)":$ 
+				Der Beweis dieser Implikationskette ist Gegenstand der Grundvorlesungen \footnote{Damit meinen wir stets Sätze, die in Analysis\slash LA I,II oder Höhere Analysis bewiesen wurden.}.
+				
+			\item $"(vi) \df (v)":$ 
+				Sei $x \in X$, so dass $T$ stetig in $x$ ist. Sei $(x_n)$ Nullfolge in $X$
+				$$\df \limes (x + x_n) = x \df \limes T(x+x_n) = Tx 
+				\overset{\text{stetig in 0}}{\df}\limes T x_n = 0 = T\:0$$ 
+
+			\item $"(v) \df (i)":$ Beweis durch Widerspruch:
+				Angenommen $T$ ist unbeschränkt $\df \forall n \in \N \; \exists x_n \in \EK$, so dass
+				$\norm{Tx_n}_Y \geq n$ ($\df x_n \not = 0 \; \forall n\in\N$). 
+				Dann gilt $\frac{x_n}{n} \overset{n\to\infty}{\longrightarrow} 0$,
+				aber $\norm{T\frac{x_n}{n}}_Y = \frac{1}{n} \norm{T x_n}_Y \geq \frac{1}{n} \cdot n = 1$
+				Das hieße aber $T$ ist unstetig in 0. 
+
+		\end{itemize}
+	\end{proof}
+
+An dieser Stelle werden einige Definition und Bemerkung festgehalten, die in späteren Kapitel beleuchtet und untersucht werden.
+	\begin{bem} 
+		\begin{enumerate}[a)]
+			\item $\B(X,Y) := \{ T: X\to Y: T \text{ beschränkt}\}$
+			\item $\B(X) := \B(X,X)$ beides sind $\K-VR$.
+			\item $X' := \B(X,\K)$ topologischer Dualraum von	$X$.
+		\end{enumerate}
+	\end{bem}					
+	
+	\begin{bem}
+		\begin{enumerate}[a)] \addtocounter{enumi}{3}
+			\item $Ker\:T$, $Im\:T$ sind UVR. 
+			\item $(i) - (vi)$ äquivalent zu $(vii)$:
+				Jede beschränkte Menge wird auf eine beschränkte Menge abgebildet.
+			\item Es gibt beschränkte lineare Operatoren, so dass $Im\: T$ nicht abgeschlossen $\nearrow$ Übung
+			\item $Ker\; T$ abgeschlossen $\forall \; T\in \B(X,Y)$, da $T$ stetig und $Ker\:T = \inv{T}(\{0\})$, wobei $\{0\}$ abgeschlossen in $Y$.
+		\end{enumerate}
+	\end{bem}						
+
+%%%%%%%%%%%	Satz 1.10
+	\begin{thm}[Operatornormen]
+	\label{Operatornormen}
+		$X,Y$ normierte Räume. $\BS$ normierter Raum mit folgendener Norm
+		 $$\norm{T} := \disp \sup_{x \in \EK}\norm{Tx}_Y.$$
+	\end{thm}
+	\begin{proof}
+		\begin{itemize}[]
+				\item (\textit{Positivität:}) 
+					$\norm{0} = 0$. Sei $\norm{T} = 0 \df Tx = 0 \; \forall \; x\in\EK$.
+					Sei $x\in X$ beliebig. $\df Tx = 2\norm{x}_X \; T \left(\frac{x}{2\norm{x}_X}\right) = 0$
+					$\df T = 0$. 
+
+			\item (\textit{Homogenität:}) Sei $\lambda \in \K$, $T\in \BS$. 
+				Dann $\norm{\lambda T} = \sup_{x \in \EK} \norm{ (\lambda T) x}_Y
+				= |\lambda| \sup_{x \in \EK} \norm{Tx} = |\lambda| \norm{ T}.$
+			
+			\item (\textit{Dreiecksungleichug:}) Seien $T_1, T_2 \in\BS$. Dann 
+				$\disp \norm{T_1 + T_2} = \sup_{x \in \EK}(\norm{T_1x + T_2x}_Y)
+				\leq \sup_{x \in \EK}(\norm{T_1x}_Y + \norm{T_2x}_Y)
+				\leq \sup_{x_1,x_2  \in \EK}(\norm{T_1x_1}_Y + \norm{T_2x_2}_Y)
+				\leq \sup_{x_1 \in \EK}\norm{T_1x_1}_Y + \sup_{x_2 \in \EK}\norm{T_1x_2}_Y
+				= \norm{T_1} + \norm{T_2}$
+		\end{itemize}
+	\end{proof}
+		
+	\begin{bem}
+		Es gilt 
+		$\disp \norm{T} = \supT[A]\norm{Tx}_Y = \supT[R] \norm{Tx}_Y
+		= \sup_{\overset{x \in X}{x \not = 0}} \frac{\norm{Tx}_Y}{\norm{x}_X}$
+		($\nearrow$ Ü1, A2).
+
+		\begin{proof}
+			Wir zeigen  
+				$$\sup_{\overset{x \in X}{x \not = 0}} \frac{\norm{Tx}_Y}{\norm{x}_X} =:M_3 \; \geq \: \norm{T} \: \geq \; M_1 := \supT[A]\norm{Tx}_Y $$ 
+				und 
+				$$ M_3 \geq M_1\geq M_2 \geq M_3 \quad \text{mit } M_2 := \supT[R] \norm{Tx}_Y$$ 
+			Wobei $M_1 \geq M_2$ gilt, da wir das Supremum über eine größere Menge bilden.
+			\begin{itemize}[  ]
+
+				\item $"' M_3 \geq \norm{T} \geq M_1: "'$ $\forall \: \norm{x} = 1$ und $\EK \ni x_n = x - \frac{1}{n} \; \forall n\in\N$, gilt 
+				$$\norm{Tx_n} = \norm{T(x-\frac{1}{n})} = \norm{Tx - T\frac{1}{n}} \to \norm{Tx - T0} = \norm{Tx}$$ 
+				Damit hat man formal gezeigt, dass man für jeden Vektor in $\ov{\EK}$ bezüglich den man ein Supremum bilden kann, auch Folgen in $\EK$ findet. Kurz: $\norm{T} \geq M_1$.
+				Weiterhin gilt $\norm{Tx} \leq M_3 \cdot \norm{x} \; \forall x\in X $, damit folgt 
+					$$ \norm{T} = \sup_{\norm{x} < 1} \norm{Tx} \leq \sup_{\norm{x} < 1} (M_3 \cdot \norm{x}) = M_3 \sup_{\norm{x} < 1} \norm{x} = M_3$$.
+
+				\item $\disp "' M_3 \geq  M_1: "'$ Sei $\norm{x} \leq 1$. Dann gilt $\norm{Tx} \leq \norm{Tx}/\norm{x}$. Also:
+					$$ M_1 =  \supT[A]\norm{Tx} \leq \supT[A] (\norm{Tx}/ \norm{x}) \leq  M_3$$
+
+				\item $\disp "' M_2 \geq  M_3: "'$ Einfaches Umformen ergibt:
+					$$ M_3 = \sup_{{x \not = 0}} \frac{\norm{Tx}}{\norm{x}} = \sup_{{x \not = 0}} \norm{T\frac{x}{\norm{x}}} \leq M_2$$ 	
+				
+			\end{itemize}
+		\end{proof}
+	\end{bem}
+
+%%%%%%%%%%% Satz 1.12
+	\begin{thm}
+		$X$ normierter Raum, $Y$ Banachraum. Dann ist $\BS$ Banachraum.
+	\end{thm}
+		\begin{proof}
+			Sei $(T_n)$ $CF$ in $\BS$, d.h. 
+			$\forall \; \varepsilon > 0 \exists \; N\in \N \; \forall n,m > N: \norm{T_n - T_m} < \varepsilon$.		
+			Also $\norm{T_nx - T_mx}_Y \leq \norm{T_n - T_m} \cdot \norm{x} < \varepsilon \cdot \norm{x} \; \forall x\in X$. 
+			Daraus folgt wegen der Vollständigkeit von Y, dass $(T_nx)$ in $Y$ für alle $x\in X$ konvergiert.
+			Wir setzen den Grenzwert auf $\disp T: X\to Y,\; Tx := \limes T_nx$. Die so definierte Abbildung, also dieser Grenzwert, erfüllt folgende Eigenschaften: 
+				\begin{enumerate}[a)]
+					\item $T$ ist ein linearer Operator.
+					\item $T$ ist beschränkt.
+					\item $\disp \limes \norm{T - T_n} = 0$ (also Normkonvergenz bzw. gleichmäßige Konvergenz)
+				\end{enumerate}
+				\begin{itemize}[]
+					\item \underline{Zu a):} 
+						$\disp T(\lambda x_1 + \mu x_2) = \limes T_n(\lambda x_1 + \mu x_2) 
+						= \limes (\lambda T_n x_1 + \mu T_n x_2) = \lambda \limes T_nx_1 + \mu \limes T_n x_2
+						= \lambda T x_1 + \mu T x_2$
+					\item \underline{zu b):}
+						Wegen $\norm{T_n - T_m} \geq (\norm{T_n} - \norm{T_m})$ gilt $\norm{T_n}$ ist $CF$ in $\R$
+						, also beschränkt: $\disp M := \sup_{n\in\N} \norm{T_n} < \infty$. 
+						Für $x\in\EK$ gilt $\disp \norm{Tx}_Y = \limes \norm{T_nx}_Y 
+						\leq \limes \norm{T_n} \cdot \norm{x}_X \leq M\cdot \norm{x}_X \leq M$. (vgl. Def 1.5, $"\aq"$)
+					\item \underline{zu c):}
+						Sei $\varepsilon > 0 \df \exists N\in\N \; \forall m,n > N: \norm{T_n - T_m} < \frac{\varepsilon}{2}.$
+						Für $x\in \EK$ gilt somit %(wegen $\disp m \to \infty$) 
+						$$\disp \norm{(T-T_n)x} =\lim_{m\to \infty} \norm{(T_m - T_n)x} \leq \frac{\varepsilon}{2}
+						\disp \df \norm{T - T_n} = \supT \norm{(T-T_n)x} \leq \frac{\varepsilon}{2} < \varepsilon \; \forall n \geq N$$
+						
+				\end{itemize}
+				Also ist $T\in \BS$ und aufgrund der Beliebigkeit der $CF$, folgt die Vollständigkeit.
+		\end{proof}
+
+%%%%%%% Korollar 1.13
+	\begin{cor}
+		$X$ normierter Raum $\df$ $X'$ Banachraum.
+	\end{cor}
+
+%%%%%%% Bemerkung 1.14
+	\begin{bem}
+		\begin{enumerate}[a)]
+			\item $T\in \BS$, $S \in \B(Y,Z) \df ST \in \B(X,Z)$ und 
+				$\norm{ST} \leq \norm{S} \cdot \norm{T}$ 
+				(gilt wegen $\norm{S(Tx)}_Z \leq \norm{S} \cdot \norm{Tx}_Y
+				\leq \norm{S} \cdot \norm{T} \cdot \norm{x}_X \leq M \norm{x}_X$ $\forall x\in X$ und der Linearität von $ST$.) 
+			\item $id\in \B(X,X)$, $\norm{id} = 1$.
+			\item Aus punktweiser Konvergenz $T_nx \to Tx$ folgt
+			i.A. \underline{nicht} $\disp \limes T_n = T$ (d.h. $\limes \norm{T_n - T} = 0$).
+				\begin{description} \item[Bsp:] 
+					$X = \ell^p, p\in [1,\infty)$, $T_n:\ell^p \to \ell^p, \; T_n(x_k) = (x_1,\dots,x_n,0,0,\dots)$ 
+					wobei $(x_k) = (x_1,\dots,x_n,\dots).$ Man kann zeigen, dass $T_n \in \B(x)$ $\forall n\in\N$ 
+					($\nearrow$ Übung).\par
+					Sei $(x_k)\in \ell^p$, $\forall \epsilon > 0 \; \exists N\in\N: (\sum_{k=N+1}^\infty |x_k|^p)^{1\backslash p} < \epsilon.$\ $\norm{T_n(x_k) - x_n}_X = (\sum_{k=N+1}^\infty |x_k|^p)^{1\backslash p} \; \forall n\geq N$.
+					Also $\forall x \in X$ $\norm{T_n - x}_X \to 0 \; (n\to \infty).$ Frage: $\norm{T_n - T}_X \to 0$ ?
+					Nein! Sei $(x_k^n) = (0,\dots,0,\overset{\text{n+1 Stelle}}{1},0,\dots)$,  
+					$\norm{T_n(x_k^n) - x}_X = \norm{(0,\dots,0,-1,0,\dots)})_Y = 1$ 
+					$\disp \norm{T_n - T} \overset{Def}{=} \supT \norm{(T_n - T)x}_X \geq 
+					\norm{(T_n - T)(\frac{1}{2} (x_k^n)} =\frac{1}{2}\cdot 1$ ($T = idx$) $\forall n\in\N$ 
+					$\df \norm{T_n - T} \not\to 0\; (n\to\infty)$
+				\end{description}
+
+		\item $T\in \BS$ und $T$ bijektiv. Dann ist $\inv{T}$ i.A. \underline{nicht beschränkt}.
+			\begin{description} 
+				\item[Bsp.]	$X\in C[0,1], Y= \{f\in C^1([0,1]): f(0) = 0\}$ mit $\disp \norm{x}_X = \sup_{t\in[0,1]}|x(t)|$ und $\norm{\cdot}_X = \norm{\cdot}_Y$ und $T: X\to Y,\; (Tx)(t) = \int_0^t x(s)ds$.
+				\begin{itemize}
+					\item $\inv{T}=S: Y\to X, Sy = y'$. (Zeige $ST = id_x$ und $TS = id_Y$)
+					\item $\inv{T}\not\in\B(Y,X)$ (Sei $y_n(t) = t^n\in Y$, $(\inv{T}y_n)(t) = n\cdot t^{n-1}$
+					$\df \norm{y_n}_Y =1 \; \forall n\in \N$, $\norm{\inv{T}y}_X =n \; \forall n\in\N \df \inv{T}$ kann nicht beschränkt sein. 
+					($\norm{\inv{T}\frac{1}{2} y_n}_X = \frac{1}{2} \cdot n$ mit $\norm{\frac{1}{2} y_n} = \frac{1}{2})$
+				\end{itemize}
+				Bem: $Y$ ist nicht vollständig.
+			\end{description}
+		\end{enumerate}
+	\end{bem}
+
+%%%%%%% Satz 1.15
+	\begin{thm}
+		Sei $X,Y$ normierte $\K-VR$, $T\in \BS$. Dann sind äquivalent:
+			\begin{enumerate}[(i)]
+				\item $T$ ist injektiv und $\inv{T} \in\B(im(T), X)$ normierter UVR von $Y$.
+				\item $\exists \: m > 0: \norm{Tx}_Y \geq m\norm{x}_X \; \forall x\in X$.
+			\end{enumerate}
+	\end{thm}
+	\begin{proof}
+		\begin{itemize}[]
+			\item $"(i)\df (ii)"$: $\exists \: M>0, \norm{\inv{T}y} \leq M\norm{y} \; \forall y\in imT.$
+				Sei $x\in X$ $\exists y\in imT: x = \inv{T}y \df \norm{x}_Y \leq M \norm{Tx}_Y 
+				\df \norm{Tx}_Y \geq \frac{1}{M} \norm{x}_X = m\norm{x}_X$
+			\item $"(ii) \df (i)"$: Sei $x\in X: Tx = 0$.
+				Aus $\norm{Tx} \geq m \norm{x}$ folgt $x = 0$ und damit ist $T injektiv$.
+				Sei $y\in imT \; \exists x\in X: Tx = y$ und $\inv{T}y = x $
+				$\df[(ii)] \norm{\inv{T}y} = \norm{x} \leq \frac{1}{m} \norm{Tx}_Y = \frac{1}{m} \norm{y}_Y,$
+				also $\exists\: M = \frac{1}{m}$, $\norm{\inv{T}y}_X \leq M\norm{y}_Y \; \forall v\in imT$
+				$\df \inv{T} \in \B(imT,X)$
+		\end{itemize}
+	\end{proof}
+
+Die Negation dieser Aussage halten wir explizit fest mit folgendem 
+%%%%%%% Korollar 1.16
+	\begin{cor}
+		$T \in \BS$ ($X,Y$ normierte $\K-VR$. Dann sind äquivalent:
+			\begin{enumerate}[(i)]
+				\item $T$ besitzt \underline{keine} stetige Inverser 
+					$\inv{T} : imT\to X.$
+				\item $\exists$ Folge $(x_n)$ in $X$, so dass $\norm{x_n} = 1 \; \forall n\in \N$
+					und $\disp \limes \norm{T x_n} = 0$
+			\end{enumerate}
+	\end{cor}
+
+%%%%%%% 1.17
+	\begin{definition}
+		$X-\K-VR$ mit Norm $\norm{\cdot}_1,\norm{\cdot}_2$. Dann heißt $\norm{\cdot}_1$ 
+			\begin{enumerate}[(a)]
+				\item \qmarks{stärker} als $\norm{\cdot}_2$, falls gilt
+					$\disp \limes \norm{x_n - x}_1 = 0 \df \limes \norm{x_n - x}_2$
+				\item \qmarks{schwächer} als $\norm{\cdot}_2$, falls $\norm{\cdot}_2$ stärker ist als $\norm{\cdot}_1$.
+				\item \qmarks{äquivalent} falls $\norm{\cdot}_1$ stärker und schwächer ist als $\norm{\cdot}_2$
+			\end{enumerate}
+	\end{definition}
+
+%%%%%%% 1.18
+	\begin{thm}
+		$X$ $\K-VR$ mit Norm $\norm{\cdot}_1$,$\norm{\cdot}_2$. Dann gilt 
+			\begin{enumerate}[(a)]
+				\item $\norm{\cdot}_1$ ist stärker als $\norm{\cdot}_2$ 
+					$\aq \exists \: M > 0: \norm{x}_2 \leq M \norm{x}_1 \; \forall x\in X$
+				\item $\norm{\cdot}_1$ ist schwächer als $\norm{\cdot}_2$ 
+					$\aq \exists \: M > 0: \norm{x}_1 \leq M \norm{x}_2 \; \forall x\in X$
+				\item $\norm{\cdot}_1$ ist äquivalent zu $\norm{\cdot}_2$ 
+					$\aq \exists \: m,M > 0: m\norm{x}_1 \leq \norm{x}_2 \leq M \norm{x}_1 \; \forall x\in X$
+			\end{enumerate}
+	\end{thm}
+
+	\begin{proof}
+		\begin{enumerate}[zu (a):]
+	 		\item \qmarks{$\df$} $id : (X,\norm{\cdot}_1) \to (X,\norm{\cdot}_2)$ ist stetig wegen Vor.
+				$\df[S.1.15]$ und weil $id$ linear, $id$ beschränkt, 
+				$id\in \B((X,\norm{\cdot}_1), (X,\norm{\cdot}_2)$ d.h. 
+				$\exists M > 0: \norm{id(X)}_2 \leq M \norm{x}_1 \; \forall x\in X$.\par
+			\qmarks{$\Leftarrow$}	Wissen $\exists M>0: \norm{x}_2 \leq M\norm{x}_1 \; \forall x\in X$.
+			Sei $\norm{x_n - x}_1 \to 0 \df \norm{x_n - x}_2 \leq M\norm{x_n - x}_1 \to 0 \; (n\to\infty)$
+			$\df \norm{\cdot}_1$ stärker als $\norm{\cdot}_2$.
+	 	\end{enumerate}
+	\end{proof}
+
+%%%%%%% 1.19
+	\begin{definition}
+		Zwei normierte $\K$-VR $X,Y$ heißen \textit{topologisch isomorph}, falls es ein Isomorphismus 
+		$T: X\to Y$ mit $T\in \BS$ und $\inv{T}\in\B(Y,X)$. Dann heißt $T$ topologischer Isomorphismus.
+	\end{definition}
+
+	\begin{thm}
+		$X, Y$ topologisch isomorph $\aq$ $\exists m,M > 0: T\in \BS$ und injektiv
+		$: m\norm{x}_X \leq \norm{Tx}_Y \leq M \norm{x}_X \; \forall x\in X$
+	\end{thm}
+	\begin{proof}
+		'Klar' wegen Satz 1.17 und Satz 1.15.
+	\end{proof}
+	
+	\begin{bem}
+		\begin{enumerate}
+			\item Falls, $m=M=1$, dann nenn wir $T$ \qmarks{Isometrie}.
+			\item Falls $\dim X = \dim Y = n\in \N$: $X,Y$ topologisch isomorph und topologischer Isomorphismus = lineare Bijektion.
+		\end{enumerate}
+	\end{bem}
+	
+%% Satz 1.22
+	\begin{thm}[Fortsetzung von stetigen Operatoren]
+		$X,Y$ normierte $\K-VR$, $Y$ ein Banachraum, $Z\subseteq X$, $Z$ dichter UVR.
+		$T\in \B(Z,Y)$. Dann existiert ein eindeutiger Operator $\tilde{T} \in \BS$, so dass
+		$T|_Z = T$.
+	\end{thm}
+
+	\begin{proof}
+		\begin{enumerate}[a)]
+			%\item
+			\item Zeige: $\tilde{T}$ ist wohldefiniert. Da $T$ beschränkt ist, ist $(Tz_n)$ Cauchyfolge in $Y \df \disp \limes  Tz_n$ existiert.
+			Seien $(V_n), (Z_n)$ Folgen in $Z$ mit $\norm{V_n-x} \to 0, \norm{Z_n-x} \to 0.$ Dann gilt:
+			 \vspace{-0.8em}$$ \norm{TV_n - TZ_n} \overset{T~beschr.}{\leq} \norm{T}\cdots \norm{V_n - Z_n} \to 0 \df \limes TV_n = \limes TZ_n.\vspace{-0.8em}$$
+			\item Zeige: $\tilde{T}$ ist linear und beschränkt. (Betrachte Summen von Limiten, Limes der Summen, etc.; insbesondere ist $T:X \to Y$ immer beschränkt, wenn $\dim(X)<\infty$)
+			\item Zeige: $\tilde{T}|_Z = T$ und $\tilde{T}$ ist eindeutig.
+			Sei $\tilde{T} \in \B(X,Y)$ mit $\tilde{T}|_Z = T$ und $x \in X$. Dann 
+				\spcm $$\exists (Z_n) \text{ in } Z \text{ mit } Z_n \to x (\text{da } Z \text{ dicht in } X) \overset{T\;beschr.}{\df} \tilde{T}x=\limes \tilde{T}Z_n = \limes TZ_n.\spcm$$
+			\item Zeige: $\norm{\tilde{T}}=\norm{T}$.
+			\begin{itemize}[]
+				\item "'\;$\leq$\;"' Sei $x \in U_1(0)\subset X \df \exists (Z_n)$ in $Z$ mit $Z_n \to x$ und damit:
+				\spcm[-0.75em] \[\norm{\tilde{T}} = \sup_{x \in U_1(0)}\norm{\tilde{T}x} = \limes \norm{\tilde{T}Z_n} = \limes \norm{TZ_n} \leq \limes \norm{T} \norm{Z_n} = \norm{T}\limes \norm{Z_n} \leq \norm{T}.\spcm \] 
+				\item "'\;$\geq$\;"' Da $Z\subset X$ gilt auch $\disp \sup_{z \in Z} \norm{Tz} \leq \sup_{x \in X} \norm{Tx}$.
+			\end{itemize}
+		\end{enumerate}
+	\end{proof}
+
+%% Satz 1.23
+	\begin{thm}
+					Ist $T$ normerhaltend (in $\R^n$ die unitären Matrizen $\norm{Tx} = \norm{x}$), so ist $\tilde{T}$ ebenfalls normerhaltend.
+	\end{thm}
+
+	\begin{bsp}[Konstruktion eines unbeschränkten Funktionals]
+		Sei $X= \ell^1$ ({Raum der absolut konvergenten Folgen})\par
+		Betrachte: $x_0 = (1, \frac{1}{4}, \frac{1}{9},\dots) \in \ell^1$, 
+		$\norm{x_0} = \sum_{n=1}^\infty |\frac{1}{n^2}| = \frac{\pi^2}{6} $,\par
+		Einheitsvektor $e_k = (\delta_{nk})_{n\in\N}$.\par 
+		$\nearrow$ Erzeugnis: \underline{endliche} linear Kombination der Einheitsvektoren 
+		$\df \text{span} \{e_k\}_{k_\N} = \{(x_1,x_2,\dots,0,\dots)\}$ (Folgen, die irgendwann zu $0$ werden.)\par
+		Die Familie $B := (x_0,e_1,e_2,e_3,\dots)$ ist linear unabhängig.
+		$\df B_i$ lässt sich zu Basis $B = (b_i)_{i\in I}$ mit $\N_0 \subseteq I$ und $b_0 = x_0, b_i = e_i \; \forall i\in \N$ erweitern (überabzählbar).\par
+		Sei $x\in X= \ell^1 \df \exists$ eindeutige Darstellung 
+		$x = \alpha_0 x_0 +\sum_{\overset{n\in\N}{endlich}} \alpha_n e_n + \sum_{\overset{i\in I\backslash N_0}{endlich}}\alpha_i b_i$. \par
+		Definiere das Funktional: $f: \ell^1 \to \K \N?$ mit $x = \alpha_0 x_0 +\sum_{\overset{n\in\N}{endlich}} \alpha_n e_n + \sum_{\overset{i\in I\backslash N_0}{endlich}}\alpha_i b_i \mapsto \alpha_0$\par
+	Wir zeigen: $Ker f$ nicht abeschlossen.\par
+		Betrachte Folge $(x_n)_{n\in\N}$ mit $x_n \sum_{k=1}^n \frac{1}{k^2}$		 
+		$\df x_n\in Ker f \; \forall n\in\N$, da $x_n\in span\{e_k\}_{k\in\N}$. 
+		Es gilt jedoch $x_n \to x_0 \not\in Ker f$, da $f(x_0) = 1$. \hfill $\square$ 
+	\end{bsp}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Neumannsche Reihe}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+Nun versuchen wir mit Erfolgt einer waghalsige Verallgemeinerung der geometrischen Reihe im Reellen für Operatoren und Banachräume. 
+	$\sum_{k=0}^\infty q^k = \frac{1}{1-q} \; \forall q\in\C$ mit $\norm{q} < 1$
+%% Satz 1.25 Neumansche Reihe
+	\begin{thm}[Neumanansche Reihe] 
+		$X$ Banachraum. Sei $T\in \B(X)$. Dann sind äquivalent: 
+			\begin{enumerate}[i)]
+				\item Die Reihe $ \sum_{i=0}^\infty T^k = I_X + T^1 + T^2 + \dots$ ist konvergent bzgl. der Operatornorm.
+				\item $\disp \limes \norm{T^n} = 0$
+				\item $\exists N\in \N: \norm{T^N} < 1$
+				\item $\disp \limes \sup \sqrt[n]{\norm{T^n}} < 1$. 
+			\end{enumerate}
+		In diesem Fall besitzt $(I-T)$ eine beschränkte Inverse.
+		Diese erfüllt $\inv{(I-T)} = \sum_{k=0}^\infty T^k$.
+	\end{thm}
+		\begin{proof}
+			\begin{itemize}[]
+				\item $ "' i)\df ii) \df iii)"':\;$ \qmarks{klaro}
+
+				\item $"' iii) \df iv)"':\;$ Sei $n\in\N \df \exists \ell\in\N, k\in \{q_0,\dots,N-1\}$, 
+					so dass $n = \ell \cdot N + k$ Dann folgt  
+					$$\ell \leq \frac{n}{N} \df \norm{T^n} = \norm{(T^n)^\ell T^k} \leq \norm{T^N}^\ell \cdot \norm{T^k}. $$
+					Sei $M := \max\{1,\norm{T},\norm{T^2},\dots,\norm{T^{N-1}}\}$.
+					Dann gilt $\norm{T^n} \leq M\norm{T^N}^\ell$ und damit folgt
+					\spcm[-0.75] $$ \sqrt[n]{\norm{T^n}} = \sqrt[n]{\norm{T^N}^\ell}\sqrt[n]{M}
+					\leq \sqrt[n]{\norm{T^N} \frac{n}{N}} \cdot \sqrt[n]{M}
+					 = \underbrace{\sqrt[N]{\norm{T^N}}}_{< 1} \cdot 
+						\underbrace{\sqrt[n]{M}}_{\overset{\to 1}{\text{für } n\to\infty}} 
+						\cdot \sqrt[n]{\frac{1}{\norm{T^N}}}\spcm[-1]$$
+					$\disp \df \limes \sup \sqrt[n]{\norm{T^n}} < 1$   ($\nearrow$ Wurzelkriterium)
+
+				\item $ "'iv) \df i)"': \;$ 
+					$\disp \limes \sup \sqrt[n]{\norm{T^n}} < 1 \df \exists q \in (0,1), \; N \in \N$, sodass \spcm
+					$$ \sqrt[n]{\norm{T^n}} \leq q ~\forall~ n \geq N \df \norm{T^n} \leq q^n ~\forall~ n \geq N \spcm[-0.6]$$	
+					Sei $\varepsilon > 0$, dann existiert ein $N_1 \geq N$, so dass $q^{n+1} + \dots + q^m = q^{n+1} \frac{1-q^{m-1}}{1-q}< \varepsilon \;\; \forall n,m \geq N_1$.
+					\spcm
+					$$ \text{Für } S_n:=\sum_{k=0}^\infty T^k \text{ gilt also }:
+					\norm{S_n-S_m}=\norm{\sum_{k=m+1}^n T^k}\leq \sum_{k=m+1}^n \norm{T^k} \leq q^{m+1}+\dots+q^n < \varepsilon. \spcm[-0.5]
+					$$	
+					Also ist $(S_n)$ eine Cauchyfolge in $\B(X)$. Da $X^{*}$ vollständig ist, ist auch $\B(X)$ vollständig, also konvergiert die Neumannsche Reihe.
+
+			
+			\item 
+			Noch zu zeigen, wenn $(i) - (iv)$ gilt
+				$(I - T) \cdot \sum_{k=0}^\infty T^k = (\sum_{k=0}^\infty T^k) \cdot (I-T) = I$.
+			Es gilt: 
+			\spcm[-0.4]
+			$$(I-T) \cdot S_n = (I-T) \cdot (\sum_{k=0}^n T^k) = \sum_{k=0}^n T^k - \sum_{k=1}^{n+1} T^k = I-T^{n+1} \overset{n \to \infty}{\to} I_K \spcm[-0.4] $$
+			
+			Analog andersherum ($\nearrow$ linksinvers $ \neq $ rechtsinvers in unendlichdimensionalen Räumen, da inj. $\not\Leftrightarrow$ surj.)
+			\end{itemize}
+		\end{proof}
+%%%%%%%%%%%%%%%%%%  
+	\begin{bem}
+		\begin{enumerate}
+			\item Wenn $\norm{T} < 1$, dann konvergiert die Neumannsche Reihe.
+			\item $\disp \limes\sup\sqrt[n]{\norm{T^n}} <1$ ist nur hinreichend für Invertierbarkeit von $I-T$, wie das Gegenbeispiel $T = 2I$ zeigt.
+		\end{enumerate}
+	\end{bem}
+	\begin{bsp}[Fredholmsche Integralgleichung]
+		Sei $k\in C([a,b]^2)$.
+		Der Fredholmsche Integraloperator $$K:C([a,b])\to C([a,b]),\; (Kx)(s):=\int^b_a K(s,t)x(t)dt$$ ist stetig, wenn x stetig ist.
+		Die Fredholmsche Integralgleichung lautet: $$(I-K)x=y,\quad y\in C([a,b]).$$
+		Und es gilt: $\displaystyle \|Kx\|_\infty \leq \max_{s\in[a,b]} \int^b_a |K(s,t)|dt\cdot\|x\|_\infty$.\\
+		Wenn nun $\displaystyle \max_{s\in[a,b]} \int^b_a |K(s,t)|dt<1$, dann gilt für alle $ y\in C([a,b]):$
+		Die Fredholmsche Integralgleichung $(I-K)x=y$ hat genau eine Lösung $x\in C([a,b])$. Diese hängt stetig von $y\in C[a,b]$ ab.
+	\end{bsp}
+
+\section{Metrische und topologische Räume, Satz von Baire}
+
+	\subsection{Grundbegriffe:metrischer Raum und Vervollständigung}	
+
+	% Bem 1.28
+	\begin{bem}[Erinnerung]\label{bem:1.28}
+		\begin{enumerate}[-]
+			\item Kompaktheit, Satz von Bolzano-Weierstraß
+		\end{enumerate}
+	\end{bem}
+
+%Lemma 1.29
+	\begin{lemma}
+		Sei $(X,d)$ ein metrischer Raum. Dann gilt die Vierecksungleichung:
+		$$|d(x,y)-d(x_1,y_1)| \leq d(x,x_1) +d(y,y_1)\quad \forall x,x_1,y,y_1\in X$$
+	\end{lemma}
+	\begin{proof}
+		$d(x_1,y_1) \leq d(x_1,x)+d(x,y_1) \leq d(x_1,x)+d(x,y)+d(y,y_1)$\\$\df d(x_1,y_1)-		d(x,y) \leq d(x,x_1)+d(y,y_1)$. Analog: $d(x,y)-d(x_1,y_1) \leq d(x,x_1)+d(y,y_1)$\par
+		$\df |d(x,y) - d(x_1,y_1)| \leq d(x,x_1) +d(y,y_1)$
+	\end{proof}
+
+%Bem 1.30
+	\begin{bem}\label{bem:1.30} Rekapitulieren Sie folgende Begriffe:
+		$U_r(x)$ Kugel mit Radius $r$,	$\overline{M}$ Abschluss,	$\mathring{M}$ Innere,	$\partial M$ Rand,	Kompakt,	offene Überdeckung. \todoo[Hinten noch definieren]
+	\end{bem}
+	
+%Definition 1.31
+\begin{definition} %Abstandserhaltung, Einbettung und Isometrie
+	Seien $(X,d_X),(Y,d_Y)$ metrische Räume. Eine Abbildung $f:X\to Y$ heißt
+	\begin{enumerate}[(a)]
+		\item \textit{abstandserhaltend} falls $d_X(x,y)=d_Y(f(x),f(y))$ %(Bsp.: orthogonale Matrix).
+		\item \textit{Isometrie} falls abstandserhaltend und surjektiv.
+	\end{enumerate}
+	Eine abstandserhaltende  Abbildung heißt auch \textit{Einbettung}. Eine Einbettung heißt \textit{dicht}, falls $f(X)$ dicht in Y ist.\par
+	Notation: Wir schreiben $X\subseteq Y$, falls X in Y eingebettet ist.
+\end{definition}
+
+%Satz 1.32
+\begin{thm} %Der große Vervollständigungssatz
+	Jeder metrische Raum $(X,d)$ lässt sich in einen bis auf Isometrie eindeutig bestimmten vollständigen metrischen Raum $(\dX,\dd)$ dicht einbetten. $(\dX,\dd)$ heißt Vervollständigung von $(X,d)$.
+\end{thm}
+\begin{proof}
+	\begin{enumerate}[(1)]
+		\item Konstruktion von $\dX$\par
+		
+		Sei $CF(X)$ die Menge aller Cauchyfolgen in X. Seien $\overline{x}:=(x_n),\;\overline{y}:=(y_n) \in CF(X)$.\par 
+		Wir betrachten den \glqq Abstand\grqq  $$ d(\overline{x},\overline{y}):=\lim_{n\to\infty} d_X(x_n,y_n),$$ der dank Lemma 1.29 wohldefiniert ist,
+		und die Relation $\sim\, \subseteq CF(X) \times CF(X)$ mit
+		$$\overline{x} \sim \overline{y} :\Leftrightarrow d(\olx,\oly) = 0.$$
+		$\glqq \sim \grqq$ ist tatsächlich eine Äquivalenzrelation und unterteilt $CF(X)$ in Äquivalenzklassen. Sei $[x]$ die Äquivalenzklasse des Repräsentanten $\olx$ und $\dX$ die Menge aller Äquivalenzklassen.\par 
+		Für $\olx,\olx'\in [x]\in \dX,\;\oly,\oly'\in [y]\in\dX$ gilt: 
+		\begin{equation*}
+			\begin{split}
+			& 0=d(\olx,\olx') = \lim_{n\to \infty} d_X((x_n),(x_n'))\\
+			& 0=d(\oly,\oly') = \lim_{n\to \infty} d_X((y_n),(y_n')).
+			\end{split}
+		\end{equation*}
+		Wegen $d_x(x_n,y_n') \leq d_X(x_n',x_n')+d_X(x_n,y_n)+d_X(y_n,y_n')$\\
+		$d_x(x_n,y_n) \leq d_X(x_n,x_n')+d_X(x_n',y_n')+d_X(y_n',y_n)$ ist
+		$$\lim_{n\to\infty} d_X(x_n',y_n')\leq \lim_{n\to\infty} d_X(x_n,y_n) \leq \lim_{n\to\infty} d_X(x_n',y_n')\df d(\olx,\oly)=d(\olx',\oly')$$
+		und wir können 	wohldefinieren: $\dd([x],[y]):=d(\olx,\oly)\df \dd$ ist Metrik auf $\dX$.
+
+		\item Konstruktion einer dichten Einbettung $f:X\to \dX$\par
+		
+		Für $x\in X$ sei $f(x):=[(x,x,x,\dots)]$.\\
+		Es gilt für $x,y\in X$: $\dd(f(x),f(y)) = \lim_{n\to\infty}d_X(x,y)=d_X(x,y)$.\par 
+		Wir zeigen nun, dass $f(X)$ dicht in $\dX$ liegt. Sei $[x]\in\dX,\;\olx=(x_n)$, da nun $(x_n)$ eine Cauchyfolge in $X$ ist, ist:
+		$$\forall \varepsilon >0\; \exists N\in\N : d(x_n,x_m)< \varepsilon \;\;\forall n,m \geq N$$
+		Wir betrachten nun $\olx_N := (x_N,x_N,x_N,\dots)$ $$\df \dd(f(x_N),[x])=\lim_{n\to\infty} d_X(x_N,x_n)\leq \varepsilon$$ 
+		Damit ist $f(x_N)\to [x]$ für $\varepsilon \to 0$ (oder $N\to\infty$?).
+
+		\item Vollständigkeit von $\dX$\par
+		
+		Sei $([x]_j)$ eine Cauchyfolge in $\dX$. Zu jedem $[x]_j\in \dX\;\exists y_j \in X$ so dass $\dd([x]_j,f(y_j))<\frac{1}{j}$, da f(X) dicht in $\dX$ ist.
+		$$\df d_X(y_j,y_k) = \dd(f(y_j),f(y_k))\leq \dd(f(y_j),[x]_j)+\dd([x]_j,[x]_k)+\dd([x]_k,f(y_k))<\frac{1}{j}+\dd([x]_j,[x]_k) + \frac{1}{k}$$
+		$\df (y_j)$ ist eine Cauchyfolge in $X$, $y := (y_j)\in CF(X) \df\;[y]\in\dX$ ist der Kandidat für den Grenzwert der Cauchyfolge:
+		$$\dd([x]_j,[y])\leq \dd([x]_j,f(y_j))+\dd(f(y_j),[y])<\frac{1}{j}+\lim_{k\to\infty}d_X(y_j,y_k)\df \lim_{j\to\infty} \dd([x]_j,[y])=0$$
+		das heißt $[x]_j\to[y]$ für $j\to\infty$
+
+		\item Eindeutigkeit von $\dX$ im folgenden Sinne: ist $\tilde{X}$ eine weitere Vervollständigung von $X$, so sind $\dX,\tilde{X}$ isometrisch zueinander.\par
+		 
+		Sei also $(H,d_H)$ ein vollständiger metrischer Raum mit $X\subseteq H$,
+		$d_H(x,y)=d_X(x,y)$ $\forall x,y\in X$ und $\overline{X} = H$.\par
+		Unser Ziel ist es, eine Isometrie $g:\dX\to H$ zu bauen.\\
+		Sei $[x]\in\dX,$ $\olx=(x_n)\in[x]\in\dX$, da $H$ vollständig ist $\exists h\in H$ so dass $\lim_{n\to\infty}d_H(x_n,h)=0$\par 
+		Wir betrachten $g:\dX\to H$,  $[x]\mapsto h$ wie oben.\par 
+		$g$ ist surjektiv, da für $h\in H \df \exists \olx = (x_n)\in CF(X)$ so dass $\lim_{n\to\infty}d_H(x_n,h)=0$, also $g([x])=h$\\
+		$g$ ist abstandserhaltend, da für $[x],[y]\in \dX$ gilt
+		$$\dd([x],[y])=\lim_{n\to\infty} d_X(x_n,y_n) = \lim_{n\to\infty} d_H(x_n,y_n)=d_H(g([x]),g([y])).$$
+	\end{enumerate}
+\end{proof}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Der Bairesche Kategoriesatz und grundlegendes zu Vollständigkeit und Kompaktheit}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%Definition 1.33
+\begin{definition}%Durchmesser
+	Sei $(X,d)$ ein metrischer Raum, $M\subseteq X,\,M\not= \emptyset$.
+	Wir definieren den Durchmesser von M durch
+	$$\delta(M):= \sup\left\lbrace d(x,y):x,y\in M\right\rbrace.$$
+\end{definition}
+
+Der folgende Satz ist eine Verallgemeinerung des Intervallschachtelungsprinzips aus $\R$.
+%Satz 1.34
+\begin{thm}[Cantorscher Durchschnittssatz]
+	Sei $(X,d)$ ein metrischer Raum, der vollständig ist. $(F_n)$ eine Folge von 		abgeschlossen Teilmengen mit $F_n \not = \emptyset\;\, \forall n\in\N$, 			$F_1\supseteq F_2\supseteq \dots$ und $\displaystyle \lim_{n\to\infty} \delta(F_n)=0$\par 
+	$$\df \exists! x_0\in X: \underset{n\in\N}{\cap}F_n = \{x_0\}$$
+\end{thm}
+\begin{proof}
+	Für jedes $n\in\N$ wählen wir ein $x_n\in F_n$. Sei $\varepsilon > 0$ vorgegeben. 
+	Da $\displaystyle \lim_{n\to\infty} \delta(F_n)=0$ $\exists N\in\N:\delta(F_n)<\varepsilon$ $\forall n \geq N$
+	$$\df \forall n,m\geq N: d(x_n,x_m)<\varepsilon \text{ da } x_n,x_m\in F_N \text{ und } \delta(F_N)<\varepsilon$$
+	%$\df (x_n)$ ist eine Cauchyfolge und wegen der Vollständigkeit von $X$ gibt es ein $x_0\in X$ so dass $\limes d(x_n,x_0)=0$
+	$$\df (x_n) \text{ ist eine Cauchyfolge } \overset{ X \text{ vollst. }}{\df} \exists x_0\in X : \limes d(x_n,x_0) = 0$$
+	Weil $x_k\in F_n$  $\forall k \geq n$ und $F_n$ abgeschlossen ist, ist $$ x_0 \in F_n\df x_0 \in \cap_{n\in\N}F_n \df \cap_{n\in\N} F_n \not = \emptyset$$
+	Angenommen $\exists y\in \cap_{n\in\N} F_n$, mit $x_0 \not= y$
+	$$\df 0 < d(x_0,y) \leq d(x_0,x_n) + d(x_n,y_0) \leq 2\delta(F_n)\overset{n\to\infty}{\longrightarrow} 0 \text{  Widerspruch!}$$
+\end{proof}
+
+	\begin{mbem*}
+		Der Heuser beschreibt den folgenden Satz folgendermaßen:\par  
+		\enquote{Es gibt wohl keinen Satz in der Funktionalanalysis, der glanzloser und gleichzeitig kraftvoller wäre als der Bairesche Kategoriensatz. Von seiner Glanzlosigkeit wird sich der Leser \textit{sofort} überzeugen können; für seine Kraft müssen wir ihn auf die folgenden Nummern vertrösten.}
+	\end{mbem*}
+
+%Satz 1.35
+\begin{thm}[Bairescher Kategoriensatz]
+	Sei $(X,d)$ ein vollständiger metrischer Raum, $\cup^\infty_{n=1} F_n = X$, wobei $F_n \subseteq X$ abgeschlossen für alle $n\in\N$.\par
+	Dann gilt: $$\exists n_0\in\N:\mathring F_{n_0} \not = \emptyset.$$ Es gibt also ein $F_{n_0}$ dessen Inneres nichtleer ist.
+\end{thm}
+\begin{proof}
+	Wir bemerken zuerst: $x\in\mathring M \Leftrightarrow \exists \varepsilon >0: \overline{U_\varepsilon (x)} \subseteq M$.\par 
+	Angenommen es gelte für alle $n\in\N$ $\mathring F_n = \emptyset$, also kein $F_n$ enthalte eine abgeschlossene Kugel.\par 
+	Sei $n\in\N$ beliebig, $r>0$ und $x_0\in X \df \overline{U_{\frac{r}{2}}(x_0)}\setminus F_n \not = \emptyset $\\
+	Seien nun $x_n \in \overline{U_{\frac{r}{2}}(x_0)}\setminus F_n \not = \emptyset$. 	
+	Da $F_n$ kein Inneres hat (offiziell: abgeschlossen?!), existiert ein $r_n \in (0,\frac{r}{2})$ mit $\overline{U_{r_n}(x_0)}\cap F_n = \emptyset$, 
+	und für ein $y\in \overline{U_{r_n}(x_n)}$ gilt:
+	$$d(y,x_0) \leq d(y,x_n) + d(x_n, x_0) \leq r_n + \frac{r}{2} \leq r $$
+	So erhalten wir $\overline{U_{r_n}(x_n)} \subseteq \overline{U_r(x_0)}$.
+	Wir betrachten nun $\overline{U_1(x_0)}$ und nach obiger Überlegung
+	$$\exists r_1 > 0, x_1 \in X: \overline{U_{r_1} (x_1)} \subseteq \overline{U_1(x_0)} \text{ mit } r_1 \leq \frac{1}{2} \text{ und } \overline{U_{r_1}(x_1)} \cap F_1 = \emptyset$$
+	Ebenso
+	$$\exists r_2 > 0, x_2 \in X: \overline{U_{r_2} (x_2)} \subseteq \overline{U_{r_1}(x_1)} \text{ mit } r_2 \leq \frac{1}{4} \text{ und } \overline{U_{r_2}(x_2)} \cap F_2 = \emptyset$$
+	Sukzessive erhalten wir so eine Folge $\left( \overline{U_{r_n}(x_n)}\right)_{n\in\N}$ mit folgenden Eigenschaften:
+	\begin{enumerate}[(1)]
+		\item $\overline{U_{r_{n+1}} (x_{n+1})} \subseteq \overline{U_{r_n}(x_n)} \quad \forall n\in\N$
+		
+		\item $r_n \leq \frac{1}{2^n}\quad \forall n\in\N$
+		
+		\item $\overline{U_{r_n}(x_n)} \cap F_n = \emptyset\quad \forall n\in\N$
+	\end{enumerate}
+	Wegen $(1)$ und $$0 \leq \delta\left(\overline{U_{r_n}(x_n)}\right) = 2r_n \leq \frac{1}{2^{n-1}}\overset{n\to\infty}{\longrightarrow}0$$
+	sind wir in der Situation des Cantorschen Durchschnittsatzes und es gibt ein eindeutiges $\hat{x} \in X$ mit $\hat{x}\in \cap_{n\in\N} U_{r_n}(x_n)$.
+	Dann ist wegen $(3)$ $\hat{x} \not \in F_n\; \forall n\in\N \df \hat{x}\in X \setminus \cup_{n\in\N} F_n = \emptyset$ Widerspruch!
+\end{proof}
+
+%Einschubskorollar ohne Nummerierung
+	\begin{cor*}
+		Hier kommt ziemlich fancy Zeug, von wegen der Polynomraum kann nicht vollständig sein, rein. \todoo[Behauptung und Beweis erstellen.]
+	\end{cor*}
+	\begin{proof}
+		\todoo
+	\end{proof}
+
+%Definition 1.36
+\begin{definition}
+	Sei $(X,d)$ ein metrischer Raum. $M\subseteq X$ heißt\dots
+	\begin{enumerate}[(a)]
+		\item \textit{nirgends dicht}, wenn $\mathring{\overline{M}} = \emptyset$.
+		
+		\item \textit{mager} oder \textit{von 1.Kategorie}, wenn $M$ eine abzählbare Vereinigung von nirgends dichten Mengen ist, also $M = \cup_{n\in\N} A_n$, $A_n$ nirgends dicht für alle $n\in\N$, gilt.
+		
+		\item \textit{von 2.Kategorie }oder\textit{ fett}, wenn $M$ nicht von 1.Kategorie ist.
+	\end{enumerate}
+\end{definition}\par\bigskip
+
+%Eigene Bemerkung ohne Nummerierung.
+\begin{mbem*}[Trivia am Rande] Direkt aus der Definition folgt, das jede nirgends dichte Menge insbesondere von 1.Kategorie ist. Andersrum gilt dies nicht, was das Beispiel $\Q\subseteq \R$ zeigt. Ein Beispiel für eine nirgends dichte Menge ist die Cantor-Menge.\\
+	 \qmarks{Anschaulich} bedeutet \textit{nirgends dicht}, wenn sie in keiner Teilmenge (mit nichtleeren Innerem) dicht liegt. \par\bigskip
+\end{mbem*}
+	Mithilfe dieser Definition können wir den Baireschen Kategoriensatz Umformulieren zu $$(X,d) \text{ ist ein vollständiger metrischer Raum } \df X \text{ ist von 2.Kategorie}$$ 
+
+%Korollar 1.37
+\begin{cor}
+	$(X,d)$ sei ein vollständiger metrischer Raum, $U\subseteq X$ offen und nichtleer.\par
+	Dann ist $U$ von 2. Kategorie.
+\end{cor} 
+\begin{proof}[(Eigener Beweis)]% <3
+	Da $U$ offen ist, gibt es ein $\varepsilon>0$, so dass für $x\in U,\;\overline{U_\varepsilon(x)}\subseteq U$ ist. Nun können wir den Baireschen Kategoriensatz auf $\overline{U_\varepsilon(x)}$ anwenden.
+\end{proof}
+
+%Korollar 1.38
+\begin{cor}
+	$(X,d)$ sei ein vollständiger metrischer Raum.\par 
+	Dann gilt: 
+	$$ M\subseteq X \text{ mager } \df X\setminus M \text{ ist dicht in} X.$$
+\end{cor}
+\begin{proof}
+	Sei $M\subseteq X$ mager, angenommen $X\setminus M$ sei nicht dicht, also
+	$X\setminus \overline{(X\setminus M)}\not= \emptyset$\par 
+	$\df O:=X\setminus \overline{(X\setminus M)}$ ist (als Komplement einer abgeschlossenen Menge) offen und nichtleer.\par 
+	$\df O \subseteq M$ ist von 1. Kategorie, Widerspruch zu Korollar 1.37.
+\end{proof}
+
+%Korollar 1.39
+\begin{cor}
+	$(X,d)$ sei ein vollständiger metrischer Raum. Für $n\in\N$ sei $B_n \subseteq X$ so dass $X\setminus B_n$ mager. $B:=\cap_{n\in\N}  B_n$
+	$$\df \overline{B} = X$$
+\end{cor}
+\begin{proof}
+	$X\setminus{B} = X\cap (\cap_{n\in\N} B_n)^c = X \cap (\cup_{n\in\N} B_n^c)$ ist wegen Korollar 1.38 dicht in $X$.
+\end{proof}
+
+%Definition 1.40
+\begin{definition}
+	Der metrische Raum $(X,d)$ heißt \dots
+	\begin{enumerate}[(a)]
+	\item \textit{kompakt}, wenn für alle offenen Überdeckungen $(U_i)_{i\in I}$ von $X$ ein endliches $I'\subseteq I$ existiert, so dass $X = \cup_{i\in I'} U_i$
+	
+	\item \textit{präkompakt}, wenn $\forall \varepsilon > 0$ eine endliche Menge $M = \{x_1,\dots, x_n\}$ existiert, so dass $X = \cup^n_{i=1} U_\varepsilon (x_i)$. $M$ heißt auch $\varepsilon$\textit{-Netz} von $X$.
+\end{enumerate}		
+\end{definition}
+
+%Satz 1.41
+\begin{thm}
+	Sei $(X,d)$ ein metrischer Raum. Dann ist äquivalent:
+	\begin{enumerate}[(1)]
+		\item $X$ kompakt.
+		\item Jede abzählbare offene Überdeckung von $X$ enthält eine endliche Teilüberdeckung.
+		\item 
+			Ist $(A_n)$ eine Folge von abgeschlossenen Teilmengen von $X$ mit $A_n \supseteq A_{n+1} \not = \emptyset\; \forall n\in\N$. Dann gilt: $\cap_{n\in\N}A_n \not = \emptyset$.
+		\item Jede Folge in $X$ besitzt eine konvergente Teilfolge.
+		\item $X$ ist vollständig und präkompakt.
+	\end{enumerate}
+\end{thm}
+
+\begin{proof}
+\begin{enumerate}[]
+	\item $(1) \df (2)$: Man nimmt nur weniger mögliche Vereinigungen.
+	
+	\item $(2) \df (3)$: 
+		Angenommen $\cap_{n\in\N}{A_n} = \emptyset,\;A_n = \overline{A_n},\;\emptyset \not = A_{n+1} \subseteq A_n$ $\forall n\in\N$\par
+			$$\df U_n := X\setminus A_n \text{ offen und }\cup_{n\in\N} U_n = X$$
+			\begin{equation*}
+			\begin{split}
+				\df[2] \exists n_1,\dots,n_m\in\N : X = \cup^m_{i=1} U_{n_i} & = \cup^m_{i=1} (X\setminus A_{n_i}) 
+				\\ & = X \setminus (\cap^m_{i=1} A_{n_i})
+				\\ & = X \setminus A_k\qquad \text{ für } k := \max \{n_1,\dots,n_m\}
+				\\ & \df A_k = \emptyset \text{ Widerspruch!}
+			\end{split}
+			\end{equation*}
+	
+	\item $(3) \df (4)$:
+		Sei $(x_n)$ eine Folge in  $X$. Für $n\in\N$ sei $$A_n:=\overline{\{x_k : k \geq n\}}.$$ 
+		Es ist $A_n \supseteq A_{n+1}$ und $A_n \not= \emptyset$ abgeschlossen $\forall n\in\N \overset{(3)}{\df} \exists x_0 \in \cap_{n\in\N} A_n$. 
+		Deshalb ist 
+			$$\forall \varepsilon > 0 \;\forall n\in\N:U_\varepsilon (x_0) \cap \{x_k : k \geq n \} \not = \emptyset$$ 
+		$\df x_0$ ist Häufungspunkt der Folge $(x_n)$ und damit Grenzwert einer Teilfolge von $(x_n)$.
+
+	\item $(4) \df (5)$: 
+		Sei $(x_n)$ eine Cauchyfolge. Wegen $(4)$ hat $(x_n)$ eine konvergente Teilfolge mit Grenzwert $x\in X$. 
+		Dann ist $x_n\overset{n\to\infty}{\longrightarrow} x \df X$ vollständig.\par 
+		Angenommen $X$ sei nicht präkompakt 
+		$$\Rightarrow \exists 
+			\varepsilon_0 > 0 : \forall\{x_1,\dots,x_n\}\subseteq X \;\exists x_{n+1} 
+			\in X \text{ mit }x_{n+1} \not \in \cup^n_{i=1} U_{\varepsilon_0}(x_i).$$
+		Konstruiere so eine Folge $(x_n)$ in $X$. Dann gilt 
+		$$\forall n\in\N: d(x_{n+1},x_j) \geq \varepsilon_0\quad \forall j \in \{1,\dots,n\}$$
+		$\df (x_n)$ hat keine Cauchy-Teilfolge $\df (x_n)$ hat keine konvergente Teilfolge.
+
+		\item $(5) \df (1)$: 
+			Sei $(U_i)_{i\in I}$ eine offene Überdeckung von $X$.
+			Angenommen es existiere keine endliche Teilüberdeckung. Wir definieren induktiv Kugeln $K_n$, $n\in\N$, wie folgt:\\
+			Da $X$ präkompakt ist, gibt es zu $\varepsilon = 1$ endliche viele Kugeln $U_1(x_{0,j})$ mit 
+				$$X \subseteq \cap_{j=0}^{m_1} U_1(x_{0,j}).$$
+			Dann ist mindestens eine dieser Kugeln nicht durch endlich viele Mengen aus $(U_i)_{i\in I}$ überdeckbar.\par
+			OBdA sei $U_1(x_{0,0})$ und setze $x_0 := x_{0,0}$. 
+			Konstruiere so eine Folge $(x_n)$, so dass $U_{\frac{1}{2^n}}(x_1)$ nicht durch endlich viele Mengen aus $(U_i)_{i\in I}$ überdeckt werden kann. 
+			Sei 
+				$$y \in U_{\frac{1}{2^{n-1}}}(x_{n-1}) \cap U_{\frac{1}{2^n}}(x_1) \neq \emptyset$$ 
+			Dann gilt 
+				$$d(x_{n-1},x_n) \leq d(x_{n-1},y) + d(y,x_1) \leq \frac{1}{2^{n-1}} + \frac{1}{2^n} \leq \frac{1}{2^{n-2}}.$$
+			Für $n \leq p \leq q$ gilt dann 
+				$$d(x_p,x_q) \leq d(x_p,x_{p+1}) + \dots + d(x_{q-1},x_{q})
+				\leq \frac{1}{2^{p-1}} + \dots + \frac{1}{2^{q-2}} < \frac{1}{2^{n-2}}$$
+			Daraus folgt, $(x_n)$ ist eine Cauchyfolge in $X$ und wegen der Vollständigkeit von X 
+			gibt es ein $\hat{x} \in X$, so dass $\limes d(x_n,\hat{x}) = 0$. 
+			Wegen $X = \cup_{i\in I} U_i$ gilt $\exists i_0\in I: \hat{x}\in U_{i_0}$.
+			Weil $U_{i_0}$ offen ist: $\exists r>0$, so dass $U_r(\hat{x}) \subseteq U_{i_0}$.
+			Sei nun $n\in \N$, so dass $\frac{1}{2^n} < \frac{r}{2}$ und $d(\hat{x}, x_n) < \frac{r}{2}$.
+			$\df U_{\frac{1}{2}} (x_n) \subseteq U_r(\hat{x}) \subseteq U_{i_0}$. 
+			Das ist ein Widerspruch dazu, dass $U_{\frac{1}{2^n}}(x_n)$ nicht durch endliche viele $U_i$ überdeckt werden kann.
+		\end{enumerate}
+	\end{proof}
+
+%Korollar 1.42
+	\begin{cor}
+		$(X,d)$ sei ein metrischer Raum. Dann gilt:
+
+			\begin{enumerate}[a)]
+				\item $(X,d)$ kompakt $\df$ $X$ vollständig
+				\item $M\subseteq X$, so dass jede Folge in M eine in M konvergente Teilfolge hat (\qmarks{M folgenkompakt})
+					$\Leftrightarrow$ $M \subseteq X$ kompakt (\qmarks{M Überdeckungskompakt})
+
+				\item $M\subseteq X$ kompakt $\df$ $M$ beschränkt und abgeschlossen.
+				\item $X$ kompakt, $A \subseteq X$ abgeschlossen $\df$ $A$ kompakt.
+			\end{enumerate}
+	\end{cor}
+
+%Definition 1.43
+	\begin{definition}
+		Sei $(X,d)$ ein metrischer Raum. $M\subseteq X$ heißt \textit{relativ kompakt}, wenn $\overline{M}$ kompakt ist.
+	\end{definition}
+
+%Definition 1.44
+	\begin{definition}
+		$(X,d)$ vollständiger metrischer Raum, $M \subseteq X$ relativ kompakt. \par
+\todo{Was genau wird hier definiert?}
+			$\Leftrightarrow$ jede Folge in $M$ besitzt eine in $X$ konvergente Teilfolge.
+	\end{definition}
+
+%Satz 1.45
+	\begin{thm}
+		Sei $(X,d)$ ein metrischer Raum. $M,N \subseteq X$ seien relativ kompakt (bzw. präkompakt). Dann gilt 
+			\begin{enumerate} [(a)]
+				\item $S\subseteq M$ $\df$ $S$ relativ kompakt (bzw. präkompakt)
+				\item $M\cup N$ relativ kompakt (bzw präkompakt)
+				\item $M$ relativ kompakt $\df$ M präkompakt
+				\item Ist $(X,d)$ vollständig, so gilt $M$ relativ kompakt $\Leftrightarrow M$ präkompakt
+			\end{enumerate}
+	\end{thm}
+
+	\begin{proof}
+		\begin{enumerate}[a)]
+%			\item $\qmarks{a) - c)}$: mündlicher Beweis. TODO. folgt aus Definition.
+%			\item Zu $\qmarks{d)}$: Die Hinrichtung folgt aus c). 
+%				Für $"{}\Leftarrow"$: Sei $M$ präkompakt $\forall \varepsilon > 0\; \exists p\in\N, \{x_1,\dots,x_p\} \subseteq X$ mit $M \subseteq \cup_{j=1}^p \overline{ U_{\frac{\varepsilon}{2}}(x_j)}$. 
+%				Wegen $\overline{U_{\frac{\varepsilon}{2}}(x_j)} \subseteq U_{{\varepsilon}}(x_j)$ gilt
+%				$\overline{M} \subseteq \cup_{j=1}^p \overline{U_{\frac{\varepsilon}{2}}(x_j)} \subseteq \cup_{j=1}^p U_{\varepsilon}(x_j)$
+%				$\df$ $\overline{M}$ präkompakt. Da $(\overline{M},d)$ vollständig ist $\overline{M}$ kompakt. (Satz 1.41) $\df$ $M$ relativ kompakt.
+
+			\item  relativ kompakt: Sei $(x_n)$ eine Folge aus $S$. Da $(x_n)$ ein Folge in M ist, hat es eine konvergente Teilfolge, dessen Grenzwert in $\overline{M}$ ist. Dann ist der Grenzwert auch in $\overline{S}$. Also ist S relativ kompakt. 
+				präkompakt: Sei $\varepsilon>0$ gegeben. Dann gibt es eine endliche Menge $\{x_1,\dots,x_n\}\subseteq M$, so dass $S\subseteq M = \bigcup^n_{i=0}U_\varepsilon(x_i)$. Also ist auch S präkompakt.
+			
+			\item  relativ kompakt: Ist $(x_n)$ eine Folge aus $M\cup N$, so gibt es eine Teilfolge, die nur in $M$ oder $N$ ist. Dann hat diese Teilfolge noch eine konvergente Teilfolge.
+				präkompakt: $M$ und $N$ haben jeweils ein $\varepsilon$-Netz. Die Vereinigung ist dann auch ein $\varepsilon$-Netz.
+				
+			\item  Angenommen M sei nicht präkompakt, dann gibt es ein $\varepsilon>0$, so dass sich $M$ nicht durch endlich viele $\varepsilon$-Kugeln überdecken lässt. Wählen wir aus jedem dieser  (mindestens abzählbar vielen) Kugeln ein Element aus, entsteht eine Folge, dessen Folgenglieder alle Mindestabstand $\frac{\varepsilon}{2}$ zueinander haben. $\df$ Es gibt keine konvergente Teilfolge $\df$ $M$ ist nicht relativ kompakt.
+			
+			\item  $\qmarks{\df}$ folgt aus c) \par
+				$\qmarks{\Leftarrow}$ Sei $M$ präkompakt $\df \forall \varepsilon > 0\; \exists p\in\N, \{x_1,\dots,x_p\} \subset X$ mit $M \subset \cup_{j=1}^p \overline{ U_{\frac{\varepsilon}{2}}(x_j)}$. 
+				Wegen $\overline{U_{\frac{\varepsilon}{2}}(x_j)} \subset U_{{\varepsilon}}(x_j)$ gilt
+				$\overline{M} \subset \cup_{j=1}^p \overline{U_{\frac{\varepsilon}{2}}(x_j)} \subset \cup_{j=1}^r U_{\varepsilon}(x_j)$
+				$\df$ $\overline{M}$ ist präkompakt. Da $(\overline{M},d)$ vollständig ist, ist $\overline{M}$ kompakt. $\overset{\text{Satz 1.41}}{\df}$ $M$ relativ kompakt.
+		\end{enumerate}
+	\end{proof}
+
+%Bemerkung, Fakten 1.46
+	\begin{bem}[Fakten]
+		$(X,\norm{\cdot})$ normierter Raum.
+		\begin{enumerate}[a)]
+			\item Aussagen über metrischer Räume übertragen sich
+			\item Die Vervollständigung von $X$ ist ein Banachraum.
+			\item Wenn $\dim X < \infty$, dann
+				\begin{enumerate}[i)]
+					\item $X$ Banachraum
+					\item $M\subseteq X$ kompakt $\aq$ $M$ beschränkt und abgeschlossen (Heine-Borel)
+					\item $M\subseteq X$ relativ kompakt $\aq$ $M$ präkompakt  $\aq$ $M$ beschränkt
+				\end{enumerate}
+		\end{enumerate}
+	\end{bem}
+
+	\begin{lemma}[Lemma von Riesz]%Lemmaumgebung gab es schon :O
+		$(X,\norm{\cdot})$ normierter Raum, $E\subset X$ abgeschlossener Unterraum mit $E \not = X$, $\eta\in (0,1)$. \par
+		Dann existiert ein $x_\eta \in X$ mit $\norm{\xt} = 1$ und $\norm{\xt - y} \geq \eta \; \forall y\in E.$
+	\end{lemma}
+
+	\begin{proof}
+		Sei $x_0 \in X\setminus E$. Definiere $\delta := \inf_{y\in E} \norm{x_0 - y}$, da E abgeschlossen ist, ist $\delta > 0$. Sei $(y_n)$ Folge in $E$ mit $\norm{x_0 - y_n} \to \delta$. 
+Sei $\eta \in (0,1) \df \frac{\delta}{\eta} > \delta $ $\df \exists z\in E$ mit $\norm{x_0 - z} \leq \frac{\delta}{\eta}.$ Definiere $\xt := \frac{x_0-z}{\norm{x_0 - z}} \df \norm{\xt} = 1$.
+		Für $y\in E$ gilt dann 
+		\spcm[-1.3]
+		$$\norm{\xt - y} = \norm{y - \frac{x_0-z}{\norm{x_0 - z}}} 
+		= \norm{y + \frac{z}{\norm{x_0 - z}} - \frac{x_0}{\norm{x_0 - z}}} 
+		= \frac{\norm{\overbrace{(\norm{x_0 - z}y + z)}^{\in E} - x_0}}{\norm{x_0 - z}}  
+		\geq \delta\cdot \frac{1}{\norm{x_0 - z}} \geq \frac{\eta}{\delta} \cdot \delta = \eta$$
+	\end{proof}
+%	\begin{proof}{Alternative Stil}
+%		Sei $x_0 \in X\backslash E$. $\delta := \inf_{y\in E} \norm{x_0 - y}$.
+%		Da $E$ abgeschlossen ist $\df$ $\delta > 0$. Sei $(y_n)$ Folge in $E$ mit $\norm{x_0 - y_n} \to \delta$. 
+%		Sei $\eta \in (0,1) \df \frac{\delta}{\eta} > \delta $
+%		$\df \exists z\in E$ mit $\norm{x_0 - z} \leq \frac{\delta}{\eta}.$ Definiere $\xt := \frac{x_0-z}{\norm{x_0 - z}} \df \norm{\xt} = 1$.\par	
+%		Für $y\in E$ gilt 
+%		%\begin{equation*} \begin{split}
+%		$\norm{\xt - y} = \norm{y - \frac{x_0-z}{\norm{x_0 - z}}} 
+%		 = \norm{y + \frac{z}{\norm{x_0 - z}} - \frac{x_0}{\norm{x_0 - z}}} 
+%		 = \frac{1}{\norm{x_0 - z}} \norm{(\underbrace{\norm{x_0 - z}y + z}_{\in E}) - x_0} 
+%		\vspace{-1em}> \delta\cdot \frac{1}{\norm{x_0 - z}} \geq \frac{\eta}{\delta} \cdot \delta = \eta
+%		$
+%		%\end{split} \end{equation*}
+
+	
+
+%Korollar 1.48
+	\begin{cor}
+		$(X,\norm{\cdot})$ normierter Raum.
+			\begin{enumerate}[a)] 
+				\item $\overline{U_1(0)}$ kompakt $\aq$ $\dim X < \infty$
+				\item Jede beschränkt Folge besitzt konvergente Teilfolge $\aq$ $\dim X < \infty$
+			\end{enumerate}
+	\end{cor}
+
+	\begin{proof}
+		 \begin{enumerate}[a)]
+			 \item $"\Leftarrow"$ Folgt aus Heine-Borel\par
+				$"\Rightarrow"$ Angenommen, $\dim X = \infty$ (Nicht endlichdimensional). 
+				Wir wählen ein $x_0 \in X$ mit $\norm{x_0} = 1$. Nach dem Lemma von Riesz gibt es ein $x_1 \in X$, so dass 
+				$\norm{x_1 - y} \geq \frac{1}{2} \; \forall y \in \aufspan\{x_0\}$. 
+				Sukzessiv können wir so eine Folge $(x_n)$ konstruieren für die gilt: $\norm{x_n} = 1$ und $\norm{x_n - y} \geq \frac{1}{2} \; \forall y\in \aufspan\{x_0,\dots,x_{n-1}\}\; \forall n\in\N.$ \par
+				$\df \norm{x_n - x_m} \geq \frac{1}{2}\; \forall n,m \in \N$  mit $n \not = m$. 
+				$\df (x_n)$ hat keine konvergente Teilfolge. \par
+			\item genauso.
+		\end{enumerate}
+	\end{proof}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+	\section{Skalarprodukträume}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+Erinnerung:\\
+	Sei $X$ ein $\K$-VR. Ein \textit{Skalarprodukt} ist eine Abb $(\cdot,\cdot) \to \K$ mit 
+	\begin{enumerate}[(S1)]
+		\item $(\alpha x + \beta y, z) = \alpha (x,z) + \beta (y,z)$ $\forall x,y,z \in X$, $\alpha,\beta \in \K$
+		\item $(x,y) = \ov{(y,x)}$
+		\item $(x,x) > 0$  $\forall x\in X\backslash\{0\}$.
+	\end{enumerate}
+
+%Bemerkerung 1.49
+	\begin{bem}
+		\begin{enumerate}[1)]
+			\item $\norm{x} := \sqrt{(x,x)}$ ist eine Norm.
+			\item ein vollständiger Skalarproduktraum heißt \textit{Hilbertraum}.
+			\item $\norm{x} \cdot \norm{y} \geq |(x,y)| \; \forall x,y \in X$ (Cauchy-Schwarz-Ungleichung)
+
+			\item Für $x,y \in X$ mit $(x,y) = 0$ (x und y orthogonal, $x \perp y$)
+			gilt $\norm{x + y}^2 = \norm{x}^2 + \norm{y}^2$ (Satz des Pythagoras)
+			\item Für $x,y \in X$ gilt die Parallelogrammgleichung: 
+				$\norm{x + y} ^2 + \norm{x - y}^2 = 2 \norm{x}^2 + 2\norm{y}^2$
+			\item	Für $(x_n), (y_n)$ mit $(x_n) \to x$, $(y_n) \to y$ gilt 
+				$(x_n, y_n) \to (x,y)$, da\\ 
+				$|(x_n, y_n) - (x,y)| \leq \norm{x_n}\cdot \norm{y_n - y} + \norm{x_n - x}\norm{y}$ (Stetigkeit des Skalarprodukts)
+		\end{enumerate}
+	\end{bem}
+%Satz 1.50
+	\begin{thm}
+	Sei $(X,\norm{\cdot})$ ein normierter Raum mit $\norm{x+y}^2 + \norm{x-y}^2 = 2\norm{x}^2 +2\norm{y}^2 ~\forall x,y \in X$. Dann existiert ein Skalarprodukt auf $X$, welches $\norm{\cdot}$ induziert.
+	\end{thm}
+	\begin{proof}
+		Skizze! a) $\K = \R$ $(x,y) := \frac{1}{4}(\norm{x + y}^2 - \norm{x-y}^2)$.\\ b) $\K = \C$ $(x,y) := \frac{1}{4}(\| x+y\|^2 - \|x-y\|^2 + i(\|x+iy\|^2 + \|x-iy\|^2)$ ($\nearrow$ Übung, Blatt 6, Aufgabe 1)
+	\end{proof}
+
+% Definition 1.51
+	\begin{definition}
+		$(X,\SP)$ Skalarprodukt, $x,y\in X$. $M,N \subseteq X$, $(x_i)_{i\in I}$ Familie.
+		\begin{enumerate}
+			\item $x$ orthogonal zu $y$ (x $\perp$ y), wenn $(x,y) = 0$.
+			\item $x$ orthogonal zu $N$ (x $\perp$ M), wenn $x \perp y\quad \forall y\in N$
+			\item $M$ orthogonal zu $N$ (N $\perp$ M), wenn $x \perp M\quad \forall x\in N$.
+			\item $M^\perp = \{x\in X: x\perp M\}$ \textit{Orthogonalraum zu M}
+			\item $\xf$ heißt \textit{Orthogonalsystem} (OGS), wenn $x \perp y, \forall i,j \in I, i\neq j$
+			\item $\xf$ heißt \textit{Orthonormalsystem} (ONS), wenn es OGS mit $\|x_i \| = 1 \; \forall i \in I$ ist. 
+			\item $\xf$ heißt \textit{Orthogonalbasis} (OGB), wenn es ein linear unabhängiges OGS ist \par und $\overline{span(\xf)} = X$.
+			\item $\xf$ heißt \textit{Orthonomalbais} (ONB), wenn es OGB und ONS ist.	
+		\end{enumerate}
+	\end{definition}
+%Beispiel 1.52
+	%TODO Layout
+	\begin{bsp}
+		\begin{enumerate}[a)]
+			\item $e_n = (\delta_{in})_{i\in I} \in \ell^2$ $(e_n)_{n\in \N}$ ist ONS
+			Es ist auch ONB.\par
+			Sei $x = (a_n)_{n\in \N}$, $\varepsilon > 0. \df \exists N \in \N. \sum_{k=N+1}^\infty |a_k| < \varepsilon^2$.
+			Für $v = a_1e_1 + \dots + a_Ne_N \in span(e_n)_{n\in\N}$ \par
+			$\norm{v - x }_2 = \left( \sum_{k = N +1}^\infty |a_k|^2\right)^{\frac{1}{2}} < \varepsilon$
+
+			\item $\ff{u}{k}{\Z}$ mit $u_k(x) = \frac{1}{\sqrt{2\pi}} e^{ikx}$ \par
+			$u_k \in L^2([0,2\pi])$ ist ONS, da $\int_0^{2\pi} u_k(x) \overline{u_j(x)} dx = \delta_{kj}$ Auch ONB?
+		\end{enumerate}
+		Beachte: $V^\perp$ ist immer abgeschlossen, da für eine Folge $(v_i)$ in $V^\perp$ mit $v_i \to v$ gilt\\ $(x,v) \leftarrow (x,v_i) = 0 \; \forall x\in V$ $\df v \in V^\perp$
+	\end{bsp}
+
+%Satz 1.53 (Besselsche Ungleichung)
+	\begin{thm}[Besselsche Ungleichung]
+		Sei $X$ ein Skalarproduktraum, $\ff{u}{i}{I}$ ein Orthonormalsystem, $x\in X$, $i_1,\dots,i_n \in I$. Dann ist 
+			$$\sum_{k=1}^n |(x,u_{i_k})|^2 \leq\norm{x}^2 $$
+	\end{thm}
+	\begin{proof}
+		Sei $\disp x_n := x - \sum_{k=1}^n (x,u_{ik}) u_{ik}$ und $j\in \{1,\dots,n\}$. Dann ist
+		\spcm[-1]
+		$$(x_n, u_{ij}) = (x,u_{ij}) - \sum^n_{k=1} (x,u_{i_k}) \underbrace{(u_{i_k},u_{i_j})}_{\delta_{kj}}
+		= (x, u_{i_j}) - (x, u_{i_j}) = 0 \spcm$$
+		Also ist $\sum^n_{k=1} (x, u_{i_k}) u_{i_k} \perp x_n$
+		und mit dem Satz des Pythagoras folgt nun
+		\spcm[-0.5]
+		$$\norm{x}^2 = \norm{x_n}^2+\|\sum^n_{k=1} (x,u_{i_j})u_k\|^2 = \|x_n\|^2 + \sum^n_{k=1}|(x,u_{i_k})|^2 \geq \sum^n_{k=1} |(x,u_{i_k})|^2$$
+	\end{proof}
+	
+%Korollar 1.54
+	\begin{cor}
+		Voraussetzungen wie oben. Dann gilt\par
+		\begin{enumerate}[(a)]
+			\item $(x, u_i) \neq 0$ für höchstens abzählbar viele $i\in I$.
+			\item $\sum_{i\in I} |(x, u_i)|^2 \leq \norm{x}^2$ (Besselsche Ungleichung II)
+			\item Die Reihe $\sum_{i\in I} (x,u_i)u_i$ (Fourierreihe) ist eine Cauchyfolge in $X$.
+		\end{enumerate}
+	\end{cor}
+
+	\begin{proof}
+		\begin{enumerate}[(a)]
+			\item Für $n\in\N$ gilt nach Bessel (I), dass für $S_{x,n} := \{ i\in I: |(x, u_i)| ^2 > \frac{1}{n} \}$ 
+			gilt $|S_{x.n}| \leq n \norm{x}^2$, also endlich. \par
+			Dann ist $\{i \in I: (x,u_i) \neq 0\} = \cup_{n\in\N} S_{x,n}$ abzählbar, als abzählbare Vereinigung abzählbarer Mengen.
+			\item Seien $\ff{i}{n}{\N}$ paarweise disjunkt mit $\{i_n : n\in \N\} = \{i\in I: (x,u_i) \neq 0\}$.
+			Dann gilt $\forall n\in \N:$\\
+			$\norm{x}^2 \geq \sum_{k=1}^n |(x,u_{i_k})|^2$
+			$\overset{n\to \infty}{\df}\; \sum_{k=1}^\infty |(x,u_{i_k})|^2 = \sum_{i\in I} |(x,u_i)|^2.$
+			\item $(i_n)$ wie oben, $\varepsilon > 0$ 
+			$\df[b)]$ $\exists N\in\N$, so dass $\forall n\geq m \geq N$ gilt 
+			$\sum_{k = m+1}^n |(x,u_k)|^2 < \varepsilon^2$\\
+			$\df \norm{\sum^n_{k=1} (x,u_{i_k})u_{i_k} - \sum^m_{k=1} (x,u_{i_k}) u_{i_k}}^2
+			= \norm{ \sum_{k= m+1} ^ n (x, u_{i_k} u_{i_k}}^2 \overset{Pyth.}{=} \sum_{k=m+1}^n |(x,u_{i_k})|^2 < \varepsilon^2$\\
+			$\df \sum^\infty_{k=1} (x,u_{i_k})u_{i_k} $ ist eine Cauchyfolge.
+		\end{enumerate}
+	\end{proof}
+
+%Satz 1.55 (Projektionssatz)
+	\begin{thm}[Projektionssatz]
+		$X$ Skalarproduktraum, $V$ vollständig UVR, $x\in X$. Dann existiert ein eindeutiges $v_0 \in V$, so dass $\norm{x - v_0} = \inf_{v\in U} \norm{x - v}$. Dieses $v_0$ erfüllt $x - v_0 \in V^\perp$	
+	\end{thm}
+
+	%\begin{center}
+		%\begin{tikzpicture}
+			%\draw [->] (0,0) -- (3,0);
+			%\draw [->] (0,0) -- (0,3);
+			%\draw [thick](0,0) -- (2,3) node [above right] {$V$};
+			%\draw [fill=black](1,1.5) circle(1pt) node [left] {$v_0$};
+			%\draw (1,1.5) -- (2,5/6);
+			%\draw [fill=black](2,5/6) circle(1pt) node [right] {$x$};
+			%\rechterWinkel{1,3/2}{236}{0.5};
+		%\end{tikzpicture}
+	%\end{center}
+
+%	\begin{proof}
+%		Sei $(v_n)$ Folge in $V$ mit $\underbrace{\norm{x-v_n}}_{=: d_n} \to \underbrace{\inf_{v\in V}\norm{x-v}}_{=: d}.$
+%		$\df[Parallelogrammgleichung!] \norm{x - \frac{v_n+v_m}{2}}^2 + \norm{\frac{v_n+v_m}{2}}^2
+%		= \frac{1}{2}\norm{x- v_n}^2 + \frac{1}{2}\norm{x-v_n}^2 = \frac{1}{2} d_n^2 + \frac{1}{2} d_m^2$
+%	$\frac{v_n+v_m}{2} \leq \frac{1}{2} (d_n^2 + d_m^2) - d^2$ $\to 0$, wenn $n,m \to \infty$.
+%	$\df (v_n) CF \df (v_n)$ konvergiert gegen ein $v_0 \in V$.
+%	Es gilt $\norm{x-v_0} = \inf_{v\in V}\norm{x-V}$ \par
+%	Eindeutigkeit: $\norm{x - v_{01}} = \norm{x - v_{02}}	= d$
+%	$\df \norm{v_{01} - v_{02}}^2 = 2(\norm{x - v_{01}}^2 + \norm{x - v_{02}} $
+%	$\df v_{01} = v_{02}$\par
+%	noch zu zeigen: $x-v_0 \in V^\perp:$\par
+%	Sei $\lambda\in \K, v\in V$. Dann $\norm{x - v_{0}}^2 \leq \norm{x - v_{0} + \lambda v}^2
+%	= \norm{x - v_{0}}^2 - \overline{\lambda}(x-v_0,v)$.
+%	Wähle $\lambda = \frac{(x-v_0,v}{\norm{v}^2}$ $-\lambda(v,x-v_0) + |\lambda|^2\norm{v}^2$
+%	$\df \norm{x - v_{0}}^2 \leq \norm{x - v_{0}}^2 - \frac{(x-v_0,v}{\norm{v}^2} \leq \norm{x - v_{0}}^2$	
+%	$\df (x-v_0,v) = 0 \df x-v_0 \perp v$
+%	\end{proof}
+	\begin{proof}
+		Sei $(v_n)$ eine Folge in $V$ mit $d_n:=\|x-v_n\| \to \inf_{v\in V}\|x-v\| =:d$. Wegen der Parallelogrammgleichung ist
+		$$\underbrace{\|x-\frac{v_n+v_m}{2}\|^2}_{\geq d^2}+\|\frac{v_n-v_m}{2}\|^2 = \frac{1}{2}\|x-v_n\|^2+\frac{1}{2}\|x-v_m\|^2 = \frac{1}{2}d_n^2+\frac{1}{2}d_m^2$$
+		$$\df \|\frac{v_n-v_m}{2}\|^2 \leq \frac{1}{2}(d_n^2+d_m^2)-d^2 \to 0 \text{ für } n,m \to \infty$$
+		$\df (v_n)$ ist eine Cauchyfolge und wegen der Vollständigkeit von $V$ konvergiert sie gegen ein $v_0\in V \df \|x-v_0\| = \inf_{v\in V} \|x-v\|$\par 
+		\qmarks{Eindeutigkeit:} Sei $v_1\in V$ ein weiterer Vektor mit $\|x-v_1\|=\|x-v_0\|= d = \inf_{v\in V} \|x-v\|$. Wegen der Parallelogrammgleichung ist $$\|v_1 -v_0\|^2 = 2\left( \| x - v_0\|^2 + \|x-v_1\|^2 - 2d^2\right) = 0 \df v_0 = v_1.$$
+		Es bleibt noch zu zeigen: $x-v_0\in V^\perp$.\par 
+		Für $\lambda \in \K,\;v\in V$ ist 
+		$$\|x-v_0\|^2 \leq \|x-(v_0 +\lambda v) \|^2 = ((x-v_0)-\lambda v,(x-v_0)-\lambda v) = \| x-v_0\|^2 - \overline{\lambda}(x-v_0,v)-\lambda (v,x-v_0)+|\lambda|^2\|v\|^2.$$
+		Sei also $\lambda := \frac{(x-v_0,v)}{\|v\|^2}$ 
+		$$\df \|x-v_0\|^2 \leq \|x-v_0\|^2 - \underbrace{\frac{|(x-v_0,v)|^2}{\|v\|^2}}_{\leq 0}\leq \|x-v_0 \|^2 \df |(x-v_0,v)|^2=0 \df x-v_0 \perp v.$$
+	\end{proof}		
+	
+%Korollar 1.56
+	\begin{cor}
+		Sei $X$ ein Hilbertraum und $V$ ein abgeschlossener Unterraum. Dann gilt 
+			\begin{enumerate}
+				\item $X = V \perp V^\perp$, also $ V\perp V^\perp$ und $X = V \oplus V^\perp$\par
+				Insbesondere gilt wegen $V\cap V^\perp = \{0\}$, dass $\forall x\in X$ die Zerlegung $x = v + w$ mit $v\in V,\;w\in V^\perp$ eindeutig ist.
+				\item Sei $\ff{u}{i}{I}$ eine Orthonormalbasis von $V, x\in X$. Dann ist 
+				$v := \sum_{i\in I} (x,u_i) u_i$ die Bestapproximation von $x$ in $V$.
+			\end{enumerate}
+	\end{cor}
+	\begin{proof}
+		\begin{enumerate}
+			\item $x\in X$. Sei $v\in V$, so dass, $\norm{x-v} = \inf_{u\in V}\norm{x-u}$
+			$\df x = v + (x-v)$ und $v\in V,\;x-v \in V^\perp$
+			\item Für $v := \sum_{i\in I} (x, u_i) u_i$ (konvergent) ist $x -v \in V^\perp$
+			(wie im Beweis der Besselschen Ungleichung)
+			$\df v$ ist Bestapproximation von $x$ in $V$.
+		\end{enumerate}
+	\end{proof}
+
+%Lemma 1.57
+	\begin{lemma}
+		Sei $X$ ein Skalarproduktraum, $V$ ein Unterraum. Dann ist $V^\perp = \overline{V}^\perp$
+	\end{lemma}
+	\begin{proof}
+		$"'\supseteq"'$  Da $V\subseteq \overline{V} \df \overline{V}^\perp \subseteq V^\perp$ \par
+		$"'\subseteq"'$ Sei $x\in V^\perp, v\in V \df \exists$ Folge $(v_n)$ in $V$ mit $v_n \to v$
+		$\df (x,v) \leftarrow (x,v_n) = 0$
+	\end{proof}
+
+%Satz 1.58
+ 	\begin{thm}
+		$X$ Skalarproduktraum. $\ff{u}{i}{I}$ ONS.\par
+		Betrachte folgende Aussagen
+			\begin{enumerate}[(i)]
+				\item $\ff{u}{i}{I}$ ist eine Orthonormalbasis
+				\item $x = \sum_{i\in I} (x, u_i)u$ $\forall x\in X$ (Fourierreihe)
+				\item $(x,y) = \sum_{i\in I}(x,u_i)(u_i,y)$ $\forall x,y \in X$ (Parseval-Identität)
+				\item $\norm{x}^2 = \sum_{i\in I}|(x,u_i)|^2$ $\forall x\in X$ (Bessel-Gleichung)
+				\item $(span\ff{u}{i}{I})^\perp = \{0\}$
+			\end{enumerate}
+			Dann gilt $i \aq ii \aq iii \aq iv \df v$.\par
+			Wenn $X$ zusätzlich noch ein Hilbertraum ist, dann gilt auch $v\df iv$.
+	\end{thm}	
+	\begin{proof}
+		\begin{itemize}[]
+		\item $"'(i)\df(ii)"':$ Sei $\varepsilon > 0$ gegeben. Da $(u_i)_{i\in I}$ eine ONB ist, gibt es $i_1,\dots,i_n\in I,\;\alpha_1,\dots \alpha_n \in \K$ so dass $\|x- \sum^n_{k=1} \alpha_k u_{i_k}\| < \varepsilon$ wegen Korollar 1.56 ist
+		\todo{nochmal anschauen!}
+		$$\|x- \sum^n_{k=1} (x, u_{i_k})\| \leq \|x-\sum^n_{k=1} \alpha_k u_{i_k}\| < \varepsilon$$
+		\item $"'(ii) \df (iii)"':$ Es ist:
+		$$x = \sum_{i\in I} (x, u_i)u \overset{(\cdot, y)}{\df} (x,y)=\left(\sum_{i\in I} (x, u_i)u_i,y\right)=\sum_{i\in I} (x,u_i)(u_i,y)\quad \forall x,y\in X$$
+		\item $"'(iii) \df (iv)"'$: Setze in die Formel $y=x$ ein.
+		\item $"'(iv) \df (i)"'$: Mit Pythagoras und Korollar 1.56 gilt:
+		$$\|x\|^2 = \sum_{i\in I} |(x_i,u_i)|^2 + \|x- \sum_{i\in I} (x,u_i)u_i\|^2 \df x- \sum_{i\in I} (x,u_i)u_i = 0 \df x \in \overline{\aufspan (u_i)_{i\in I}}.$$
+		\item $"'(i) \df (v)"'$: Wegen Lemma 1.57 ist $(\aufspan (u_i)_{i\in I})^\perp =\overline{\aufspan (u_i)_{i\in I}}^\perp = X^\perp = \{0\}$.
+		\item $"'(v)\df(i)"'$: Sei $X$ ein Hilbertraum $\df \overline{\aufspan (u_i)_{i\in I}}$ ist vollständig. Sei $x\in X$ mit $x = x_1+x_2$, wobei $x_1 \in \overline{\aufspan (u_i)_{i\in I}},\;x_2\in \overline{\aufspan (u_i)_{i\in I}}^\perp =  \aufspan (u_i)_{i\in I}^\perp = \{0\} \df x = x_1$.
+		\end{itemize}
+	\end{proof}
+
+%	\begin{proof}
+%		\begin{itemize}[]
+%			\item $\qmarks{i\df ii}$: 
+%				Sei $\varepsilon > 0$ $\df$ $\exists i_1,\dots,i_n \in I, x_1,\dots,x_n \in \K$\par
+%					$\norm{x - \sum_{k=1}^n\alpha_k u_{i_k}} < \varepsilon$. Es gilt aber \par
+%					$\norm{x - \sum_{k=1}^n(\alpha_k ,u_{i_k})u_{i_k}} \leq \norm{x - \sum_{k=1}^n\alpha_k u_{i_k}} < \varepsilon$
+%			\item $ii\df iii$ Wende Skalarprodukt mit $y$ auf Fourierreihe an
+%			\item $iii \df iv$ Wende $x=y$ an.
+%			\item $iv \df i$ Mit Pythagoras gilt 
+%			 $\norm{x}^2 = \sum_{i\in I}|(x,u_i)|^2 + \norm{x - \sum_{i\in I}(x,u_i) u)_i}^2$
+%			 $\df x - \sum_{i\in I}(x,u_i) u)_i = 0 \df x\in spann\ff{u}{i}{I}$
+%			%\item $i\df v$: $V = span\ff{u}{i}{I}, x\in V^\perp$ 
+%			\item $i\df v$: Sei $x\in(span\ff{u}{i}{I})^\perp \df[Lemma 1.57] x\in \overline{span\ff{u}{i}{I}}^\perp = X^\perp = \{0\}$
+%			\item $v \df i$: Sei $X$ Hilbertraum $\df \overline{span\ff{u}{i}{I}}$ vollständig
+%			Sei $x\in X \df x = x_1 + x_2$, wobei 
+%			$x_1 \overline{span\ff{u}{i}{I}}, x_2 \in \overline{span\ff{u}{i}{I}}^\perp = \overline{span\ff{u}{i}{I}}^\perp = \{0\}$
+%			$\df x = x_1 \in \overline{span\ff{u}{i}{I}}$
+%		\end{itemize}
+%	\end{proof}
+
+	Nun zurück zu $L^2([0,2\pi]).$
+	Wir erinnern uns vorerst:	 
+			\begin{enumerate}
+				\item Der Raum der stetigen Funktionen liegt dicht in $L^2([0,2\pi])$\\
+				 $\Leftrightarrow \forall \varepsilon > 0, f\in L^2([0,2\pi])\; \exists g\in C([0,2\pi])$ mit 
+				$g(0) = g(2\pi) = 0$ und $\norm{f-g}_2 < \varepsilon$.
+				\item Zu $g\in C([0,2\pi])$ mit $g(0) = g(2\pi), \varepsilon > 0 \;\exists h\in \aufspan\ff{u}{i}{\Z}: \norm{g-h}_\infty$
+			\end{enumerate}
+%Satz 1.59
+	\begin{thm} 
+		Die Familie $\ff{u}{k}{\Z}$ mit $u_k(x) = \frac{1}{2 \pi} e^{ikx}$ ist eine Orthonormalbasis von $L^2([0,2\pi])$ 
+		Wir benutzen:	 
+			\begin{enumerate}[a)]
+				\item $\forall \varepsilon > 0, f\in L^2([0,2\pi]) ~\exists g\in C([0,2\pi])$ mit $g(0) = g(2\pi) = 0$ und $\norm{f-g}_2 < \varepsilon$,
+				\item Zu $g\in C([0,2\pi])$ mit $g(0) = g(2\pi), \varepsilon > 0 ~\exists h\in span(U_i)_{i \in \Z}: \norm{g-h}_\infty < \varepsilon$.
+			\end{enumerate}
+
+	\end{thm}
+	\begin{proof}
+		Sei $f\in L^2([0,2\pi]), \varepsilon > 0$.
+		Dann existiert $g\in C([0,2\pi])$ mit $g(0) = g(2\pi) = 0$ und $\norm{f-g}_2 < \frac{\varepsilon}{2}$.
+		Sei $h\in \overline{span\ff{u}{i}{I}}$, so dass $\norm{g-h} < \frac{\varepsilon}{2\sqrt{2\pi}}$
+		$$\df \norm{f-h}_2 \leq \norm{f-g}_2 + \norm{g-h}_2 \leq \norm{f-g}_2 + \sqrt{2\pi} \norm{g-h}_\infty < \frac{\varepsilon}{2} + \sqrt{2\pi} \cdot \frac{\varepsilon}{2\sqrt{2\pi}} = \varepsilon$$
+		wobei wir $\|f\|^2_2 = \int_I |f|^2 d\lambda \leq \int_I {\ess \sup}_{x\in I} |f(x)|^2 d\lambda = \|f\|^2_\infty \int_I d\lambda = \|f\|^2_\infty \lambda(I)$ für $f\in L^2(I)$ genutzt haben.
+	\end{proof}
+
+%Korollar, Folgerungen ohne Nummerierung.
+	\begin{cor*}
+Sei $f\in L^2([0,2\pi])$
+		\begin{enumerate}
+			\item $f_n(x) = \sum_{k=-n}^n c_k e^{ikx}$ ist bestapprox. trig. Polynom vom Grad $n$ für $f$ (mit $c_k = (f,e^{ik\cdot })=\int_{0}^{2\pi} f(x) e^{-ikx} dx)$ 
+			\item $f = \sum_{k= -\infty}^{\infty} \sum_{-n}^n c_k e^{ik\cdot} $
+			\item $\ff{v}{i}{\Z}$ mit $v_0 = \frac{1}{\sqrt{2\pi}}, v_k = \cos(k\cdot) \frac{1}{\sqrt{\pi}} $ für $ k>0, v_k = sin(k\cdot) \frac{1}{\sqrt{\pi}} $ für $k< 0$
+		\end{enumerate}
+	\end{cor*}
+
+%Definition 1.60 (Halbordnung, Totalordnung)
+	\begin{definition}[Halbordnung, Totalordnung]
+		Sei $M$ eine Menge. Eine Relation $\leq\; \subseteq M\times M$, heißt \textit{Halbordnung}, wenn folgende Eigenschaften erfüllt sind:
+
+			\begin{enumerate}[(i)]
+				\item $a\leq b \land b\leq c \df a \leq c\quad \forall a,b,c \in M$
+				\item $ a \leq a \quad\forall a\in M$
+				\item $ a \leq b \land b\leq a \df a = b\quad \forall a,b\in M$
+			\end{enumerate}
+			\begin{itemize}[]
+				\item $d \in M$ heißt \textit{obere Schranke}, wenn $a \leq d$ $\forall a\in M$% mit $a \leq d$ oder $b \leq a$.
+				\item Die Relation heißt \textit{Totalordnung}, wenn sie eine Halbordnung ist und $\forall a,b \in M: a \leq b$ oder $b \leq a$ gilt.
+			\end{itemize}
+	\end{definition}
+
+%Lemma 1.61 (Lemma von Zorn)
+	\begin{lemma}[Lemma von Zorn]
+		$M$ sei eine halbgeordnete Menge. Besitzt jede totalgeordnete Teilmenge $Z \subseteq M$ eine obere Schranke in $M$, dann besitzt $M$ eine obere Schranke.	
+	\end{lemma}
+
+%Satz 1.62
+	\begin{thm}
+		$(X, (\cdot,\cdot))$ sei ein Hilbertraum. Dann existiert eine Orthonormalbasis.
+	\end{thm}
+
+	%TODO Layout
+	\begin{proof}
+		Sei $M = \{\ff{u}{i}{I} : \ff{u}{i}{I} \text{ ist Orthonormalsystem} \}$ \par
+		Wir definieren die Halbordnung $\ff{u}{i}{I} \subseteq \ff{y}{i}{J} :\aq I \subseteq J$ und $x_i = y_i\; \forall i \in I$.\par
+		Sei $Z := \{(x)_{i\in I_j} : j\in J \} \subseteq M$ eine totalgeordnete Teilmenge, 
+		$\ff{x}{i}{I}$ ist eine obere Schranke von $Z$. Nach dem Lemma von Zorn gibt es also eine obere Schranke $(\hat{x}_i)_{i\in J}$ von $M$. \par
+		Mit anderen Worten: $\centernot \exists$ ONS $\ff{\hat{{y}}}{i}{\hat{J}}$ mit $J \subsetneq \hat{J}$ und $\hat{x}_i = \hat{y}_i\; \forall i\in J.$\par
+		$\df \forall x\in X$ mit $x\perp \hat{x}_i \;\forall i \in I$ gilt $x= 0$ \par
+		$\df (span\ff{\hat{{x}}}{i}{I})^\perp = \{0\}$
+	\end{proof}
+	Übung. Blatt 5,6.
+	\begin{enumerate}
+		\item Gram-Schmidt-Orthonormalisierung\\
+		Sei $(X, (\cdot,\cdot))$ ein Skalarproduktraum, $(x_n)_{n \in \N}$ linear unabhängig. Dann existiert ein ONS $(y_n)_{y \in \N}$ mit $span(y_1,\dots,y_k)=span(x_1,\dots,x_k)$.\\ Mit $(y_n)$ wie vorhin, gilt $(y_n)$ ist ONB $\forall k \in \N \Leftrightarrow span(x_n)_{n \in \N} = X$.
+		\item $M\subset X$ ist UVR $\df (M^{\perp})^{\perp} = \overline{M}$
+	\end{enumerate}
+
+%Satz 1.63
+	\begin{thm}
+		Seien $X$ ein Hilbertraum, $\ff{x}{i}{I}, \ff{y}{i}{J}$ Orthonormalbasen. Dann haben $I$ und $J$ die gleiche Mächtigkeit.
+	\end{thm}
+	%TODO Layout
+	\begin{proof}
+		Für endliches $I$ ist die Aussage klar. \par
+		Seien also $|I|$ und $|J|$ unendlich.  \par
+		Für $x\in X$, definiere $S_x = \{i\in I: (x,x_i) \neq 0\} \df |S_X| \leq |\N|$
+		sowie $\bigcup_{j\in J} S_{y_j} = I$ und $S_{y_j} \neq \emptyset$. Denn:
+		Ist $S_{y_j} = \emptyset$, dann $y_j \perp x_i \forall i \in I \df y_j =0$ Lightning! \par
+		Ist $i\in I$ mit $i \not \in \bigcup_{j\in J} S_{y_j}$, dann $x_i \perp y_j \forall j\in J \df x_i = 0$ Lightning! \par
+		Also $|I| = |\bigcup_{j\in J} S_{x_j}| \subseteq |J| \cdot |\N| = |J|$. \par
+		Analog $|J| \subseteq |I|$
+	\end{proof}
