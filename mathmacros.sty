@@ -1,6 +1,8 @@
 \ProvidesPackage{mathmacros}
 %[06.09.17 v1.0 mathematical macros]
 
+%\def\nocolor{}
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%% 		math environments %%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -54,17 +56,23 @@
 		%backgroundcolor							=	blue!3	,%
 					}
 
-	%\def\nocolor{}
 
 	\ifx\nocolor\undefined
-		\mdtheorem[style=theoremstyle]{thm}{Satz}[chapter]
+		%Defines something for thmbox
+		\makeatletter
+		\define@key{thmdef}{mdthm}[{}]{%
+		\thmt@trytwice{\def\thmt@theoremdefiner{\mdtheorem[#1]}}{}}
+		\makeatother
+		\declaretheorem[mdthm={style=theoremstyle},numberwithin=chapter,name=Satz]{thm}
+		%
+		%\mdtheorem[style=theoremstyle]{thm}{Satz}[chapter]
 	\else
 		\newtheorem{thm}{Satz}[chapter]
 	\fi
 
 	\ifx\nocolor\undefined
-		\mdtheorem[style=corstyle]{lemma}[thm]{Lemma}
-		\mdtheorem[style=corstyle]{cor}[thm]{Korollar}
+		\declaretheorem[mdthm={style=corstyle},numberlike=thm,name=Lemma]{lemma}
+		\declaretheorem[mdthm={style=corstyle},numberlike=thm,name=Kollar]{cor}
 	\else
 		\newtheorem{lemma}[thm]{Lemma}
 		\newtheorem{cor}[thm]{Korollar}
@@ -74,8 +82,10 @@
 	\theoremstyle{definition}%Lässt den Text innerhalb nicht mehr kursiv erscheinen
 
 	\ifx\nocolor\undefined
-		\mdtheorem[style=defstyle]{definition}[thm]{Definition}
-		\mdtheorem[style=corstyle]{bsp}[thm]{Beispiel}
+		\declaretheorem[mdthm={style=defstyle},numberlike=thm,name=Defintion]{definition}
+		\declaretheorem[mdthm={style=corstyle},numberlike=thm,name=Beispiele]{bsp}
+		%\mdtheorem[style=defstyle]{definition}[thm]{Definition}
+		%\mdtheorem[style=corstyle]{bsp}[thm]{Beispiel}
 	\else
 		\newtheorem{definition}[thm]{Definition}
 		\newtheorem{bsp}[thm]{Beispiel}
@@ -84,7 +94,8 @@
 	\theoremstyle{myStyle}
 
 	\ifx\nocolor\undefined
-		\mdtheorem[style=bemstyle]{bem}[thm]{Bemerkung}
+		\declaretheorem[mdthm={style=bemstyle},numberlike=thm,name=Bemerkung]{bem}
+		%\mdtheorem[style=bemstyle]{bem}[thm]{Bemerkung}
 	\else
 		\newtheorem{bem}[thm]{Bemerkung}
 		\newtheorem*{bem*}{Bemerkung}
