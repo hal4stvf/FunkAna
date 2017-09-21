@@ -2,6 +2,7 @@
 %[06.09.17 v1.0 mathematical macros]
 
 %\def\nocolor{}
+%\def\noproofs{}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%% 		math environments %%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -78,7 +79,6 @@
 		\newtheorem{cor}[thm]{Korollar}
 		\newtheorem*{cor*}{Korollar}
 	\fi	
-	
 	\theoremstyle{definition}%Lässt den Text innerhalb nicht mehr kursiv erscheinen
 
 	\ifx\nocolor\undefined
@@ -103,8 +103,17 @@
 
 	\newtheorem*{beh}{Behauptung}
 	\newtheorem*{mbem*}{Eigene Bemerkung}
+
 	\newtheorem*{proof*}{Beweisskizze}
-	
+	%% For show no proofs	
+	\ifx\noproofs\undefined
+	\else
+		\usepackage{environ}
+		\NewEnviron{killcontens}{}
+		\let\proof\killcontens
+		\let\endproof\endkillcontents
+	\fi
+
 	%% Commands für mdfsetup
 		%\renewenvironment{thm}[1]{\begin{thm}[#1]}{\end{thm}}
 	%% Abbrv. and certain layout for mathenvi.
@@ -210,3 +219,5 @@
 	\draw[shift={(#2:#3)}] (#1) arc[start angle=#2, delta angle=90, radius = #3];
 	\fill[shift={(#2+45:#3/2)}] (#1) circle[radius=1.25\pgflinewidth];
 	}
+
+

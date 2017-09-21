@@ -1,0 +1,90 @@
+\BOOKMARK [0][-]{chapter.1}{Arbeit im Gange - Grundlagen}{}% 1
+\BOOKMARK [1][-]{section.1.1}{Normierte R\344ume}{chapter.1}% 2
+\BOOKMARK [1][-]{section.1.2}{Lineare Operatoren}{chapter.1}% 3
+\BOOKMARK [2][-]{subsection.1.2.1}{Definitionen und grundlegende Eigenschaften}{section.1.2}% 4
+\BOOKMARK [2][-]{subsection.1.2.2}{Neumannsche Reihe}{section.1.2}% 5
+\BOOKMARK [1][-]{section.1.3}{Metrische und topologische R\344ume, Satz von Baire}{chapter.1}% 6
+\BOOKMARK [2][-]{subsection.1.3.1}{Grundbegriffe:metrischer Raum und Vervollst\344ndigung}{section.1.3}% 7
+\BOOKMARK [2][-]{subsection.1.3.2}{Der Bairesche Kategoriesatz und grundlegendes zu Vollst\344ndigkeit und Kompaktheit}{section.1.3}% 8
+\BOOKMARK [1][-]{section.1.4}{Skalarproduktr\344ume}{chapter.1}% 9
+\BOOKMARK [0][-]{chapter.2}{Einige Haupts\344tze aus der Funktionalanalysis}{}% 10
+\BOOKMARK [1][-]{section.2.1}{Satz von der offenen Abbildung, Satz vom abgeschlossenen Graphen, Satz von der stetigen Inversen}{chapter.2}% 11
+\BOOKMARK [1][-]{section.2.2}{Das Prinzip der gleichm\344\337igen Beschr\344nkheit, Satz von Banach-Steinhaus}{chapter.2}% 12
+\BOOKMARK [0][-]{chapter.3}{Lineare Funktionale und duale Abbildungen}{}% 13
+\BOOKMARK [1][-]{section.3.1}{Fortsetzungss\344tze von Hahn-Banach}{chapter.3}% 14
+\BOOKMARK [1][-]{section.3.2}{Dualraum und Reflexivit\344t}{chapter.3}% 15
+\BOOKMARK [1][-]{section.3.3}{Duale und adjungierte Abbildungen}{chapter.3}% 16
+\BOOKMARK [1][-]{section.3.4}{Schwache Konvergenz}{chapter.3}% 17
+\BOOKMARK [0][-]{chapter.4}{Funktionenr\344ume}{}% 18
+\BOOKMARK [1][-]{section.4.1}{Dualit\344t in Lp}{chapter.4}% 19
+\BOOKMARK [1][-]{section.4.2}{Der Dualraum von C\(K,K\)}{chapter.4}% 20
+\BOOKMARK [1][-]{section.4.3}{Kompaktheit in C\(K\) und Lp}{chapter.4}% 21
+\BOOKMARK [1][-]{section.4.4}{Sobolevr\344ume}{chapter.4}% 22
+\BOOKMARK [0][-]{chapter.5}{Kompakte Operatoren und Spektraltheorie}{}% 23
+\BOOKMARK [1][-]{section.5.1}{Kompakte Operatoren}{chapter.5}% 24
+\BOOKMARK [1][-]{section.5.2}{Das Spektrum von beschr\344nkten Operatoren}{chapter.5}% 25
+\BOOKMARK [1][-]{section.5.3}{Kompakte normale/selbstadjungierte Operatoren}{chapter.5}% 26
+\BOOKMARK [0][-]{appendix.A}{Etwaige Begriffe}{}% 27
+\BOOKMARK [0][-]{appendix.B}{Uebungen}{}% 28
+\BOOKMARK [1][-]{section.B.1}{ Blatt 1}{appendix.B}% 29
+\BOOKMARK [2][-]{subsection.B.1.1}{Reihen und Vollst\344ndigkeit}{section.B.1}% 30
+\BOOKMARK [2][-]{subsection.B.1.2}{Die Operatornorm}{section.B.1}% 31
+\BOOKMARK [2][-]{subsection.B.1.3}{Eigenschaften in endlichdimensionalen Vektorr\344umen}{section.B.1}% 32
+\BOOKMARK [1][-]{section.B.2}{Blatt 2}{appendix.B}% 33
+\BOOKMARK [2][-]{subsection.B.2.1}{Beispiele}{section.B.2}% 34
+\BOOKMARK [2][-]{subsection.B.2.2}{p und seine "Basis "}{section.B.2}% 35
+\BOOKMARK [2][-]{subsection.B.2.3}{Offene Abbildung und seine \304quivalenzen}{section.B.2}% 36
+\BOOKMARK [1][-]{section.B.3}{Blatt 3}{appendix.B}% 37
+\BOOKMARK [2][-]{subsection.B.3.1}{Resolventenmenge, Spektrum}{section.B.3}% 38
+\BOOKMARK [2][-]{subsection.B.3.2}{Fredholmoperator}{section.B.3}% 39
+\BOOKMARK [2][-]{subsection.B.3.3}{Der "Links-Shift"}{section.B.3}% 40
+\BOOKMARK [1][-]{section.B.4}{Blatt 4}{appendix.B}% 41
+\BOOKMARK [2][-]{subsection.B.4.1}{Norm auf dem Quotientenraum}{section.B.4}% 42
+\BOOKMARK [2][-]{subsection.B.4.2}{Vektorr\344ume mit abz\344hlbaren Basen}{section.B.4}% 43
+\BOOKMARK [2][-]{subsection.B.4.3}{Kompaktheit in endlichdimensionalen Vektorr\344umen}{section.B.4}% 44
+\BOOKMARK [1][-]{section.B.5}{Blatt 5}{appendix.B}% 45
+\BOOKMARK [2][-]{subsection.B.5.1}{ Beispiel f\374r einen Hilbertraum}{section.B.5}% 46
+\BOOKMARK [2][-]{subsection.B.5.2}{ separable Hilbertr\344ume und der 2}{section.B.5}% 47
+\BOOKMARK [2][-]{subsection.B.5.3}{ Gram-Schmidt-Orthonormalisierung}{section.B.5}% 48
+\BOOKMARK [1][-]{section.B.6}{Blatt 6}{appendix.B}% 49
+\BOOKMARK [2][-]{subsection.B.6.1}{ Parallelogrammgleichung und Skalarprodukt}{section.B.6}% 50
+\BOOKMARK [2][-]{subsection.B.6.2}{ Orthogonales Komplement}{section.B.6}% 51
+\BOOKMARK [2][-]{subsection.B.6.3}{ Orthogonale Projektion}{section.B.6}% 52
+\BOOKMARK [2][-]{subsection.B.6.4}{ Unbeschr\344nkter Projektor}{section.B.6}% 53
+\BOOKMARK [1][-]{section.B.7}{ Blatt 7}{appendix.B}% 54
+\BOOKMARK [2][-]{subsection.B.7.1}{ Abgeschlossenes Bild eines beschr\344nkten Operators}{section.B.7}% 55
+\BOOKMARK [2][-]{subsection.B.7.2}{ Beispiel eines graphenabgeschlossenen, nicht stetigen Operators}{section.B.7}% 56
+\BOOKMARK [2][-]{subsection.B.7.3}{ Notwendigkeit der Vollst\344ndigkeit im Satz der offenen Abbildung}{section.B.7}% 57
+\BOOKMARK [2][-]{subsection.B.7.4}{ Sowas wie die verallgemeinerte Exponentialfunktion ???????}{section.B.7}% 58
+\BOOKMARK [2][-]{subsection.B.7.5}{ Symmetrische Operatoren im Hilbertraum }{section.B.7}% 59
+\BOOKMARK [1][-]{section.B.8}{ Blatt 8}{appendix.B}% 60
+\BOOKMARK [2][-]{subsection.B.8.1}{ Funktional und Beschr\344nktheit}{section.B.8}% 61
+\BOOKMARK [2][-]{subsection.B.8.2}{ Hmm}{section.B.8}% 62
+\BOOKMARK [2][-]{subsection.B.8.3}{ Der Banach-Limes}{section.B.8}% 63
+\BOOKMARK [2][-]{subsection.B.8.4}{ Orthogonalr\344ume oder so}{section.B.8}% 64
+\BOOKMARK [1][-]{section.B.9}{ Blatt 9}{appendix.B}% 65
+\BOOKMARK [2][-]{subsection.B.9.1}{ 1 ist nicht reflexiv}{section.B.9}% 66
+\BOOKMARK [2][-]{subsection.B.9.2}{ Schwache Cauchy-Folgen}{section.B.9}% 67
+\BOOKMARK [2][-]{subsection.B.9.3}{ Nicht-Existenz von T*}{section.B.9}% 68
+\BOOKMARK [2][-]{subsection.B.9.4}{ Die Adjungierte des Rechts-Shifts}{section.B.9}% 69
+\BOOKMARK [2][-]{subsection.B.9.5}{ Spektrum der Adjungierten und Dualen}{section.B.9}% 70
+\BOOKMARK [1][-]{section.B.10}{ Blatt 10}{appendix.B}% 71
+\BOOKMARK [2][-]{subsection.B.10.1}{ selbstadjungiert oder so}{section.B.10}% 72
+\BOOKMARK [2][-]{subsection.B.10.2}{ Advanced Aufgabe 1}{section.B.10}% 73
+\BOOKMARK [2][-]{subsection.B.10.3}{ Normale Operatoren}{section.B.10}% 74
+\BOOKMARK [2][-]{subsection.B.10.4}{ Hmm}{section.B.10}% 75
+\BOOKMARK [2][-]{subsection.B.10.5}{ Der Dualraum von c0}{section.B.10}% 76
+\BOOKMARK [1][-]{section.B.11}{ Blatt 11}{appendix.B}% 77
+\BOOKMARK [2][-]{subsection.B.11.1}{ Der Fredholm-Operator}{section.B.11}% 78
+\BOOKMARK [2][-]{subsection.B.11.2}{ Spektrumseigenschaften}{section.B.11}% 79
+\BOOKMARK [2][-]{subsection.B.11.3}{ Verallgemeinerter Hauptsatz der Differential- und Integralrechnung}{section.B.11}% 80
+\BOOKMARK [1][-]{section.B.12}{ Blatt 12}{appendix.B}% 81
+\BOOKMARK [2][-]{subsection.B.12.1}{ Satz von Lax-Milgram}{section.B.12}% 82
+\BOOKMARK [2][-]{subsection.B.12.2}{ Ein elliptisches Randwertproblem}{section.B.12}% 83
+\BOOKMARK [2][-]{subsection.B.12.3}{ Zeug f\374r die Schwache Ableitung}{section.B.12}% 84
+\BOOKMARK [2][-]{subsection.B.12.4}{ Hmm}{section.B.12}% 85
+\BOOKMARK [1][-]{section.B.13}{ Blatt 13}{appendix.B}% 86
+\BOOKMARK [2][-]{subsection.B.13.1}{ Kompakter Operator - Eigenschaften}{section.B.13}% 87
+\BOOKMARK [2][-]{subsection.B.13.2}{ Absch\344tzung der Norm kompakter Operatoren}{section.B.13}% 88
+\BOOKMARK [2][-]{subsection.B.13.3}{ Kompakter Operator - Eigenschaft}{section.B.13}% 89
+\BOOKMARK [2][-]{subsection.B.13.4}{ Beispiele kompakter Operatoren}{section.B.13}% 90
