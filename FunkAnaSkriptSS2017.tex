@@ -1,0 +1,38 @@
+%Stand: 31.08.2017
+
+\documentclass[ngerman]{report}
+
+\usepackage{FunkAnaSS17style}
+\usepackage{mathmacros}
+
+\begin{document}
+
+%%% tables and lists
+\listoftodos
+\tableofcontents
+\listoftheorems
+
+\include{I.Grundlagen}
+\include{II.Hauptsatze}
+\include{III.Lineare_Funktionale_und_duale_Abbildungen}
+\include{IV.Funktionenraume}
+\include{V.Kompakte_Operatoren_und_Spektraltheorie}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%Zusätze. Alles was man noch definieren, erklären, beweisen, oder erwähnen möchte.
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\appendix 
+
+\chapter{Etwaige Begriffe}
+
+\glsaddall
+%\printglossary[title=Glossar]
+\printnoidxglossary
+
+\subfile{./FunkAna_Uebungen}
+
+\end{document}
+
+%TODO: -Layout! -Eigene Kommentare innerhalb des Skripts? 
+
