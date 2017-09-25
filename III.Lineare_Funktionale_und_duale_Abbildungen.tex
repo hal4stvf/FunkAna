@@ -131,7 +131,8 @@
 \end{proof}
 
 %%%%%%%%%%%%%%%%%% 3.4  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-	\begin{cor}
+	\begin{cor}[Funktional für jeden Punkt]
+	\label{cor:3.4}
 		$X$ normierter $\K-VR$, $x_0 \in X$. Dann existiert $x' \in X'$, so dass $\norm{x'} =1$ und $\langle x_0, x' \rangle = \norm{x_0}$.
 	\end{cor}
 
@@ -143,8 +144,12 @@
 
 
 %%%%%%%%%%%%%%%%%% 3.5  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-	\begin{cor}
-		$X$ normierter VR, $x_0 \in X$. Dann gilt, dass $\norm{x_0} = \sup_{x' \in X, \norm{x'} \leq 1}|\langle x_0, x' \rangle | = \sup_{x' \in X, \norm{x'} = 1}|\langle x_0, x' \rangle |$
+	\begin{cor}[Normen und Funktionale]
+	\label{cor:3.5}
+		$X$ normierter VR, $x_0 \in X$. Dann gilt, dass 
+					$$ \norm{x_0} = \sup_{x' \in X, \norm{x'} \leq 1}|\langle x_0, x' \rangle | 
+						= \sup_{x' \in X, \norm{x'} = 1}|\langle x_0, x' \rangle |
+					$$
 	\end{cor}		
 
 	\begin{proof}
@@ -153,7 +158,7 @@
 	\end{proof}
 
 %%%%%%%%%%%%%%%%%% 3.6  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-	\begin{thm}
+	\begin{thm}[Separabilität von Dualraum]
 	$X$ normierter $\K-VR$. $X'$ separabel $\df$ $X$ separabel.
 	\end{thm}
 
@@ -198,7 +203,8 @@ Wir verallgemeiner den Orthogonalraum auf normierter Räume und seinen Dualraum.
 \normalsize
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-		\begin{definition}
+		\begin{definition}[Bidualraum]
+		\label{def:3.7}
 			$X'' = (X')' $ heißt Bidualraum. \\
 			Bemerkung: $X = \R^{n\times 1}$ und $X' = \R^{1 \times n}$ \\
 			Frage: $X'' = X$	
@@ -211,11 +217,13 @@ Wir verallgemeiner den Orthogonalraum auf normierter Räume und seinen Dualraum.
 		$\df {J}_X \subset X''$ auf diese Art kann $X$ als Teilraum von $X''$ aufgefasst werden.
 		\end{bem}
 
-	\begin{definition}
+	\begin{definition}[Reflexiv]
+	\label{def:3.9}
 		$X$ normierte Vr heißt reflexiv, falls ${J}_X(X) = X''$. In diesem Fall ist $J_X :X \to X''$ ein Isomorphismus.
 	\end{definition}
 
-	\begin{lemma}
+	\begin{lemma}[reflexiv bedingt volländig]
+	\label{lem:3.10}
 		$X$ normierter VK. Dann gilt : $X$ reflexiv $\df$ $X$ vollständig.
 	\end{lemma}
 
@@ -228,6 +236,7 @@ Wir verallgemeiner den Orthogonalraum auf normierter Räume und seinen Dualraum.
 
 %%%%%%%%%%%%%%%%%%%%%%%% 3.11
 	\begin{thm}[Darstellungssatz Frächet-Riesz]
+	\label{thm:3.11}
 		Sei $X$ Hilbertraum. Dann ist 
 			$$R_X : X \to X', \; x \mapsto \Sp{\cdot, x} = (y \mapsto \Sp{y,x})$$
 			anti-linear, isometrische Bijektion. D.h.
@@ -282,11 +291,12 @@ Wir verallgemeiner den Orthogonalraum auf normierter Räume und seinen Dualraum.
 		\end{enumerate}
 	\end{proof}	
 
-	\begin{cor*}
+	\begin{cor*}[Beschreibung des $L^2$]
 		Beschränkte lineare Abbildung $L^2(\Omega, \mu) \to \K)$. Dann wird diese beschrieben durch ein Element aus $L^2(\Omega, \mu) \to \K)$.
 	\end{cor*}
 
-	\begin{thm}
+	\begin{thm}[Hilberträume sind reflexiv]
+		\label{thm:3.12}
 		$X$ Hilbertraum $\df$ $X$ relfexiv ($J_X X = X''$)
 	\end{thm}
 
@@ -317,7 +327,8 @@ Wir verallgemeiner den Orthogonalraum auf normierter Räume und seinen Dualraum.
 		
 	\end{proof}
 
-	\begin{definition}
+	\begin{definition}[Orthogonalraum]
+		\label{def:3.13}
 		$X$ normierter $\K-VR$, $M \subset X$, $N \subset X'$. Dann heißt 
 			$$ M^\perp := \set{x' \in X' : \fop{x,x'} = 0 \; \forall x\in M}$$
 			Orthogonalraum von M.
@@ -326,7 +337,8 @@ Wir verallgemeiner den Orthogonalraum auf normierter Räume und seinen Dualraum.
 			Klar: $M^\perp \subset X', N_\perp \subset X$.
 	\end{definition}
 
-	\begin{lemma}
+	\begin{lemma}[Aussagen zu Orthogonalräumen]
+		\label{lem:3.14}
 		$X$ normierter Raum. $M\subset X$, $N \subset X'$. Dann
 				\begin{enumerate}[(i)]
 					\item $M^\perp \subset X'$ abgeschlossen UVR.
@@ -351,7 +363,9 @@ Wir verallgemeiner den Orthogonalraum auf normierter Räume und seinen Dualraum.
 
 	ÜA: $X$ normierter Raum, $x_0 \not\in \overline{E}$, $E\subset X$ UVR. Dann existiert $x' \in X'$ mit  $Kern x' \subset \overline{E}$ und $\fop{x_0, x'} \neq 0.$
 
-	\begin{thm} $X$ normierter Raum, $M \subset X$ UVR. Dann gilt 
+	\begin{thm}[Abschlüsse und Orthogonalräume] 
+	\label{lem:3.15}
+		$X$ normierter Raum, $E \subset X$ UVR. Dann gilt 
 		$$\overline{E} = (E^\perp)_\perp $$
 	\end{thm}
 
@@ -363,11 +377,13 @@ Wir verallgemeiner den Orthogonalraum auf normierter Räume und seinen Dualraum.
 		TODO
 	\end{proof}
 
-	\begin{cor} 
+	\begin{cor}
+	\label{cor:3.16}
 		$X$ normierter Raum, $E\subset X$ UVR. Dann gilt $E$ abgeschlossen $\aq$	$ E = (E^\perp)_\perp)$
 	\end{cor}
 
-	\begin{thm}[Übung]
+	\begin{thm}[Übung: Normisomorphien Dual- und Quotientenraum]
+	\label{thm:3.17}
 		$X$ normierter Raum. $M \subset X$ abgeschlossen UVR. Dann 
 					\begin{enumerate}[(i)]
 						\item $X' / M^\perp$ ist normisomorph zu $M'$.
@@ -375,13 +391,13 @@ Wir verallgemeiner den Orthogonalraum auf normierter Räume und seinen Dualraum.
 					\end{enumerate}
 	\end{thm}
 
-	\begin{thm}
-		$X$ reflexiv normierter Raum. Dann
+	\begin{thm}[Banachraum und Reflexivität]
+	\label{thm:3.18}
+		$X$ reflexiv normierter Raum. Dann äquivalent
 					\begin{enumerate}[(i)]
 						\item $X$ Banachraum
 						\item $X'$ reflexiv.
 					\end{enumerate}
-
 	\end{thm}
 
 	\begin{hinweise}
@@ -395,7 +411,8 @@ Wir verallgemeiner den Orthogonalraum auf normierter Räume und seinen Dualraum.
 		TODO
 	\end{proof}
 
-	\begin{thm}
+	\begin{thm}[Äquivalenz Reflexivität und Dualraum]
+	\label{thm:3.19}
 		$X$ Banachraum. Dann gilt 
 			$$ X \text{ reflexiv } \aq X' \text{ reflexiv }.$$
 	\end{thm}
@@ -422,14 +439,16 @@ Auch für den adjungierten Operatoren werden einige Rechenregel gezeigt.
 Welche Gleichheiten gelten für Bild und Kern von Operatoren und seinem Adjungierten?
 \normalsize
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-	\begin{definition}
+	\begin{definition}[duale Operator]
+	\label{def:3.20}	
 	$X,Y$ normierte Räume, $T\in \BS$. Die Abb $T' : Y' \to X'$ mit 
 		$$\fop{x',T' y'} = \fop{Tx, y'} \; \forall y'\in Y', x \in X.$$
 		heißt der zu $T$ duale Operator.\\
 		Einfach zu sehen: $T'$ ist eine linearer Operator, weil TODO.
 	\end{definition}
 
-	\begin{thm}
+	\begin{thm}[Norm und Bild des Dualen Operatores]
+	\label{thm:3.21}
 		$X, Y$ normierter Räume, $T\in \BS$. Dann gilt 
 			\begin{enumerate}[(i)]
 				\item $T' \in \B(Y', X')$ mit $\norm{T'} = \norm{T}$
@@ -449,7 +468,8 @@ Welche Gleichheiten gelten für Bild und Kern von Operatoren und seinem Adjungie
 		TODO
 	\end{proof}
 
-	\begin{cor}
+	\begin{cor}[Eigenschaften unter abgeschlossenem Bild]
+	\label{cor:3.22}
 		$X$ Banachraum, $Y$ normierter Raum. $T\in \BS$, so dass ein $m > 0$ existiert mit 
 			$$m \norm{x} \leq \norm{Tx} \; \forall x \in X$$. ($T$ injektiv und hat abgeschlossenes Bild)
 			Dann sind äquivalent 
@@ -467,7 +487,8 @@ Welche Gleichheiten gelten für Bild und Kern von Operatoren und seinem Adjungie
 		TODO
 	\end{proof}
 
-	\begin{thm}
+	\begin{thm}[Eigenschaften des bidualen Operatores]
+	\label{thm:3.23}
 		$X, Y$ normierter Räume, $T\in \BS$. Dann
 				\begin{enumerate}[(i)]
 					\item $T'' \in \B(X'',Y'')$ und $T = T''|_{imJ_X}$ (genauer: $T''J_X = J_Y T$). Insbesondere $T'' = T$, wenn $X$ reflexiv ist.
@@ -481,7 +502,8 @@ Welche Gleichheiten gelten für Bild und Kern von Operatoren und seinem Adjungie
 	\end{proof}
 
 	Notiz:  hier Motivation für folgendes Korollar mündlich.
-	\begin{cor}
+	\begin{cor}[Bijektivität von der Inversen und des Dualen]
+	\label{cor:3.24}
 		$X, Y$ Banachräume, $T\in \BS$. Dann gilt 
 			$$ (\inv{T} \in \B(Y,X) \aq \; ) T \text{ bijektiv } \quad \aq 
 				\quad T' \text{ bijektiv } (\aq \inv{(T')} \in \B(X',Y'))$$
@@ -492,7 +514,8 @@ Welche Gleichheiten gelten für Bild und Kern von Operatoren und seinem Adjungie
 	\end{proof}
 	
 	Jetzt Fokus auf den Hilbertraum. Grob ist der Hilbertraum sein eigener Dualraum. 
-	\begin{definition}
+	\begin{definition}[adjungierter Operator]
+	\label{def:3.25}
 		$(X, \SP_X), (Y, \SP_Y)$ Skalarprodukträume. 
 		$T\in \BS$. Ein Operator $T^*\in \B(Y,X)$ heißt zu $T$ adjungierter Operator, wenn 
 			$$ (Tx,y)_Y = (x,T^* y)_X \quad \forall x\in X, y\in Y.$$
@@ -503,12 +526,14 @@ Welche Gleichheiten gelten für Bild und Kern von Operatoren und seinem Adjungie
 	 $\df A^* = \ov{A}^T$
 	\end{bsp}
 	
-	\begin{thm}
+	\begin{thm}[Existenz und Eindeutigkeit vom adjungierten Op.]
+	\label{thm:3.27}
 		$(X,\SP_X)$ Hilbertraum, $(Y,\SP)$ Skalarproduktraum. Dann existiert ein eindeutiges $T^* \in \B(Y,X)$. Für die Riesz-Einbettung $R_X : X\to X'$, $R_Y : Y \to Y'$ gilt
 			$$ T^* = \inv{R_x} T' R_Y.$$
 	\end{thm}
 Im folgenden Satz sind die Voraussetzungen zum Teil etwas stärker als sie seien müssten.
-	\begin{thm}
+	\begin{thm}[Rechenregeln adjungierte Operatoren in Hilberträumen]
+	\label{thm:3.28}
 		$X,Y,Z$ Hilberträume, $S,T \in \BS, U \in \B(Y,Z)$ und $\alpha \in \K$. Dann gilt
 			\begin{enumerate}[(i)]
 				\item $(S+T)^* = S^* + T^*$, da $(S+T)^* = \inv{R_X}(S+T)' R_Y = \inv{R_X}S' R_Y + \inv{R_X}T' R_Y = S^* + T^*$.
@@ -521,7 +546,8 @@ Im folgenden Satz sind die Voraussetzungen zum Teil etwas stärker als sie seien
 			\end{enumerate}
 	\end{thm}
 
-	\begin{thm}
+	\begin{thm}[Bild, Kern, Orthogonalraum der Adjungierten]
+	\label{3.29}
 		$X,Y$ Hilberträume, $A\in \BS$. Dann gilt
 			\begin{enumerate}[(i)]
 				\item $(imA)^\perp = Ker A^*$
@@ -535,7 +561,8 @@ Im folgenden Satz sind die Voraussetzungen zum Teil etwas stärker als sie seien
 	\section{Schwache Konvergenz}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-	\begin{definition}
+	\begin{definition}[schwach und schwach$^*$ Konvergenz]
+	\label{def:3.30}
 		$X$ normierter Raum. 
 		Eine Folge $(x_n)$ in $X$ heißt 
 			\begin{enumerate}[a)]
@@ -554,9 +581,8 @@ Im folgenden Satz sind die Voraussetzungen zum Teil etwas stärker als sie seien
 					$$(\text{schreibe } x_n' \overset{*}{\longrightarrow} x')$$
 			\end{enumerate}
 			Eine Menge $M\subset X$ $(M \subset X')$ heißt \textit{schwach (schwach$^*$) Folgenkompakt}, wenn jede Folge in $M$ eine schwach (schwach$^*$) konvergente Teilfolge besitzt, deren schwacher (schwacher $^*$) Grenzwert in $M$ liegt.
-		
-
 	\end{definition}
+
 	\begin{bem}
 		\begin{enumerate}[a)]
 			\item  $x_n \longrightarrow x \df J_x x_n \overset{*}{\longrightarrow} J_x x_n$, da $\fop{x_n, x'} = \fop{x', J_x x_n}$
@@ -578,6 +604,7 @@ Im folgenden Satz sind die Voraussetzungen zum Teil etwas stärker als sie seien
 	\end{bem}
 GANZ viel zu Beispielen in lp Räumen.
 	\begin{thm}[Satz von Banach-Alaoglu]
+		\label{3.32}
 		$X$ separabler Banachraum. Dann gilt $\ov{U_1^{x'}(0)} = \set{x' \in X' : \norm{x'} \leq 1 }$ ist schwach$^*$ folgenkompakt.	
 	\end{thm}
 
@@ -589,7 +616,8 @@ GANZ viel zu Beispielen in lp Räumen.
 		\todor
 	\end{proof}
 
-	\begin{lemma}
+	\begin{lemma}[Reflexivität von abgeschlossen UVR]
+	\label{lem:3.33}
 		$X$ normierter Raum. Dann 
 			$$ X \text{ reflexiv } \aq \text{ Jeder abgeschlossen UVR von } X \text{ ist reflexiv}.$$
 	\end{lemma}
@@ -599,7 +627,8 @@ GANZ viel zu Beispielen in lp Räumen.
 %		Von links nach rechts: Nehme abgeschlossene UR. Dies ist ein Banachraum. Dann nehme eine x', das definiert ein y'' aus dem Bidualraum. Dann finde ein x 
 	\end{hinweise}
 
-	\begin{thm}
+	\begin{thm}[Schwache Folgenkompaktheit in reflexiven Räumen]
+	\label{cor:3.34}
 		$X$ reflexiv. Dann ist $\ov{\EK} \subset X$ schwach folgenkompakt.
 	\end{thm}
 	
@@ -607,21 +636,25 @@ GANZ viel zu Beispielen in lp Räumen.
 		\todor	
 	\end{proof}
 
-	\begin{cor}
+	\begin{cor}[Schwache Folgenkompaktheit in Hilberträumen]
+	\label{cor:3.35}
 		$X$ Hilbertraum. Dann ist $\ov{\EK} \subset X$ schwach folgenkompakt.
 	\end{cor}
 
-	\begin{cor}
+	\begin{cor}[Existenz von schwach konvergenter Teilfolge]
+	\label{cor:3.36}
 		$X$ reflexiv, $(x_n)$ beschränkte Folge. Dann existiert schwach konvergente Teilfolge.
 	\end{cor}
 
-	\begin{cor}
+	\begin{cor}[Existenz von schwach$^*$ konvergenter Teilfolge]
+	\label{cor:3.37}
 		$X$ separabel, $(x_n')$ beschränkte Folge in $X'$. Dann existiert schwach$^*$ konvergente Teilfolge.
 	\end{cor}
 
 	Nun: Charakterisierung schwacher Abgeschlossenheit.
 	
 	\begin{thm}[Trennungssatz]
+	\label{thm:3.38}
 		$X$ normierter Raum, $M \subset X$ nichtleer, abgeschlossen und konvex. Sei $x_0 \in X\backslash M$. Dann existiert $x' \in X'$, $\alpha\in \R$ mit
 			$$Re\fop{x,x'} \leq \alpha < Re\fop{x_0, x'} \quad \forall x\in M$$
 	\end{thm}
@@ -629,11 +662,13 @@ GANZ viel zu Beispielen in lp Räumen.
 		\todor	
 	\end{proof}
 
-	\begin{cor}
+	\begin{cor}[schwache Folgenabgeschlossenheit]
+	\label{cor:3.39}
 		$X$ normierter Raum, $M\subset X$. Konvex, abgeschlossen, dann ist $M$ schwach folgenabgeschlossen, d.h. $(x_n)$ Folge in $M$, $x_n \wkc x \df x \in M$.
 	\end{cor}
 
-	\begin{definition}
+	\begin{definition}[konvexe Menge, Hülle?]
+	\label{def:3.40}
 		$X$ Vektorraum, $M \subset X$. Die \textit{konvexe Menge} von $M$ ist. 
 			$$conv(M) = \bigcap_{\overset{M \subset C \subset X}{C \text{ konvex}}} C$$ 
 			Leicht zu zeigen: \todog[Leicht zu zeigen]
@@ -642,6 +677,7 @@ GANZ viel zu Beispielen in lp Räumen.
 	Klar: $M$ konvex $\df$ $\ov{M}$ konvex. \todog[Klar]
 
 	\begin{thm}[Lemma von Maza]
+	\label{thm:3.41}
 		$X$ normierter Raum. $(x_n)$ Folge in X mit $x_n \wkc x$. Dann gilt 
 				$$ x\in \ov{conv\set{x_k: k\in\N}} =: M$$
 	\end{thm}
@@ -650,7 +686,8 @@ GANZ viel zu Beispielen in lp Räumen.
 		\todor
 	\end{proof}
 
-	\begin{thm}
+	\begin{thm}[Distanzaussage zu konvexen, abgeschlossen UVR]
+	\label{thm:3.42}
 		$X$ reflexiv, $M\subset X$ nichtleere, konvex, abgeschlossen. $x_0 \in X$ beliebig. Dann existiert ein $x\in M$ mit  
 		$$ \norm{x - x_0} = dist(x_0,M)$$
 	\end{thm}
