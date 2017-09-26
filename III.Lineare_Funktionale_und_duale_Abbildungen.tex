@@ -1,19 +1,45 @@
 \chapter{Lineare Funktionale und duale Abbildungen}
 
-	Thema dieses Kaptiels sind lineare Funktionale und duale Abbildung. Die linearen Funktionale sind eine besondere \enquote{Klasse} von Operatoren, nämlich solche die in die zugrundliegende Körper eines $\K$-VR $X$ abbilden.
-	Dazu schreiben man kurz $X' = \B(X,\K)$ und benutzen (gerne) kleine Buchstaben für Funktionale, also $x' \in X'$. \\
-	In diesem Kapitel kommt Bemerkung 3.11 besonders zum Tragen, daher hier noch einmal die Aussage
-	\spcm $$ \norm{x'} = \norm{x'}_{\B(X,\K)} = \sup_{x\in \EK \subset X}|x'(x)| = \sup_{x\in X, \norm{x} = 1} |x'(x)| = \sup_{x\in \overline{\EK}}|x'(x)|. \spcm$$
-	Zur besseren Übersicht schreibt man die Auswertung eines Funktional wie folgt 
-		$$x'(x) =: \langle x,x' \rangle _{X,X'}, \quad x' \in X', x\in X.$$ 
-	Wobei man die Räume häufig weglässt, wenn klar ist, welche gemeint sind.\\
-	$E_\R:$ $E$ aufgefasst als Vektorraum über $\R$.
+	{Eine nützliche Inspirations- und Motivationsquelle ist in diesem Kapitel 
+	die Lineare Algebra. Es wird ein Fortsetzungsatz aus der Lineare Algebra 
+	auf normierte Räume erweitert werden. Der sogenannte Dualraum rückt in der 
+	Mittelpunkt der Betrachtung. Und vielleicht das Grundproblem der Linearen Algebra,
+	wann die Gleichung $Ax = y$ eine Lösung besitzt wird mithilfe von 
+	adjungierten Operatoren auch im unendlich-dimensionalen beschreibar.}
+	\par
+	Thema dieses Kaptiels sind also lineare Funktionale und duale Abbildung. 
+	Die linearen Funktionale sind eine besondere \enquote{Klasse} von Operatoren,
+	nämlich solche die in die zugrundliegende Körper eines $\K$-VR $X$ abbilden.
+	Dazu schreiben man kurz $X' = \B(X,\K)$ und benutzen (gerne) kleine Buchstaben 
+	für Funktionale, also $x' \in X'$. \\
+	Der Dualraum (oder eine Teilmenge von Interesse) ist gut zu 
+	studieren und beinhaltet wesentlich alle Information des nomierten Raum 
+	in den Funktionalen. Durch Hahn-Banach können wir nämlich sehen, dass 
+	die Funktionale unseren normierten Raum trennen.
+	\par	
+	{\footnotesize Dabei sei erwähnt, dass es sich bei dem Dualraum 
+	(Dualsystem) um einen Spezialfall von sogenannten Bilinearsystemen handelt, denn
+	eine Bilinearform zugrunde liegt. Auch da kann man mit Hilfe eines beliebigen 
+	zweiten Vektorraum nützliches über den Ausgangsraum und ein Problem erfahren. 
+	(Vgl. Dazu Heuser Kapitel IX).}
+	\par
+	\begin{bem*} 
+		In diesem Kapitel kommt Bemerkung 3.11 besonders zum Tragen,
+		daher hier noch einmal die Aussage
+		\spcm $$ \norm{x'} = \norm{x'}_{\B(X,\K)} = \sup_{x\in \EK \subset X}|x'(x)| =
+		\sup_{x\in X, \norm{x} = 1} |x'(x)| = \sup_{x\in \overline{\EK}}|x'(x)|. \spcm$$
+		Zur besseren Übersicht schreibt man die Auswertung eines Funktional wie folgt 
+			$$x'(x) =: \langle x,x' \rangle _{X,X'}, \quad x' \in X', x\in X.$$ 
+		Wobei man die Räume häufig weglässt, wenn klar ist, welche gemeint sind.\\
+		$E_\R:$ $E$ aufgefasst als Vektorraum über $\R$. 
+		\todog[dazu muss noch ausführlich etwas ins Glossar: Stichpunkt $\C$ als $\R$-VR]
+	\end{bem*}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Fortsetzungssätze von Hahn-Banach}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \footnotesize
-	Thema dieses Kapitels ist Fragen nach Fortsetzbarkeit eines Funktionals. Genauer, angenommen man hat einen normierter Raum $X$ und ein lineares Funktional auf einem Untervektorraum $E\subseteq X$, $f: E \to \K$ gegeben.
+	Es geht um die Fortsetzbarkeit eines Funktionals. Genauer, angenommen man hat einen normierter Raum $X$ und ein lineares Funktional auf einem Untervektorraum $E\subseteq X$, $f: E \to \K$ gegeben.
 	Kann man dann $f$ auf $X$ so fortsetzen, dass die Fortsetzung auf kann X linear ist ? Die positive Beantwortung gibt der mächtige Satz von \textit{Hahn-Banach}, der in zunächst in sehr allgemeiner topologischen Form dargestellt, dann aber auch konkreter formuliert wird.
 \normalsize
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -297,7 +323,7 @@ Wir verallgemeiner den Orthogonalraum auf normierter Räume und seinen Dualraum.
 
 	\begin{thm}[Hilberträume sind reflexiv]
 		\label{thm:3.12}
-		$X$ Hilbertraum $\df$ $X$ relfexiv ($J_X X = X''$)
+		$X$ Hilbertraum $\df$ $X$ reflexiv ($J_X X = X''$)
 	\end{thm}
 
 	\begin{hinweise}
@@ -358,7 +384,9 @@ Wir verallgemeiner den Orthogonalraum auf normierter Räume und seinen Dualraum.
 	\end{hinweise}
 
 	\begin{proof}
-		TODO
+		\begin{enumerate}[(i)]
+		  \item (i). 
+		\end{enumerate}
 	\end{proof}
 
 	ÜA: $X$ normierter Raum, $x_0 \not\in \overline{E}$, $E\subset X$ UVR. Dann existiert $x' \in X'$ mit  $Kern x' \subset \overline{E}$ und $\fop{x_0, x'} \neq 0.$
