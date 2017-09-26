@@ -2,12 +2,14 @@
 \section{Satz von der offenen Abbildung, Satz vom abgeschlossenen Graphen, Satz von der stetigen Inversen}
 
 %Definition 2.1
-	\begin{definition}
+	\begin{definition}[offene Abbildung]
+	\label{def:2.1}
 		Seien $X,Y$ topologische Räume. $f: X\to Y$ heißt \textit{offen}, falls für alle offenen $U\subseteq X$, $f(U)\subseteq Y$ offen ist.
 	\end{definition}
 
 %Satz 2.2
-	\begin{thm}
+	\begin{thm}[Stetigkeit der Inversen unter offenen Abbildung]
+	\label{thm:2.2}
 		Es seien $X,Y$ topologische Räume und $f: X\to Y$ injektiv. Dann sind äquivalent
 		\begin{enumerate}[(i)]
 			\item $f: X \to f(X)$ offen (Relativtopologie von $Y$ auf $f(x)$)	
@@ -24,50 +26,28 @@
 	\end{proof}
 
 %Lemma 2.3
-	\begin{lemma}
+	\begin{lemma}[Äquivalenzen zu Offenheit]
+	\label{lem:2.3}
 		Seien $X,Y$ normierte Räume, $T: X\to Y$ ein linearer Operator. Dann sind äquivalent:
 			\begin{enumerate}[(i)]
 				\item $T$ ist offen.
 				\item $\forall r > 0: T(U_r(0))$ ist eine Nullumgebung.
 				\item $\exists r > 0 : T(U_r(0))$ ist eine Nullumgebung.
 				\item $\exists r > 0 : T(U_1(0))$ ist eine Nullumgebung.
-
 			\end{enumerate}
 	\end{lemma}
 	\begin{proof}
-	 Vergleiche ÜA3, Blatt 2.
+					Vergleiche \hyperref[B2.3]{ÜA3, Blatt 2.}
 	\end{proof}
 
 %Satz 2.4 (Satz von der offenen Abbildung, Satz von Banach-Schauder, openmapping theorem.)
 	\begin{thm}[Satz von der offenen Abbildung, Satz von Banach-Schauder, open-mapping theorem]
+	\label{thm:2.4}
 		Seien $X,Y$ Banachräume und $T\in \BS$ surjektiv. Dann ist $T$ offen.	
 	\end{thm}
-%	\begin{proof}
-%		
-%		\underline{1.Schritt:} 
-%		Wir zeigen zuerst, dass es ein $\varepsilon_0 > 0$ gibt, so dass $U_{\varepsilon_0}(0) \subseteq \overline{T(U_1(0))}$.\par 
-%		Weil $T$ surjektiv ist, ist $Y = \bigcup_{n\in \N} T(U_n(0))$, und da $Y$ vollständig ist, können wir den Baireschen Kategoriensatz anwenden, und es ist für ein $N\in\N: \mathring{\overline{T(U_N(0))}} \not = \emptyset$.
-%		 Also $$\exists y_0 \in \overline{T(U_N(0))}\df \varepsilon > 0 \text{ s.d. }U_\varepsilon(y_0) \subseteq \overline{T(U_N(0))}$$
-%		 Wir müssen noch zeigen, dass die Menge tatsächlich eine Nullumgebung ist.
-%		 Dafür stellen wir fest, dass für $y \in U_{\varepsilon}(0)$ es Punkte $x_i \in U_{N}(0)$ gibt, so dass $\lim_{i\to \infty} Tx_i=y_0+y$. Sei nun $x_0\in X$ so dass $Tx_0 = y_0$. Dann ist 
-%		 $$\TODO\; T\left(\frac{x_i-x_0}{k_0+\|x_0\|}\right)=\frac{T(x_i-x_0)}{k_0+\|x_0\|}\to \frac{y}{N+\|x_0\|}\quad\text{ wobei } \norm{\frac{x_i-x_0}{k_0+\|x_0\|}}\leq \frac{\|x_i\|}{N+\|x_0\|}+\frac{\|x_0\|}{N+\|x_0\|} \leq 2$$
-%		 
-%		 Insgesamt folgt also: $$U_{{\varepsilon_0}}(0)\subseteq \overline{T(U_1(0))} \quad \text{ mit } \varepsilon_0:=\frac{\varepsilon}{2(N+\|x_0\|)}$$
-%		 \underline{2.Schritt:} Es ist noch zu zeigen, dass $U_{\varepsilon_0}(0) \subseteq T(U_1(0)).$\par Sei dafür $y\in U_{\varepsilon_0}(0)$, $\varepsilon>0$ mit $\|y\|<\varepsilon<\varepsilon_0$ und $ \overline{y}:=\frac{\varepsilon_0}{\varepsilon}y \df \|\overline{y}\|<\varepsilon_0 \overset{\text{1.Schritt}}{\df} \overline{y}\in \overline{T(U_1(0))}$. Also gibt es ein $y_0$ und $\alpha$, so dass $y_0 = Tx_0 \in T(U_1(0)),\,\alpha \in (0,1)$ mit $\|\overline{y}-y_0\|<\alpha \varepsilon_0$ und $\frac{\varepsilon}{\varepsilon_0 (1-\alpha)}< 1$.\par 
-%		 Wir betrachten nun $\frac{\overline{y}-y_0}{\alpha}\in U_{\varepsilon_0}(0)$. 		 $\df \exists y_1 = Tx_1 \in {T(U_1(0))}$ mit $\norm{\frac{\overline{y}-y_0}{\alpha} - y_1} < \alpha \varepsilon_0
-%			\df \norm{\overline{y} - (y_0 + \alpha y_1)} < \alpha^2 \varepsilon_0$
-%			Behandle $\frac{\overline{y} - (y_0 +\alpha y_1)}{\alpha^2}$ mit derselben Methoden,
-%			erhalte, $y_2 = Tx_2 \in {T(U_1(0))}$ mit $\norm{\overline{y} - (y_0 + \alpha y_1 + \alpha^2 y_2)} < \alpha^3 \varepsilon_0$
-%			So erhalten wir induktiv eine Folge $(x_n)$ in $\U{0}$ mit $\norm{\overline{y} - T(\sum_{k=0}^n \alpha^k x_k)} < \alpha^{n+1} \cdot \varepsilon_0$.
-%			Wegen $\alpha < 1$ gistilt $\overline{x} := \sum_{\alpha=0}^\infty \alpha^k x_k$ konvergent
-%			$\df[T beschränkt] T\overline{x} = \overline{y}$ Für $x := \frac{\varepsilon}{\varepsilon_0} \overline{x}$
-%		ist $Tx = y$ und  
-%		$\norm{x} = \frac{\varepsilon}{\varepsilon_0} \norm{\overline{x}} \leq \frac{\varepsilon}{\varepsilon_0} \sum_{k=0}^\infty \alpha^k \underbrace{\norm{x_k}}_{< 1} < \frac{\varepsilon}{\varepsilon_0} \sum_{k=0}^\infty \alpha^k = \frac{\varepsilon}{\varepsilon_0} \cdot \frac{1}{1-\alpha} < 1$
-%		$\df y\in T(U_1(0)).$ Also $U_{\varepsilon_0}(0) \subseteq T(U_1(0))$.
-%	\end{proof}
 
  	\begin{proof}
- 		Wir zeigen, dass $(ii)$ aus Lemma 2.3 gilt.
+ 		Wir zeigen, dass $(ii)$ aus \hyperref[lem:2.3]{Lemma 2.3} gilt.
  		\begin{enumerate}[1. {Schritt}]
  			\item Wir zeigen $\exists \varepsilon_0 > 0$, so dass $U_{\varepsilon_0}(0) \subseteq \overline{T(U_1(0))}.$ Weil $T$ surjektiv gilt $Y = \bigcup_{n\in\N} T(U_n(0))$.
  			Da $Y$ Banachraum, so gilt nach Baire
@@ -98,29 +78,33 @@
  		\end{enumerate}
  	\end{proof}
 
+	\todog[ÜA]
 	ÜA: $X,Y$ Banachräume, $T\in \BS$ ist offen (relativ in im$T$) $\Leftrightarrow imT$ abgeschlossen. 
 		\begin{proof}[Idee]
-		$"'\Leftarrow"'$ gilt nach Satz 2.4. ($imT$ abgeschlossen $\df imT$ ist Banachraum)\\
+		$"'\Leftarrow"'$ gilt nach \hyperref[thm:2.4]{Satz 2.4.} ($imT$ abgeschlossen $\df imT$ ist Banachraum)\\
 		$"'\df"'$ betrachte injektive Abbildung $\hat{T}: X\setminus KerT \to imT, x+KerT\mapsto Tx$
 		\end{proof}
 
 %%%%%%% 2.5
 	\begin{thm}[Satz von der stetigen Inversen, inverse mapping theorem]
+	\label{thm:2.5}
 	$X, Y$ Banachräume. $T\in\BS$ bijektiv $\df \inv{T}\in \B(Y,X)$	
 	\end{thm}
 	
 	\begin{proof}
-		Folgt aus open mapping thm und Satz 2.2 (wichtig Banachraum!)
+		Folgt aus \hyperref[thm:2.4]{open mapping thm }und \hyperref[thm:2.2]{Satz 2.2} (wichtig Banachraum!)
 	\end{proof}
 
 %%%%%%% 2.6
 	\begin{definition}[Graph]
+	\label{def:2.6}
 		$X,Y$ Mengen, $f: X\to Y$ Abbildung. Der \qmarks{Graph von $f$} ist 
 			$G(f) := \{(x,f(x)) : x\in X\} \subseteq X\times Y$
 	\end{definition}
 
 %%%%%%% 2.7
-	\begin{definition}
+	\begin{definition}[Metrik auf kartetischen Produkt]
+	\label{def:2.7}
 		$X,Y$ metrische Räume. Dann ist auf $X\times Y$ eine Metrik via 
 			$d((x_1,y_1),(x_2,y_2)) : (d(x_1,x_2)^2 + d(y_1,y_2)^2)^{\frac{1}{2}}$ definiert. (erhält Parallelogrammgleichung und damit Skalarproduktstruktur)
 	\end{definition}
@@ -136,11 +120,13 @@
 
 %%%%%%% 2.8
 	\begin{definition}[Graphenabgeschlossenheit]
+	\label{def:2.8}
 		$X,Y$ metrische Räume, $f: X\to Y$ heißt \textit{graphenabgeschlossen}, wenn $G(f) \subseteq X\times Y$ abgeschlossen ist.	
 	\end{definition}
 
 %%%%%%% 2.9
-	\begin{bem}
+	\begin{bem}[Bem. zur Graphenabgeschlossenheit]
+	\label{bem:2.9}
 		\begin{enumerate}
 			\item $f$ graphenabgeschlossen $\aq$ $(x_n)$ in $X$ mit $x_n \to x$ und $f(x_1) \to y$ 
 			$\df f(x) = y$)
@@ -153,6 +139,7 @@
 
 %%%%%%% 2.10
 	\begin{thm}[Satz vom abgeschlossem Graphen, closed graph theorem]
+	\label{thm:2.10}
 		$X,Y$ Banachräume, $T: X\to Y$, lineare Operatoren. Dann sind äquivalent:
 			\begin{enumerate}[(i)]
 				\item $T$ graphenabgeschlossen
@@ -175,8 +162,8 @@
 	\end{proof}
 
 %%%%%%% 2.11
-	\begin{bem}
-		Ein paar Anwendungen
+	\begin{bem}[Ein paar Anwendungen]
+	\label{bem:2.11}	
 		\begin{enumerate}
 			\item Aus Inverse mapping thm folgt: $(X,\norm{\cdot}_1$, $(X,\norm{\cdot}_2)$ BRe, $\norm{\cdot}_1$ stärker als $\norm{\cdot}_2$ $\df$
 				 $\norm{\cdot}_2$ stärker $\norm{\cdot}_1$.
@@ -197,7 +184,8 @@
 	\end{bem}
 
 %%%%%%% 2.12
-	\begin{bem}
+	\begin{bem}[Charakterisierung grahpenabgeschlossen]
+	\label{thm:2.12}
 		$T: X\to Y$ lineare Operatoren. Dann sind äquivalent:
 			\begin{enumerate}[(i)]
 				\item $T$ graphenabgeschlossen 
@@ -216,6 +204,7 @@
 
 %%%%%%% 2.13
 	\begin{thm}[Satz von Osgood]
+	\label{thm:2.13}
 		$X$ normierte Raum, $E \subset X$ Teilmenge von 2. Kategorie.	Sei $\mathcal{F} = \{f_\alpha: X\to \R$ stetig, $\alpha \in A\}$ eine Menge von FUnktionen. $\F$ sei auf $E$ punktweise beschränkt, d.h. $\forall x\in E$ $\exists M_x > 0$, so dass $f_\alpha (x) \leq M_x$ $\forall \alpha \in A$. Dann existiert abgeschlossene Kugel $K\subseteq X$, auf der $\F$ glm nach oben beschränkt ist. D.h.
 		$$\exists M > 0 \text{ s.d } f_\alpha (x) \leq M \; \forall \alpha \in A, x\in K.$$
 	\end{thm}
@@ -231,6 +220,7 @@
 
 %%%%%%% 2.14
 	\begin{cor}[Prinzip der glm Beschränkheit]
+	\label{cor:2.14}
 		$X,Y$ normierter Räume, $E\subset X$ von 2. Kategorie, 
 			$\F \subseteq \BS$ mit $\forall x \in $ $\exists M_x > 0$ so dass $\norm{Tx} \leq M_x \forall T \in \F$.
 			Dann gilt: $$\exists M > 0 \text{ so dass } \norm{T} \leq M \forall T \in \F$$
@@ -242,7 +232,8 @@
 	\end{proof}
 
 %%%%%%% 2.15
-	\begin{cor}
+	\begin{cor}[beschränktheit von bestimmten Operatoren]
+	\label{cor:2.15}
 		$X$ Banachraum, $Y$ normierter Raum. Sei $\F \subseteq \BS$, so dass $\forall x \in X$ $\exists M_x > 0: \norm{T_x} \leq M_x \; \forall T\in \F$. Dann existiert ein $M > 0$, so dass $\norm{T} \leq M$ $\forall T \in \F$.
 	\end{cor}
 
@@ -251,7 +242,8 @@
 	\end{proof}
 
 %%%%%%% 2.16
-	\begin{cor}
+	\begin{cor}[Unbeschränkte Operatoren]
+	\label{cor:2.16}
 		$X$ Banachraum, $Y$ normierter Raum, $\F \subseteq \BS$, so dass 
 			$$ \sup_{T\in\F} \norm{T} = \infty \vspace{-1em} $$. 
 		Dann gilt 
@@ -269,7 +261,8 @@
 TODO: Ein Beispiel für starke Konvergenz aber keine Konvergenz von Operatoren oder sowas.
 
 %%%%%%% 2.17
-	\begin{thm}
+	\begin{thm}[Aussagen zu punktweiser Konvergenz]
+	\label{thm:2.17}
 		$X$ Banachraum, $Y$ normierter Raum. $(T_n)$ Folge in $\BS$, so dass 
 			$$ Tx = \limes T_n x \; \forall x\in X.$$ 
 		Dann gilt $T\in \BS$, $\{\norm{T_n} : n\in \N\}$ beschränkt und $\norm{T} \leq \limes\inf \norm{T_n}$.
@@ -285,6 +278,7 @@ TODO: Ein Beispiel für starke Konvergenz aber keine Konvergenz von Operatoren o
 
 %%%%%%% 2.18
 	\begin{thm}[Satz von Banach-Steinhaus]
+	\label{thm:2.18}
 		$X,Y$ Banachräume, $(T_n)$ Folge in $\BS$. Dann konvergiert $(T_n)$ punktweise gegen ein $T\in \BS$, genau dann wenn folgende beiden Bedingungen erfüllt sind:
 			\begin{enumerate}[(1)]
 				\item $\exists M > 0$, so dass $\norm{T_n} \leq M \; \forall n\in \N$
@@ -293,10 +287,11 @@ TODO: Ein Beispiel für starke Konvergenz aber keine Konvergenz von Operatoren o
 	\end{thm}
 
 	\begin{proof}
-		"'$\df$"' 1. folgt aus Satz 2.17., 2. ist klar (nehme $D=X$)\\
+		"'$\df$"' 1. folgt aus \hyperref[thm:2.17]{Satz 2.17.}, 2. ist klar (nehme $D=X$)\\
 		"'$\Leftarrow$"' Sei $x \in X, \varepsilon>0 \df \exists y \in D: \norm{x-y}<\frac{\varepsilon}{3M}, \exists N \in \N: \norm{T_ny-T_my}<\frac{\varepsilon}{3} ~\forall n,m \leq N$. Dann gilt 
 \begin{align*}
 		\forall n,m \leq N: \norm{T_mx-T_nx} &\leq \norm{T_mx-T_my} + \norm{T_my-T_ny} + \norm{T_ny-T_nx}\\ &\leq \norm{T_m} \norm{x-y}+ \norm{T_my-T_nx} + \norm{T_n} \norm{x-y}\\ &\leq M \frac{\varepsilon}{3M} + \frac{\varepsilon}{3} + \frac{\varepsilon}{3M} = \varepsilon.
 		\end{align*}
-		$\df (T_nx)$ ist Cauchyfolge in $Y \df (T_nx)$ konvergiert in $Y \overset{2.17.}\df T \in B(X,Y).$ 
+		$\df (T_nx)$ ist Cauchyfolge in $Y \df (T_nx)$ konvergiert in $Y 
+		\overset{\hyperref[thm:2.17]{2.17.}}\df T \in B(X,Y).$ 
 	\end{proof}
