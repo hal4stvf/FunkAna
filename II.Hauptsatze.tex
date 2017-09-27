@@ -12,7 +12,7 @@
 	\label{thm:2.2}
 		Es seien $X,Y$ topologische Räume und $f: X\to Y$ injektiv. Dann sind äquivalent
 		\begin{enumerate}[(i)]
-			\item $f: X \to f(X)$ offen (Relativtopologie von $Y$ auf $f(x)$)	
+			\item $f: X \to f(X)$ ist offen (Relativtopologie von $Y$ auf $f(X)$)	
 			\item $\inv{f}: f(X) \to X$ stetig.
 		\end{enumerate}
 	\end{thm}
@@ -45,9 +45,10 @@
 	\label{thm:2.4}
 		Seien $X,Y$ Banachräume und $T\in \BS$ surjektiv. Dann ist $T$ offen.	
 	\end{thm}
-
+	\begin{hinweise}
+	\end{hinweise}
  	\begin{proof}
- 		Wir zeigen, dass $(ii)$ aus \hyperref[lem:2.3]{Lemma 2.3} gilt.
+ 		Wir zeigen, dass $(iii)$ aus \hyperref[lem:2.3]{Lemma 2.3} gilt.
  		\begin{enumerate}[1. {Schritt}]
  			\item Wir zeigen $\exists \varepsilon_0 > 0$, so dass $U_{\varepsilon_0}(0) \subseteq \overline{T(U_1(0))}.$ Weil $T$ surjektiv gilt $Y = \bigcup_{n\in\N} T(U_n(0))$.
  			Da $Y$ Banachraum, so gilt nach Baire
@@ -78,12 +79,32 @@
  		\end{enumerate}
  	\end{proof}
 
-	\todog[ÜA]
-	ÜA: $X,Y$ Banachräume, $T\in \BS$ ist offen (relativ in im$T$) $\Leftrightarrow imT$ abgeschlossen. 
+
+	\begin{bem*}[Charakterisierung Offenheit durch abgeschlossenes Bild]
+	\hyperref[B7.1]{ÜA:} $X,Y$ Banachräume, $T\in \BS$ ist offen (relativ in im$T$) $\Leftrightarrow imT$ abgeschlossen. 
 		\begin{proof}[Idee]
 		$"'\Leftarrow"'$ gilt nach \hyperref[thm:2.4]{Satz 2.4.} ($imT$ abgeschlossen $\df imT$ ist Banachraum)\\
 		$"'\df"'$ betrachte injektive Abbildung $\hat{T}: X\setminus KerT \to imT, x+KerT\mapsto Tx$
 		\end{proof}
+		\footnotesize
+		\begin{proof}
+			\begin{description}
+				\item[$\Rightarrow$] Sei $T$ also offen. Dann ist nach Übung auch die 
+					kanonische Injektion 
+						$ \hat{T} : X\setminus ker T \to im T \text{ offen.}$ 
+					Mit \hyperref[thm:2.2]{Satz 2.2} dann also 
+						$ \inv{\hat{T}} : im T \to X\setminus ker T \text{ stetig},$
+					Damit ist $im T$ als Urbilder einer abgeschlossenen Menge unter 
+					einer stetigen Funktion abgeschlossen.
+				\item[$\Leftarrow$] Gilt nun $im T = \ov{im T}$. Dann ist $im T$ als 
+					abeschlossener Unterraum eines Banachraums abgeschlossen. 
+					Auf $T: A \to Im A$ kann also der \hyperref[thm:2.4]{Satz der offenen Abbildung}
+					angewendet werden. Damit wird also jede offene Menge von $X$ auf eine 
+					offene Menge abgebildet und  damit ist die Abbildung auch definitionsgemäß
+					offen von $X$ \textit{in} $Y$.
+			\end{description}
+		\end{proof}
+	\end{bem*}
 
 %%%%%%% 2.5
 	\begin{thm}[Satz von der stetigen Inversen, inverse mapping theorem]
@@ -92,7 +113,10 @@
 	\end{thm}
 	
 	\begin{proof}
-		Folgt aus \hyperref[thm:2.4]{open mapping thm }und \hyperref[thm:2.2]{Satz 2.2} (wichtig Banachraum!)
+		Weil $T$ surjektiv ist, folgt aus dem \hyperref[thm:2.4]{Satz der offenen Abb.} 
+		die Offenheit. Weil $T$ neben offen auch also injektiv vorausgesetzt ist, 
+		folgt mit \hyperref[thm:2.2]{Satz 2.2} auch die Stetigkeit der Inversen. 
+		(wichtig Banachraum!)
 	\end{proof}
 
 %%%%%%% 2.6
@@ -115,7 +139,7 @@
 			\item $X\times Y$ normierter Raum $\Leftrightarrow$ $X,Y$ nomierte Räume
 			\item $X\times Y$ Skalarproduktraum $\Leftrightarrow$ $X,Y$ Skalarproduktraum. 
 			\item abgeschlossene Metrik ist äquivalent zu $\max\{d(x_1,x_2),d(y_1,y_2)\}$ und 
-			$(d(x_1,x_2)^p + d(y_1,y_2)^p)^{\frac{1}{p}}$, $p\in (1,\infty)$
+			$\sqrtp{(d(x_1,x_2)^p + d(y_1,y_2)^p)}$, $p\in (1,\infty)$
 		\end{enumerate}
 
 %%%%%%% 2.8
@@ -147,17 +171,27 @@
 			\end{enumerate}
 	\end{thm}
 
-	\begin{proof}[TODO]
-		\begin{itemize}
-			\item \qmarks{$ii\df i$} Klar, weil $\dots$ 
-			\item Definiere Abbildung, $S: G(T) \to X, (x,Tx) \mapsto X$
-			$\df$ $S$ bijektiv und linear. Wegen 
-				$\norm{S(x,Tx)}_X = \norm{X} \leq (\norm{x}_X^2 + \norm{Tx}_Y^2)^{\frac{1}{2}})$
-				gilt $S\in \B(G(T),X)$ mit $\norm{S} \leq 1$ .
-				Weil $G(T) \subseteq X\times Y$ und $X,Y$ Banachräume, ist $G(T)$ Banachraum.
-				$\df[S2.4]$ $\inv{S} \in \B(X, G(T)) \df (\norm{x}_X^2 + \norm{Tx}_Y^2)^{\frac{1}{2}} = \norm{(x,Tx)}_{X\times Y} = \norm{\inv{S}(x)} \leq \norm{\inv{S}} \cdot \norm{x}_X$
-				$\df \norm{Tx}_Y \leq (\norm{x}_X^2 + \norm{Tx}_Y^2)^{\frac{1}{2}} \leq \norm{\inv{S}}\cdot\norm{x}_X$
-				$\df T\in\BS$
+	\begin{proof}
+		%Makros für die bessere lesbarkeit
+		\def\makroI{\inv{T}(x_n)} 
+		\def\makroII{\inv{T}(x)} 
+		\def\makroIII{\footnote{%
+		Konvergenz auf Produkträumen heißt komponentenweise Konvergenz%
+		}} 
+		\begin{itemize}[]
+			\item $"'(ii)\df (i)"'$: Stetigkeit bedingt Graphenabgeschlossenheit.
+			\item "'$(i)\df (ii)$"': Der Graph $G(T) \subset X\times Y$ 
+				ist als abegschlossener Unterraum eines Banachraums, 
+				selbst ein Banachraum.
+				Sei $S: G(T) \to X$ mit $(x,Tx) \mapsto x$ gegeben, dann
+				ist $S$ bijektiv und linear. Weil nun $\norm{S(x,Tx)}_X = \norm{x}$,
+				folgt die Stetigkeit von $S$. Mit dem 
+				\hyperref[thm:2.5]{Satz von der stetigen Inversen} gilt, dass auch 
+				$\inv{S}$ stetig sein muss.
+				Damit folgt aus $x_n \to x$, dass 
+				${(x_n,Tx_n)}={\makroI} \to \makroII=(x, Tx)$, 
+				also auch $Tx_n \to Tx$\makroIII und das ist Stetigkeit.
+
 		\end{itemize}
 	\end{proof}
 
@@ -205,11 +239,23 @@
 %%%%%%% 2.13
 	\begin{thm}[Satz von Osgood]
 	\label{thm:2.13}
-		$X$ normierte Raum, $E \subset X$ Teilmenge von 2. Kategorie.	Sei $\mathcal{F} = \{f_\alpha: X\to \R$ stetig, $\alpha \in A\}$ eine Menge von FUnktionen. $\F$ sei auf $E$ punktweise beschränkt, d.h. $\forall x\in E$ $\exists M_x > 0$, so dass $f_\alpha (x) \leq M_x$ $\forall \alpha \in A$. Dann existiert abgeschlossene Kugel $K\subseteq X$, auf der $\F$ glm nach oben beschränkt ist. D.h.
-		$$\exists M > 0 \text{ s.d } f_\alpha (x) \leq M \; \forall \alpha \in A, x\in K.$$
+		\def\makroI{\footnote{%
+		$\forall x\in E  \; \exists M_x > 0: f_\alpha (x) \leq M_x \; \forall \alpha \in A.$%
+		}}
+
+		Sei ein $X$ normierter Raum, $E \subset X$ von 
+		\hyperref[def:1.36]{2. Kategorie}.  Wenn die Familie von reellwertigen stetigen 
+		Funktionen $\{f_\alpha: X\to \R$, $\alpha \in A\}$ auf $E$ 
+		punktweise nach oben beschränkt\makroI\ ist.
+		Dann existiert eine abgeschlossene Kugel $K\subseteq X$, auf der die Familie 
+		sogar gleichmäßig nach oben beschränkt ist, d.h.
+		$$\exists M > 0 \; \forall x\in K: f_\alpha (x) \leq M 
+		\; \forall \alpha \in A .$$
+
 	\end{thm}
 	
 	\begin{proof}
+		\todoy[Layout!]
 		Für $n\in \N$, def $E_n : \{x\in X: f_\alpha(x) \leq n \forall \alpha \in A\}$
 		$= \bigcap_{\alpha\in A} \underbrace{\{ x\in X: f_\alpha (x) \leq n\}}_{\text{abgeschlossen, da f stetig}}$
 		$\df E_n$ abgeschlossen. Ferne gilt $E\subset \cup_{n\in\N} E_n$ wegen Annahme (punktweise Beschränkt). $\df[2. Kate] \cup_{n\in\N} E_n$ von 2. Kategoriere 
@@ -221,9 +267,15 @@
 %%%%%%% 2.14
 	\begin{cor}[Prinzip der glm Beschränkheit]
 	\label{cor:2.14}
+	\def\makroI{\footnote{%
+		$\forall x \in E \; \exists M_x > 0: \norm{T_\alpha x} \leq M_x 
+		\; \forall \alpha \in A$
+	}}
 		$X,Y$ normierter Räume, $E\subset X$ von 2. Kategorie, 
-			$\F \subseteq \BS$ mit $\forall x \in $ $\exists M_x > 0$ so dass $\norm{Tx} \leq M_x \forall T \in \F$.
-			Dann gilt: $$\exists M > 0 \text{ so dass } \norm{T} \leq M \forall T \in \F$$
+			ist die Familie stetig linearer Abbildungen 
+			$\set{T_\alpha: \alpha \in A, T: X\to Y}$ 
+			punktweise von $X$ in $Y$ beschränkt\makroI.  Dann gilt:
+			$$\exists M > 0:\norm{T_\alpha} \leq M \; \forall \alpha \in A$$
 	\end{cor}
 
 	\begin{proof}
