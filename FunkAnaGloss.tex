@@ -1,6 +1,10 @@
 \newglossaryentry{hausdorffsch}{
 	name = {Hausdorffsch, Hausdorffeigenschaft},
-	description = {Eine Menge heißt \textit{hausdorffsch}, wenn je zwei versch. Punkte stets disjunkte Umgebungen haben. Metrische Räume sind zum Beispiel hausdorffsch, da zwei versch. Punkte stets einen Abstand $> 0$ haben. Für ein Gegenbeispiel $\nearrow$ topologischer Raum}
+	description = {Eine Menge heißt \textit{hausdorffsch}, 
+	wenn je zwei versch. Punkte stets disjunkte Umgebungen haben.
+	Metrische Räume sind zum Beispiel hausdorffsch, da zwei versch. 
+	Punkte stets einen Abstand $> 0$ haben. 
+	Für ein Gegenbeispiel $\nearrow$ topologischer Raum}
 		}
 	
 \newglossaryentry{ess beschrk}{
@@ -33,7 +37,22 @@
 \newglossaryentry{stetig}{
 	name = {stetig},
 	description = {
-		hier alle sache wegen Stetigkeit
+		Seien $(X_1,d_1)$ und $(X_2,d_2)$, eine Abbildung $f : X_1 \to X_2$ heißt 
+		\textit{stetig an der Stelle} $x_0\in X_1$, falls
+		\begin{itemize}[$\aq$]
+			\item $\forall \varepsilon > 0\; \exists \delta > 0 : d_1(x,x_0) < \delta 
+				\df d_2(f(x),f(x_0)) < \varepsilon$		
+			\item $ \forall \varepsilon > 0 \; \exists \delta > 0:
+				\def\var{f(U_\delta(x_0)) \subset U_\varepsilon(f(x_0))}
+				\underbrace{\forall x\in U_\delta(x_0):f(x) \in U_\varepsilon(y)}_{\var}
+				$ 		
+			\item $x_n \to x_0$ $\df$ $f(x_n) \to f(x_0)$ für alle Folgen $x_n$
+		\end{itemize}
+		(folgendes bezieht sich auf Stetigkeit für alle $x_0 \in X_1$)
+		\begin{itemize}[$\aq$]
+			\item Für alle offenen $O\subset X_2$ ist $\inv{f}(O)$ offen in $X_1$
+			\item Für alle abgeschlossen $A\subset X_2$ ist $\inv{f}(A)$ abgeschlossen in $X_1$
+		\end{itemize}	
 		}
 	}
 
@@ -132,8 +151,14 @@
 	description = {vollständiger normierter Vektorraum (wir schreiben $(X,\norm{\cdot }_X$)}
 }
 
-\newglossaryentry{metrischer Raum}{
-	name = {Metrischer Raum},
+\newglossaryentry{metrischer_Raum}{
+	name = {metrischer Raum},
+	description = {Metrischer Raum},
+	sort = {Metrischer Raum}
+}
+
+\newglossaryentry{thm_metrischer_Raum}{
+	name = {Sätze zu metrischer Raum},
 	description = {Metrischer Raum},
 	sort = {Metrischer Raum}
 }
@@ -141,26 +166,48 @@
 \newglossaryentry{Kugel mit Radius r}{
 	name = {Kugel mit Radius r},
 	description = {
-		Sei $(X,d)$ ein \gls{metrischer Raum}. Für $r > 0$ ist die $r$-Umgebung des Punktes x bzw. \textbf{Kugel um $x$ mit Radius $\mathbf{r}$}.
-	},
+		Sei $(X,d)$ ein \gls{metrischer_Raum}. Unter der \textit{Kugel um x mit Radius r} 
+		versteht man 
+			$$ U_r(x) := \set{ y\in XL d(x,y) < r}$$
+	}.
 	sort = Metrischer Raum
 }
 
 \newglossaryentry{Abschluss}{
 	name = {Abschluss},
-	description = {$\ov{M}$ Abschluss},
+	description = {Da der Schnitt beliebig vieler 
+	\glslink{thm_metrischer_Raum}{abgeschlossener Menge abgeschlossen} ist,
+	existiert für ein $M\subset X$ eine kleinste abgeschlossene Menge,
+	die $M$ umfasst. Die beziechnet man mit $\ov{M}$ und heißt Abschluss,
+		$$ \ov{M} := \bigcap_{M \subset A=\ov{A}} A$$
+	},	
 	sort = {Metrischer Raum}
 }
 
 \newglossaryentry{Inneres}{
 	name = {Inneres},
-	description = {$\inner{M}$ Inneres},
+	description = {Das \textit{Innere} von $M \subset X$, bezeichnet mit $\inner{M}$,
+	ist die größte offene Menge, die in $M$ liegt.
+		$$ \inner{M} := \bigcup_{\substack{O \subset M \\ O = \inner{O}}} O $$
+	Sei $M \subset X$. Ein Punkt $x\in M$ heißt \textit{innerer Punkt} von M,
+	und $M$ heißt \textit{Umgebung} von $x$, falls 
+		$$\exists r > 0 : U_r(x) \subset M$$
+	Eine Teilmenge $O \subset X$, für die jedes $x \in O$ innerer Punkt ist,
+	heißt \textit{offen}.
+	},
 	sort = {Metrischer Raum}
 }
 
 \newglossaryentry{Rand}{
 	name = {Rand},
-	description = {$\delta M$ Rand},
+	description = {Der Rand von $M\subset X $ 
+	$$\partial M := \set{x \in X: \forall r>0: U_r(x) \cap M \neq \emptyset \text{ und }
+	U_r(x) \cap X\setminus M \neq \emptyset}	
+	$$
+	Es gilt $\partial M$ ist stets abgeschlossen und folgende Beziehungen 
+	$$ \ov{M} = M \cup \partial M \text{ und } \partial M = \ov{M}\setminus \inner{M}
+	$$
+	},
 	sort = {Metrischer Raum}
 }
 

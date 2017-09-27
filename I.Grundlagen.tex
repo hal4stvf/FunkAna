@@ -2,12 +2,12 @@
 \section{Normierte Räume}
 {
 \footnotesize
-Was macht man in der Funktionalanalysis? man definiert sich einen vernünfitgen Abstandsbegriff: z.B. den Begriff der \glslink{metrischer Raum}{Metrik} auf (zunächst einmal) einer beliebigen Mengen $E$. Damit hat man einen \glslink{metrischer Raum}{metrischen Raum} geschaffen.
+Was macht man in der Funktionalanalysis? man definiert sich einen vernünfitgen Abstandsbegriff: z.B. den Begriff der \glslink{metrischer_Raum}{Metrik} auf (zunächst einmal) einer beliebigen Mengen $E$. Damit hat man einen \glslink{metrischer_Raum}{metrischen Raum} geschaffen.
 }
 
 \paragraph{Arsenal an Begriffen}
 Der nötige Apparat für die Entwicklung der Funktionanalysis ist nicht groß,
-er besteht im wesentlichen aus den Begriffen \gls{metrischer Raum},
+er besteht im wesentlichen aus den Begriffen \gls{metrischer_Raum},
 \glslink{topologisch}{Topologie}, \gls{Konvergenz}, \glslink{CF}{Cauchy-Folge} und \glslink{stetig}{Stetigkeit}.\par
 Einige weitere Begriffe sind in \ref{bem:1.28} und \ref{bem:1.30} festgehalten.
 
@@ -945,7 +945,9 @@ Der folgende Satz ist eine Verallgemeinerung des Intervallschachtelungsprinzips 
 				\end{enumerate}
 		\end{enumerate}
 	\end{bem}
-
+Folgendes Lemma dient - neben immament Interessantem - zur Vorbereitung auf eine 
+Charakterisierung des Satzes Bolazano-Weierstraß, der genau dann gilt, 
+wenn der Raum von endlicher Dimension ist.
 	\begin{lemma}[Lemma von Riesz]
 	\label{lem:1.47}
 		$(X,\norm{\cdot})$ normierter Raum, $E\subset X$ abgeschlossener Unterraum mit $E \not = X$, $\eta\in (0,1)$. \par
@@ -953,14 +955,20 @@ Der folgende Satz ist eine Verallgemeinerung des Intervallschachtelungsprinzips 
 	\end{lemma}
 
 	\begin{proof}
-		Sei $x_0 \in X\setminus E$. Definiere $\delta := \inf_{y\in E} \norm{x_0 - y}$, da E abgeschlossen ist, ist $\delta > 0$. Sei $(y_n)$ Folge in $E$ mit $\norm{x_0 - y_n} \to \delta$. 
-Sei $\eta \in (0,1) \df \frac{\delta}{\eta} > \delta $ $\df \exists z\in E$ mit $\norm{x_0 - z} \leq \frac{\delta}{\eta}.$ Definiere $\xt := \frac{x_0-z}{\norm{x_0 - z}} \df \norm{\xt} = 1$.
+		Sei $x_0 \in X\setminus E$. Definiere $\disp \delta := \inf_{y\in E} 
+		\norm{x_0 - y}$, da E abgeschlossen ist, ist $\delta > 0$. 
+		Sei $(y_n)$ Folge in $E$ mit $\norm{x_0 - y_n} \to \delta$. 
+		Da $\eta \in (0,1)$ ist $\frac{\delta}{\eta} > \delta $; also $\exists z\in E$ 
+		mit $\norm{x_0 - z} \leq \frac{\delta}{\eta}.$ 
+		Definiere $\xt := \frac{x_0-z}{\norm{x_0 - z}}$, dann ist $\norm{\xt} = 1$.
 		Für $y\in E$ gilt dann 
-		\spcm[-1.3]
-		$$\norm{\xt - y} = \norm{y - \frac{x_0-z}{\norm{x_0 - z}}} 
-		= \norm{y + \frac{z}{\norm{x_0 - z}} - \frac{x_0}{\norm{x_0 - z}}} 
-		= \frac{\norm{\overbrace{(\norm{x_0 - z}y + z)}^{\in E} - x_0}}{\norm{x_0 - z}}  
-		\geq \delta\cdot \frac{1}{\norm{x_0 - z}} \geq \frac{\eta}{\delta} \cdot \delta = \eta$$
+		%\spcm[-1.3]
+		\begin{flalign*}
+		\norm{y -\xt} & = \norm{y - \frac{x_0-z}{\norm{x_0 - z}}} 
+		= \norm{y + \frac{z}{\norm{x_0 - z}} - \frac{x_0}{\norm{x_0 - z}}} \\
+		&= \frac{\norm{\;\left(\norm{x_0 - z}y + z\right) - x_0}}{\norm{x_0 - z}}  
+		\geq \frac{\delta}{\norm{x_0 - z}} \geq \frac{\eta}{\delta} \cdot \delta = \eta
+		\end{flalign*}
 	\end{proof}
 %	\begin{proof}{Alternative Stil}
 %		Sei $x_0 \in X\backslash E$. $\delta := \inf_{y\in E} \norm{x_0 - y}$.
@@ -976,6 +984,17 @@ Sei $\eta \in (0,1) \df \frac{\delta}{\eta} > \delta $ $\df \exists z\in E$ mit 
 %		$
 %		%\end{split} \end{equation*}
 
+{\footnotesize
+\enquote{%
+Wir können nun die Endlichkeit der Dimension eines normierten Raumes (eine 
+{\sl algebraische} Eigenschaft) durch eine {\sl metrische } Eigenschaften 
+(die Gülitgkeit des Bolzano-Weierstraßschen Satzes) charakterisieren.
+Dass so etwas überhaupt möglich ist, liegt letztlich daran, dass die 
+algebraische und metrische Struktur normierter Räume nicht unverbunden
+nebeneinander stehen, sondern via Stetigkeit ineinanderengreifen.
+}
+[Heuser (S.104)]
+}
 	
 
 %Korollar 1.48
@@ -1323,10 +1342,13 @@ Sei $f\in L^2([0,2\pi])$
 		$\df \forall x\in X$ mit $x\perp \hat{x}_i \;\forall i \in I$ gilt $x= 0$ \par
 		$\df (span\ff{\hat{{x}}}{i}{I})^\perp = \{0\}$
 	\end{proof}
-	Übung. Blatt \hyperref[B5.1]{5}, \hyperref[B6.1]{6}.
+	Übung. Blatt \hyperref[B5.3]{5}, \hyperref[B6.2]{6}.
 	\begin{enumerate}
 		\item Gram-Schmidt-Orthonormalisierung\\
-		Sei $(X, (\cdot,\cdot))$ ein Skalarproduktraum, $(x_n)_{n \in \N}$ linear unabhängig. Dann existiert ein ONS $(y_n)_{y \in \N}$ mit $span(y_1,\dots,y_k)=span(x_1,\dots,x_k)$.\\ Mit $(y_n)$ wie vorhin, gilt $(y_n)$ ist ONB $\forall k \in \N \Leftrightarrow span(x_n)_{n \in \N} = X$.
+			Sei $(X, (\cdot,\cdot))$ ein Skalarproduktraum, $(x_n)_{n \in \N}$ linear unabhängig. 
+			Dann existiert ein ONS $(y_n)_{n \in \N}$ mit $span(y_1,\dots,y_k)=span(x_1,\dots,x_k)$.\\ 
+			Mit $(y_n)$ wie vorhin, gilt $(y_n)$ ist ONB $\forall k \in \N 
+			\Leftrightarrow span(x_n)_{n \in \N} = X$.
 		\item $M\subset X$ ist UVR $\df (M^{\perp})^{\perp} = \overline{M}$
 	\end{enumerate}
 
@@ -1341,8 +1363,9 @@ Sei $f\in L^2([0,2\pi])$
 		Seien also $|I|$ und $|J|$ unendlich.  \par
 		Für $x\in X$, definiere $S_x = \{i\in I: (x,x_i) \neq 0\} \df |S_X| \leq |\N|$
 		sowie $\bigcup_{j\in J} S_{y_j} = I$ und $S_{y_j} \neq \emptyset$. Denn:
-		Ist $S_{y_j} = \emptyset$, dann $y_j \perp x_i \forall i \in I \df y_j =0$ Lightning! \par
-		Ist $i\in I$ mit $i \not \in \bigcup_{j\in J} S_{y_j}$, dann $x_i \perp y_j \forall j\in J \df x_i = 0$ Lightning! \par
+		Ist $S_{y_j} = \emptyset$, dann $y_j \perp x_i \forall i \in I \df y_j =0$ $\lightning$ ! \par
+		Ist $i\in I$ mit $i \not \in \bigcup_{j\in J} S_{y_j}$, 
+		dann $x_i \perp y_j \forall j\in J \df x_i = 0$ $\lightning$! \par
 		Also $|I| = |\bigcup_{j\in J} S_{x_j}| \subseteq |J| \cdot |\N| = |J|$. \par
 		Analog $|J| \subseteq |I|$
 	\end{proof}
