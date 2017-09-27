@@ -324,7 +324,7 @@ Es gelten die Aussagen
 	\end{enumerate}
 \end{proof}
 
-\subsection{Fredholmoperator}
+\subsection{Ein Fredholm-Integraloperator}
 \label{B3.2}
 	Es seien $a<b$ reelle Zahlen, $k\in C([a,b]^2)$ und der \textit{Fredholmoperator} $K:C([a,b]) \to C([a,b])$ gegeben durch 	
 	$$ (Kf)(s) = \int^b_a k(s,t)f(t) dt.$$
@@ -339,19 +339,15 @@ Es gelten die Aussagen
 	\end{beh}
 	\begin{proof}
 		\begin{enumerate}[(a)]
-		\item Es sei $f \in C([a,b]),\, \|f\|_{\infty} < 1$.
+		\item Es ist für $f \in C([a,b]),\, \|f\|_{\infty} < 1$
 		\begin{equation*}
 		\begin{split}
-		\df \abs{\int^b_a k(s,t)f(t) dt} 
-		& \leq \int^b_a \abs{k(s,t)f(t)} dt 
-		\\ & \leq \int^b_a \max_{s\in [a,b]} |k(s,t)| \max_{x\in[a,b]} |f(x)| dt 
-		\\ & \leq \int^b_a \max_{s\in [a,b]} |k(s,t)| dt
-		\\ & \overset{?}{\leq} \max_{s\in [a,b]} \int^b_a |k(s,t)|dt = \max_{s\in[a,b]} \| k(s,\cdot) \|_{L^1(a,b)}
+		\max_{s\in[a,b]} \abs{Kf(s)} =  \max_{s\in[a,b]} \abs{\int^b_a k(s,t)f(t)dt} 
+		& \leq \max_{s\in[a,b]} \int^b_a \abs{ k(s,t)f(t)}dt 
+		\\ & \leq \max_{s\in[a,b]} \int^b_a \abs{ k(s,t)}dt = \max_{s\in[a,b]} \norm{k(s,\cdot)}_{L^1}.
 		\end{split}
 		\end{equation*}
-		%$$\df \abs{\int^b_a k(s,t)f(t) dt} \leq \int^b_a \abs{k(s,t)f(t)} dt \leq \int^b_a \max_{s\in [a,b]} |k(s,t)| \max_{x\in[a,b]} |f(x)| dt \leq \int^b_a \max_{s\in [a,b]} |k(s,t)| \overset{?}{\leq} \max_{s\in [a,b]} \int^b_a |k(s,t)|dt$$
-		Wenn wir $\overset{?}{\leq}$ zeigen können, ist alles gezeigt. Aber das verschieben wir auf später \dots
-		
+		Woraus die Behauptung folgt.		
 		\item Wegen (a) ist $K$ beschränkt. Wählen wir $c_0 := \|K\|$ so ist wegen Aufgabe 1 (d) $(\lambda I - K)$ bijektiv. Damit gibt es insbesondere stets eine eindeutige Lösung. Die Abbildung ist linear, wegen der Beschränktheit also auch stetig. 		
 		
 		\end{enumerate}
@@ -393,8 +389,7 @@ Es sei $(X, \|\cdot \|)$ ein normierter Raum und $E\subseteq X$ ein Unterraum.
 	$$ \semi{\cdot} : X/E \to \R,\quad x+E \mapsto \inf_{e\in E} \norm{x+e}$$
 	definiert eine Halbnorm auf $X/E$.
 	
-	\item 	$\semi{\cdot}$ definiert eine Norm auf $X/E$, wenn $E$ abgeschlossen ist. 	
-	\todoo[(Äquivalentes Kriterium ?!)] 
+	\item 	$\semi{\cdot}$ definiert eine Norm auf $X/E$ genau dann, wenn $E$ abgeschlossen ist. 	
 	
 	\item $(X/E, \semi{\cdot})$ ist ein Banachraum, wenn $E$ vollständig ist.
 	
@@ -415,15 +410,28 @@ Es sei $(X, \|\cdot \|)$ ein normierter Raum und $E\subseteq X$ ein Unterraum.
 	\end{equation*}
 	
 	\item 
-		Wir müssen nur noch $\semi{x+E} = 0 \df x + E = 0$ zeigen. Dafür erinnern wir uns erstmal, was $0 \in X/E$ bedeutet. Aus der Linearen Algebra ist bekannt, dass $x+E=y+E \Leftrightarrow x - y \in E$. Es sind also genau die Elemente aus $E$ die Nullelemente, bzw. $E$ ist das Nullelement.\\
-	2.Variante\\
+		Angenommen $E$ sei abgeschlossen. Dann müssen wir nur noch $\semi{x+E} = 0 \df x + E = 0$ zeigen. Dafür erinnern wir uns erstmal, was $0 \in X/E$ bedeutet. Aus der Linearen Algebra ist bekannt, dass $x+E=y+E \Leftrightarrow x - y \in E$. Es sind also genau die Elemente aus $E$ die Nullelemente, bzw. $E$ ist das Nullelement.\\
+	1.Variante\\
 	Sei nun $\semi{x+E} = 0$. Es gibt also eine Folge $(x_n)$ aus $E$, mit $x_n \to -x$ für $n\to \infty$, da nur so das Infinum $0$ annehmen kann. Da $E$ abgeschlossen ist, ist $-x\in E$ also (nach oben) $ x = 0$.\par 
-	3.Variante\\
-	Wie 2. Variante, aber wir wählen eine Folge $(x_n)$ aus $x+E$ mit $x_n \to 0$. Da $E$ abgeschlossen ist, ist auch $x+E$ abgeschlossen, und $0\in x+E$.
+	2.Variante\\
+	Wie 2. Variante, aber wir wählen eine Folge $(x_n)$ aus $x+E$ mit $x_n \to 0$. Da $E$ abgeschlossen ist, ist auch $x+E$ abgeschlossen, und $0\in x+E$.\par\medskip
 	
+	$\semi{\cdot}$ definiere nun eine Norm. Sei nun $(x_n)$ eine Folge aus $E$ mit $x_n\to x$. 	
+	Also
+	$$0 \leftarrow \inf_{e\in E} \norm{x-x_n+e} = \inf_{e\in E} \norm{x-e}$$
+	woraus aus der Definitheit schon $x\in E$ folgt.
 	\item 
-	$X/E$ ist wegen der Linearen Algebra schon ein Vektorraum. Wegen b) ist $X/E$ normiert. Die Vollständigkeit ist trivial.
-	
+	$X/E$ ist wegen der Linearen Algebra schon ein Vektorraum. Wegen b) ist $X/E$ normiert.\par 
+	Vollständigkeit Variante 1:
+	Wir betrachten die kanonische Injektion 
+	$$h: X \to X/E, \quad x \mapsto x + E.$$
+	 $h$ ist offenbar linear und wegen 
+	 $$\semi{h(x)} = \semi{x+E} = \inf_{e\in E} \norm{x+e} \leq \norm{x}$$ 
+	 stetig. $h$ ist auch offen. Dafür nutzen wir Lemma 2.3 (iv). Sei $x+E\in X/E$ mit $q:=\semi{x+E} < 1$, dann gibt es eine Folge $(e_n)$ aus $E$, so dass $\norm{x+e_n}\to q < 1$. 
+	 Also gibt es insbesondere ein $n\in \N$, so dass 
+	 $\norm{x+e_n} < 1$, wegen $h(x+e_n) = x + E$ folgt die Offenheit.
+	 Nun können wir nutzen, dass $h(X)$ abgeschlossen ist.
+		
 	\end{enumerate}
 \end{proof}
 
@@ -653,7 +661,7 @@ Es sei $J$ eine beliebige nichtleere Menge und
 
 
 %%%%%%%%%%%%%%%%%%%% Aufgabe 5
-\subsection{ Symmetrische Operatoren im Hilbertraum }
+\subsection{ Satz von Hellinger-Toeplitz}
 \label{B7.5}
 	In einem Hilbertraum $X$ ist ein selbstadjungierter Operator $T : X\to X$ beschränkt.
 	
