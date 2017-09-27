@@ -104,6 +104,7 @@
 	\newtheorem*{beh}{Behauptung}
 	\newtheorem*{mbem*}{Eigene Bemerkung}
 
+	\renewcommand{\qedsymbol}{$\blacksquare$}
 	\newtheorem*{proof*}{Beweisskizze}
 	%% For show no proofs	
 	\ifx\noproofs\undefined
@@ -118,7 +119,7 @@
 		%\renewenvironment{thm}[1]{\begin{thm}[#1]}{\end{thm}}
 	%% Abbrv. and certain layout for mathenvi.
 		\newenvironment{hinweise}{
-			\footnotesize \begin{proof*}}{\hfill $\square$ \end{proof*}\normalsize
+			\footnotesize \begin{proof*}}{\end{proof*}\normalsize
 			}
 	%\renewcommand\thechapter{\Roman{chapter}} %Roman numerics for chapters
 			

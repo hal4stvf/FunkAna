@@ -13,7 +13,7 @@ Einige weitere Begriffe sind in \ref{bem:1.28} und \ref{bem:1.30} festgehalten.
 
 %Definition der Seminorm
 \begin{definition}[Halbnorm, Seminorm]
-\label{Halbnorm}
+	\label{def:1.1}
 	Sei $X$ ein $\K-Vektorraum$, wobei $\K = \R$ oder $\K = \C$. 
 	Für $x,y\in X$, $\lambda \in \K$ ist eine Halbnorm oder Seminorm eine Abbildung
 	$\seminorm{\cdot}:X \rightarrow \R$, die die folgenden Eigenschaften erfüllt:
@@ -28,8 +28,8 @@ Einige weitere Begriffe sind in \ref{bem:1.28} und \ref{bem:1.30} festgehalten.
 Eine Norm efüllt zusätzlich noch die Bedingung, dass sie nur dann verschwindet, wenn das Argument verschwindet.
 
 %Der Kern einer Seminorm bildet einen Unterraum
-\begin{bem}
-\label{KernSeminorm}
+\begin{bem}[Kern und Quotientenraum von Halbnormen]
+	\label{bem:1.2}
 	\begin{enumerate}[(a)]
 		\item $N:=\{x\in X: \seminorm{x}=0\}$ bildet einen Unterraum von $X$.
 		\item $X/N$ ist ein normierter Raum über(?) $\norm{x+N} := \seminorm{x}$
@@ -39,7 +39,7 @@ Eine Norm efüllt zusätzlich noch die Bedingung, dass sie nur dann verschwindet
 
 %Beispiele wichtiger Vektorräume
 \begin{bsp}[wichtige Vektorräume]
-\label{wichtige Vektorräume}
+	\label{bsp:1.3}
 	Sei $(\Omega,\hA,\mu)$ ein Maßraum
 		\begin{enumerate}[(a)]
 			\item $p\in[1,\infty)\; \hL^p(\Omega,\mu) = \{f:\Omega \rightarrow \C$ messbar, 
@@ -67,6 +67,7 @@ Eine Norm efüllt zusätzlich noch die Bedingung, dass sie nur dann verschwindet
 
 %Trivia Fakten
 	\begin{bem}[diverse Fakten]
+	\label{bem:1.4}
 		Seien $p,q,r\in [1,\infty)$
 		\begin{enumerate}[(a)]
 			\item $L^p(\Omega,\mu)$ ist ein Banachraum, $L^2(\Omega,\mu)$ ist ein Hilbertraum mit $(f,g)_2 := \int_\Omega f \overline{g} d\mu$
@@ -87,7 +88,7 @@ Eine Norm efüllt zusätzlich noch die Bedingung, dass sie nur dann verschwindet
 \subsection{Definitionen und grundlegende Eigenschaften}
 %Definition linearer Operator
 	\begin{definition}[linearer Operator]
-	\label{linearer Opererator}
+	\label{def:1.5}
 		Seien $X,Y\; \K-$Vektorräume. Eine Abbildung $T:X\rightarrow Y$ heißt \textit{linearer Operator} wenn 
 		$$T(\lambda x+\mu y) = \lambda T(x) + \mu T(y)\quad \forall \lambda,\mu \in \K,\,x,y\in X$$ 
 		wir schreiben auch $Tx$ statt $T(x)$.\\
@@ -103,7 +104,7 @@ Eine Norm efüllt zusätzlich noch die Bedingung, dass sie nur dann verschwindet
 	\end{bem*}
 
 	\begin{bsp}[Lineare Operator]
-	\label{bsp:Lineare Operator}
+	\label{bsp:1.6}
 		\begin{enumerate}[a)]
 			\item $X = \K^n$, $Y = \K^m$, $\{T: X\to Y: T \text{ linearer Operator}\} = \K^{m \times n}.$ $T\in\K^{n \times m}$ ist beschränkt. 
 			%(Betrachtung nur für den Fall $\K\in\{\R,\C\}$) 
@@ -116,7 +117,7 @@ Eine Norm efüllt zusätzlich noch die Bedingung, dass sie nur dann verschwindet
 	\end{bsp}
 
 	\begin{thm}[Charakterisierung der Stetigkeit]
-	\label[thm:Charakterisierung der Stetigkeit]						
+	\label{thm:1.7}
 		Seien $X,Y$ normierte Räume, $T: X\to Y$ ein linearer Operator. Dann sind äquivalent:
 			\begin{enumerate}[(i)]
 				\item $T$ beschränkt,
@@ -159,7 +160,8 @@ Eine Norm efüllt zusätzlich noch die Bedingung, dass sie nur dann verschwindet
 	\end{proof}
 
 An dieser Stelle werden einige Definition und Bemerkung festgehalten, die in späteren Kapitel beleuchtet und untersucht werden.
-	\begin{bem} 
+	\begin{bem}[$\BS$ und Dualraum]
+	\label{bem:1.8}
 		\begin{enumerate}[a)]
 			\item $\B(X,Y) := \{ T: X\to Y: T \text{ beschränkt}\}$
 			\item $\B(X) := \B(X,X)$ beides sind $\K-VR$.
@@ -167,19 +169,21 @@ An dieser Stelle werden einige Definition und Bemerkung festgehalten, die in sp�
 		\end{enumerate}
 	\end{bem}					
 	
-	\begin{bem}
+	\begin{bem}[wichtige Fakten zu Linearen Abbildung]
+	\label{bem:1.9}
 		\begin{enumerate}[a)] \addtocounter{enumi}{3}
 			\item $Ker\:T$, $Im\:T$ sind UVR. 
 			\item $(i) - (vi)$ äquivalent zu $(vii)$:
 				Jede beschränkte Menge wird auf eine beschränkte Menge abgebildet.
-			\item Es gibt beschränkte lineare Operatoren, so dass $Im\: T$ nicht abgeschlossen $\nearrow$ Übung
+			\item Es gibt beschränkte lineare Operatoren, so dass $Im\: T$ 
+				nicht abgeschlossen $\nearrow$ \hyperref[B2.1]{Übung}
 			\item $Ker\; T$ abgeschlossen $\forall \; T\in \B(X,Y)$, da $T$ stetig und $Ker\:T = \inv{T}(\{0\})$, wobei $\{0\}$ abgeschlossen in $Y$.
 		\end{enumerate}
 	\end{bem}						
 
 %%%%%%%%%%%	Satz 1.10
 	\begin{thm}[Operatornormen]
-	\label{Operatornormen}
+	\label{thm:1.10}
 		$X,Y$ normierte Räume. $\BS$ normierter Raum mit folgendener Norm
 		 $$\norm{T} := \disp \sup_{x \in \EK}\norm{Tx}_Y.$$
 	\end{thm}
@@ -203,11 +207,12 @@ An dieser Stelle werden einige Definition und Bemerkung festgehalten, die in sp�
 		\end{itemize}
 	\end{proof}
 		
-	\begin{bem}
+	\begin{bem}[Äquivalenz der Operatornorm]
+	\label{bem:1.11}
 		Es gilt 
 		$\disp \norm{T} = \supT[A]\norm{Tx}_Y = \supT[R] \norm{Tx}_Y
 		= \sup_{\overset{x \in X}{x \not = 0}} \frac{\norm{Tx}_Y}{\norm{x}_X}$
-		($\nearrow$ Ü1, A2).
+		($\nearrow$ \hyperref[B1.2]{Ü1, A2}).
 
 		\begin{proof}
 			Wir zeigen  
@@ -234,7 +239,8 @@ An dieser Stelle werden einige Definition und Bemerkung festgehalten, die in sp�
 	\end{bem}
 
 %%%%%%%%%%% Satz 1.12
-	\begin{thm}
+	\begin{thm}[Y Banachraum, $\BS$ Banachraum]
+	\label{thm:1.12}
 		$X$ normierter Raum, $Y$ Banachraum. Dann ist $\BS$ Banachraum.
 	\end{thm}
 		\begin{proof}
@@ -269,12 +275,14 @@ An dieser Stelle werden einige Definition und Bemerkung festgehalten, die in sp�
 		\end{proof}
 
 %%%%%%% Korollar 1.13
-	\begin{cor}
+	\begin{cor}[Dualraum ist ein Banachraum]
+	\label{cor:1.13}
 		$X$ normierter Raum $\df$ $X'$ Banachraum.
 	\end{cor}
 
 %%%%%%% Bemerkung 1.14
-	\begin{bem}
+	\begin{bem}[wichtige (negative) Resultate]
+	\label{bem:1.14}
 		\begin{enumerate}[a)]
 			\item $T\in \BS$, $S \in \B(Y,Z) \df ST \in \B(X,Z)$ und 
 				$\norm{ST} \leq \norm{S} \cdot \norm{T}$ 
@@ -311,8 +319,9 @@ An dieser Stelle werden einige Definition und Bemerkung festgehalten, die in sp�
 	\end{bem}
 
 %%%%%%% Satz 1.15
-	\begin{thm}
-		Sei $X,Y$ normierte $\K-VR$, $T\in \BS$. Dann sind äquivalent:
+	\begin{thm}[Charakterisierung stetige Inverse und Injektivität]
+	\label{thm:1.15}
+		Sei $X,Y$ normierte $\K$-VR, $T\in \BS$. Dann sind äquivalent:
 			\begin{enumerate}[(i)]
 				\item $T$ ist injektiv und $\inv{T} \in\B(im(T), X)$ normierter UVR von $Y$.
 				\item $\exists \: m > 0: \norm{Tx}_Y \geq m\norm{x}_X \; \forall x\in X$.
@@ -334,7 +343,8 @@ An dieser Stelle werden einige Definition und Bemerkung festgehalten, die in sp�
 
 Die Negation dieser Aussage halten wir explizit fest mit folgendem 
 %%%%%%% Korollar 1.16
-	\begin{cor}
+	\begin{cor}[Nichtexistenz der stetigen Inversen]
+	\label{cor:1.16}
 		$T \in \BS$ ($X,Y$ normierte $\K-VR$. Dann sind äquivalent:
 			\begin{enumerate}[(i)]
 				\item $T$ besitzt \underline{keine} stetige Inverser 
@@ -345,7 +355,8 @@ Die Negation dieser Aussage halten wir explizit fest mit folgendem
 	\end{cor}
 
 %%%%%%% 1.17
-	\begin{definition}
+	\begin{definition}[Äquivalenz von Normen]
+	\label{def:1.17}
 		$X-\K-VR$ mit Norm $\norm{\cdot}_1,\norm{\cdot}_2$. Dann heißt $\norm{\cdot}_1$ 
 			\begin{enumerate}[(a)]
 				\item \qmarks{stärker} als $\norm{\cdot}_2$, falls gilt
@@ -356,7 +367,8 @@ Die Negation dieser Aussage halten wir explizit fest mit folgendem
 	\end{definition}
 
 %%%%%%% 1.18
-	\begin{thm}
+	\begin{thm}[Charakterisierung der Äquivalenz von Normen]
+	\label{thm:1.18}
 		$X$ $\K-VR$ mit Norm $\norm{\cdot}_1$,$\norm{\cdot}_2$. Dann gilt 
 			\begin{enumerate}[(a)]
 				\item $\norm{\cdot}_1$ ist stärker als $\norm{\cdot}_2$ 
@@ -381,28 +393,35 @@ Die Negation dieser Aussage halten wir explizit fest mit folgendem
 	\end{proof}
 
 %%%%%%% 1.19
-	\begin{definition}
+	\begin{definition}[topologischer Isomorphismus]
+	\label{def:1.19}
 		Zwei normierte $\K$-VR $X,Y$ heißen \textit{topologisch isomorph}, falls es ein Isomorphismus 
 		$T: X\to Y$ mit $T\in \BS$ und $\inv{T}\in\B(Y,X)$. Dann heißt $T$ topologischer Isomorphismus.
 	\end{definition}
 
-	\begin{thm}
+	\begin{thm}[Charakterisierung topologisch isomorph]
+	\label{thm:1.20}
 		$X, Y$ topologisch isomorph $\aq$ $\exists m,M > 0: T\in \BS$ und injektiv
 		$: m\norm{x}_X \leq \norm{Tx}_Y \leq M \norm{x}_X \; \forall x\in X$
 	\end{thm}
 	\begin{proof}
-		'Klar' wegen Satz 1.17 und Satz 1.15.
+		'Klar' wegen \hyperref[thm:1.18]{Satz 1.18} und \hyperref[thm:1.15]{Satz 1.15}.
 	\end{proof}
 	
-	\begin{bem}
+	\begin{bem}[Isometrie und lineare Bijektion]
+	\label{bem:1.21}
 		\begin{enumerate}
-			\item Falls, $m=M=1$, dann nenn wir $T$ \qmarks{Isometrie}.
-			\item Falls $\dim X = \dim Y = n\in \N$: $X,Y$ topologisch isomorph und topologischer Isomorphismus = lineare Bijektion.
+			\item Falls, $m=M=1$, dann nennen wir $T$ {\it Isometrie}.
+			\item Falls $\dim X = \dim Y = n\in \N$: $X,Y$ topologisch isomorph 
+				und topologischer Isomorphismus = lineare Bijektion.
 		\end{enumerate}
+	\todog[Isometrie: Metrik bleibt erhalten, Isomorphismus: im Sinne der LA, 
+		Normisomorph: beides]
 	\end{bem}
 	
 %% Satz 1.22
 	\begin{thm}[Fortsetzung von stetigen Operatoren]
+	\label{thm:1.22}
 		$X,Y$ normierte $\K-VR$, $Y$ ein Banachraum, $Z\subseteq X$, $Z$ dichter UVR.
 		$T\in \B(Z,Y)$. Dann existiert ein eindeutiger Operator $\tilde{T} \in \BS$, so dass
 		$T|_Z = T$.
@@ -428,11 +447,14 @@ Die Negation dieser Aussage halten wir explizit fest mit folgendem
 	\end{proof}
 
 %% Satz 1.23
-	\begin{thm}
-					Ist $T$ normerhaltend (in $\R^n$ die unitären Matrizen $\norm{Tx} = \norm{x}$), so ist $\tilde{T}$ ebenfalls normerhaltend.
+	\begin{thm}[Fortsetzung bleibt normerhaltend]
+	\label{thm:1.23}
+		Ist $T$ normerhaltend (in $\R^n$ die unitären Matrizen $\norm{Tx} = \norm{x}$),
+		so ist $\tilde{T}$ ebenfalls normerhaltend.
 	\end{thm}
 
 	\begin{bsp}[Konstruktion eines unbeschränkten Funktionals]
+	\label{bsp:1.24}
 		Sei $X= \ell^1$ ({Raum der absolut konvergenten Folgen})\par
 		Betrachte: $x_0 = (1, \frac{1}{4}, \frac{1}{9},\dots) \in \ell^1$, 
 		$\norm{x_0} = \sum_{n=1}^\infty |\frac{1}{n^2}| = \frac{\pi^2}{6} $,\par
@@ -457,7 +479,9 @@ Die Negation dieser Aussage halten wir explizit fest mit folgendem
 Nun versuchen wir mit Erfolgt einer waghalsige Verallgemeinerung der geometrischen Reihe im Reellen für Operatoren und Banachräume. 
 	$\sum_{k=0}^\infty q^k = \frac{1}{1-q} \; \forall q\in\C$ mit $\norm{q} < 1$
 %% Satz 1.25 Neumansche Reihe
+
 	\begin{thm}[Neumanansche Reihe] 
+	\label{thm:1.25}
 		$X$ Banachraum. Sei $T\in \B(X)$. Dann sind äquivalent: 
 			\begin{enumerate}[i)]
 				\item Die Reihe $ \sum_{i=0}^\infty T^k = I_X + T^1 + T^2 + \dots$ ist konvergent bzgl. der Operatornorm.
@@ -506,13 +530,16 @@ Nun versuchen wir mit Erfolgt einer waghalsige Verallgemeinerung der geometrisch
 			\end{itemize}
 		\end{proof}
 %%%%%%%%%%%%%%%%%%  
-	\begin{bem}
+	\begin{bem}[Konvergenz Neumannsche Reihe]
+	\label{bem:1.26}
 		\begin{enumerate}
 			\item Wenn $\norm{T} < 1$, dann konvergiert die Neumannsche Reihe.
 			\item $\disp \limes\sup\sqrt[n]{\norm{T^n}} <1$ ist nur hinreichend für Invertierbarkeit von $I-T$, wie das Gegenbeispiel $T = 2I$ zeigt.
 		\end{enumerate}
 	\end{bem}
+
 	\begin{bsp}[Fredholmsche Integralgleichung]
+	\label{bsp:1.27}
 		Sei $k\in C([a,b]^2)$.
 		Der Fredholmsche Integraloperator $$K:C([a,b])\to C([a,b]),\; (Kx)(s):=\int^b_a K(s,t)x(t)dt$$ ist stetig, wenn x stetig ist.
 		Die Fredholmsche Integralgleichung lautet: $$(I-K)x=y,\quad y\in C([a,b]).$$
@@ -526,14 +553,16 @@ Nun versuchen wir mit Erfolgt einer waghalsige Verallgemeinerung der geometrisch
 	\subsection{Grundbegriffe:metrischer Raum und Vervollständigung}	
 
 	% Bem 1.28
-	\begin{bem}[Erinnerung]\label{bem:1.28}
+	\begin{bem}[Erinnerung]
+	\label{bem:1.28}
 		\begin{enumerate}[-]
 			\item Kompaktheit, Satz von Bolzano-Weierstraß
 		\end{enumerate}
 	\end{bem}
 
 %Lemma 1.29
-	\begin{lemma}
+	\begin{lemma}[Vierecksunsgleichung]
+	\label{lem:1.29}
 		Sei $(X,d)$ ein metrischer Raum. Dann gilt die Vierecksungleichung:
 		$$|d(x,y)-d(x_1,y_1)| \leq d(x,x_1) +d(y,y_1)\quad \forall x,x_1,y,y_1\in X$$
 	\end{lemma}
@@ -544,22 +573,27 @@ Nun versuchen wir mit Erfolgt einer waghalsige Verallgemeinerung der geometrisch
 
 %Bem 1.30
 	\begin{bem}\label{bem:1.30} Rekapitulieren Sie folgende Begriffe:
-		$U_r(x)$ Kugel mit Radius $r$,	$\overline{M}$ Abschluss,	$\mathring{M}$ Innere,	$\partial M$ Rand,	Kompakt,	offene Überdeckung. \todoo[Hinten noch definieren]
+	\label{bem:1.30}
+		$U_r(x)$ Kugel mit Radius $r$,	$\overline{M}$ Abschluss,	$\mathring{M}$ 
+		Innere,	$\partial M$ Rand,	Kompakt,	offene Überdeckung. \todoo[Hinten noch definieren]
 	\end{bem}
 	
 %Definition 1.31
-\begin{definition} %Abstandserhaltung, Einbettung und Isometrie
+\begin{definition}[Abstandserhaltung, Einbettung und Isometrie]
+	\label{def:1.31}
 	Seien $(X,d_X),(Y,d_Y)$ metrische Räume. Eine Abbildung $f:X\to Y$ heißt
 	\begin{enumerate}[(a)]
 		\item \textit{abstandserhaltend} falls $d_X(x,y)=d_Y(f(x),f(y))$ %(Bsp.: orthogonale Matrix).
 		\item \textit{Isometrie} falls abstandserhaltend und surjektiv.
 	\end{enumerate}
-	Eine abstandserhaltende  Abbildung heißt auch \textit{Einbettung}. Eine Einbettung heißt \textit{dicht}, falls $f(X)$ dicht in Y ist.\par
+	Eine abstandserhaltende  Abbildung heißt auch \textit{Einbettung}.
+	Eine Einbettung heißt \textit{dicht}, falls $f(X)$ dicht in Y ist.\par
 	Notation: Wir schreiben $X\subseteq Y$, falls X in Y eingebettet ist.
 \end{definition}
 
 %Satz 1.32
-\begin{thm} %Der große Vervollständigungssatz
+\begin{thm}[Der große Vervollständigungssatz]
+	\label{thm:1.32}
 	Jeder metrische Raum $(X,d)$ lässt sich in einen bis auf Isometrie eindeutig bestimmten vollständigen metrischen Raum $(\dX,\dd)$ dicht einbetten. $(\dX,\dd)$ heißt Vervollständigung von $(X,d)$.
 \end{thm}
 \begin{proof}
@@ -618,15 +652,17 @@ Nun versuchen wir mit Erfolgt einer waghalsige Verallgemeinerung der geometrisch
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 %Definition 1.33
-\begin{definition}%Durchmesser
+\begin{definition}[Durchmesser]
+	\label{def:1.33}
 	Sei $(X,d)$ ein metrischer Raum, $M\subseteq X,\,M\not= \emptyset$.
-	Wir definieren den Durchmesser von M durch
+	Wir definieren den {\it Durchmesser} von M durch
 	$$\delta(M):= \sup\left\lbrace d(x,y):x,y\in M\right\rbrace.$$
 \end{definition}
 
 Der folgende Satz ist eine Verallgemeinerung des Intervallschachtelungsprinzips aus $\R$.
 %Satz 1.34
 \begin{thm}[Cantorscher Durchschnittssatz]
+	\label{thm:1.34}
 	Sei $(X,d)$ ein metrischer Raum, der vollständig ist. $(F_n)$ eine Folge von 		abgeschlossen Teilmengen mit $F_n \not = \emptyset\;\, \forall n\in\N$, 			$F_1\supseteq F_2\supseteq \dots$ und $\displaystyle \lim_{n\to\infty} \delta(F_n)=0$\par 
 	$$\df \exists! x_0\in X: \underset{n\in\N}{\cap}F_n = \{x_0\}$$
 \end{thm}
@@ -648,6 +684,7 @@ Der folgende Satz ist eine Verallgemeinerung des Intervallschachtelungsprinzips 
 
 %Satz 1.35
 \begin{thm}[Bairescher Kategoriensatz]
+	\label{thm:1.35}
 	Sei $(X,d)$ ein vollständiger metrischer Raum, $\cup^\infty_{n=1} F_n = X$, wobei $F_n \subseteq X$ abgeschlossen für alle $n\in\N$.\par
 	Dann gilt: $$\exists n_0\in\N:\mathring F_{n_0} \not = \emptyset.$$ Es gibt also ein $F_{n_0}$ dessen Inneres nichtleer ist.
 \end{thm}
@@ -686,7 +723,8 @@ Der folgende Satz ist eine Verallgemeinerung des Intervallschachtelungsprinzips 
 	\end{proof}
 
 %Definition 1.36
-\begin{definition}
+\begin{definition}[dicht, mager, Kategorie]
+	\label{def:1.36}
 	Sei $(X,d)$ ein metrischer Raum. $M\subseteq X$ heißt\dots
 	\begin{enumerate}[(a)]
 		\item \textit{nirgends dicht}, wenn $\mathring{\overline{M}} = \emptyset$.
@@ -699,12 +737,13 @@ Der folgende Satz ist eine Verallgemeinerung des Intervallschachtelungsprinzips 
 
 %Eigene Bemerkung ohne Nummerierung.
 \begin{mbem*}[Trivia am Rande] Direkt aus der Definition folgt, das jede nirgends dichte Menge insbesondere von 1.Kategorie ist. Andersrum gilt dies nicht, was das Beispiel $\Q\subseteq \R$ zeigt. Ein Beispiel für eine nirgends dichte Menge ist die Cantor-Menge.\\
-	 \qmarks{Anschaulich} bedeutet \textit{nirgends dicht}, wenn sie in keiner Teilmenge (mit nichtleeren Innerem) dicht liegt. \par\bigskip
+	 \textit{Anschaulich} bedeutet \textit{nirgends dicht}, wenn sie in keiner Teilmenge (mit nichtleeren Innerem) dicht liegt. \par\bigskip
 \end{mbem*}
 	Mithilfe dieser Definition können wir den Baireschen Kategoriensatz Umformulieren zu $$(X,d) \text{ ist ein vollständiger metrischer Raum } \df X \text{ ist von 2.Kategorie}$$ 
 
 %Korollar 1.37
-\begin{cor}
+\begin{cor}[vollstängier Raum von 2. Kategorie]
+	\label{cor:1.37}
 	$(X,d)$ sei ein vollständiger metrischer Raum, $U\subseteq X$ offen und nichtleer.\par
 	Dann ist $U$ von 2. Kategorie.
 \end{cor} 
@@ -713,7 +752,8 @@ Der folgende Satz ist eine Verallgemeinerung des Intervallschachtelungsprinzips 
 \end{proof}
 
 %Korollar 1.38
-\begin{cor}
+\begin{cor}[magere Unteremengen in vollständigen Raum]
+	\label{cor:1.38}
 	$(X,d)$ sei ein vollständiger metrischer Raum.\par 
 	Dann gilt: 
 	$$ M\subseteq X \text{ mager } \df X\setminus M \text{ ist dicht in} X.$$
@@ -726,8 +766,11 @@ Der folgende Satz ist eine Verallgemeinerung des Intervallschachtelungsprinzips 
 \end{proof}
 
 %Korollar 1.39
-\begin{cor}
-	$(X,d)$ sei ein vollständiger metrischer Raum. Für $n\in\N$ sei $B_n \subseteq X$ so dass $X\setminus B_n$ mager. $B:=\cap_{n\in\N}  B_n$
+\begin{cor}[Darstellung vollständiger metrischer Räume]
+	\label{cor:1.39}
+	$(X,d)$ sei ein vollständiger metrischer Raum. 
+	Für $n\in\N$ sei $B_n \subseteq X$ so dass $X\setminus B_n$ mager. 
+	$B:=\cap_{n\in\N}  B_n$
 	$$\df \overline{B} = X$$
 \end{cor}
 \begin{proof}
@@ -735,17 +778,22 @@ Der folgende Satz ist eine Verallgemeinerung des Intervallschachtelungsprinzips 
 \end{proof}
 
 %Definition 1.40
-\begin{definition}
+\begin{definition}[kompakt, präkompakt]
+	\label{def:1.40}
 	Der metrische Raum $(X,d)$ heißt \dots
 	\begin{enumerate}[(a)]
-	\item \textit{kompakt}, wenn für alle offenen Überdeckungen $(U_i)_{i\in I}$ von $X$ ein endliches $I'\subseteq I$ existiert, so dass $X = \cup_{i\in I'} U_i$
-	
-	\item \textit{präkompakt}, wenn $\forall \varepsilon > 0$ eine endliche Menge $M = \{x_1,\dots, x_n\}$ existiert, so dass $X = \cup^n_{i=1} U_\varepsilon (x_i)$. $M$ heißt auch $\varepsilon$\textit{-Netz} von $X$.
+	\item \textit{kompakt}, wenn für alle offenen Überdeckungen $(U_i)_{i\in I}$ 
+		von $X$ ein endliches $I'\subseteq I$ existiert, 
+		so dass $X = \cup_{i\in I'} U_i$
+	\item \textit{präkompakt}, wenn $\forall \varepsilon > 0$ eine endliche Menge 
+		$M = \{x_1,\dots, x_n\}$ existiert, so dass $X = \cup^n_{i=1} U_\varepsilon (x_i)$. 
+		$M$ heißt auch $\varepsilon$\textit{-Netz} von $X$.
 \end{enumerate}		
 \end{definition}
 
 %Satz 1.41
-\begin{thm}
+\begin{thm}[Charakterisierung von Kompaktheit]
+	\label{thm:1.41}
 	Sei $(X,d)$ ein metrischer Raum. Dann ist äquivalent:
 	\begin{enumerate}[(1)]
 		\item $X$ kompakt.
@@ -817,9 +865,9 @@ Der folgende Satz ist eine Verallgemeinerung des Intervallschachtelungsprinzips 
 	\end{proof}
 
 %Korollar 1.42
-	\begin{cor}
+	\begin{cor}[Folgen- und Überdeckungskompakt]
+	\label{cor:1.42}
 		$(X,d)$ sei ein metrischer Raum. Dann gilt:
-
 			\begin{enumerate}[a)]
 				\item $(X,d)$ kompakt $\df$ $X$ vollständig
 				\item $M\subseteq X$, so dass jede Folge in M eine in M konvergente Teilfolge hat (\qmarks{M folgenkompakt})
@@ -831,19 +879,23 @@ Der folgende Satz ist eine Verallgemeinerung des Intervallschachtelungsprinzips 
 	\end{cor}
 
 %Definition 1.43
-	\begin{definition}
-		Sei $(X,d)$ ein metrischer Raum. $M\subseteq X$ heißt \textit{relativ kompakt}, wenn $\overline{M}$ kompakt ist.
+	\begin{definition}[relativ kompakt]
+	\label{def:1.43}
+		Sei $(X,d)$ ein metrischer Raum. 
+		$M\subseteq X$ heißt \textit{relativ kompakt}, wenn $\overline{M}$ kompakt ist.
 	\end{definition}
 
 %Definition 1.44
-	\begin{definition}
+	\begin{definition}[?]
+	\label{def:1.44}
 		$(X,d)$ vollständiger metrischer Raum, $M \subseteq X$ relativ kompakt. \par
 					\todo[inline]{Was genau wird hier definiert?}
 			$\Leftrightarrow$ jede Folge in $M$ besitzt eine in $X$ konvergente Teilfolge.
 	\end{definition}
 
 %Satz 1.45
-	\begin{thm}
+	\begin{thm}[Aussagen zu komapkt, prä- und  relativkompakt]
+	\label{thm:1.45}
 		Sei $(X,d)$ ein metrischer Raum. $M,N \subseteq X$ seien relativ kompakt (bzw. präkompakt). Dann gilt 
 			\begin{enumerate} [(a)]
 				\item $S\subseteq M$ $\df$ $S$ relativ kompakt (bzw. präkompakt)
@@ -880,6 +932,7 @@ Der folgende Satz ist eine Verallgemeinerung des Intervallschachtelungsprinzips 
 
 %Bemerkung, Fakten 1.46
 	\begin{bem}[Fakten]
+	\label{bem:1.46}
 		$(X,\norm{\cdot})$ normierter Raum.
 		\begin{enumerate}[a)]
 			\item Aussagen über metrischer Räume übertragen sich
@@ -893,7 +946,8 @@ Der folgende Satz ist eine Verallgemeinerung des Intervallschachtelungsprinzips 
 		\end{enumerate}
 	\end{bem}
 
-	\begin{lemma}[Lemma von Riesz]%Lemmaumgebung gab es schon :O
+	\begin{lemma}[Lemma von Riesz]
+	\label{lem:1.47}
 		$(X,\norm{\cdot})$ normierter Raum, $E\subset X$ abgeschlossener Unterraum mit $E \not = X$, $\eta\in (0,1)$. \par
 		Dann existiert ein $x_\eta \in X$ mit $\norm{\xt} = 1$ und $\norm{\xt - y} \geq \eta \; \forall y\in E.$
 	\end{lemma}
@@ -925,7 +979,8 @@ Sei $\eta \in (0,1) \df \frac{\delta}{\eta} > \delta $ $\df \exists z\in E$ mit 
 	
 
 %Korollar 1.48
-	\begin{cor}
+	\begin{cor}[kompakt in endlichdim. Räumen, konvergente Teilfolgen]
+	\label{cor:1.48}
 		$(X,\norm{\cdot})$ normierter Raum.
 			\begin{enumerate}[a)] 
 				\item $\overline{U_1(0)}$ kompakt $\aq$ $\dim X < \infty$
@@ -949,7 +1004,7 @@ Sei $\eta \in (0,1) \df \frac{\delta}{\eta} > \delta $ $\df \exists z\in E$ mit 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 	\section{Skalarprodukträume}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-Erinnerung:\\
+Erinnerung Skalarprodukt:\\
 	Sei $X$ ein $\K$-VR. Ein \textit{Skalarprodukt} ist eine Abb $(\cdot,\cdot) \to \K$ mit 
 	\begin{enumerate}[(S1)]
 		\item $(\alpha x + \beta y, z) = \alpha (x,z) + \beta (y,z)$ $\forall x,y,z \in X$, $\alpha,\beta \in \K$
@@ -958,7 +1013,8 @@ Erinnerung:\\
 	\end{enumerate}
 
 %Bemerkerung 1.49
-	\begin{bem}
+	\begin{bem}[Diverses zu Skalarprodukträumen]
+	\label{bem:1.49}
 		\begin{enumerate}[1)]
 			\item $\norm{x} := \sqrt{(x,x)}$ ist eine Norm.
 			\item ein vollständiger Skalarproduktraum heißt \textit{Hilbertraum}.
@@ -974,15 +1030,19 @@ Erinnerung:\\
 		\end{enumerate}
 	\end{bem}
 %Satz 1.50
-	\begin{thm}
-	Sei $(X,\norm{\cdot})$ ein normierter Raum mit $\norm{x+y}^2 + \norm{x-y}^2 = 2\norm{x}^2 +2\norm{y}^2 ~\forall x,y \in X$. Dann existiert ein Skalarprodukt auf $X$, welches $\norm{\cdot}$ induziert.
+	\begin{thm}[Skalarprodukt induziert Norm]
+	\label{thm:1.50}
+	Sei $(X,\norm{\cdot})$ ein normierter Raum mit 
+	$\norm{x+y}^2 + \norm{x-y}^2 = 2\norm{x}^2 +2\norm{y}^2 ~\forall x,y \in X$.
+	Dann existiert ein Skalarprodukt auf $X$, welches $\norm{\cdot}$ induziert.
 	\end{thm}
 	\begin{proof}
 		Skizze! a) $\K = \R$ $(x,y) := \frac{1}{4}(\norm{x + y}^2 - \norm{x-y}^2)$.\\ b) $\K = \C$ $(x,y) := \frac{1}{4}(\| x+y\|^2 - \|x-y\|^2 + i(\|x+iy\|^2 + \|x-iy\|^2)$ ($\nearrow$ Übung, Blatt 6, Aufgabe 1)
 	\end{proof}
 
 % Definition 1.51
-	\begin{definition}
+	\begin{definition}[Alles Orthogonlität inkl. System und Basis]
+	\label{def:1.51}
 		$(X,\SP)$ Skalarprodukt, $x,y\in X$. $M,N \subseteq X$, $(x_i)_{i\in I}$ Familie.
 		\begin{enumerate}
 			\item $x$ orthogonal zu $y$ (x $\perp$ y), wenn $(x,y) = 0$.
@@ -995,9 +1055,10 @@ Erinnerung:\\
 			\item $\xf$ heißt \textit{Orthonomalbais} (ONB), wenn es OGB und ONS ist.	
 		\end{enumerate}
 	\end{definition}
+
 %Beispiel 1.52
-	%TODO Layout
-	\begin{bsp}
+	\begin{bsp}[ONSs und ONBs]
+	\label{bsp:1.52}
 		\begin{enumerate}[a)]
 			\item $e_n = (\delta_{in})_{i\in I} \in \ell^2$ $(e_n)_{n\in \N}$ ist ONS
 			Es ist auch ONB.\par
@@ -1013,6 +1074,7 @@ Erinnerung:\\
 
 %Satz 1.53 (Besselsche Ungleichung)
 	\begin{thm}[Besselsche Ungleichung]
+	\label{thm:1.53}
 		Sei $X$ ein Skalarproduktraum, $\ff{u}{i}{I}$ ein Orthonormalsystem, $x\in X$, $i_1,\dots,i_n \in I$. Dann ist 
 			$$\sum_{k=1}^n |(x,u_{i_k})|^2 \leq\norm{x}^2 $$
 	\end{thm}
@@ -1028,7 +1090,8 @@ Erinnerung:\\
 	\end{proof}
 	
 %Korollar 1.54
-	\begin{cor}
+	\begin{cor}[Fourreihe und Besssel Ungl. II]
+	\label{cor:1.54}
 		Voraussetzungen wie oben. Dann gilt\par
 		\begin{enumerate}[(a)]
 			\item $(x, u_i) \neq 0$ für höchstens abzählbar viele $i\in I$.
@@ -1057,6 +1120,7 @@ Erinnerung:\\
 
 %Satz 1.55 (Projektionssatz)
 	\begin{thm}[Projektionssatz]
+	\label{thm:1.55}
 		$X$ Skalarproduktraum, $V$ vollständig UVR, $x\in X$. Dann existiert ein eindeutiges $v_0 \in V$, so dass $\norm{x - v_0} = \inf_{v\in U} \norm{x - v}$. Dieses $v_0$ erfüllt $x - v_0 \in V^\perp$	
 	\end{thm}
 
@@ -1103,7 +1167,8 @@ Erinnerung:\\
 	\end{proof}		
 	
 %Korollar 1.56
-	\begin{cor}
+	\begin{cor}[Orthogonalunterräume und Approximation]
+	\label{cor:1.56}
 		Sei $X$ ein Hilbertraum und $V$ ein abgeschlossener Unterraum. Dann gilt 
 			\begin{enumerate}
 				\item $X = V \perp V^\perp$, also $ V\perp V^\perp$ und $X = V \oplus V^\perp$\par
@@ -1123,7 +1188,8 @@ Erinnerung:\\
 	\end{proof}
 
 %Lemma 1.57
-	\begin{lemma}
+	\begin{lemma}[Orthogonalraum und Abschluss]
+	\label{lem:1.57}
 		Sei $X$ ein Skalarproduktraum, $V$ ein Unterraum. Dann ist $V^\perp = \overline{V}^\perp$
 	\end{lemma}
 	\begin{proof}
@@ -1133,7 +1199,8 @@ Erinnerung:\\
 	\end{proof}
 
 %Satz 1.58
- 	\begin{thm}
+ 	\begin{thm}[Charakterisierung von ONBs]
+	\label{thm:1.58}
 		$X$ Skalarproduktraum. $\ff{u}{i}{I}$ ONS.\par
 		Betrachte folgende Aussagen
 			\begin{enumerate}[(i)]
@@ -1190,7 +1257,8 @@ Erinnerung:\\
 				\item Zu $g\in C([0,2\pi])$ mit $g(0) = g(2\pi), \varepsilon > 0 \;\exists h\in \aufspan\ff{u}{i}{\Z}: \norm{g-h}_\infty$
 			\end{enumerate}
 %Satz 1.59
-	\begin{thm} 
+	\begin{thm}[$L^2$ und ONB] 
+	\label{thm:1.59}
 		Die Familie $\ff{u}{k}{\Z}$ mit $u_k(x) = \frac{1}{2 \pi} e^{ikx}$ ist eine Orthonormalbasis von $L^2([0,2\pi])$ 
 		Wir benutzen:	 
 			\begin{enumerate}[a)]
@@ -1208,7 +1276,7 @@ Erinnerung:\\
 	\end{proof}
 
 %Korollar, Folgerungen ohne Nummerierung.
-	\begin{cor*}
+	\begin{cor*}[Bestapproximation trigono. Polynome]
 Sei $f\in L^2([0,2\pi])$
 		\begin{enumerate}
 			\item $f_n(x) = \sum_{k=-n}^n c_k e^{ikx}$ ist bestapprox. trig. Polynom vom Grad $n$ für $f$ (mit $c_k = (f,e^{ik\cdot })=\int_{0}^{2\pi} f(x) e^{-ikx} dx)$ 
@@ -1219,8 +1287,9 @@ Sei $f\in L^2([0,2\pi])$
 
 %Definition 1.60 (Halbordnung, Totalordnung)
 	\begin{definition}[Halbordnung, Totalordnung]
-		Sei $M$ eine Menge. Eine Relation $\leq\; \subseteq M\times M$, heißt \textit{Halbordnung}, wenn folgende Eigenschaften erfüllt sind:
-
+	\label{def:1.60}
+		Sei $M$ eine Menge. Eine Relation $\leq\; \subseteq M\times M$, 
+		heißt \textit{Halbordnung}, wenn folgende Eigenschaften erfüllt sind:
 			\begin{enumerate}[(i)]
 				\item $a\leq b \land b\leq c \df a \leq c\quad \forall a,b,c \in M$
 				\item $ a \leq a \quad\forall a\in M$
@@ -1234,11 +1303,13 @@ Sei $f\in L^2([0,2\pi])$
 
 %Lemma 1.61 (Lemma von Zorn)
 	\begin{lemma}[Lemma von Zorn]
+	\label{lem:1.61}
 		$M$ sei eine halbgeordnete Menge. Besitzt jede totalgeordnete Teilmenge $Z \subseteq M$ eine obere Schranke in $M$, dann besitzt $M$ eine obere Schranke.	
 	\end{lemma}
 
 %Satz 1.62
-	\begin{thm}
+	\begin{thm}[Existenz von ONB in Hilberträumen]
+	\label{thm:1.62}
 		$(X, (\cdot,\cdot))$ sei ein Hilbertraum. Dann existiert eine Orthonormalbasis.
 	\end{thm}
 
@@ -1252,7 +1323,7 @@ Sei $f\in L^2([0,2\pi])$
 		$\df \forall x\in X$ mit $x\perp \hat{x}_i \;\forall i \in I$ gilt $x= 0$ \par
 		$\df (span\ff{\hat{{x}}}{i}{I})^\perp = \{0\}$
 	\end{proof}
-	Übung. Blatt 5,6.
+	Übung. Blatt \hyperref[B5.1]{5}, \hyperref[B6.1]{6}.
 	\begin{enumerate}
 		\item Gram-Schmidt-Orthonormalisierung\\
 		Sei $(X, (\cdot,\cdot))$ ein Skalarproduktraum, $(x_n)_{n \in \N}$ linear unabhängig. Dann existiert ein ONS $(y_n)_{y \in \N}$ mit $span(y_1,\dots,y_k)=span(x_1,\dots,x_k)$.\\ Mit $(y_n)$ wie vorhin, gilt $(y_n)$ ist ONB $\forall k \in \N \Leftrightarrow span(x_n)_{n \in \N} = X$.
@@ -1260,11 +1331,12 @@ Sei $f\in L^2([0,2\pi])$
 	\end{enumerate}
 
 %Satz 1.63
-	\begin{thm}
+	\begin{thm}[Basen in Hilberträumen haben die gleich Mächtigkeit]
+	\label{thm:1.63}
 		Seien $X$ ein Hilbertraum, $\ff{x}{i}{I}, \ff{y}{i}{J}$ Orthonormalbasen. Dann haben $I$ und $J$ die gleiche Mächtigkeit.
 	\end{thm}
-	%TODO Layout
 	\begin{proof}
+		\todoy[Layouten]
 		Für endliches $I$ ist die Aussage klar. \par
 		Seien also $|I|$ und $|J|$ unendlich.  \par
 		Für $x\in X$, definiere $S_x = \{i\in I: (x,x_i) \neq 0\} \df |S_X| \leq |\N|$

@@ -5,10 +5,11 @@
 \usepackage[utf8]{inputenc}
 \usepackage[T1]{fontenc} %provides a better way for westeuropean characters and such 
 \setlength{\parindent}{0cm} %noindent for all paragraphs
+\setlength{\parskip}{0.3em}
 \usepackage[english=british]{csquotes} %For special quoationsmarks
 
 %pdf page settings
-\usepackage[a4paper,top=30mm,bottom=40mm,inner=25mm,outer=35mm]{geometry} 
+\usepackage[a4paper,top=30mm,bottom=30mm,inner=25mm,outer=25mm]{geometry} 
 \usepackage{scrlayer-scrpage} %Headers and footers
 
 %Headers and Footnotes
@@ -32,6 +33,14 @@
 \usepackage{paralist} %Adds more function to listing environments
 \usepackage{xstring} %If then 
 \usepackage{hyperref} %Reference
+\hypersetup{
+	colorlinks = true,
+	linkcolor = {blue!40},
+	%menucolor = {white},
+	%anchorcolor = {black}
+	%linkbordercolor = {white},
+	%runbordercolor = {red},
+}
 \usepackage{marginnote} %allows to do some nice marinnotes,
 \usepackage{multicol} %for the glossar, to have 2 columns
 	%Glossar
