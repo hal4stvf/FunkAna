@@ -19,7 +19,6 @@
 
 	\begin{proof}
 		\todor	
-	bilder 45-47
 	\end{proof}		
 	Gilt auch $imJ_\infty = (\ell^\infty)'$?
 
@@ -29,14 +28,8 @@
 		$$(y_n) \mapsto ((x_n) \mapsto \sum_{n=1}^\infty x_ny_n)$$
 		ist normerhaltend, jedoch nicht surjektiv.
 	\end{cor}
-	\begin{proof}
-		\todor	
-	Bilder 48-49
-	\end{proof}
-	\todog[ÜA: $J_\infty (\ell^1) = (c_0)'$)]
 
-	\begin{definition}[Buntes zu Maßen]
-		\todor[Definition beenden]
+	\begin{definition}
 		$\Omega$ Menge, $\mathcal{R} \subseteq \mathcal{P}(\Omega)$. 
 		Ring über $\Omega$ (d.h. 
 		$$\emptyset \in \mathcal{R}, A,B \in \mathcal{R} \df A\backslash B, A\cup B \in \mathcal{R}).$$
@@ -52,23 +45,8 @@
 			\item "'endliches Maß "'
 		\end{enumerate}
 	\end{definition}
-ERRATA:
-	\begin{definition*}[Semi-endlich]
-		\todor[Beweis semi-endlich, S.52]	
-	\end{definition*}
 
-	\begin{bem*}
-		$\sigma$-endlich $\df$ semi-endlich
-		\begin{proof}
-			\todor[Beweis, S.52]	
-		\end{proof}	
-	\end{bem*}	
-	
-	\begin{bsp*}
-		\todor[Beispiele S.52]	
-	\end{bsp*}	
-ERRATA ENDE.
-	\begin{thm}[*]
+	\begin{thm}
 		$(\Omega, \mathcal{A}, \mu)$ Maßraum. $p\in [1, \infty]$, $q\in [1,\infty]$, so dass $\frac{1}{p} + \frac{1}{q} = 1$. Betrachte die Abbildung
 		\begin{equation}
 		\begin{split}
@@ -82,7 +60,6 @@ ERRATA ENDE.
 				\item Falls $p \in (1,\infty)$, so ist $J_p$ surjektiv
 				\item Falls $p = 1$ und $\mu$ $\sigma$-endlich, dann ist $J_p$ surjektiv.
 			\end{enumerate}
-	\todor[Satz unvollständig. S.53]
 	\end{thm}
 	\begin{proof}
 		Ohne Beweis. Siehe Alt.
@@ -144,8 +121,7 @@ ERRATA ENDE.
 		$$\| \mu \|_{Var} := |\mu|(\Omega)$$
 		heißt \textit{Totalvariation  zu $\mu$}. $\mu$ heißt \textit{beschränkt}, falls $\| \mu \|_{Var} <\infty$.
 	\end{definition}
-	\begin{proof}
-	{\it der Additivität von $|\mu|$:}
+	\begin{proof}[der Additivität von $|\mu|$]
 	Seien $B_1, B_2 \in R$ disjunkt.
 	Es ist zu zeigen:
 		$$\df |\mu| (B_1)+|\mu| (B_2) = |\mu|(B_1\cup B_2)$$
@@ -158,7 +134,7 @@ ERRATA ENDE.
 		Insgesamt also $|\mu| (B_1 \cup B_2) - \varepsilon \leq |\mu|(B_1) + |\mu|(B_2)$. Da $\varepsilon > 0$ beliebig war, folgt die Behauptung.		
 	\end{proof}
 	
-	\begin{definition}[bounded additive, countable additive]
+	\begin{definition}
 	$K$ sei ein kompakter Hausdorffraum mit der Topologie $\tT$. Wir definieren
 	\begin{equation*}
 		\begin{split}
@@ -174,7 +150,6 @@ ERRATA ENDE.
 		Offenbar definiert die Totalvariation $\|\mu \|_{Var}$ eine Norm auf $ba(K), ca(K), rba, rca$
 	\end{definition}	
 	
-	\begin{bem*}[Jordan Zerlegung]
 	Resultat: Für einen Ring $R$, $\mu \in ba(K)$ reellwertig ist 
 	$$\mu^+:=\frac{1}{2}(|\mu| + \mu),\qquad \mu^-:=\frac{1}{2}(|\mu| - \mu)$$
 	nicht negativ und beschränkt.
@@ -182,19 +157,14 @@ ERRATA ENDE.
 	Ist $\mu$ regulär, so sind $\mu^+,\,\mu^-$ regulär.
 	Für komplexwertiges $\mu$ ist
 	$$\mu = Re(\mu)^+ - Re(\mu)^- + i(Im(\mu)^+ -Im(\mu)^-).$$
-	\end{bem*}
-	
-	Wir betrachten nochmal das 
-	\begin{bem*}[(Riemann-) Integral stetiger Funktionen]
-		$K$ sei kompakt, $B_0$ wie oben und $\mu : B_0 \to \K$ additiv mit $\|\mu \|_{Var} < \infty$. Für Treppenfunktionen 
-		$$f = \sum^k_{i=1} 1_{E_i} a_i,\, k\in\N,\,a_i\in\K,\,E_i\in B_0$$ 
-		ist 
-		$$\int_K f d\mu := \sum^k_{i=1} a_i \mu(E_i)$$
-		unabhängig von der Darstellung von $f$ und es ist offenbar $\abs{\int_K fd\mu} \leq \|f\|_\infty \|\mu \|_{Var}$. 
-	\end{bem*}
-
+	Wir betrachten nochmal das (Riemann-) Integral stetiger Funktionen:
+	$K$ sei kompakt, $B_0$ wie oben und $\mu : B_0 \to \K$ additiv mit $\|\mu \|_{Var} < \infty$. Für Treppenfunktionen 
+	$$f = \sum^k_{i=1} 1_{E_i} a_i,\, k\in\N,\,a_i\in\K,\,E_i\in B_0$$ 
+	ist 
+	$$\int_K f d\mu := \sum^k_{i=1} a_i \mu(E_i)$$
+	unabhängig von der Darstellung von $f$ und es ist offenbar $\abs{\int_K fd\mu} \leq \|f\|_\infty \|\mu \|_{Var}$. 
 	Wir zeigen nun, dass sich jedes $f \in C(K)$ durch Treppenfunktionen approximieren lässt.
-	\todor[Approximation S.62f]
+	
 	\begin{thm}[Satz von Riesz-Radon, Dualraum von $C(K)$]
 		$K$ kompakt, Hausdorffsch. Durch
 			$$ J: rca(K) \to C(K)' \quad \mu \mapsto (f\mapsto \int_K f d\mu)$$
@@ -205,7 +175,7 @@ ERRATA ENDE.
 		Nicht hier!
 	\end{proof}
 
-	\begin{bsp*}
+	\begin{bem*}
 		\begin{enumerate}[a)]
 			\item $x' \in C([0,1])'$, $\fop{f,x'} = f(0) \df \norm{x'} = 1$
 			$\mu(E) = \{ 1 \quad 0\in E\quad 0\; sonst$ $\forall E\in\sigma([0,1]$ (Diracmaß). 
@@ -213,7 +183,7 @@ ERRATA ENDE.
 			\item $g\in L^1([0,1])$, $x' \in C([0,1])'$, $\fop{f,x'} = \int_{[0,1]} f g d\lambda$,
 			$\mu := g d\lambda$, $\mu(A) := \int_{A} g d\lambda$ $\df \fop{f,x'} = \int_{[0,1]} f d\mu$
 		\end{enumerate}
-	\end{bsp*}
+	\end{bem*}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 	\section{Kompaktheit in $C(K)$ und $L^p$}
@@ -264,19 +234,15 @@ ERRATA ENDE.
 		\end{proof}
 
 	\begin{bem}[Notation]
-		\todoy[Layout!]	
 		$\alpha \in \N_0^n:$ Multiindex, $D^\alpha f := \frac{\partial^|\alpha|}{\partial x^\alpha}f$ Ableitung
 	\end{bem}
 
 	\begin{bem}
-		$f\in C^m(\Omega), \phi\in C_0^\infty(\Omega) 
-		= \{f\in C^\infty(\Omega): suppf\subset \ov{\Omega}\}.$ 
-		Anwendung von Lemma 4.12. liefert 
+		$f\in C^m(\Omega), \phi\in C_0^\infty(\Omega) = \{f\in C^\infty(\Omega): suppf\subset \circ\Omega\}.$ Anwendung von Lemma 4.12. liefert 
 		 $$ \int_\Omega D^\alpha f(x) \phi(x) dx = (-1)^{|\alpha|}\int_\Omega f(x) D^\alpha \phi(x) dx$$ 
 	\end{bem}
 
 	\begin{definition}[schwache Ableitung]
-		\todoy[Nocheinmal mit dem Alt vergleiche]	
 		$\Omega \subset \R^n$ offen, $f\in L^1_{\text{loc}}(\Omega), \alpha \in N^n_0$. Wenn ein 
 		$w \in L^1_{\text{loc}}(\Omega)$ existiert, so dass 
 			$$\int_\Omega f D^\alpha \varphi d\lambda^n = (-1)^|\alpha| \int_\Omega w \varphi d\lambda^n 
@@ -295,19 +261,18 @@ ERRATA ENDE.
 	\end{thm}
 
 	\begin{proof}
-		\todor 
+		\todor	
 	\end{proof}
 
 	\begin{bsp}
 		\begin{enumerate}[a)]
 			\item \todoo[Beispiel vervollständigen]
-			\item c) S.73f
+			\item
 			\item Ist $f$ $\alpha$-mal stetig differenzierbar, so ist $f$ $\alpha$-mal schwach differenzierbar, und die konventionelle Ableitung stimmt mit der schwachen Ableitung überein. (Lemma 4.12)
 		\end{enumerate}
 	\end{bsp}
 
 	\begin{definition}[Sobolevräume]
-		\todoy[Nocheinmal mit dem Alt vergleiche]	
 		$\Omega \subset \R^n$ offen, $K\in\N_0$	
 		\begin{enumerate}
 			\item $p\in [1,\infty)$, $W^{k,p}(\Omega) = \set{f\in L^p(\Omega): D^\alpha f\in L^p(\Omega) \forall |\alpha| \leq k}$ mit Norm $\norm{f}_{W^{k,p}} = (\sum_{|\alpha| \leq k} \norm{D^\alpha f}^p_{L^p(\Omega)})^{\frac{1}{p}}$
@@ -315,7 +280,7 @@ ERRATA ENDE.
 		\end{enumerate}
 	\end{definition}
 
-	\begin{thm}[*]
+	\begin{thm}
 		Vor. wie in Definition 4.18. Dann gilt 
 			\begin{enumerate}[a)]
 				\item $W^{k,p}(\Omega)$ Banachraum $\forall p\in[1,\infty], k\in \N_0$
@@ -344,7 +309,6 @@ ERRATA ENDE.
 	
 	\begin{proof}
 		\todor
-
 	\end{proof}
 
 	\begin{thm}
