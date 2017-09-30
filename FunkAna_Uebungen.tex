@@ -391,7 +391,7 @@ Es sei $(X, \|\cdot \|)$ ein normierter Raum und $E\subseteq X$ ein Unterraum.
 	
 	\item 	$\semi{\cdot}$ definiert eine Norm auf $X/E$ genau dann, wenn $E$ abgeschlossen ist. 	
 	
-	\item $(X/E, \semi{\cdot})$ ist ein Banachraum, wenn $E$ vollständig ist.
+	\item $(X/E, \semi{\cdot})$ ist ein Banachraum, wenn $X, E$ vollständig sind.
 	
 	\end{enumerate}
 \end{beh}
@@ -421,17 +421,17 @@ Es sei $(X, \|\cdot \|)$ ein normierter Raum und $E\subseteq X$ ein Unterraum.
 	$$0 \leftarrow \inf_{e\in E} \norm{x-x_n+e} = \inf_{e\in E} \norm{x-e}$$
 	woraus aus der Definitheit schon $x\in E$ folgt.
 	\item 
+	
+	\todo[color=cyan!10!red!10,inline]{ Diesen Beweis mit \textit{besonderer} Vorsicht genießen }
 	$X/E$ ist wegen der Linearen Algebra schon ein Vektorraum. Wegen b) ist $X/E$ normiert.\par 
-	Vollständigkeit Variante 1:
-	Wir betrachten die kanonische Injektion 
-	$$h: X \to X/E, \quad x \mapsto x + E.$$
-	 $h$ ist offenbar linear und wegen 
-	 $$\semi{h(x)} = \semi{x+E} = \inf_{e\in E} \norm{x+e} \leq \norm{x}$$ 
-	 stetig. $h$ ist auch offen. Dafür nutzen wir Lemma 2.3 (iv). Sei $x+E\in X/E$ mit $q:=\semi{x+E} < 1$, dann gibt es eine Folge $(e_n)$ aus $E$, so dass $\norm{x+e_n}\to q < 1$. 
-	 Also gibt es insbesondere ein $n\in \N$, so dass 
-	 $\norm{x+e_n} < 1$, wegen $h(x+e_n) = x + E$ folgt die Offenheit.
-	 Nun können wir nutzen, dass $h(X)$ abgeschlossen ist.
-		
+	Für die Vollständigkeit sei $X/E \ni [x_n] = x_n + E$ eine Cauchyfolge. Sei $\varepsilon > 0$ beliebig. Aus
+	$$\varepsilon > \semi{x_n-x_m+E} = \inf_{e\in E} \norm{x_n-x_m+e}$$ 
+	folgt dann, dass es eine Folge $(e_n) \subseteq E$ gibt, so dass 
+	$\norm{x_n-x_m+e_n-e_m} < \varepsilon$ für alle $n,m > N(\varepsilon)$ bleibt.
+	Mit $\tilde{x}_n:=x_n+e_n$ folgt dann, dass $(\tilde{x}_n)$ eine Cauchyfolge in $X$ ist. Da $X$ vollständig ist, konvergiert $(\tilde{x}_n)$ gegen ein $x\in X$.
+	Nun ist
+	$$\varepsilon > \norm{\tilde{x}_n -x} = \norm{x_n -e_n -x} \geq \inf_{e\in E} \norm{x_n -x +e} = \semi{x_n - x +E}$$
+	woraus die Konvergenz $[x_n] \to [x]$ folgt, und die Vollständigkeit von $X/E$ gezeigt ist.		
 	\end{enumerate}
 \end{proof}
 
@@ -498,19 +498,25 @@ Und es gelten die Resultate:
 \label{B5.1}
 Es sei $J$ eine beliebige nichtleere Menge und
 	$$X:=\{ f: J \to \R : f(j) \not = 0 \text{ für höchstens abzählbar viele } j\in J,\; \sum_{j\in J} \abs{f(j)} ^2 < \infty\}.$$
+	\begin{beh}
+	
 	\begin{enumerate}[(a)]
 	\item Sei $f,g \in X$
 		$$(f,g) := \sum_{j\in J} f(j)g(j) $$
-		ist ein Skalarprodukt auf $X$, mit dem $X$ zu einem Hilbertraum wird.
+		ist ein Skalarprodukt auf $X$, mit dem $X$ zu einem Hilbertraum über $\R$ wird.
 	
 	\item Die Familie $(e_j)_{j\in J}$ mit $e_j(k) := \delta_{jk} $ für $j,k\in J$ bildet eine Orthonormalbasis von $X$.
 	
 	\item $X$ ist separabel $\Leftrightarrow$ $J$ ist höchstens abzählbar.	
 	\end{enumerate}
-	
+	\end{beh}
 	\begin{proof}
 	\begin{enumerate}[(a)]
-		\item tüddellich ... TODO
+		\item 
+		Die Eigenschaften des Skalarproduktes ergeben sich sofort. $X$ ist auch ein Vektorraum. Denn sei $N(f) := \{ x \in J : f(x) \not = 0\}$, dann ist für $f,g \in X$ $N(f+g) \subseteq N(f) \cup N(g)$	und $N(\alpha f) \subseteq N(f)$ für $\alpha \in \R$,	also $f+g\in X$ und $\alpha f \in X$. Es ist noch die Vollständigkeit zu zeigen. Sei dafü
+		
+		
+		
 		\item TODO
 		\item TODO
 	\end{enumerate}		
