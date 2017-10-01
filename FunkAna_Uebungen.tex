@@ -513,12 +513,24 @@ Es sei $J$ eine beliebige nichtleere Menge und
 	\begin{proof}
 	\begin{enumerate}[(a)]
 		\item 
-		Die Eigenschaften des Skalarproduktes ergeben sich sofort. $X$ ist auch ein Vektorraum. Denn sei $N(f) := \{ x \in J : f(x) \not = 0\}$, dann ist für $f,g \in X$ $N(f+g) \subseteq N(f) \cup N(g)$	und $N(\alpha f) \subseteq N(f)$ für $\alpha \in \R$,	also $f+g\in X$ und $\alpha f \in X$. Es ist noch die Vollständigkeit zu zeigen. Sei dafü
+		(1. Variante)
+		Die Eigenschaften des Skalarproduktes ergeben sich sofort. $X$ ist auch ein Vektorraum. Denn sei $N(f) := \{ x \in J : f(x) \not = 0\}$, dann ist für $f,g \in X$ $N(f+g) \subseteq N(f) \cup N(g)$	und $N(\alpha f) \subseteq N(f)$ für $\alpha \in \R$,	also $f+g\in X$ und $\alpha f \in X$. \\
+		Es ist noch die Vollständigkeit zu zeigen. Sei dafür $(f_n)$ eine Cauchyfolge aus $X$. Da für $j\in J,\; f_n (j)$ eine Cauchyfolge in $\R$ ist, existiert der Grenzwert. Wir definieren
+		$$f(j):=\lim_{n\to\infty} f_n (j).$$
+		Es ist nun für $\varepsilon > 0$ wegen der absoluten Konvergenz der Reihe
+		$$\norm{f_m - f}^2 = \sum_{j\in J} (f_m(j)-f(j))^2 = \sum_{j\in J} (f_m(j)-\lim_{n\to\infty} f_n(j))^2 = \lim_{n\to\infty} \sum_{j\in J} (f_m(j)-f_n(j))^2 < \varepsilon$$
+		für alle $n > N(\varepsilon)$. Das $f$ nur für höchstens abzählbar viele $j\in J$ $\not = 0$ sein kann, folgt aus seiner Definition. Denn $\cup_{n\in\N} N(f_n)$ ist höchstens abzählbar und gäbe es ein $j_0 \not \in \cup_{n\in\N} N(f_n)$, so dass $f(j_0)\not = 0$, so muss $f_n(j_0)$ auch irgendwann von Null verschieden bleiben, ein Widerspruch zu $j_0 \not \in \cup_{n\in\N} N(f_n)$. Außerdem ist natürlich $\sum_{j\in J} |f(j)|^2 < \infty$. Also ist tatsächlich $f \in X$.\par 
+		(2. Variante - Skizze) Eine wesentlich elegantere Methode ist es zu zeigen, dass $L^2(J,\abs{\cdot}) = X$ gilt. Die Vollständigkeit und das Skalarprodukt übernimmt dann die Theorie der Höheren Analysis.
 		
 		
+		\item Offensichtlich ist $\abs{e_j} = 1$ und $(e_i, e_j) = \delta_{ij}$. Sei nun $f\in \left( \aufspan (e_j)_{j\in J} \right)^{\perp}$. Dann ist
+		$$0 = (f, e_k) = \sum_{j\in J} f(j)e_k(j) = f(k) \quad \forall k\in J$$
+		Woraus $f = 0$ folgt, und gezeigt ist, dass durch $(e_k)_{k\in J}$ ein Orthonormalsystem gegeben ist (da $\{0\} = \left( \aufspan (e_j)_{j\in J} \right)^{\perp}$).
 		
-		\item TODO
-		\item TODO
+		\item \afs $\Leftarrow$ \afs Ist $J$ abzählbar, so ist durch (b) eine abzählbare dichte Teilmenge von $X$ gegeben.\par 
+		\afs $\df$ \afs Sei $M := \{x_1,x_2,\dots\} $, so dass $X = \overline{ M }$. Es lässt sich eine linear unabhängige Menge $\tilde{M}$ aus $M$ wählen. Dank \ref{B5.3} können wir die Gram-Schmidt-Orthonormalisierung auf $\tilde{M}$ anwenden, und wir erhalten eine Orthonormalbasis $(x_n)_{n\in\N}$. Nun ist 
+		$$J = \cup_{n\in \N} N(x_n)$$
+		denn angenommen es gibt   ein $j_0 \in J$, so dass $j_0 \not \in \cup_{n\in \N} N(x_n)$, dann ist $x_n(j_0)= 0 $ für alle $n \in \N$ und dementsprechend $(x_n, e_{j_0} ) = 0 $. Dann ist aber $0 \not = e_{j_0} \in \left( \aufspan (x_n)_{n\in\N} \right)^\perp $, dies ein Widerspruch dazu, dass $(x_n)_{n\in\N}$ eine Orthonormalbasis bildet. Also gilt obige Gleichheit. Daraus folgt auch schon, dass $J$ höchstens abzählbar ist.
 	\end{enumerate}		
 	
 	\end{proof}
@@ -526,7 +538,7 @@ Es sei $J$ eine beliebige nichtleere Menge und
 %%%%%%%%%%%%%%%%%%%%%%%%% Aufgabe 2
 \subsection{ separable Hilberträume und der $\ell ^2$}
 \label{B5.2}
-	Jeder unendlich-dimensionale Hilbertraum ist isometrisch isomorph zu $\ell^2$
+	Jeder separable unendlich-dimensionale Hilbertraum ist isometrisch isomorph zu $\ell^2$
 	\begin{proof}
 		Mit einem geschicktem Isomorphismus, der Basis auf Basis abbildet.
 	\end{proof}
@@ -557,23 +569,64 @@ Es sei $J$ eine beliebige nichtleere Menge und
 \label{B6.1}
 	$(X,\norm{\cdot})$ sei ein normierter Raum, in dem die Parallelogrammgleichung 
 	$$\norm{x+y}^2 + \norm{x-y}^2 = 2\norm{x}^2 + 2\norm{y}^2\quad \forall x,y \in X$$	
-	gilt. Dann wird durch 
+	gilt. 
+	\begin{beh}	
+	Durch 
 	$$(x,y) := \frac{1}{4} \left( \norm{x+y}^2 - \norm{x-y}^2 + i\norm{x+iy}^2 - \norm{x-iy}^2 \right)$$
-	ein Skalarprodukt definiert, welches die Norm $\norm{\cdot}$ induziert.
-	
+	wird ein Skalarprodukt definiert, welches die Norm $\norm{\cdot}$ induziert.
+	\end{beh}
 	\begin{proof}
-	Leicht zu zeigen.
+	Für diese Aufgabe gibt es auch eine Lösung.\\
+	Wir zeigen die Aussage nur für das reelle Skalarprodukt 
+	$$(x,y) =\frac{1}{4} \left( \norm{x+y}^2 - \norm{x-y}^2 \right).$$
+	Die Aussage über das komplexe Skalarprodukt lässt sich analog mit wesentlich mehr Rechenaufwand aber den gleichen Ideen zeigen.
+	Die positive Definitheit ergibt sich sofort aus der Definition, sowie dass das definierte Skalarprodukt die Norm $\norm{\cdot}$ induziert. Genauso flott folgt $(0,x) = 0$, $(-x,y) = -(x,y)$ und $(x,y) = (y,x)$. \\
+	Die Aussage $(x+y,z)=(x,z)+(y,z)$ ist etwas schwieriger zu zeigen.
+	Es gilt erstmal wegen der Parallelogrammgleichung für $x,y,z \in X$
+	\begin{equation*}
+		\begin{split}
+			& \norm{x+y+z}^2 = 2 \norm{x}^2 + 2 \norm{y+z}^2 - \norm{x-y-z}^2\\
+			& \norm{x+z+y}^2 = 2 \norm{x+z}^2 + \norm{y}^2 - \norm{x-y+z}^2
+		\end{split}
+	\end{equation*}
+	und daraus folgt 
+	$$\norm{x+y+z}^2=\norm{x}^2 + \norm{y+z}^2 - \frac{1}{2}\norm{x-y-z}^2 + \norm{x+z}^2+\norm{y}^2 - \frac{1}{2}\norm{x-y-z}^2$$
+	indem wir $-z$ statt $z$ einsetzen, erhalten wir
+	$$\norm{x+y-z}^2=\norm{x}^2 + \norm{y-z}^2 - \frac{1}{2}\norm{x-y+z}^2 + \norm{x-z}^2+\norm{y}^2 - \frac{1}{2}\norm{x-y+z}^2$$
+	Es ist nun
+		\begin{align*}
+			 (x+y,z) & = \frac{1}{4}\left(\norm{x+y+z}^2 -\norm{x+y-z}^2 \right) \\
+			 & = \frac{1}{4} ( \norm{x}^2  +\norm{y+z}^2 - \frac{1}{2} \norm{x-y-z}^2 +
+				\norm{x+z}^2 + \norm{y}^2 - \frac{1}{2} \norm{x-y+z}^2 \\
+				& - \norm{x}^2 + \norm{y-z}^2 - \frac{1}{2}\norm{x-y+z}^2 + \norm{x-z}^2+\norm{y}^2 - \frac{1}{2}\norm{x-y+z}^2 ) \\
+				& = \frac{1}{4} \left( \norm{x+z}^2-\norm{x-z}^2 \right) 
+				+\frac{1}{4}\left( \norm{y+z}^2 - \norm{y-z}^2 \right)\\
+				& = (x,z) + (y,z)
+		\end{align*}
+	Woraus die Additivität in beiden Komponenten folgt.
+	Um $(\alpha x,y) = \alpha (x,y)$ zu zeigen, zeigen wir die Aussage zuerst für $\alpha\in \N$, dann für $\alpha \in \Q$ und nutzen anschließend, dass $\alpha \mapsto (\alpha x,y)$ stetig auf ganz $\R$ ist. Dann lässt sich, wenn die Aussage für $\Q$ gilt, der Eindeutigkeitssatz für stetige Funktionen ($\nearrow$ Glossar) anwenden, woraus die Aussage folgt.
+	Wenn $\alpha \in \N$ ist, folgt die Aussage sofort aus der Additivität. Dann gilt das auch schon für $\alpha \in \Z$. Nun ist 
+	$$\Q \ni \alpha = \frac{p}{q},\; p,q\in\Z \df (\frac{p}{q} x, y) = p \cdot \frac{q}{q} (\frac{1}{q}x,y)
+	 = \frac{p}{q}(x,y)$$ 
+	 Womit alles gezeigt ist.
 	\end{proof}
 
 %%%%%%%%%%%%%%%%%%%%%%% Aufgabe 2
 \subsection{ Orthogonales Komplement}
 \label{B6.2}
-	$(X,(\cdot, \cdot) )$ sei ein Skalarproduktraum \todoo[ vollständig?!] und $M\subseteq X$ ein Unterraum. Dann gilt
-	$$\left( M^{\perp} \right)^{\perp} = \overline{M}.$$ 
-	\begin{proof}
+	$(X,(\cdot, \cdot) )$ sei ein Hilbertraum und $M\subseteq X$ ein Unterraum. 
+	\begin{beh} Es gilt
+	$$ (i) \left( M^{\perp} \right)^{\perp} = \overline{M}.$$ 
+	$(ii)$ Die Aussage gilt nicht, wenn man die Vollständigkeit weglässt
+	\end{beh}
+	\begin{proof}[Beweis zu $(i)$]
 	...
 	\end{proof}
-
+	
+	\begin{proof}[Beweis zu $(ii)$]
+	$$42$$
+	\end{proof}
+	
 
 %%%%%%%%%%%%%%%%%%%%%%%%% Aufgabe 3
 \subsection{ Orthogonale Projektion}
@@ -698,7 +751,7 @@ Es sei $J$ eine beliebige nichtleere Menge und
 	Nun ist ein linearer Operator von einem endlich dimensionalen Raum in einen beliebigen normierten Raum stetig. Und damit ist $\hat{H}$ stetig. Nun wird gezeigt, dass daraus auch folgt, dass $x'$ stetig sein muss.\\
 	Sei $\hat{x}$ die Restklasse von $x$, dann gilt 
 		$$\norm{x'(x)} = \norm{\hat{H}\hat{x}} \leq \norm{\hat{H}} \cdot \norm{\hat{x}} \leq \norm{\hat{H}} \cdot \norm{{x}} \leq M \norm{x}. $$ 
-	Mit der in Blatt 4 Aufgabe 1 eingeführt Norm auf Quotientenräume.	
+	Mit der in \ref{B4.1} eingeführten Norm auf Quotientenräumen.	
 	\end{proof}
 	
 
@@ -750,7 +803,7 @@ Es sei $J$ eine beliebige nichtleere Menge und
 	$\ell^1$ ist nicht reflexiv.
 	
 	\begin{proof}
-	Kinderleicht.
+	$\ell^1$ ist nicht reflexiv.
 	\end{proof}
 
 
