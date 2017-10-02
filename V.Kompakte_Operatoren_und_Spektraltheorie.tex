@@ -8,9 +8,10 @@
 	\end{definition}
 
 	\begin{bem}
+		%\todog[Muss hier X oder Y z.T. vollständig sein?]	
 		\begin{enumerate}[a)]
 			\item $K(X,Y) \subset \BS$
-			\item Äquivalent sind für $T: X\to Y$
+			\item Äquivalent sind für $T: X\to Y$, $Y$ Banachraum
 				\begin{enumerate}[(i)]
 					\item $T\in K(X,Y)$
 					\item $M \subset X$ beschränkt $\df$ $T(M)$ präkompakt
@@ -20,7 +21,10 @@
 			\item $id \in K(x) \aq \dim X < \infty$ (Lema von Riesz)
 		\end{enumerate}
 	\end{bem}
-	
+	\begin{proof}
+		\todor[Beweis/ Alt S.331]
+	\end{proof}
+
 	\begin{bsp}
 		$X: C([0,1])$ mit $\norm{\cdot}_\infty$. 
 			$$(Tf)(t) = \int_0^t f(\tau)d\tau \df T\in \B(C([0,1]))$$
@@ -31,19 +35,20 @@
 	\end{bsp}
 
 	\begin{thm}
+		%\todog[Muss hier X oder Y z.T. vollständig sein?]	
 		\begin{enumerate}[a)]
-			\item $K(X,Y)$ abgeschlossener UVR von $\B(X,Y)$.
+			\item $K(X,Y)$ abgeschlossener UVR von $\B(X,Y)$, $Y$ Banachraum.
 			\item $T\in K(X,Y)$ ist vollstetig. D.h. $x_n \wkc x \df Tx_n \to Tx$
 			\item $X$ reflexiv, $T: X \to Y$ vollstetig $\df$ $T\in K(X,Y)$
 			\item $T\in \BS$ mit $rang T < \infty$, dann $T\in K(X,Y)$ (rangT = dim im T)
-			\item $Y$ Hilbertraum, $T\in \BS$. Dann $T\in K(X,Y) \aq \exists (T_n) in \BS$, so dass 
-			$rang T_n < \infty$ $\forall n\in \N$ und $\norm{T - T_n} \to 0$
-			\item $p \in \BS$. Projektor (d.h. $P^2 = P$). Dann $P\in K(X) \aq rang P < \infty$.
+			\item $Y$ Hilbertraum, $T\in \BS$. Dann $T\in K(X,Y) \aq \exists (T_n) \in \BS$,
+							so dass $rang T_n < \infty$ $\forall n\in \N$ und $\norm{T - T_n} \to 0$
+			\item $P \in \BS$. Projektor (d.h. $P^2 = P$). Dann $P\in K(X) \aq rang P < \infty$.
 			\item $T\in K(X,Y)$, $U\in \B(Y,Z)$, $S \in\B(V,X) \df UTS \in K(V,Z)$
 		\end{enumerate}
 	\end{thm}
 	\begin{proof}
-		\todor
+		\todor[Beweis/ Alt S.332]
 	\end{proof}
 
 	\begin{thm}[Satz von Schauder]
@@ -53,10 +58,9 @@
 				\item $T' \in K(Y',X')$, $Y$ vollständig $\df$ $T$ kompakt
 			\end{enumerate}
 	\end{thm}
-
 	\begin{proof}
-		\todor	
-	\end{proof}
+		\todor[Beweis. Alt S.405]	
+	\end{proof}	
 
 	\begin{definition}[Fredholm-Operator] 	
 		$A\in \BS$ heißt \emph{Fredholm-Operator}, falls 
@@ -91,7 +95,42 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%	
 
 	\begin{definition}
-		$T\in \BS[X]$ \todor[lange Definition, Resolventenmenge, etc]
+		$T\in \BS[X]$,$X$ Banachraum über $\C$
+		\begin{enumerate}[(i)]
+		  \item%
+				$\rho(T) := \set{\lambda \in \C: ker(\lambda I -T) = \set{0} \text{ und }
+				im(\lambda I- T) = X}$%
+				\hfill \textbf{\textit{"'Resolventenmenge"'}}%
+			\item%
+				$\sigma(T) = \C \setminus \rho(T)$%
+				\hfill \textbf{\textit{"'Spektrum"'}}
+			\item%
+				$\sigma_p(T) = \set{\lambda \in \sigma(T):
+				ker(\lambda I - T) \neq \set{0}
+				}$%
+				\hfill \textbf{\textit{"'Punktspektrum"'}}
+			\item%
+				$\sigma_c(T) = \set{\lambda \in \sigma(T):
+				ker(\lambda I - T) =  \set{0} \text{ und }
+				im((\lambda I - T)\neq X, \text{aber }
+				\ov{im(\lambda I - T)} = X}$%
+				\hfill \textbf{\textit{"'kontinuierliches Spektrum"'}}
+			\item%
+				$\sigma_r(T) = \set{\lambda \in \sigma(T):
+				ker(\lambda I - T) = \set{0} \text{ und }
+				\ov{im(\lambda I - T)} \neq X}$%
+				\hfill \textbf{\textit{"'Residualspektrum"'}}
+		\end{enumerate}
+	Es gilt $ \sigma(T) = \sigma_p(T) \cup \sigma_r(T) \cup \sigma_c(T)$
+	 und wir definieren
+	 \begin{enumerate}[(1)]
+	   \item	$v\in ker(\lambda I - T) \setminus \set{0}$ heißt \textbf{\textit{ Eigenvektor von $\lambda$ }}.
+		 \item $Eig_\lambda(T) := ker(\lambda I - T)$ heißt \textbf{\textit{Eigenraum von $\lambda$}}.
+		 \item $\nu_\lambda(T) := dim Eig_\lambda(T)$ heißt \textbf{\textit{geometrische Vielfachheit}}.
+		 \item $\mu_\lambda(T) := \max_{n\in\N} \dim ker(\lambda I - T)^n$ heißt
+		 	\textbf{\textit{ algebraische Vielfachheit}}
+	 \end{enumerate}
+	
 	\end{definition}
 
 	\begin{thm}
@@ -117,10 +156,10 @@
 
 	\begin{bem}
 			\begin{enumerate}[a)]
-				\item $T\in K(X)$, $\lambda \in \sigma(T)\backslash\set{0}$ $\df \lambda \in \sigma_p (T)$. Folgt, da $\lambda I - T = \lambda(I-\frac{T}{\lambda}$
+				\item $T\in K(X)$, $\lambda \in \sigma(T)\backslash\set{0}$ $\df \lambda \in \sigma_p (T)$. Folgt, da $\lambda I - T = \lambda(I-\frac{T}{\lambda})$
 				\item $T\in K(X)$, $\dim X = \infty$ $\df 0 \in \sigma(T)$ (Bem. 5.8)	
 				\item $\dim X < \infty \df \sigma(T) = \sigma_p (T)$
-				\item Bsp.: Betrachte $T\in \BS[\sigma([0,1])(Tf)(x) = xf(x)$, $\sigma(T) = [0,1] = \sigma_r(T)$ \todoo[So sinnvoll?]
+				\item Bsp.: Betrachte $T\in \BS[\sigma([0,1])(Tf)(x) = xf(x)$, $\sigma(T) = [0,1] = \sigma_r(T)$ 
 				\item $T\in L^p([0,1]), (Tf)(x) = xf(x)$ f.ü. $p < \infty$. $\sigma(T) = [0,1] = \sigma_c(T)$
 				\item $L\in \BS[\ell^2]$ Linksshift. $\sigma(T) = \ov{\EK}$
 					$\sigma_p(T) = \EK$; $\sigma_c(T) = \partial \EK $
@@ -136,14 +175,17 @@
 				\item Für $\lambda \in \sigma(T)\backslash\set{0}$ ist 
 					$1\leq n_\lambda := \max\set{n\in \N: ker(\lambda I - T)^{n-1} \neq ker(\lambda I-T)^n} < \infty$
 					\item \enquote{Riesz-Zerlegung}. Für $\lambda \in \sigma(T)\backslash\set{0}$ gilt 
-					$X = ker(\lambda I - T)^{n_\lambda} \oplus im(\lambda I - T)^{n_\lambda}$, 
-					 \todo[inline]{richtig mit $n_\lambda$?}
+					$X = ker(\lambda I - T)^{n_\lambda} \oplus im(\lambda I - T)^{n_\lambda}$ 
 	 				\item $\lambda \in \sigma(T)\backslash \set{0} \df \sigma(T| _{im(\lambda I - T)^{n_\lambda}}) = \sigma(T)\backslash \set{\lambda}$
 					\item Ist $E_\lambda \in \BS[X]$ Projektor mit $ker E_\lambda = im(\lambda I - T)^{n_\lambda}$, $im E_\lambda = ker(\lambda I - T)^{n_\lambda}$, so gilt $E_{\lambda} E_{\mu} = \delta_{\lambda \mu} E_\lambda $
 			\end{enumerate}
 	\end{thm}
+	\begin{proof}
+		\todor[Beweis. Alt S.395]	
+	\end{proof}	
+
 	
-	Was fehlt hier denn bloß???? \todor[Es fehlen 14-17]
+	Hier fehlt nichts!!!!!
 	\setcounter{thm}{17}
 	\begin{cor}[Fredholm Alternative]
 		$T\in K(X)$, $\lambda \neq 0$. Dann gilt: 
@@ -152,7 +194,10 @@
 				\item oder $Tx - \lambda x = 0$ hat nicht-triviale Lösungen.
 			\end{itemize}
 	\end{cor}
-	
+	\begin{proof}
+		\todor[Beweis. Alt S.407]	
+	\end{proof}	
+
 	\begin{bem}[Beispiel]
 		Operatoren ohne Eigenwerte: $T\in K(C[0,1])$, wie in Bsp. 5.3.
 			$$ (Tf)(t) = \int_0^t f(\tau)d\tau$$
