@@ -1,16 +1,19 @@
 	\chapter{Kompakte Operatoren und Spektraltheorie}
 	\section{Kompakte Operatoren}
 
-	\begin{definition}
+	\begin{definition}[kompakter Operator]
+	\label{def:5.1}
 		$X,Y$ normierte Räume. $T: X\to Y$ linearer Operatoren. $T$ heißt \textit{kompakt}, wenn 
 		$\ov{T U_1(0)}$ kompakt. 
 			$$ K(X,Y) := \set{T: X\to Y, T \text{ kompakt }}, \quad K(X) = K(X,X)$$
 	\end{definition}
 
 	\begin{bem}
+	\label{bem:5.2}
+		%\todog[Muss hier X oder Y z.T. vollständig sein?]	
 		\begin{enumerate}[a)]
 			\item $K(X,Y) \subset \BS$
-			\item Äquivalent sind für $T: X\to Y$
+			\item Äquivalent sind für $T: X\to Y$, $Y$ Banachraum
 				\begin{enumerate}[(i)]
 					\item $T\in K(X,Y)$
 					\item $M \subset X$ beschränkt $\df$ $T(M)$ präkompakt
@@ -20,8 +23,12 @@
 			\item $id \in K(x) \aq \dim X < \infty$ (Lema von Riesz)
 		\end{enumerate}
 	\end{bem}
-	
-	\begin{bsp}
+	\begin{proof}
+		\todor[Beweis/ Alt S.331]
+	\end{proof}
+
+	\begin{bsp}[Integraloperator ist kompakt]
+	\label{bsp:5.3}
 		$X: C([0,1])$ mit $\norm{\cdot}_\infty$. 
 			$$(Tf)(t) = \int_0^t f(\tau)d\tau \df T\in \B(C([0,1]))$$
 		Für $f\in C([0,1])$, $\norm{f}_\infty \leq 1$, $t_1,t_2 \in [0,1]$ gilt 
@@ -30,35 +37,38 @@
 		$\df$ kompakt.
 	\end{bsp}
 
-	\begin{thm}
+	\begin{thm}[Diverse Aussagen]
+	\label{thm:5.4}
+		%\todog[Muss hier X oder Y z.T. vollständig sein?]	
 		\begin{enumerate}[a)]
-			\item $K(X,Y)$ abgeschlossener UVR von $\B(X,Y)$.
+			\item $K(X,Y)$ abgeschlossener UVR von $\B(X,Y)$, $Y$ Banachraum.
 			\item $T\in K(X,Y)$ ist vollstetig. D.h. $x_n \wkc x \df Tx_n \to Tx$
 			\item $X$ reflexiv, $T: X \to Y$ vollstetig $\df$ $T\in K(X,Y)$
 			\item $T\in \BS$ mit $rang T < \infty$, dann $T\in K(X,Y)$ (rangT = dim im T)
-			\item $Y$ Hilbertraum, $T\in \BS$. Dann $T\in K(X,Y) \aq \exists (T_n) in \BS$, so dass 
-			$rang T_n < \infty$ $\forall n\in \N$ und $\norm{T - T_n} \to 0$
-			\item $p \in \BS$. Projektor (d.h. $P^2 = P$). Dann $P\in K(X) \aq rang P < \infty$.
+			\item $Y$ Hilbertraum, $T\in \BS$. Dann $T\in K(X,Y) \aq \exists (T_n) \in \BS$,
+							so dass $rang T_n < \infty$ $\forall n\in \N$ und $\norm{T - T_n} \to 0$
+			\item $P \in \BS$. Projektor (d.h. $P^2 = P$). Dann $P\in K(X) \aq rang P < \infty$.
 			\item $T\in K(X,Y)$, $U\in \B(Y,Z)$, $S \in\B(V,X) \df UTS \in K(V,Z)$
 		\end{enumerate}
 	\end{thm}
-	\begin{proof}
-		\todor
+	\begin{proof}[Beweiskizzen]
+		\todor[Beweis/ Alt S.332]
 	\end{proof}
 
 	\begin{thm}[Satz von Schauder]
+	\label{thm:5.5}
 		$X,Y$ normierte Räume
 			\begin{enumerate}[a)]
 				\item $T\in K(X,Y) \df T' \in K(Y',X')$
 				\item $T' \in K(Y',X')$, $Y$ vollständig $\df$ $T$ kompakt
 			\end{enumerate}
 	\end{thm}
-
 	\begin{proof}
-		\todor	
-	\end{proof}
+		\todor[Beweis. Alt S.405]	
+	\end{proof}	
 
 	\begin{definition}[Fredholm-Operator] 	
+	\label{def:5.6}
 		$A\in \BS$ heißt \emph{Fredholm-Operator}, falls 
 			\begin{enumerate}[a)]
 				\item $\dim(ker A) < \infty$
@@ -68,7 +78,8 @@
 		\emph{Fredholmindex}: $\ind(A) := \dim Ker A - \codim im A$
 	\end{definition}
 
-	\begin{thm}
+	\begin{thm}[$I-T$ ist ein Fredholm-Operator]
+	\label{thm:5.7}
 		$T\in K(X)$. Dann ist $A := I - T$ ein Fredholm-Operator mit $\ind(A) = 0$.
 	\end{thm}
 
@@ -76,12 +87,13 @@
 		\todor	
 	\end{proof}
 
-	\begin{bem}
+	\begin{bem}[Nichtexistenz eine beschränkten Inversen]
+	\label{bem:5.8}
 		$X$ normierter Raum, $\dim X = \infty$, $T\in K(X)$. Dann folgt
 			$T$ hat keine beschränkte Inverse. \todor[Beweis Übung]
 	\end{bem}
 
-	\begin{bem*}
+	\begin{bem*}[Beispiel]
 		$$T:C([0,1]) \to C([0,1]),\; f\mapsto (t\mapsto \int_0^t f(\tau) d\tau)$$
 		$(\lambda I - T)f = 0 \df \lambda f(t) = \int_0^t f(\tau) d\tau$, $\lambda = 0 \df f=0$; \{$\lambda \neq 0, f(0) = 0$ und $f'(t) = \frac{1}{\lambda}\}$ $\df f = 0$.
 	\end{bem*}
@@ -90,11 +102,48 @@
 	\section{Das Spektrum von beschränkten Operatoren}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%	
 
-	\begin{definition}
-		$T\in \BS[X]$ \todor[lange Definition, Resolventenmenge, etc]
+	\begin{definition}[Das Spektrum]
+	\label{def:5.9}
+		$T\in \BS[X]$,$X$ Banachraum über $\C$
+		\begin{enumerate}[(i)]
+		  \item%
+				$\rho(T) := \set{\lambda \in \C: ker(\lambda I -T) = \set{0} \text{ und }
+				im(\lambda I- T) = X}$%
+				\hfill \textbf{\textit{"'Resolventenmenge"'}}%
+			\item%
+				$\sigma(T) = \C \setminus \rho(T)$%
+				\hfill \textbf{\textit{"'Spektrum"'}}
+			\item%
+				$\sigma_p(T) = \set{\lambda \in \sigma(T):
+				ker(\lambda I - T) \neq \set{0}
+				}$%
+				\hfill \textbf{\textit{"'Punktspektrum"'}}
+			\item%
+				$\sigma_c(T) = \set{\lambda \in \sigma(T):
+				ker(\lambda I - T) =  \set{0} \text{ und }
+				im((\lambda I - T)\neq X, \text{aber }
+				\ov{im(\lambda I - T)} = X}$%
+				\hfill \textbf{\textit{"'kontinuierliches Spektrum"'}}
+			\item%
+				$\sigma_r(T) = \set{\lambda \in \sigma(T):
+				ker(\lambda I - T) = \set{0} \text{ und }
+				\ov{im(\lambda I - T)} \neq X}$%
+				\hfill \textbf{\textit{"'Residualspektrum"'}}
+		\end{enumerate}
+	Es gilt $ \sigma(T) = \sigma_p(T) \cup \sigma_r(T) \cup \sigma_c(T)$
+	 und wir definieren
+	 \begin{enumerate}[(1)]
+	   \item	$v\in ker(\lambda I - T) \setminus \set{0}$ heißt \textbf{\textit{ Eigenvektor von $\lambda$ }}.
+		 \item $Eig_\lambda(T) := ker(\lambda I - T)$ heißt \textbf{\textit{Eigenraum von $\lambda$}}.
+		 \item $\nu_\lambda(T) := dim Eig_\lambda(T)$ heißt \textbf{\textit{geometrische Vielfachheit}}.
+		 \item $\mu_\lambda(T) := \max_{n\in\N} \dim ker(\lambda I - T)^n$ heißt
+		 	\textbf{\textit{ algebraische Vielfachheit}}
+	 \end{enumerate}
+	
 	\end{definition}
 
-	\begin{thm}
+	\begin{thm}[$\rho(T)$ ist offen, Resolventfkt ist Potenzreihe entwickelbar]
+	\label{thm:5.10}
 		$T\in \BS[X]$, $X$ Banachraum. Dann ist $\rho(T)$ offen und die "'Resolventenfunktion"' 
 			$ R(\lambda, T) := \inv{(\lambda I - T)} : \rho(T) \to \BS[X] $ 
 		ist komplex-analytisch (d.h. in Potenzreihe entwickelbar).
@@ -105,7 +154,8 @@
 	\end{proof}
 
 	
-	\begin{thm}
+	\begin{thm}[Spektralradius]
+	\label{thm:5.11}
 		$X \neq \set{0}$ Banachraum, $T \in \BS[X]$. \\
 		$\sigma(T)$ ist kompakt und nichtleer mit "'Spektralradius"':	
 					$\disp \sup |\sigma(T)| = \lim_{m\to \infty} \norm{T^m}^{\frac{1}{m}} \leq \norm{T}$.
@@ -115,12 +165,13 @@
 		\todor	
 	\end{proof}
 
-	\begin{bem}
+	\begin{bem}[Diverse Fakten und Beispiele]
+	\label{bem:5.12}
 			\begin{enumerate}[a)]
-				\item $T\in K(X)$, $\lambda \in \sigma(T)\backslash\set{0}$ $\df \lambda \in \sigma_p (T)$. Folgt, da $\lambda I - T = \lambda(I-\frac{T}{\lambda}$
+				\item $T\in K(X)$, $\lambda \in \sigma(T)\backslash\set{0}$ $\df \lambda \in \sigma_p (T)$. Folgt, da $\lambda I - T = \lambda(I-\frac{T}{\lambda})$
 				\item $T\in K(X)$, $\dim X = \infty$ $\df 0 \in \sigma(T)$ (Bem. 5.8)	
 				\item $\dim X < \infty \df \sigma(T) = \sigma_p (T)$
-				\item Bsp.: Betrachte $T\in \BS[\sigma([0,1])(Tf)(x) = xf(x)$, $\sigma(T) = [0,1] = \sigma_r(T)$ \todoo[So sinnvoll?]
+				\item Bsp.: Betrachte $T\in \BS[\sigma([0,1])(Tf)(x) = xf(x)$, $\sigma(T) = [0,1] = \sigma_r(T)$ 
 				\item $T\in L^p([0,1]), (Tf)(x) = xf(x)$ f.ü. $p < \infty$. $\sigma(T) = [0,1] = \sigma_c(T)$
 				\item $L\in \BS[\ell^2]$ Linksshift. $\sigma(T) = \ov{\EK}$
 					$\sigma_p(T) = \EK$; $\sigma_c(T) = \partial \EK $
@@ -130,30 +181,39 @@
 
 
 	\begin{thm}[Spektralsatz für kompakte Operatoren]
+	\label{thm:5.13}
 		$X$ Banachraum, $T\in K(X)$. Dann gilt
 			\begin{enumerate}[a)]
 				\item $\sigma(T)\backslash\set{0}$ aus höchstens abzählbar vielen Eigenwerten mit $0$ als einzig möglichen Häufungspunkt. Wenn $\sigma(T)$ unendlich, dann ist $0\in\sigma(T)$.
 				\item Für $\lambda \in \sigma(T)\backslash\set{0}$ ist 
 					$1\leq n_\lambda := \max\set{n\in \N: ker(\lambda I - T)^{n-1} \neq ker(\lambda I-T)^n} < \infty$
 					\item \enquote{Riesz-Zerlegung}. Für $\lambda \in \sigma(T)\backslash\set{0}$ gilt 
-					$X = ker(\lambda I - T)^{n_\lambda} \oplus im(\lambda I - T)^{n_\lambda}$, 
-					 \todo[inline]{richtig mit $n_\lambda$?}
+					$X = ker(\lambda I - T)^{n_\lambda} \oplus im(\lambda I - T)^{n_\lambda}$ 
 	 				\item $\lambda \in \sigma(T)\backslash \set{0} \df \sigma(T| _{im(\lambda I - T)^{n_\lambda}}) = \sigma(T)\backslash \set{\lambda}$
 					\item Ist $E_\lambda \in \BS[X]$ Projektor mit $ker E_\lambda = im(\lambda I - T)^{n_\lambda}$, $im E_\lambda = ker(\lambda I - T)^{n_\lambda}$, so gilt $E_{\lambda} E_{\mu} = \delta_{\lambda \mu} E_\lambda $
 			\end{enumerate}
 	\end{thm}
+	\begin{proof}
+		\todor[Beweis. Alt S.395]	
+	\end{proof}	
+
 	
-	Was fehlt hier denn bloß???? \todor[Es fehlen 14-17]
+	Hier fehlt nichts!!!!!
 	\setcounter{thm}{17}
 	\begin{cor}[Fredholm Alternative]
+	\label{thm:5.18}
 		$T\in K(X)$, $\lambda \neq 0$. Dann gilt: 
 			\begin{itemize}[]
 				\item Entweder ist die Gleichung $Tx - \lambda x = y$ nach $x$ eindeutig lösbar $\forall y\in X$
 				\item oder $Tx - \lambda x = 0$ hat nicht-triviale Lösungen.
 			\end{itemize}
 	\end{cor}
-	
+	\begin{proof}
+		\todor[Beweis. Alt S.407]	
+	\end{proof}	
+
 	\begin{bem}[Beispiel]
+	\label{bem:5.19}
 		Operatoren ohne Eigenwerte: $T\in K(C[0,1])$, wie in Bsp. 5.3.
 			$$ (Tf)(t) = \int_0^t f(\tau)d\tau$$
 	\end{bem}
@@ -164,14 +224,17 @@
 	Sei $X$ von nun an ein Hilbertraum und meistens $\K = \C$
 
 	\begin{definition}[selbstadjungiert, normal]
+	\label{def:5.20}
 		$A \in \BS[X]$. Dann heißt $A$ 
 			\begin{enumerate}[a)]
 				\item selbstadjungiert, wenn $A = A^*$
-				\item normal, falls $A^* A = A A^* \aq[UE10] \norm{Ax} = \norm{A^* x} \; \forall x \in X$ 
+				\item normal, falls $A^* A = A A^* \aq[{\hyperref[B10.3]{UE10}}] 
+					\norm{Ax} = \norm{A^* x} \; \forall x \in X$ 
 			\end{enumerate}
 	\end{definition}
 	
-	\begin{lemma}
+	\begin{lemma}[Norm über größtes Spektrum]
+	\label{lem:5.21}
 		$X \neq \set{0}$ $\C$-HR, $T\in \BS[X]$ normal. Dann ist $\sup|\sigma(T)| = \norm{T}$.
 	\end{lemma}
 
@@ -181,10 +244,13 @@
 
 		
 	\begin{thm}[Spektralsatz für kompakte und normale Operatoren]
+	\label{thm:5.22}
 		$X$ $\C$-HR, $T\in K(X)\backslash\set{0}$ normal. Dann gilt:
 			\begin{enumerate}[a)]
-				\item $\exists N\subset \N$, ONS $\ff{e}{n}{\N} \in X$, $\ff{\lambda}{n}{\N}\in \C\backslash\set{0},$ s.d. 
-				$$ T e_k = \lambda_k e_k \quad \forall k\in N, \quad \sigma(T)\backslash\set{0} = \set{\lambda_k: k \in N}$$
+				\item $\exists N\subset \N$, ONS $\ff{e}{n}{\N} \in X$, 
+					$\ff{\lambda}{n}{\N}\in \C\backslash\set{0},$ s.d. 
+					$$ T e_k = \lambda_k e_k \quad \forall k\in N, \quad 
+						\sigma(T)\backslash\set{0} = \set{\lambda_k: k \in N} $$
 				Ist $N = \N$, so gilt $\disp \limes \lambda_n = 0$
 				\item $n_{\lambda_k} = 1 \quad \forall k\in\N$
 				\item $X = ker T \perp span\set{e_n : n\in N}$
@@ -196,13 +262,38 @@
 		\todor	
 	\end{proof}
 
-	\begin{bem}
+	\begin{bem}[Diverse Fakten]
+	\label{bem:5.23}
 	  $X$ $\C$-HR, $T\in\BS[X]$	
 			\begin{enumerate}[a)]
-				\item  \todor[Bemerkung]
+				\item $T=T^*, \sigma(T) \subset [-\norm{T},\norm{T}]$
+					($\sigma(T)$ ist eine Teilmenge von $\R$, wenn $T$ selbstadjungiert ist.
+					Außerdem ist $\sigma(T) \subset \ov{B_{\norm{T}}(0)}$)
+				\item $T = T^*$, $T\in K(X)$ $\df$ $\norm{T} \in \sigma_p(T) \vee
+					-\norm{T} \in \sigma_p(T)$ Lemma 5.23 und 5.22)
+				\item $T = T^*$, $T$ positiv semi-definit, d.h. $(Tx,x) \geq 0 \forall x$
+					$ \df \sigma(T) \subset [0, \norm{T}]$ 
+					(UE: z.z. $\forall x < 0 \df \lambda \in \rho(T)$)
+				\item $T = T^*$, $T\in K(X)$ pos. semidefinit $\df$
+					$\norm{T} \in \rho_p(T)$ (aus b) und c))
+				\item $T = T^*$, $T\in K(X)$ pos. semidefinit $\df$
+					$\exists \; \sqrt{T} \in K(X)$, s.d 
+					$\sqrt{T} = \sqrt{T^*} (\sqrt{T})^*$ und $(\sqrt{T})^2 = T$
+				\item $T\in K(X,Y), Y \C$-HR $\df$
+					$\exists \; |T|\in K(X)$, so dass $|T|$ pos. semidefinit, 
+					selbstadjungiert und $T^* T = |T|^2$
 			\end{enumerate}
 	\end{bem}
 	
+		\todor[kurz begründen]
 	\begin{proof}
-		\todor	
+		\begin{enumerate}[a)]
+		  \item 
+		  \item 
+		  \item 
+		  \item 
+		  \item \todor[kleine Rechnung]
+		  \item	$T^* T \in K(X)$, pos. semidef. $\df \exists \sqrt{T^* T}$ wie in e). 
+				Definiere $|T| = \sqrt{T^* T}$
+		\end{enumerate}
 	\end{proof}

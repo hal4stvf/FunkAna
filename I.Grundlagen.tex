@@ -292,16 +292,16 @@ An dieser Stelle werden einige Definition und Bemerkung festgehalten, die in sp�
 			\item Aus punktweiser Konvergenz $T_nx \to Tx$ folgt
 			i.A. \underline{nicht} $\disp \limes T_n = T$ (d.h. $\limes \norm{T_n - T} = 0$).
 				\begin{description} \item[Bsp:] 
-					$X = \ell^p, p\in [1,\infty)$, $T_n:\ell^p \to \ell^p, \; T_n(x_k) = (x_1,\dots,x_n,0,0,\dots)$ 
-					wobei $(x_k) = (x_1,\dots,x_n,\dots).$ Man kann zeigen, dass $T_n \in \B(x)$ $\forall n\in\N$ 
-					($\nearrow$ Übung).\par
-					Sei $(x_k)\in \ell^p$, $\forall \epsilon > 0 \; \exists N\in\N: (\sum_{k=N+1}^\infty |x_k|^p)^{1\backslash p} < \epsilon.$\ $\norm{T_n(x_k) - x_n}_X = (\sum_{k=N+1}^\infty |x_k|^p)^{1\backslash p} \; \forall n\geq N$.
-					Also $\forall x \in X$ $\norm{T_n - x}_X \to 0 \; (n\to \infty).$ Frage: $\norm{T_n - T}_X \to 0$ ?
-					Nein! Sei $(x_k^n) = (0,\dots,0,\overset{\text{n+1 Stelle}}{1},0,\dots)$,  
-					$\norm{T_n(x_k^n) - x}_X = \norm{(0,\dots,0,-1,0,\dots)})_Y = 1$ 
-					$\disp \norm{T_n - T} \overset{Def}{=} \supT \norm{(T_n - T)x}_X \geq 
-					\norm{(T_n - T)(\frac{1}{2} (x_k^n)} =\frac{1}{2}\cdot 1$ ($T = idx$) $\forall n\in\N$ 
-					$\df \norm{T_n - T} \not\to 0\; (n\to\infty)$
+				%	$X = \ell^p, p\in [1,\infty)$, $T_n:\ell^p \to \ell^p, \; T_n(x_k) = (x_1,\dots,x_n,0,0,\dots)$ 
+				%	wobei $(x_k) = (x_1,\dots,x_n,\dots).$ Man kann zeigen, dass $T_n \in \B(x)$ $\forall n\in\N$ 
+				%	($\nearrow$ Übung).\par
+				%	Sei $(x_k)\in \ell^p$, $\forall \epsilon > 0 \; \exists N\in\N: (\sum_{k=N+1}^\infty |x_k|^p)^{1\backslash p} < \epsilon.$\ $\norm{T_n(x_k) - x_n}_X = (\sum_{k=N+1}^\infty |x_k|^p)^{1\backslash p} \; \forall n\geq N$.
+				%	Also $\forall x \in X$ $\norm{T_n - x}_X \to 0 \; (n\to \infty).$ Frage: $\norm{T_n - T}_X \to 0$ ?
+				%	Nein! Sei $(x_k^n) = (0,\dots,0,\overset{\text{n+1 Stelle}}{1},0,\dots)$,  
+				%	$\norm{T_n(x_k^n) - x}_X = \norm{(0,\dots,0,-1,0,\dots)})_Y = 1$ 
+				%	$\disp \norm{T_n - T} \overset{Def}{=} \supT \norm{(T_n - T)x}_X \geq 
+				%	\norm{(T_n - T)(\frac{1}{2} (x_k^n)} =\frac{1}{2}\cdot 1$ ($T = idx$) $\forall n\in\N$ 
+				%	$\df \norm{T_n - T} \not\to 0\; (n\to\infty)$
 				\end{description}
 
 		\item $T\in \BS$ und $T$ bijektiv. Dann ist $\inv{T}$ i.A. \underline{nicht beschränkt}.
@@ -572,7 +572,7 @@ Nun versuchen wir mit Erfolgt einer waghalsige Verallgemeinerung der geometrisch
 	\end{proof}
 
 %Bem 1.30
-	\begin{bem}\label{bem:1.30} Rekapitulieren Sie folgende Begriffe:
+	\begin{bem} Rekapitulieren Sie folgende Begriffe:
 	\label{bem:1.30}
 		$U_r(x)$ Kugel mit Radius $r$,	$\overline{M}$ Abschluss,	$\mathring{M}$ 
 		Innere,	$\partial M$ Rand,	Kompakt,	offene Überdeckung. \todoo[Hinten noch definieren]
@@ -719,7 +719,7 @@ Der folgende Satz ist eine Verallgemeinerung des Intervallschachtelungsprinzips 
 		Der Raum der Polynome $\mathcal{P} $ kann mit keiner Norm vollständig sein.
 	\end{cor*}
 	\begin{proof}
-		Es sei $b_n := x^n$. Die Familie $(b_n)_{n\in \N}$ bildet eine abzählbare Basis von $\mathcal{P}$. Den Rest erledigt uns die Hausaufgabe \nameref{B4.2].
+		Es sei $b_n := x^n$. Die Familie $(b_n)_{n\in \N}$ bildet eine abzählbare Basis von $\mathcal{P}$. Den Rest erledigt uns die Hausaufgabe \nameref{B4.2}.
 	\end{proof}
 
 %Definition 1.36

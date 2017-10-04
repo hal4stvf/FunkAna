@@ -231,37 +231,71 @@ Wir verallgemeiner den Orthogonalraum auf normierter Räume und seinen Dualraum.
 
 		\begin{definition}[Bidualraum]
 		\label{def:3.7}
-			$X'' = (X')' $ heißt Bidualraum. \\
-			Bemerkung: $X = \R^{n\times 1}$ und $X' = \R^{1 \times n}$ \\
-			Frage: $X'' = X$	
+			$X'' := (X')' $ heißt Bidualraum. \\
+			Bemerkung für den endlichdimensionalen Fall: $X = \R^{n\times 1}$ und $X' = \R^{1 \times n}$ \\
+			Im allgemeinen, also im unendlichdimensionalen ist $X'' \neq X$.
 		\end{definition}
 
-		\begin{bem}
-		Vorüberlegung: Sei $x_0 \in X$ betrachte $f_{x_0}: X' \to \K, y' \mapsto \langle x_0, y' \rangle$. 
-		$f_{x_0} \in (X')'$ ?, Ja, weil $\norm{f_{x_0}} = \norm{f_{x_0}}_{\B(X',\K)} = \sup_{}|\langle  x_0, x' \rangle| = \norm{x_0}$. $f_0$ linear klar. \\
-		$\df {J}_{X}: X \to X'': x \mapsto f_X = \langle x, \cdot \rangle$ ist linear, isometrisch. \\ 
-		$\df {J}_X \subset X''$ auf diese Art kann $X$ als Teilraum von $X''$ aufgefasst werden.
+		Wie \hyperref[def:5.7]{Definition 5.7} vermuten lässt besitzt der Dualraum 
+		$X'$ von $X$ als eigener normierter Raum auch einen Dualraum. 
+		Die Trennungsätze haben die Reichhaltigkeit dieses Dualraums gezeigt und
+		daher können wir $X$ in seinen Bidual $X''$ einbeten. 
+		$x$ kann also in folgendem Sinne als Linearform auf $X'$ aufgefasst werden.\\
+		Betrachte dazu:
+
+		\begin{bem}[Einbettungsisomorphismus $J_X$]
+			\def\varI{Test}
+			\def\varII{Test}
+		Für $x \in X$ betrachte die Linearform 
+			$$f_{x}\in \B(X',\K) \text{ mit } x' \mapsto \langle x, x' \rangle 
+				\; \text{ für }x' \in X'.$$ 
+		Damit definieren wir {\tt die} lineare 
+			isometrische {\it kanonische Abbildung}:
+		$${J}_{X}\in \B(X,X'')\quad \text{mit} \quad 
+			J_X(x) = f_x (= \langle x, \cdot \rangle)$$
+			$$\text{bzw.} \aq J_X(x) : X \to \K \quad \text{mit} \quad 
+				\fop{x', J_X x}_{X'} := \fop{x,x'}_X \quad x'\in X'$$ 
+		Es gilt nun sogar, dass $x$ als Element von X die gleiche Norm besitzt 
+		wie als Linearform von $X'$ und $J_X$ damit stetig ist auf $X'$. Es gilt:
+		$$\norm{J_X(x)} = \norm{f_x} = \norm{x} \quad \text{ und }
+			\quad J_X \in \B(X,X'')$$	
+	
+			\begin{proof}
+			$\norm{f_{x}} = \norm{f_{x}}_{\B(X',\K)} 
+				= \sup_{}|\langle  x, x' \rangle| 
+				\overset{\hyperref[cor:3.5]{3.5}}{=} \norm{x_0}$. 
+				$f_{x}$ linear klar.
+			\end{proof}
+		Wegen $J_X(X) \hspace{-2em}
+		\underset{\text{\tiny normisomorph}}{\subset} \hspace{-2em} X''$ 
+		kann $X$ also als Teilraum von $X''$ aufgefasst werden.
+		
 		\end{bem}
 
 	\begin{definition}[Reflexiv]
 	\label{def:3.9}
-		$X$ normierte Vr heißt reflexiv, falls ${J}_X(X) = X''$. In diesem Fall ist $J_X :X \to X''$ ein Isomorphismus.
+		Ein normierter Raum $X$ heißt reflexiv, falls ${J}_X(X) = X''$. In diesem Fall ist $J_X :X \to X''$ ein Isomorphismus.
 	\end{definition}
 
 	\begin{lemma}[reflexiv bedingt volländig]
 	\label{lem:3.10}
-		$X$ normierter VK. Dann gilt : $X$ reflexiv $\df$ $X$ vollständig.
+		Für einen normierten Raum $X$ gilt: $X$ reflexiv $\df$ $X$ vollständig.
 	\end{lemma}
 
 	\begin{proof}
-		$X''$ ist vollständig (weil $X''=\B(X',\K)$ und da $\K$ vollständig ist). \\
-		da $J_X: X \to X''$ isometrisch isomorph ist, ist auch $X$ vollständig. 
+		$X''$ ist vollständig (\hyperref[thm:1.12]{weil $X''=\B(X',\K)$ 
+			und da $\K$ vollständig ist}). Da $J_X: X \to X''$ isometrisch isomorph ist, ist auch $X$ vollständig. 
 	\end{proof}
 
-	Zunächst Charakterisierung des HR-Falls
+	Der Hilbertraum kann als Prototyp eines {\it \enquote{schönen}} Raumes angesehen werden.
+	So finden wir eine konkrete Darstellung für seine Funktionale.
+	Der reflexive Raum kann in diesem Sinne als Versuch der Verallgemeinerung verstanden werden. 
+	Eine konkrete Darstellung werden wir auch für ihn nicht finden, aber 
+	wichtige Existenzaussagen und Kompaktheitseigenschaften werden wir beweisen können. 
+	Zunächst aber der Hilbertraum:
 
 %%%%%%%%%%%%%%%%%%%%%%%% 3.11
-	\begin{thm}[Darstellungssatz Frächet-Riesz]
+	\begin{thm}[Darstellungssatz Frechet-Riesz]
 	\label{thm:3.11}
 		Sei $X$ Hilbertraum. Dann ist 
 			$$R_X : X \to X', \; x \mapsto \Sp{\cdot, x} = (y \mapsto \Sp{y,x})$$
@@ -318,7 +352,8 @@ Wir verallgemeiner den Orthogonalraum auf normierter Räume und seinen Dualraum.
 	\end{proof}	
 
 	\begin{cor*}[Beschreibung des $L^2$]
-		Beschränkte lineare Abbildung $L^2(\Omega, \mu) \to \K)$. Dann wird diese beschrieben durch ein Element aus $L^2(\Omega, \mu) \to \K)$.
+		Beschränkte lineare Abbildung $L^2(\Omega, \mu) \to \K$. 
+		Dann wird diese beschrieben durch ein Element aus $L^2(\Omega, \mu) \to \K)$.
 	\end{cor*}
 
 	\begin{thm}[Hilberträume sind reflexiv]
@@ -373,23 +408,43 @@ Wir verallgemeiner den Orthogonalraum auf normierter Räume und seinen Dualraum.
 					\item $N_\perp \subset N^\perp$, wobei : $N_\perp \subset X, N^\perp \subset X''$ als UVRe von $X''$ aufgefasst werden.
 				\end{enumerate}
 	\end{lemma}
-
-	\begin{hinweise}
-			\begin{enumerate}[(i)]
-				\item Folge nehmen und sehen das sie in der Menge bleibt.
-				\item Schnitt über die Kerne, die als abgeschlossenen Mengen abgeschlossen bleiben.
-				\item Mengeinklusion
-				\item Mengeninklusion
-			\end{enumerate}
-	\end{hinweise}
+%
+%	\begin{hinweise}
+%			\begin{enumerate}[(i)]
+%				\item Folge nehmen und sehen das sie in der Menge bleibt.
+%				\item Schnitt über die Kerne, die als abgeschlossenen Mengen abgeschlossen bleiben.
+%				\item Mengeinklusion
+%				\item Mengeninklusion
+%			\end{enumerate}
+%	\end{hinweise}
 
 	\begin{proof}
+				\def\varI{Wobei wir $J_X(x)$ mit $x$ identifiziert haben.}
 		\begin{enumerate}[(i)]
-		  \item (i). 
+		  \item Sei $(x_n')$ Folge in $M^\perp$ die gegen ein  $x'\in X'$ konvergiere. 
+				Dann gilt $ 0 = \fop{x,x_n'} \to \fop{x,x'}$ für alle $x\in M$. 
+				Damit ist aber auch $0 = \fop{x,x'}$ für alle $x\in M$ und damit ist
+				definitionsgemäß $x' \in M^\perp$ sein.
+			\item $N_\perp$ kann auch mit scharfen Blick beschrieben werden durch 
+				$$ N_\perp = \bigcap_{x'\in N} ker x' = \bigcap_{x'\in N} \ov{ker x'} $$
+			\item Sei $x\in M$. Dann gilt per Definition von $M^\perp$, dass 
+				$\fop{x,x'}=0$ für alle $x' \in M^\perp$. Was aber gerade heißt
+					$x\in (M^\perp)_\perp$. \\
+					(Spannender ist die Frage wann bei Menge gleich sind. Wie im endlichdimensionalen.)
+			\item Sei $x\in N_\perp$, dass heißt $\fop{x,x'} = 0 \; \forall x' \in N$. 
+				Nun betrachte kanonsiche Einbettung mit $x'' \in J_X(X)$:
+					$$ \fop{x',x''} = \fop{x',J_X(x)} = 0 \quad \forall x'\in N 
+					\quad \df \quad J_X(x) \in N^\perp \subset J_X(X) \subset X''
+					\footnote{\varI}.$$ 
 		\end{enumerate}
 	\end{proof}
 
-	ÜA: $X$ normierter Raum, $x_0 \not\in \overline{E}$, $E\subset X$ UVR. Dann existiert $x' \in X'$ mit  $Kern x' \subset \overline{E}$ und $\fop{x_0, x'} \neq 0.$
+	\begin{bem*}[Übung]
+	\label{ueb:3.16}
+		$X$ normierter Raum, $x_0 \not\in \overline{E}$, $E\subset X$ UVR. 
+		Dann existiert $x' \in X'$ mit  $ker x' \supset \overline{E}$ und 
+		$\fop{x_0, x'} \neq 0.$ 
+	\end{bem*}
 
 	\begin{thm}[Abschlüsse und Orthogonalräume] 
 	\label{lem:3.15}
@@ -397,17 +452,24 @@ Wir verallgemeiner den Orthogonalraum auf normierter Räume und seinen Dualraum.
 		$$\overline{E} = (E^\perp)_\perp $$
 	\end{thm}
 
-	\begin{hinweise}
-		Mengeninklusion in beide Richtung. Die eine mit Lemma 3.14 (iii), die andere braucht die ÜA. 
-	\end{hinweise}
-
 	\begin{proof}
-		TODO
+		\begin{itemize}[]
+			\item \underline{"'$\subset$"'}: Mit \hyperref[lem:3.14]{Lemma 3.14} (ii) und (iii) 
+				gilt $E \subset (E^\perp)_\perp = \ov{(E^\perp)_\perp}$ 
+				$\df \ov{E} \subset (E^\perp)_\perp$
+			\item \underline{"'$\supset$"'}: Angenommen es gäbe ein $x_0 \in (E^\perp)_\perp$, 
+				dass nicht in $\ov{E}$ ist. Dann \hyperref[ueb:3.16]{gibt es} auch 
+				ein $x' \in X'$ mit $\fop{x_0,x'} \neq 0$  und $ker x' \supset \ov{E}$. 
+				Damit ist $x' \in \ov{E^\perp}$, inbesondere also $x' \in E^\perp$. 
+				Per Annahme soll aber $x_0 \in (E^\perp)_\perp$, also müsste 
+				auch $\fop{x_0,x'} = 0$ $\lightning!$
+		\end{itemize}	
 	\end{proof}
 
 	\begin{cor}
 	\label{cor:3.16}
-		$X$ normierter Raum, $E\subset X$ UVR. Dann gilt $E$ abgeschlossen $\aq$	$ E = (E^\perp)_\perp)$
+		$X$ normierter Raum, $E\subset X$ UVR. 
+		Dann gilt $E$ abgeschlossen $\aq$	$ E = (E^\perp)_\perp$.
 	\end{cor}
 
 	\begin{thm}[Übung: Normisomorphien Dual- und Quotientenraum]
@@ -418,40 +480,73 @@ Wir verallgemeiner den Orthogonalraum auf normierter Räume und seinen Dualraum.
 						\item $(X / M)'$ ist normisomorph zu $M^\perp$.
 					\end{enumerate}
 	\end{thm}
-
+	\begin{proof}
+		Siehe hier \ref{B8.4}.	
+	\end{proof}
+		
 	\begin{thm}[Banachraum und Reflexivität]
 	\label{thm:3.18}
-		$X$ reflexiv normierter Raum. Dann äquivalent
+		$X$ reflexiv normierter Raum. Dann sind äquivalent
 					\begin{enumerate}[(i)]
 						\item $X$ Banachraum
 						\item $X'$ reflexiv.
 					\end{enumerate}
+		(Die eigentliche Aussage ist $X$ reflexiv $\df$ $X'$ reflexiv.)
 	\end{thm}
-
-	\begin{hinweise}
-		\begin{enumerate}[(i)]
-			\item Folgt aus Satz 1.12.
-			\item Betrachte kanonische Injektion und zeige dann die Surjektivität.
-		\end{enumerate}
-\end{hinweise}
-
 	\begin{proof}
-		TODO
+		\def\q#1{\overset{#1}{=}}
+		\begin{itemize}[]
+			\item "'$\Leftarrow$"': Folgt aus \hyperref[Satz 3.10]{Satz 3.10}.
+			\item "'$\df$"': Für die Reflexivität ist zu zeigen,
+				dass die {\it kanonische Injektion} von $X'$ nach $X'''$
+				\textbf{surjektiv} ist.
+				Wir betrachten also 
+					$$ J' := J_{X'} : X' \to X''', \; \fop{x'',J'x'} = \fop{x',x''} \;\;
+						\forall x' \in X', x'' \in X'' \quad (*)$$
+				Sei also $x''' \in X'''$ beliebig. Wir setzen uns den Kanditaten zu
+					$$ x': X \to \K, \quad \fop{x,x'} := \fop{Jx,x'''} \;\; 
+					\forall x\in X.$$					
+				$x'$ ist schon mal linear und stetig, also $x'\in \B(X,\K) = X'$.
+				Bleibt zu zeigen:
+					$$ J'x' = x''', \quad (\text{d.h.} 
+						\fop{x'',J'x'} = \fop{x'',x'''} \; \forall x'' \in X'') $$
+				Die Reflexivität von $X$ liefert nun zu 
+				jedem $x''$ ein $x$ mit $x'' = Jx$.	
+				Nun rechnet man nur nach:
+				\begin{align*}
+					\fop{x'',J'x'} 
+						\q{} & \fop{x',x''} \q{x'' = Jx} \fop{x',Jx}		\\ 
+				  	\q{} & \fop{x,x'} 	\q{(*)} 		 \fop{Jx,x'''}
+																\q{Jx = x''} \fop{x'',x'''}
+				\end{align*}
+		\end{itemize}
 	\end{proof}
 
 	\begin{thm}[Äquivalenz Reflexivität und Dualraum]
 	\label{thm:3.19}
 		$X$ Banachraum. Dann gilt 
 			$$ X \text{ reflexiv } \aq X' \text{ reflexiv }.$$
+		{\footnotesize Für $\Leftarrow$ könnte man auch beweisen und nutzen: 
+		Abgeschlossene Unterräume reflexiver Räume sind reflexiv.}
 	\end{thm}
 
-	\begin{hinweise}
-	$\df$ Satz 3.18\\
-	$\Leftarrow$ nerviger Beweis.
-	\end{hinweise}
-
 	\begin{proof}
-		TODO
+		\begin{itemize}[]
+			\item "'$\df$"': Dies ist ja gerade \hyperref[thm:3.18]{Satz 3.18}. 
+			\item "'$\Leftarrow$"': Sei also $X'$ reflexiv. Angenommen
+				$X$ ist nicht reflexiv:\\
+				Da $J(X) = \ov{J(X)} \subset X''$ \footnote{} ist,
+				existiert ein $x''' \in X'''\setminus\set{0}$ mit 
+					$$ \fop{Jx,x'''} = 0 \quad \forall x \in X.$$
+				Sei $J': X' \to X'''$ die {\it kanonische Einbettung}.
+				Wir zeigen $x''' \not\in J'(X')$. 
+				Angenommen $x' \in X'$, so dass $x''' = J'x'$.
+				Dann gilt für $x$ aus $X$:
+					$$ \fop{x,x'} = \fop{x',Jx} = \fop{Jx,J'x'} 
+						= \fop{Jx,x'''} = 0$$
+				Damit ist $x' = 0$, aber $0 = J'x' = x''' \neq \set{0}$
+				$\lightning$
+		\end{itemize}
 	\end{proof}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -469,17 +564,21 @@ Welche Gleichheiten gelten für Bild und Kern von Operatoren und seinem Adjungie
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 	\begin{definition}[duale Operator]
 	\label{def:3.20}	
-	$X,Y$ normierte Räume, $T\in \BS$. Die Abb $T' : Y' \to X'$ mit 
-		$$\fop{x',T' y'} = \fop{Tx, y'} \; \forall y'\in Y', x \in X.$$
+		Seien $X,Y$ normierte Räume, $T\in \BS$. 
+		Die Abbildung $T' : Y' \to X'$ mit 
+			$$\fop{x,T' y'} = \fop{Tx, y'} \; \forall y'\in Y', x \in X.$$
 		heißt der zu $T$ duale Operator.\\
-		Einfach zu sehen: $T'$ ist eine linearer Operator, weil TODO.
+		$T'$ ist eine linearer Operator.
+		\footnote{Wesentlich weil $\fop{\cdot,\cdot}$ eine Bilinearform ist. }
 	\end{definition}
 
 	\begin{thm}[Norm und Bild des Dualen Operatores]
 	\label{thm:3.21}
 		$X, Y$ normierter Räume, $T\in \BS$. Dann gilt 
 			\begin{enumerate}[(i)]
-				\item $T' \in \B(Y', X')$ mit $\norm{T'} = \norm{T}$
+				\item $T' \in \B(Y', X')$ mit $\norm{T'} = \norm{T}$, d.h.
+					die Abbildung $T \mapsto T'$ von $\B(X,Y) \to \B(Y',X')$ ist
+					eine isometrische (und lineare) Einbettung.
 				\item $Ker\: T' = \set{0} \aq \overline{Im\: T} = Y$
 			\end{enumerate}
 	\end{thm}
@@ -493,7 +592,28 @@ Welche Gleichheiten gelten für Bild und Kern von Operatoren und seinem Adjungie
 	\end{hinweise}
 
 	\begin{proof}
-		TODO
+		\begin{enumerate}[(i)]
+		  \item%
+				\begin{itemize}[]
+					\item "' $\leq$"' 
+						Sei $y' \in Y'$. Dann gilt:
+							$$ \norm{T'y'} = \norm{y'\circ T} 
+								\leq \norm{y'}\norm{T} \quad 
+							\df \norm{T'} \leq \norm{T}$$
+					\item "' $\geq$ "' (nach Alt). Es gilt für 
+						$\norm{y'} \leq 1$ und $\norm{x} \leq 1$
+						$$ | \fop{Tx,y'} | = | \fop{x, T'y'}|
+								\leq \norm{T'y'} \cdot \underbrace{\norm{x}}_{\leq 1} 
+								\leq \norm{T'y'} \leq \norm{T'}\cdot \underbrace{\norm{y'}}_{\leq 1} \leq
+								\norm{T'}$$
+					Wenn $Tx \neq 0$, gibt es wegen 
+					\hyperref[cor:3.4]{Kor 3.4} ein $y'\in Y'$ mit 
+					$ \norm{y'} = 1$ und $\fop{Tx,y'} = \norm{Tx}$.
+					Insgesamt also mit $\norm{T'} \geq \norm{Tx}$:
+					$$ \norm{T} = \sup_{\norm{x} \leq 1} \norm{Tx} \leq \norm{T'}$$
+				\end{itemize}
+			\item \todor[Beweis, halbe Tafel S.16]
+		\end{enumerate}
 	\end{proof}
 
 	\begin{cor}[Eigenschaften unter abgeschlossenem Bild]
@@ -512,7 +632,7 @@ Welche Gleichheiten gelten für Bild und Kern von Operatoren und seinem Adjungie
 	\end{hinweise}
 
 	\begin{proof}
-		TODO
+		\todor[Beweis, ein Tafel, S.17]
 	\end{proof}
 
 	\begin{thm}[Eigenschaften des bidualen Operatores]
@@ -526,19 +646,28 @@ Welche Gleichheiten gelten für Bild und Kern von Operatoren und seinem Adjungie
 	\end{thm}
 
 	\begin{proof}
-		\todor
+		\todor[Beweis, halbe Tafel S.19]
+		\begin{enumerate}[(i)]
+		  \item 
+		  \item 
+		  \item 
+		\end{enumerate}
 	\end{proof}
 
 	Notiz:  hier Motivation für folgendes Korollar mündlich.
 	\begin{cor}[Bijektivität von der Inversen und des Dualen]
 	\label{cor:3.24}
 		$X, Y$ Banachräume, $T\in \BS$. Dann gilt 
-			$$ (\inv{T} \in \B(Y,X) \aq \; ) T \text{ bijektiv } \quad \aq 
-				\quad T' \text{ bijektiv } (\aq \inv{(T')} \in \B(X',Y'))$$
+			$$ (\inv{T} \in \B(Y,X) \aq) \quad T \text{ bijektiv } \; \aq 
+				\; T' \text{ bijektiv } \quad (\aq \inv{(T')} \in \B(X',Y'))$$
 	\end{cor}
 
 	\begin{proof}
-		TODO
+		\todor[Beweis, eine Tafel S.20f]
+		\begin{itemize}[]
+			\item "' $\df$ "'
+			\item "' $\Leftarrow $"'
+		\end{itemize}
 	\end{proof}
 	
 	Jetzt Fokus auf den Hilbertraum. Grob ist der Hilbertraum sein eigener Dualraum. 
@@ -559,6 +688,10 @@ Welche Gleichheiten gelten für Bild und Kern von Operatoren und seinem Adjungie
 		$(X,\SP_X)$ Hilbertraum, $(Y,\SP)$ Skalarproduktraum. Dann existiert ein eindeutiges $T^* \in \B(Y,X)$. Für die Riesz-Einbettung $R_X : X\to X'$, $R_Y : Y \to Y'$ gilt
 			$$ T^* = \inv{R_x} T' R_Y.$$
 	\end{thm}
+	\begin{proof}
+		\todor[Beweis, Halbe Tafel S.22]	
+	\end{proof}
+
 Im folgenden Satz sind die Voraussetzungen zum Teil etwas stärker als sie seien müssten.
 	\begin{thm}[Rechenregeln adjungierte Operatoren in Hilberträumen]
 	\label{thm:3.28}
@@ -567,9 +700,9 @@ Im folgenden Satz sind die Voraussetzungen zum Teil etwas stärker als sie seien
 				\item $(S+T)^* = S^* + T^*$, da $(S+T)^* = \inv{R_X}(S+T)' R_Y = \inv{R_X}S' R_Y + \inv{R_X}T' R_Y = S^* + T^*$.
 				\item $(UT)^* = T^* U^*$, da $(UT)^* = \inv{R_Y}(UT)' R_Z = \inv{R_X}T'R_Y \inv{R_Y} U' R_Z = T^* U^*$
 				\item $(\alpha T)^* = \ov{\alpha} T^*$, da $(\alpha T)^* = \inv{R_X} (\alpha T)' R_Y = \inv{R_X} \alpha T' R_Y = \ov{\alpha} \inv{R_X} T' R_Y = \alpha T^*$
-				\item $(id_X)^* = id_X$, da TODO
-				\item $T^{**} = T$, da TODO
-				\item $\norm{T^*} = \norm{T}$, da TODO
+				\item $(id_X)^* = id_X$, da \todor[kleine Begr.]
+				\item $T^{**} = T$, da \todor[kleine Begr.]
+				\item $\norm{T^*} = \norm{T}$, da \todor[kleine Begr.]
 				\item Existiert $\inv{T}$, dann auch $\inv{(T^*)}$, und es gilt $\inv{(T^*)} = (\inv{T})^*$ (Folgt aus Kor. 3.24)
 			\end{enumerate}
 	\end{thm}
@@ -584,7 +717,15 @@ Im folgenden Satz sind die Voraussetzungen zum Teil etwas stärker als sie seien
 				\item $\ov{imA^*} = (KerA)^\perp$
 			\end{enumerate}
 	\end{thm}
-
+	\begin{proof}
+		\todor[Beweis, ein Tafel S.24]	
+		\begin{enumerate}[(i)]
+		  \item 
+		  \item 
+		  \item 
+		  \item 
+		\end{enumerate}
+	\end{proof}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 	\section{Schwache Konvergenz}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
