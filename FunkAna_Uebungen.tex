@@ -357,7 +357,7 @@ Es gelten die Aussagen
 \subsection{Der \afs Links-Shift\afs}
 \label{B3.3}
 	Es sei 
-	$$S_l : \ell^p \to \ell^p,\quad (x_1,x_2,\dots)\mapsto S_l(x_2,x_3,\dots)$$
+	$$S_l : \ell^p \to \ell^p,\quad (x_1,x_2,\dots)\mapsto (x_2,x_3,\dots)$$
 	der \textit{Links-Shift}.
 	\begin{beh}
 		Es ist: 
@@ -430,7 +430,7 @@ Es sei $(X, \|\cdot \|)$ ein normierter Raum und $E\subseteq X$ ein Unterraum.
 	$\norm{x_n-x_m+e_n-e_m} < \varepsilon$ für alle $n,m > N(\varepsilon)$ bleibt.
 	Mit $\tilde{x}_n:=x_n+e_n$ folgt dann, dass $(\tilde{x}_n)$ eine Cauchyfolge in $X$ ist. Da $X$ vollständig ist, konvergiert $(\tilde{x}_n)$ gegen ein $x\in X$.
 	Nun ist
-	$$\varepsilon > \norm{\tilde{x}_n -x} = \norm{x_n -e_n -x} \geq \inf_{e\in E} \norm{x_n -x +e} = \semi{x_n - x +E}$$
+	$$\varepsilon > \norm{\tilde{x}_n -x} = \norm{x_n + e_n - x} \geq \inf_{e\in E} \norm{x_n -x +e} = \semi{x_n - x +E}$$
 	woraus die Konvergenz $[x_n] \to [x]$ folgt, und die Vollständigkeit von $X/E$ gezeigt ist.		
 	\end{enumerate}
 \end{proof}
@@ -527,10 +527,10 @@ Es sei $J$ eine beliebige nichtleere Menge und
 		$$0 = (f, e_k) = \sum_{j\in J} f(j)e_k(j) = f(k) \quad \forall k\in J$$
 		Woraus $f = 0$ folgt, und gezeigt ist, dass durch $(e_k)_{k\in J}$ ein Orthonormalsystem gegeben ist (da $\{0\} = \left( \aufspan (e_j)_{j\in J} \right)^{\perp}$).
 		
-		\item \afs $\Leftarrow$ \afs Ist $J$ abzählbar, so ist durch (b) eine abzählbare dichte Teilmenge von $X$ gegeben.\par 
-		\afs $\df$ \afs Sei $M := \{x_1,x_2,\dots\} $, so dass $X = \overline{ M }$. Es lässt sich eine linear unabhängige Menge $\tilde{M}$ aus $M$ wählen. Dank \ref{B5.3} können wir die Gram-Schmidt-Orthonormalisierung auf $\tilde{M}$ anwenden, und wir erhalten eine Orthonormalbasis $(x_n)_{n\in\N}$. Nun ist 
+		\item \afs $\Leftarrow$ \afs Ist $J$ abzählbar, so ist durch (b) eine abzählbare dichte Orthonormalbasis von $X$ gegeben. Durch $\aufspan_\Q (e_i)_{i\in J}$ ist eine abzählbare dichte Teilmenge gegeben ($\nearrow$ $\Q$-Aufspann). \par 
+		\afs $\df$ \afs Sei $M := \{x_1,x_2,\dots\} $, so dass $X = \overline{ M }$. Es lässt sich eine linear unabhängige Menge $\tilde{M}$ aus $M$ wählen, so dass die lineare Hülle dicht in $X$ liegt. Dank \ref{B5.3} können wir nun die Gram-Schmidt-Orthonormalisierung auf $\tilde{M}$ anwenden, und wir erhalten eine Orthonormalbasis $(x_n)_{n\in\N}$. Nun ist 
 		$$J = \cup_{n\in \N} N(x_n)$$
-		denn angenommen es gibt   ein $j_0 \in J$, so dass $j_0 \not \in \cup_{n\in \N} N(x_n)$, dann ist $x_n(j_0)= 0 $ für alle $n \in \N$ und dementsprechend $(x_n, e_{j_0} ) = 0 $. Dann ist aber $0 \not = e_{j_0} \in \left( \aufspan (x_n)_{n\in\N} \right)^\perp $, dies ein Widerspruch dazu, dass $(x_n)_{n\in\N}$ eine Orthonormalbasis bildet. Also gilt obige Gleichheit. Daraus folgt auch schon, dass $J$ höchstens abzählbar ist.
+		denn angenommen es gibt   ein $j_0 \in J$, so dass $j_0 \not \in \cup_{n\in \N} N(x_n)$, dann ist $x_n(j_0)= 0 $ für alle $n \in \N$ und dementsprechend $(x_n, e_{j_0} ) = 0 $. Dann ist aber $0 \not = e_{j_0} \in \left( \aufspan (x_n)_{n\in\N} \right)^\perp $, dies ist ein Widerspruch dazu, dass $(x_n)_{n\in\N}$ eine Orthonormalbasis bildet. Also gilt obige Gleichheit. Daraus folgt auch schon, dass $J$ höchstens abzählbar ist.
 	\end{enumerate}		
 	
 	\end{proof}
@@ -540,20 +540,24 @@ Es sei $J$ eine beliebige nichtleere Menge und
 \label{B5.2}
 	Jeder separable unendlich-dimensionale Hilbertraum ist isometrisch isomorph zu $\ell^2$
 	\begin{proof}
-		Mit einem geschicktem Isomorphismus, der Basis auf Basis abbildet.
+		Es sei $H$ ein separabler unendlich-dimensionaler Hilbertraum. Wir wählen aus der abzählbaren dichten Teilmenge eine Menge an linear unabhängigen Vektoren, dessen lineare Hülle dicht in $X$ liegt. Mit \ref{B5.3} erhalten wir eine Orthonormalbasis $(u_i)_{j\in \N}$ von $X$
+		Wir betrachten nun die Abbildung
+		$$J: H \to \ell^2, \quad \sum^\infty_{i=1} (x,u_i) u_i \mapsto \sum^\infty_{i=1} (x,u_i)e_i = (x,u_i)_{i\in \N}$$
+		Wobei $e_i$ natürlich der $i$-te Einheitsvektor aus $\ell^2$ ist. Die Normerhaltung folgt aus der \hyperref[thm:1.58]{Bessel-Gleichung}, und die Surjektivität aus der \hyperref[thm:1.58]{Fourrierreihe}.		
 	\end{proof}
+	
 	
 %%%%%%%%%%%%%%%%%%%%%%%%%% Aufgabe 3
 \subsection{ Gram-Schmidt-Orthonormalisierung}
 \label{B5.3}
 	$H$ sei ein Hilbertraum und $(x_n)_{n\in \N}$ eine Familie linear unabhängiger Vektoren in $H$. Dann existiert ein Orthonormalsystem $(y_n)_{n\in \N}$, so dass
-	\begin{enumerate}
+	\begin{enumerate}[(a)]
 		\item $\aufspan \{ y_k : k = 1, \dots, n \} = \aufspan \{ x_k : k = 1,\dots , n\} \quad \forall n\in \N$
 		\item $(y_n)_{n\in\N}$ ist eine Orthonormalbasis $\Leftrightarrow \; \overline{\aufspan \{ x_n : n\in\N\} } = X$
 	\end{enumerate}
 	
 	\begin{proof}
-		trivial.
+		Aus der linearen Algebra und der endlich-dimensionalen Gram-Schmidt-Orthogonalisierung folgt sofort (a). (b) folgt sofort aus (a).	
 	\end{proof}
 	
 	
@@ -620,7 +624,12 @@ Es sei $J$ eine beliebige nichtleere Menge und
 	$(ii)$ Die Aussage gilt nicht, wenn man die Vollständigkeit weglässt
 	\end{beh}
 	\begin{proof}[Beweis zu $(i)$]
-	...
+	
+	\afs $\subseteq$ \afs \quad Es sei $x\in \left( M^{\perp} \right)^{\perp}$. Da $\overline{M}$ ein abgeschlossener Unterraum ist und $X$ ein Hilbertraum ist, ist $X = \overline{M} \oplus \overline{M}^\perp$. Also $x = v + v_\perp, \; v \in \overline{M},\;v_\perp \in \overline{M}^\perp$. Sei nun $y \in M^\perp$ 
+	$$\df 0 = (x, v_\perp) = (v+v_\perp , v_\perp) = (v,v_\perp ) + (v_\perp , v_\perp) \df v_\perp = 0 \df x = v \in \overline{M}$$	
+	
+	\afs $\supseteq$ \afs \quad Für $x \in \overline{M}$ ist $x_n \to x$ für eine Folge $(x_n)$ aus $M$. Für $y \in M^\perp$ ist nun 
+	$$0=(y,x_n) \to (y,x) \df x \in \left( M^{\perp} \right)^{\perp}$$
 	\end{proof}
 	
 	\begin{proof}[Beweis zu $(ii)$]
@@ -631,7 +640,11 @@ Es sei $J$ eine beliebige nichtleere Menge und
 %%%%%%%%%%%%%%%%%%%%%%%%% Aufgabe 3
 \subsection{ Orthogonale Projektion}
 \label{B6.3}
-	$X$ sei ein normierter Raum und $P: X \to X$ ein linearer Operator mit $P^2 = P$, dann gelten die folgenden Eigenschaften:
+	$X$ sei ein normierter Raum und $P: X \to X$ ein linearer Operator mit $P^2 = P$.
+	\begin{beh}
+	Es gelten die folgenden Eigenschaften:
+	\end{beh}
+	
 	\begin{enumerate}[(a)]
 		\item $X = \im P \oplus \ker P$
 		\item Ist $P$ beschränkt, dann sind $\im P,\; \ker P$ abgeschlossen und $\norm{ P } \geq 1$ oder $\norm{ P } = 0.$
@@ -646,12 +659,37 @@ Es sei $J$ eine beliebige nichtleere Menge und
 		\item Für jeden abgeschlossenen Unterraum $U$ eines Hilbertraumes existiert eine eindeutige orthogonale Projektion $P$ mit $\im P = U$.
 	\end{enumerate}
 	
+	\begin{proof}
+		\begin{enumerate}[(a)]
+		\item Für $x\in X$ ist $x = x - P(x) + P(x)$ und $x-P(x) \in \ker P,\; P(x)\in \im P$
+		Außerdem ist für $x \in \ker P \cap \im P$,\, $x = P(x) = 0$.
+		
+		\item Es ist $\ker P = P^{-1}(\{0\}$, also ist der Kern wegen der Stetigkeit abgeschlossen. Sei $(v_n)$ eine Folge aus $\im P$ mit $v_n \to v$. Wegen der Stetigkeit ist
+		$v \leftarrow v_n = P(v_n) \to P(v)$		
+		also $v \in \im P$, und damit ist auch das Bild abgeschlossen.
+		Außerdem ist für $P \not = 0$
+		$$\norm{P} = \norm{P^2} \leq \norm{P}^2 \Leftrightarrow 1 \leq \norm{P}.$$
+		
+		\item Wir nutzen den \hyperref[thm:2.8]{Satz über die Graphenabgeschlossenheit} um die Stetigkeit zu zeigen. Sei dazu $$x_n \to x,\; P(x_n)\to y,$$ nun ist 
+		$$\ker P \ni x_n - P(x_n) \to x - y$$
+		wegen der Abgeschlossenheit des Kerns gilt also $x-y \in \ker P$ woraus $P(x) = P(y)$ folgt. Da das Bild abgeschlossen ist, gilt $y\in \im P$ woraus sich schlussendlich $P(x) = P(y) = y$ ergibt.
+		
+		\item TODO
+		
+		\item $U$ ist abgeschlossen, also $X = U \oplus U^\perp$ möglich. Wir definieren
+		$$P_U : X \to X,\quad x = u + u_\perp \mapsto u.$$
+		$P_U$ ist offensichtlich eine Projektion.
+		
+		\end{enumerate}			
+	
+	\end{proof}
+	
 %%%%%%%%%%%%%%%%%%%%%%%% Aufgabe 4
 \subsection{ Unbeschränkter Projektor}
 \label{B6.4}
 	Die Vollständigkeit in Aufgabe 3 c) ist notwendig. Denn:
 	\begin{enumerate}
-		\item Es gibt zwei abgeschlossene Teiläume eines Hilbertraumes, so dass $M \cap N = \{0 \}$ und $M+N$ ist nicht abgeschlossen.
+		\item Es gibt zwei abgeschlossene Teilräume eines Hilbertraumes, so dass $M \cap N = \{0 \}$ und $M+N$ ist nicht abgeschlossen.
 		\item Es gibt eine unstetige Projektion $P$ auf einem Skalarproduktraum, so dass $\im P,\, \ker P$ abgeschlossen sind.
 	\end{enumerate}
 
@@ -677,7 +715,19 @@ Es sei $J$ eine beliebige nichtleere Menge und
 	\end{enumerate}
 	
 	\begin{proof}
-	Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.
+	
+	\afs $\Rightarrow$ \afs \quad Es sei $x \in X\setminus \ker T$. Da $\im T$ abgeschlossen ist, ist 
+	$$\hat{T}:X/\ker T \to \im T, \quad  x + \ker T \mapsto Tx$$	
+	eine bijektive Abbildung zwischen Banachräumen, also wegen des \hyperref[thm:2.4]{Satzes der offenen Abbildung} offen, und damit ist die Inverse $\hat{T}^{-1}$ stetig. Also können wir den Satz \hyperref{thm:1.15}[1.15] nutzen. Es existiert also ein $m>0$ mit
+	$$m \semi{x+\ker T} \leq \norm{\hat{T}x} = \norm{Tx} \Leftrightarrow 0 < m \leq \frac{\norm{Tx}}{\semi{x+\ker T}} = \frac{\norm{Tx}}{\delta(x,\ker T)}$$
+	gilt. Aber genau das war zu zeigen!
+	
+	\afs $\Leftarrow$ \afs \quad Es gelte 
+	$$\inf_{x\in X\setminus \ker T} \frac{\norm{Tx}}{\delta(x, \ker T )} > 0 \Leftrightarrow
+	 \frac{\norm{Tx}}{\delta(x, \ker T )} \geq m \quad \forall x \in X\setminus \ker T \text{ für ein } m>0.$$ 
+	 Um nun die Abgeschlossenheit des Bildes zu zeigen, sei $(y_n)$ eine gegen $y$ konvergente Folge aus $\im T$. Es gibt für alle $n\in \N$ ein $x_n \in X$ mit $T x_n = y_n$. Nun ist
+	 $$ \norm{Tx_n - Tx_m} \geq m \semi{x_n - x_m +\ker T}$$
+	 woraus folgt, dass $(x_n + \ker T)$ eine Cauchyfolge ist, da $\ker T$ abgeschlossen ist, {ist wegen \ref{B4.1} $X/\ker T$ ein Banachraum} und die Cauchyfolge konvergiert gegen ein $x+ \ker T$. Dann ist aber $\hat{T}(x+\ker T) = Tx = y$, wegen der Stetigkeit. Womit nun alles gezeigt ist.
 	\end{proof}
 	
 	
@@ -689,7 +739,16 @@ Es sei $J$ eine beliebige nichtleere Menge und
 	ist graphenabgeschlossen, aber nicht stetig.
 	
 	\begin{proof}
-	siehe Analysis $I, \quad I \in \N$
+	
+	Es sei $f_n$ eine Folge aus $C^1([0,1])$ mit $f_n \to f$ und $f'_n \to g \in C([0,1])$.
+	Da Konvergenz bzgl. $\norm{\cdot}_\infty$ gleichmäßige Kionvergenz bedeutet, sind die Voraussetzungen des Satzes gleichmäßige Konvergenz und Ableitung ($\nearrow$ Glossar) erfüllt.
+	Also gilt tatsächlich $f' = g$.\par 
+	Für die Nichtstetigkeit von $T$ betrachten wir die Funktionenfolge 
+	$$f_n(x) = \frac{1}{n} \cos(n^2x),\quad f'_n(x) = n \sin(n^2x)$$
+	Es ist $\norm{f_n}_\infty = \frac{1}{n} \to 0$, aber $\norm{f'_n}_\infty = n \to \infty$.
+	
+	
+	
 	\end{proof}
 
 
@@ -787,7 +846,7 @@ Es sei $J$ eine beliebige nichtleere Menge und
 	\end{enumerate}
 	
 	\begin{proof}
-	easy peasy mit Heuser S.309 bzw. S.675.
+	easy peasy
 	\end{proof}
 
 
