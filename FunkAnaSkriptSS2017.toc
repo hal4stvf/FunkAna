@@ -1,0 +1,92 @@
+\select@language {german}
+\contentsline {chapter}{\numberline {1}Arbeit im Gange - Grundlagen}{11}{chapter.1}
+\contentsline {section}{\numberline {1.1}Normierte R\IeC {\"a}ume}{11}{section.1.1}
+\contentsline {paragraph}{Arsenal an Begriffen}{11}{section*.4}
+\contentsline {section}{\numberline {1.2}Lineare Operatoren}{12}{section.1.2}
+\contentsline {subsection}{\numberline {1.2.1}Definitionen und grundlegende Eigenschaften}{12}{subsection.1.2.1}
+\contentsline {subsection}{\numberline {1.2.2}Neumannsche Reihe}{18}{subsection.1.2.2}
+\contentsline {section}{\numberline {1.3}Metrische und topologische R\IeC {\"a}ume, Satz von Baire}{20}{section.1.3}
+\contentsline {subsection}{\numberline {1.3.1}Grundbegriffe:metrischer Raum und Vervollst\IeC {\"a}ndigung}{20}{subsection.1.3.1}
+\contentsline {subsection}{\numberline {1.3.2}Der Bairesche Kategoriesatz und grundlegendes zu Vollst\IeC {\"a}ndigkeit und Kompaktheit}{22}{subsection.1.3.2}
+\contentsline {section}{\numberline {1.4}Skalarproduktr\IeC {\"a}ume}{27}{section.1.4}
+\contentsline {chapter}{\numberline {2}Einige Haupts\IeC {\"a}tze aus der Funktionalanalysis}{34}{chapter.2}
+\contentsline {section}{\numberline {2.1}Satz von der offenen Abbildung, Satz vom abgeschlossenen Graphen, Satz von der stetigen Inversen}{34}{section.2.1}
+\contentsline {section}{\numberline {2.2}Das Prinzip der gleichm\IeC {\"a}\IeC {\ss }igen Beschr\IeC {\"a}nkheit, Satz von Banach-Steinhaus}{37}{section.2.2}
+\contentsline {chapter}{\numberline {3}Lineare Funktionale und duale Abbildungen}{40}{chapter.3}
+\contentsline {section}{\numberline {3.1}Fortsetzungss\IeC {\"a}tze von Hahn-Banach}{40}{section.3.1}
+\contentsline {section}{\numberline {3.2}Dualraum und Reflexivit\IeC {\"a}t}{44}{section.3.2}
+\contentsline {section}{\numberline {3.3}Duale und adjungierte Abbildungen}{49}{section.3.3}
+\contentsline {section}{\numberline {3.4}Schwache Konvergenz}{52}{section.3.4}
+\contentsline {chapter}{\numberline {4}Funktionenr\IeC {\"a}ume}{55}{chapter.4}
+\contentsline {section}{\numberline {4.1}Dualit\IeC {\"a}t in L$^p$}{55}{section.4.1}
+\contentsline {section}{\numberline {4.2}Der Dualraum von $C(K,\mathbb {K})$}{58}{section.4.2}
+\contentsline {section}{\numberline {4.3}Kompaktheit in $C(K)$ und $L^p$}{60}{section.4.3}
+\contentsline {section}{\numberline {4.4}Sobolevr\IeC {\"a}ume}{60}{section.4.4}
+\contentsline {chapter}{\numberline {5}Kompakte Operatoren und Spektraltheorie}{65}{chapter.5}
+\contentsline {section}{\numberline {5.1}Kompakte Operatoren}{65}{section.5.1}
+\contentsline {section}{\numberline {5.2}Das Spektrum von beschr\IeC {\"a}nkten Operatoren}{67}{section.5.2}
+\contentsline {section}{\numberline {5.3}Kompakte normale/selbstadjungierte Operatoren}{69}{section.5.3}
+\contentsline {chapter}{\numberline {A}Etwaige Begriffe}{71}{appendix.A}
+\contentsline {chapter}{\numberline {B}Uebungen}{75}{appendix.B}
+\contentsline {section}{\numberline {B.1} Blatt 1}{75}{section.B.1}
+\contentsline {subsection}{\numberline {B.1.1}Reihen und Vollst\IeC {\"a}ndigkeit}{75}{subsection.B.1.1}
+\contentsline {subsection}{\numberline {B.1.2}Die Operatornorm}{76}{subsection.B.1.2}
+\contentsline {subsection}{\numberline {B.1.3}Eigenschaften in endlichdimensionalen Vektorr\IeC {\"a}umen}{76}{subsection.B.1.3}
+\contentsline {section}{\numberline {B.2}Blatt 2}{79}{section.B.2}
+\contentsline {subsection}{\numberline {B.2.1}Beispiele}{79}{subsection.B.2.1}
+\contentsline {subsection}{\numberline {B.2.2}$\ell ^p$ und seine "{}Basis "{}}{79}{subsection.B.2.2}
+\contentsline {subsection}{\numberline {B.2.3}Offene Abbildung und seine \IeC {\"A}quivalenzen}{80}{subsection.B.2.3}
+\contentsline {section}{\numberline {B.3}Blatt 3}{81}{section.B.3}
+\contentsline {subsection}{\numberline {B.3.1}Resolventenmenge, Spektrum}{81}{subsection.B.3.1}
+\contentsline {subsection}{\numberline {B.3.2}Ein Fredholm-Integraloperator}{81}{subsection.B.3.2}
+\contentsline {subsection}{\numberline {B.3.3}Der "{}Links-Shift"{}}{82}{subsection.B.3.3}
+\contentsline {section}{\numberline {B.4}Blatt 4}{83}{section.B.4}
+\contentsline {subsection}{\numberline {B.4.1}Norm auf dem Quotientenraum}{83}{subsection.B.4.1}
+\contentsline {subsection}{\numberline {B.4.2}Vektorr\IeC {\"a}ume mit abz\IeC {\"a}hlbaren Basen}{84}{subsection.B.4.2}
+\contentsline {subsection}{\numberline {B.4.3}Kompaktheit in endlichdimensionalen Vektorr\IeC {\"a}umen}{84}{subsection.B.4.3}
+\contentsline {section}{\numberline {B.5}Blatt 5}{85}{section.B.5}
+\contentsline {subsection}{\numberline {B.5.1} Beispiel f\IeC {\"u}r einen Hilbertraum}{85}{subsection.B.5.1}
+\contentsline {subsection}{\numberline {B.5.2} separable Hilbertr\IeC {\"a}ume und der $\ell ^2$}{86}{subsection.B.5.2}
+\contentsline {subsection}{\numberline {B.5.3} Gram-Schmidt-Orthonormalisierung}{86}{subsection.B.5.3}
+\contentsline {section}{\numberline {B.6}Blatt 6}{87}{section.B.6}
+\contentsline {subsection}{\numberline {B.6.1} Parallelogrammgleichung und Skalarprodukt}{87}{subsection.B.6.1}
+\contentsline {subsection}{\numberline {B.6.2} Orthogonales Komplement}{88}{subsection.B.6.2}
+\contentsline {subsection}{\numberline {B.6.3} Orthogonale Projektion}{88}{subsection.B.6.3}
+\contentsline {subsection}{\numberline {B.6.4} Unbeschr\IeC {\"a}nkter Projektor}{89}{subsection.B.6.4}
+\contentsline {section}{\numberline {B.7} Blatt 7}{90}{section.B.7}
+\contentsline {subsection}{\numberline {B.7.1} Abgeschlossenes Bild eines beschr\IeC {\"a}nkten Operators}{90}{subsection.B.7.1}
+\contentsline {subsection}{\numberline {B.7.2} Beispiel eines graphenabgeschlossenen, nicht stetigen Operators}{90}{subsection.B.7.2}
+\contentsline {subsection}{\numberline {B.7.3} Notwendigkeit der Vollst\IeC {\"a}ndigkeit im Satz der offenen Abbildung}{90}{subsection.B.7.3}
+\contentsline {subsection}{\numberline {B.7.4} Sowas wie die verallgemeinerte Exponentialfunktion ???????}{91}{subsection.B.7.4}
+\contentsline {subsection}{\numberline {B.7.5} Satz von Hellinger-Toeplitz}{91}{subsection.B.7.5}
+\contentsline {section}{\numberline {B.8} Blatt 8}{92}{section.B.8}
+\contentsline {subsection}{\numberline {B.8.1} Funktional und Beschr\IeC {\"a}nktheit}{92}{subsection.B.8.1}
+\contentsline {subsection}{\numberline {B.8.2} Hmm}{92}{subsection.B.8.2}
+\contentsline {subsection}{\numberline {B.8.3} Der Banach-Limes}{92}{subsection.B.8.3}
+\contentsline {subsection}{\numberline {B.8.4} Orthogonalr\IeC {\"a}ume oder so}{92}{subsection.B.8.4}
+\contentsline {section}{\numberline {B.9} Blatt 9}{93}{section.B.9}
+\contentsline {subsection}{\numberline {B.9.1} $\ell ^1$ ist nicht reflexiv}{93}{subsection.B.9.1}
+\contentsline {subsection}{\numberline {B.9.2} Schwache Cauchy-Folgen}{93}{subsection.B.9.2}
+\contentsline {subsection}{\numberline {B.9.3} Nicht-Existenz von $T^*$}{93}{subsection.B.9.3}
+\contentsline {subsection}{\numberline {B.9.4} Die Adjungierte des Rechts-Shifts}{93}{subsection.B.9.4}
+\contentsline {subsection}{\numberline {B.9.5} Spektrum der Adjungierten und Dualen}{93}{subsection.B.9.5}
+\contentsline {section}{\numberline {B.10} Blatt 10}{94}{section.B.10}
+\contentsline {subsection}{\numberline {B.10.1} selbstadjungiert oder so}{94}{subsection.B.10.1}
+\contentsline {subsection}{\numberline {B.10.2} Advanced Aufgabe 1}{94}{subsection.B.10.2}
+\contentsline {subsection}{\numberline {B.10.3} Normale Operatoren}{94}{subsection.B.10.3}
+\contentsline {subsection}{\numberline {B.10.4} Hmm}{94}{subsection.B.10.4}
+\contentsline {subsection}{\numberline {B.10.5} Der Dualraum von $c_0$}{94}{subsection.B.10.5}
+\contentsline {section}{\numberline {B.11} Blatt 11}{95}{section.B.11}
+\contentsline {subsection}{\numberline {B.11.1} Der Fredholm-Operator}{95}{subsection.B.11.1}
+\contentsline {subsection}{\numberline {B.11.2} Spektrumseigenschaften}{95}{subsection.B.11.2}
+\contentsline {subsection}{\numberline {B.11.3} Verallgemeinerter Hauptsatz der Differential- und Integralrechnung}{95}{subsection.B.11.3}
+\contentsline {section}{\numberline {B.12} Blatt 12}{96}{section.B.12}
+\contentsline {subsection}{\numberline {B.12.1} Satz von Lax-Milgram}{96}{subsection.B.12.1}
+\contentsline {subsection}{\numberline {B.12.2} Ein elliptisches Randwertproblem}{96}{subsection.B.12.2}
+\contentsline {subsection}{\numberline {B.12.3} Zeug f\IeC {\"u}r die Schwache Ableitung}{96}{subsection.B.12.3}
+\contentsline {subsection}{\numberline {B.12.4} Hmm}{96}{subsection.B.12.4}
+\contentsline {section}{\numberline {B.13} Blatt 13}{97}{section.B.13}
+\contentsline {subsection}{\numberline {B.13.1} Kompakter Operator - Eigenschaften}{97}{subsection.B.13.1}
+\contentsline {subsection}{\numberline {B.13.2} Absch\IeC {\"a}tzung der Norm kompakter Operatoren}{97}{subsection.B.13.2}
+\contentsline {subsection}{\numberline {B.13.3} Kompakter Operator - Eigenschaft}{97}{subsection.B.13.3}
+\contentsline {subsection}{\numberline {B.13.4} Beispiele kompakter Operatoren}{97}{subsection.B.13.4}
