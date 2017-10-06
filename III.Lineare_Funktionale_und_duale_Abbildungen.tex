@@ -160,6 +160,8 @@
 	\begin{cor}[Funktional für jeden Punkt]
 	\label{cor:3.4}
 		$X$ normierter $\K-VR$, $x_0 \in X$. Dann existiert $x' \in X'$, so dass $\norm{x'} =1$ und $\langle x_0, x' \rangle = \norm{x_0}$.
+	\par
+	\textit{Anmerkung:} Ist $ \fop{x_0,x'}$ für alle $x' \in X'$, so ist $x_0 = 0$.
 	\end{cor}
 
 	\begin{proof}
@@ -545,7 +547,8 @@ Wir verallgemeiner den Orthogonalraum auf normierter Räume und seinen Dualraum.
 					$$ \fop{x,x'} = \fop{x',Jx} = \fop{Jx,J'x'} 
 						= \fop{Jx,x'''} = 0$$
 				Damit ist $x' = 0$, aber $0 = J'x' = x''' \neq \set{0}$
-				$\lightning$
+				$\lightning$\\
+		{\it Alternativer Beweis:} Mit Lemma 3.33 und der Hinrichtung. 
 		\end{itemize}
 	\end{proof}
 
@@ -729,7 +732,10 @@ Im folgenden Satz sind die Voraussetzungen zum Teil etwas stärker als sie seien
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 	\section{Schwache Konvergenz}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
+Die schwache Konvergenz ist sehr nützlich und hilfreich. Sie ist in unserem
+Fall tatsächlich nichts anderes als punktweise Konvergenz von
+stetigen Linearformen gegen stetige Linearform. 
+Siehe dazu \hyperref[bem:3.31]{Bemerkung 3.31, a)}.
 	\begin{definition}[schwach und schwach$^*$ Konvergenz]
 	\label{def:3.30}
 		$X$ normierter Raum. 
@@ -739,7 +745,7 @@ Im folgenden Satz sind die Voraussetzungen zum Teil etwas stärker als sie seien
 					$$ \fop{x_n,x'} CF \text{ ist }  \forall x' \in X$$
 				\item \textit{schwach konvergent} gegen $x\in X$, wenn
 					$$ \fop{x_n, x'} \to \fop{x,x'} \quad \forall x' \in X'$$
-					$$(\text{schreibe } x_n \longrightarrow x )$$
+					$$(\text{schreibe } x_n \wkc x )$$
 			\end{enumerate}
 		Eine Folge $(x_n')$ in $X'$ heißt
 			\begin{enumerate}[a)]
@@ -747,33 +753,87 @@ Im folgenden Satz sind die Voraussetzungen zum Teil etwas stärker als sie seien
 					$$ \fop{x,x_n'} \text{ CF ist } \quad \forall x\in X$$
 				\item \textit{schwach$^*$ konvergent} gege $x' \in X'$, wenn
 					$$ \fop{x,x_n'} \to \fop{x,x'} \quad \forall x\in X $$
-					$$(\text{schreibe } x_n' \overset{*}{\longrightarrow} x')$$
+					$$(\text{schreibe } x_n' \wskc x')$$
 			\end{enumerate}
 			Eine Menge $M\subset X$ $(M \subset X')$ heißt \textit{schwach (schwach$^*$) Folgenkompakt}, wenn jede Folge in $M$ eine schwach (schwach$^*$) konvergente Teilfolge besitzt, deren schwacher (schwacher $^*$) Grenzwert in $M$ liegt.
 	\end{definition}
 
 	\begin{bem}
+	\label{bem:3.31}
+		In c) sei $X$ ein Banachraum. Sonst normierter Raum. 
 		\begin{enumerate}[a)]
-			\item  $x_n \longrightarrow x \df J_x x_n \overset{*}{\longrightarrow} J_x x_n$, da $\fop{x_n, x'} = \fop{x', J_x x_n}$
-			\item Wenn $(x_n)$ schwach konvergiert, dann ist der schwache Limes eindeutig. $x_n \to x, x_n \wkc y$ $\fop{x,x'} =\limes \fop{x_n,x'} = \fop{y, x'} \; \forall x' \in X'$ 
-				$\df 0 = \fop{x-y,x'} \; \forall x' \in X' \df[Kor3.4] x-y = 0 \df x = y$
-			\item $x_n' \wskc x'$, dann $(\norm{x_n'})$ beschränkt und $\norm{x'} \limesinf \norm{x_n'}$ (Banach-Steinhaus)
-			\item $x_n \to x$, dann $(\norm{x_n})$ beschränkt und $\norm{x} \leq \limesinf \norm{x_n}$(gilt wegen a) und c))
+			\item  $x_n \wkc x \df J_x x_n \wskc J_x x_n$
+			\item Wenn $(x_n)$ schwach konvergiert, dann ist der schwache Limes eindeutig. 
+			\item $x_n' \wskc x'$, dann $(\norm{x_n'})$ beschränkt und
+				$\norm{x'} \leq \limesinf \norm{x_n'}$ 
+			\item $x_n \wkc x$, dann $(\norm{x_n})$ beschränkt und 
+				$\norm{x} \leq \limesinf \norm{x_n}$ 
 			\item $x_n \to x \df x_n \wkc x$\\
-			$x_n' \to x' \df x_n' \wskc x'$
-			\item Umkehrung in e) gilt i.A nicht: z.B. betrachte $e_n = (\delta_{in})_{n\in \N} \in \ell^2$. Dann gilt für $x' \in \ell^2{'}: x = \inv{R_{\ell^2}} x' = (x_i)_{i\in\N}\in \ell^2$.
-			$\limes \fop{e_n, x'} = \limes (e_n,x) = \limes \ov{x} = 0$ $\df e_n \wkc 0$
-			\item $x_n \to x, x_n' \wskc x'$ $df \fop{x_n,x_n'} \to \fop{x,x'}$, weil $|\fop{x_n,x_n'} - \fop{x,x'}| \leq |\fop{x,x' - x_n'}| + \norm{x_n} \cdot \norm{x_n'} \to 0$
-			\item $x_n \wkc x, x_n' \to x'$ $\df$ $\fop{x_n,x_n'} \to \fop{x,x'}$ wie in g).
-			\item Aus $x_n \wkc x$, $x_n' \wskc x'$ folgt i.A. \underline{nicht} $\fop{x_n,x_n'} \to \fop{x,x'}$. \\
-			Bsp. $x_n = e_n \in \ell^2, x_n' = R_{\ell^2} e_n$ $\df$ $x_n \wkc 0, x_n' \wskc 0$, aber $\fop{x_n,x_n'} = 1 \; \forall \in \N.$
-			\item $\dim X < \infty \df  (x_n \wkc \aq x_n \to x) \& (x_n' \wskc x \aq x_n' \wkc x')$
-			\item $X$ reflexiv, dann $x_n' \wkc x \aq x_n' \wskc x'$ ($"' \df "'$ gilt auch ohne Reflexivität)
+				$x_n' \to x' \df x_n' \wskc x'$
+			\item Umkehrung in e) gilt i.A nicht. 
+			\item $x_n \to x, x_n' \wskc x'$ $\df \fop{x_n,x_n'} \to \fop{x,x'}$, 
+			\item $x_n \wkc x, x_n' \to x'$ $\df$ $\fop{x_n,x_n'} \to \fop{x,x'}$. 
+			\item Aus $x_n \wkc x$, $x_n' \wskc x'$ folgt i.A. \underline{nicht} 
+				$\fop{x_n,x_n'} \to \fop{x,x'}$.
+			\item $\dim X < \infty \df  (x_n \wkc x \aq x_n \to x)$ und  
+				$(x_n' \wskc x \aq x_n' \wkc x')$
+			\item $X$ reflexiv, dann $x_n \wkc x \aq x_n' \wskc x'$ 
+				($"' \df "'$ gilt auch ohne Reflexivität)
 		\end{enumerate}
 	\end{bem}
-GANZ viel zu Beispielen in lp Räumen.
+	\begin{proof}
+		\begin{enumerate}[a)]
+		  \item $x_n \wkc x$, d.h $\forall x' \in X'$ gilt:
+				$ \fop{x', Jx_n} \bm{=} \fop{x_n,x'} 
+					= \fop{x,x'} \bm{=} \fop{x', Jx}$
+		  \item Sei $x_n \to x, x_n \wkc y$. Damit gilt $\disp \fop{x,x'} =\limes 
+				\fop{x_n,x'} = \fop{y, x'} \; \forall x' \in X'$. Damit gilt 
+				\vspace{-1em}
+				$$0 = \fop{x-y,x'} \; \forall x' \in X' 
+					\df[{\hyperref[cor:3.4]{Anm. 3.4}}] x-y = 0, 
+					\quad \text{also} \quad  x=y.$$  
+		  \item Gilt mit \hyperref[thm:2.17]{Satz 2.17} bzw. \hyperref[thm:2.18]{Banach-Steinhaus}. 
+				Schwache Konvergenz ist punktweise Konvergenz in $\B(X,\K)$.
+		  \item gilt wegen a) und c)
+			\item Ganz formal: Sei $x' \in X'$ beliebig, $\varepsilon > 0$. 
+				Dann gilt mit der starken bzw. Normkonvergenz:
+					$$ |x'(x) - x'(x_n)| \leq \norm{x'} \norm{x-x_n}
+						< \norm{x'} \cdot \varepsilon' \leq \varepsilon $$
+		  \item Betrachte die Einheitsvektoren $e_n \in \ell^2$. 
+				Es gibt für $x' \in \ell^2{'}$ ein Element und damit Folge 
+				$x = (x_i)_{i\in\N} = \inv{R_{\ell^2}}x' \in \ell^2$, so dass 
+				$\disp \fop{y,x'} = \fop{y,R_{\ell^2}x}
+					= (y,x) =	\sum_{i=1}^\infty y_i\ov{x_i}$. Damit wird klar, dass 
+					\spcm $$ \limes \fop{e_n, x'} = \limes (e_n,x) 
+						= \limes \sum_{i=1}^{\infty} e_{n_i}\ov{x_i} = \limes \ov{x_n} 
+						= 0 \quad \df e_n \wkc 0$$
+				Offensichtlich ist aber $\norm{e_n} = 
+				\sqrt{\sum_{i=1}^\infty |e_i|^2} = 1$. Also $e_n \not\to 0$ (stark).
+		  \item Beim ersten Gleichzeiten wurde eine 
+			1 hinzuaddiert. Die Ausdrücke verschwinden per Vor. 
+			\begin{align*}
+			\vspace{-2em}
+			\def\varI{Produktive 0}
+			\newcommand{\fI}[1]{}
+			 |\fop{x,x'}-\fop{x_n,x_n'}| &= 
+			 	| \fop{x,x' - x_n'} - \fop{x_k-x,x_n'}| \\
+				& \leq |\fop{x,x' - x_n'}| + |\fop{x_n-x, x_n'}|\\
+				& \leq \underbrace{|\fop{x,x' - x_n'}|}_{\to 0} 
+						+  \underbrace{\norm{x-x_n}       }_{\to 0} 
+								\hspace {0.2em}\cdot \hspace{-1.3em}
+							 \underbrace{\norm{x_n'}        }_{\text{beschränkt in } n}
+			\end{align*}
+		  \item wie in g)
+		  \item Bsp. $x_n = e_n \in \ell^2, x_n' = R_{\ell^2} e_n$ 
+				$\df$ $x_n \wkc 0, x_n' \wskc 0$, 
+				aber $\fop{x_n,x_n'} = 1 \; \forall n \in \N.$
+		  \item Es gibt (Hamel-)Basen, Reflexivität, Stetigkeit. 	
+		  \item Mit a) zweimal (weil reflexiv).
+		\end{enumerate}	
+	\end{proof}
+Zu Beispielen für z.B. $\ell_p$-Räumen, siehe Kapitel 4 und den Alt.
 	\begin{thm}[Satz von Banach-Alaoglu]
-		\label{3.32}
+		\label{thm:3.32}
 		$X$ separabler Banachraum. Dann gilt $\ov{U_1^{x'}(0)} = \set{x' \in X' : \norm{x'} \leq 1 }$ ist schwach$^*$ folgenkompakt.	
 	\end{thm}
 
@@ -782,7 +842,43 @@ GANZ viel zu Beispielen in lp Räumen.
 	%\end{hinweise}
 
 	\begin{proof}
-		\todor
+		\def\varI{\footnote{Durch $\norm{x_n}$?}\ }
+		\def\varII{\footnote{$y$ ist Linearkombination von den $x_n$s}\ }
+		\def\varIII{\footnote{hier brauchen wir die Dichtheit!} }
+		\def\k{\tilde{k}}
+		\begin{itemize}[]
+			\item {\it \underline{Separabilität:}} Sei $\ov{\set{x_n: n\in\N}} = X$ und 
+				$Y := \text{span}(x_n:n\in\N)$.
+			\item {\it \underline{Diagonalverfahren:}} 
+				Sei $\ff{x'}{k}{\N} \in \ov{U_1^{x'}(0)}$.
+				Für alle $n\in\N$ sind die Folgen $(\fop{x_n,x_k'})_{k\in\N}$\varI  beschränkt 
+				in $\K$. Weil wir in $\K$ sind, besitzt jeder dieser Folgen eine
+				konvergente Teilfolge. Mit Hilfe des \glslink{Diagonalverfahren}{Diagonalverfahrens} 
+				erhalten wir sogar eine bestimmte Auswahl $\k\to \infty$, so dass
+				für alle $n\in \N$ der $\disp \lim_{\k\to \infty}\fop{x_n,x_{\k}'}$ existiert.
+				\item {\it \underline{schwach$^*$ Konvergenz:}}
+				Weiter existiert\varII für alle $y\in Y$ 
+					$$\fop{y,x'} := \lim_{\k\to \infty} \fop{y,x'_{\k}} \quad
+						\text{und wir wollen zeigen:}\quad
+						x'_{\k} \wskc x' \in \ov{U_1^{x'}(0)}	
+					$$
+				Offenbar ist $x'\in \B(Y,\K)$, 
+				{\small offenbar linear zumindest, Stetigkeit so:
+				$$ |\fop{y,x'}| = \lim_{\k\to \infty} |\fop{y,x'_{\k}}| 
+					\leq \norm{y} \cdot \lim_{\k\to \infty} 
+						{\norm{x'_{\k}}} \leq \norm{y}$$}
+				Mit \hyperref[thm:1.22]{Satz 1.22} und \hyperref[thm:2.18]{Banach-Steinhaus} haben wir sogar $x' \in X'$ und $\norm{x'} \leq 1$.\varIII 
+				Also haben wir $\forall x \in X$ und  $y\in Y$:
+				\begin{align*}
+					| \fop{x,x'} - \fop{x,x'_{\k}}|	= | \fop{x,x'- x'_{\k}} | 
+						&\leq |\fop{x-y,x'- x'_{\k}} | + |\fop{y,x'- x'_{\k}} |\\
+						&\leq 
+							\underbrace{\norm{x-y}}_{\leq \varepsilon(n)}		\cdot 
+							\underbrace{\norm{x'- x'_{\k}}}_{\leq 2} 				+ 
+							\underbrace{|\fop{y,x'- x'_{\k}}}_{\to 0}	\\
+						%&\leq 2\norm{x-y} + |\fop{y,x'- x'_{\k}}|
+						\end{align*}
+		\end{itemize}
 	\end{proof}
 
 	\begin{lemma}[Reflexivität von abgeschlossen UVR]
@@ -791,11 +887,9 @@ GANZ viel zu Beispielen in lp Räumen.
 			$$ X \text{ reflexiv } \aq \text{ Jeder abgeschlossen UVR von } X \text{ ist reflexiv}.$$
 	\end{lemma}
 
-	\begin{hinweise}
-%		Von rechts nach links.  klaro\\
-%		Von links nach rechts: Nehme abgeschlossene UR. Dies ist ein Banachraum. Dann nehme eine x', das definiert ein y'' aus dem Bidualraum. Dann finde ein x 
-	\end{hinweise}
-
+	\begin{proof}
+		Siehe Alt. S.245 unten	
+	\end{proof}	
 	\begin{thm}[Schwache Folgenkompaktheit in reflexiven Räumen]
 	\label{cor:3.34}
 		$X$ reflexiv. Dann ist $\ov{\EK} \subset X$ schwach folgenkompakt.
@@ -836,9 +930,9 @@ GANZ viel zu Beispielen in lp Räumen.
 		$X$ normierter Raum, $M\subset X$. Konvex, abgeschlossen, dann ist $M$ schwach folgenabgeschlossen, d.h. $(x_n)$ Folge in $M$, $x_n \wkc x \df x \in M$.
 	\end{cor}
 
-	\begin{definition}[konvexe Menge, Hülle?]
+	\begin{definition}[konvexe Hülle]
 	\label{def:3.40}
-		$X$ Vektorraum, $M \subset X$. Die \textit{konvexe Menge} von $M$ ist. 
+		$X$ Vektorraum, $M \subset X$. Die \textit{konvexe Hülle} von $M$ ist 
 			$$conv(M) = \bigcap_{\overset{M \subset C \subset X}{C \text{ konvex}}} C$$ 
 			Leicht zu zeigen: \todog[Leicht zu zeigen]
 	\end{definition}

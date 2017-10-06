@@ -13,6 +13,7 @@
 	\usepackage{amsthm}
 	\usepackage{amsfonts}
 	\usepackage{amsmath}
+	\usepackage{bm}
 	%\usepackage[nothm]{thmbox} %Decorate theorem statements
 	\usepackage{mdframed}
 	\usepackage{thmtools} %make the math theorems appeare in tableofcontents %%
@@ -182,8 +183,8 @@
 		\newcommand{\Sp}[1]{\left (#1 \right)} % Skalarprodukt mit angepassten Klammern
 		\newcommand{\fop}[1]{\left \langle #1 \right \rangle} %Funktionalauswertung
 		\newcommand{\f}[2]{\langle #1,#2 \rangle} %Konrads fop
-		\newcommand{\wkc}{\longrightarrow} %weak convergent
-		\newcommand{\wskc}{\overset{*}{\longrightarrow}} % weak star convergent
+		\newcommand{\wkc}{\rightharpoonup} %weak convergent
+		\newcommand{\wskc}{\overset{*}{\rightharpoonup}} % weak star convergent
 		\newcommand{\supT}[1][a]{
 			\IfEqCase{#1}{
 			{A}{\sup_{x \in \overline{\EK}}} 
@@ -199,7 +200,7 @@
 		%	{a}{\Rightarrow}
 		%	{o}{\overset{\df}{#2}}
 		%} 
-		\overset{#1}{\Rightarrow}
+		\overset{{#1}}{\Rightarrow}
 	}
 	\newcommand{\aq}[1][]{\overset{#1}{\Leftrightarrow}} % "äquivalent zu", also Äquivalenz
 	%\newcommand{\lightning}{\text{\Lightning}}
