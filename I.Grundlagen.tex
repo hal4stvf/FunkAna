@@ -1,21 +1,22 @@
 \chapter{Arbeit im Gange - Grundlagen}
 \section{Normierte Räume}
-{
+
+\begin{motivation}
 \footnotesize
 Was macht man in der Funktionalanalysis? man definiert sich einen vernünfitgen Abstandsbegriff: z.B. den Begriff der \glslink{metrischer_Raum}{Metrik} auf (zunächst einmal) einer beliebigen Mengen $E$. Damit hat man einen \glslink{metrischer_Raum}{metrischen Raum} geschaffen.
-}
+\end{motivation}
 
 \paragraph{Arsenal an Begriffen}
 Der nötige Apparat für die Entwicklung der Funktionanalysis ist nicht groß,
 er besteht im wesentlichen aus den Begriffen \gls{metrischer_Raum},
 \glslink{topologisch}{Topologie}, \gls{Konvergenz}, \glslink{CF}{Cauchy-Folge} und \glslink{stetig}{Stetigkeit}.\par
-Einige weitere Begriffe sind in \ref{bem:1.28} und \ref{bem:1.30} festgehalten.
-
+Einige weitere Begriffe sind in \ref{bem:1.28} und \ref{bem:1.30} festgehalten. \par
+Es sei stets für das ganze Skript $\K \in \set{\R, \C}$.
 %Definition der Seminorm
 \begin{definition}[Halbnorm, Seminorm]
 	\label{def:1.1}
-	Sei $X$ ein $\K-Vektorraum$, wobei $\K = \R$ oder $\K = \C$. 
-	Für $x,y\in X$, $\lambda \in \K$ ist eine Halbnorm oder Seminorm eine Abbildung
+	Sei $X$ ein $\K$-Vektorraum. 
+	Für $x,y\in X$, $\lambda \in \K$ ist eine \textit{Halbnorm} (oder Seminorm) eine Abbildung
 	$\seminorm{\cdot}:X \rightarrow \R$, die die folgenden Eigenschaften erfüllt:
 
 		\begin{enumerate}[(i)]
@@ -26,7 +27,6 @@ Einige weitere Begriffe sind in \ref{bem:1.28} und \ref{bem:1.30} festgehalten.
 \end{definition}
 
 Eine Norm efüllt zusätzlich noch die Bedingung, dass sie nur dann verschwindet, wenn das Argument verschwindet.
-
 %Der Kern einer Seminorm bildet einen Unterraum
 \begin{bem}[Kern und Quotientenraum von Halbnormen]
 	\label{bem:1.2}
@@ -35,6 +35,7 @@ Eine Norm efüllt zusätzlich noch die Bedingung, dass sie nur dann verschwindet
 		\item $X/N$ ist ein normierter Raum über(?) $\norm{x+N} := \seminorm{x}$
 		\item X ist ein vollständiger seminormierter Raum $\Rightarrow$ $X/N$ ist ein Banachraum 
 	\end{enumerate}
+	Siehe \hyperref[B4.1]{Aufgabe 1 auf Blatt 4}.
 \end{bem}
 
 %Beispiele wichtiger Vektorräume
@@ -42,17 +43,20 @@ Eine Norm efüllt zusätzlich noch die Bedingung, dass sie nur dann verschwindet
 	\label{bsp:1.3}
 	Sei $(\Omega,\hA,\mu)$ ein Maßraum
 		\begin{enumerate}[(a)]
-			\item $p\in[1,\infty)\; \hL^p(\Omega,\mu) = \{f:\Omega \rightarrow \C$ messbar, 
-						$\int_\Omega |f|^p d\mu < \infty \}$ ist ein seminormierter Raum mit 
-						$\seminorm{f}_p := (\int_\Omega |f|^p d\mu )^{\frac{1}{p}}$.\\
-						$L^p(\Omega,\mu)$ ist ein vollständiger normierter Raum ($\nearrow$ Ana III).
+			\item Für $p\in[1,\infty)$. Definiere seminormierten Raum durch 
+				$$\hL^p(\Omega,\mu) = \set{f:\Omega \rightarrow \C \text{ messbar}:
+					\int_\Omega |f|^p d\mu < \infty}\; 
+				\text{ mit } \seminorm{f}_p := (\int_\Omega |f|^p d\mu )^{\frac{1}{p}}.$$
+				$L^p(\Omega,\mu)$ ist ein vollständiger normierter Raum ($\nearrow$ Ana III).
 
-			\item $\hL^\infty(\Omega,\mu) := \{f:\Omega \rightarrow \C 
-						\text{ messbar und \glslink{ess beschrk}{essentiell beschränkt} }$ ist ebenfalls seminormiert mit 
-						$\seminorm{f}_\infty := \underset{x\in\Omega}{\ess \sup} |f(x)|$.\\
+			\item Für $p = \infty$ gibt es mit $\seminorm{f}_\infty :=
+				\underset{x\in\Omega}{\ess \sup} |f(x)|$ ebenfalls 
+				einen seminormiert Raum
+				$$\hL^\infty(\Omega,\mu) := \set{f:\Omega \rightarrow \C 
+				\text{ messbar und \glslink{ess beschrk}{essentiell beschränkt} }}.$$ 
 						$L^\infty(\Omega,\mu)$ ist ein vollständiger normierter Raum.
 
-			\item $p\in [1,\infty],\, |\cdot|$ sei das Zählmaß auf $\N$ und der Maßraum sei gegeben durch 
+			\item Sei $p\in [1,\infty]$ und $|\cdot|$ das Zählmaß auf $\N$ und der Maßraum sei gegeben durch 
 						$(\N, P(\N), |\cdot|)$.\\
 						$\ell^p := \hL^p(\N, |\cdot|)$ heißt Folgenraum und ist ein normierter unendlichdimensionaler Raum.
 
@@ -70,7 +74,9 @@ Eine Norm efüllt zusätzlich noch die Bedingung, dass sie nur dann verschwindet
 	\label{bem:1.4}
 		Seien $p,q,r\in [1,\infty)$
 		\begin{enumerate}[(a)]
-			\item $L^p(\Omega,\mu)$ ist ein Banachraum, $L^2(\Omega,\mu)$ ist ein Hilbertraum mit $(f,g)_2 := \int_\Omega f \overline{g} d\mu$
+			\item $L^p(\Omega,\mu)$ ist ein Banachraum, 
+				$L^2(\Omega,\mu)$ ist ein Hilbertraum mit 
+				$\disp (f,g)_2 := \int_\Omega f \overline{g} d\mu$
 			
 			\item Falls $\mu(\Omega) < \infty,\, p\geq r \Rightarrow\; L^p(\Omega,\mu)\subseteq L^r(\Omega,\mu)$
 			
@@ -93,7 +99,9 @@ Eine Norm efüllt zusätzlich noch die Bedingung, dass sie nur dann verschwindet
 		$$T(\lambda x+\mu y) = \lambda T(x) + \mu T(y)\quad \forall \lambda,\mu \in \K,\,x,y\in X$$ 
 		wir schreiben auch $Tx$ statt $T(x)$.\\
 		Wenn $Y=\K$ dann heißt ein linearer Operator $T:X\rightarrow \K$\textit{ Funktional}.\\
-		Wenn $X,Y$ normierte $\K-$Vektorräume sind, heißt ein linearer Operator $T$ \textit{beschränkt}, wenn $T(U_1(0)) \subseteq Y$ beschränkt ist. In Quantoren lautet diese Aussage
+		Wenn $X,Y$ normierte $\K-$Vektorräume sind, heißt ein linearer Operator
+		$T$ \textit{beschränkt}, wenn \linebreak $T(U_1(0)) \subseteq Y$ beschränkt ist.
+		In Quantoren lautet diese Aussage
 			$$ \exists M \geq 0, \text{ so dass } \forall x\in X :\; \norm{Tx}_Y \leq M \text{ mit } \norm{x}_X < 1$$
 	\end{definition}
 	
@@ -107,7 +115,6 @@ Eine Norm efüllt zusätzlich noch die Bedingung, dass sie nur dann verschwindet
 	\label{bsp:1.6}
 		\begin{enumerate}[a)]
 			\item $X = \K^n$, $Y = \K^m$, $\{T: X\to Y: T \text{ linearer Operator}\} = \K^{m \times n}.$ $T\in\K^{n \times m}$ ist beschränkt. 
-			%(Betrachtung nur für den Fall $\K\in\{\R,\C\}$) 
 			Denn: 
 			$$\norm{T}_\infty = \max_{1\leq i \leq m} \sum^n_{j=1} |t_{ij}| < \infty,\; t_{ij} \text{ sind die Einträge der Matrix }T.$$ Da auf einem endlichdimensionalen Vektorraum alle Normen äquivalent sind, ist $T$ beschränkt.
 			\item $T: \lL{1} \to \K, \; Tf := \intl{f}.$ 
@@ -164,7 +171,7 @@ An dieser Stelle werden einige Definition und Bemerkung festgehalten, die in sp�
 	\label{bem:1.8}
 		\begin{enumerate}[a)]
 			\item $\B(X,Y) := \{ T: X\to Y: T \text{ beschränkt}\}$
-			\item $\B(X) := \B(X,X)$ beides sind $\K-VR$.
+			\item $\B(X) := \B(X,X)$ beides sind $\K$-VR.
 			\item $X' := \B(X,\K)$ topologischer Dualraum von	$X$.
 		\end{enumerate}
 	\end{bem}					
@@ -172,12 +179,14 @@ An dieser Stelle werden einige Definition und Bemerkung festgehalten, die in sp�
 	\begin{bem}[wichtige Fakten zu Linearen Abbildung]
 	\label{bem:1.9}
 		\begin{enumerate}[a)] \addtocounter{enumi}{3}
-			\item $Ker\:T$, $Im\:T$ sind UVR. 
+			\item $ker\:T$, $im\:T$ sind UVR. 
 			\item $(i) - (vi)$ äquivalent zu $(vii)$:
 				Jede beschränkte Menge wird auf eine beschränkte Menge abgebildet.
 			\item Es gibt beschränkte lineare Operatoren, so dass $Im\: T$ 
-				nicht abgeschlossen $\nearrow$ \hyperref[B2.1]{Übung}
-			\item $Ker\; T$ abgeschlossen $\forall \; T\in \B(X,Y)$, da $T$ stetig und $Ker\:T = \inv{T}(\{0\})$, wobei $\{0\}$ abgeschlossen in $Y$.
+				nicht abgeschlossen ist. $\nearrow$ \hyperref[B2.1]{B2,A1}
+			\item Für alle $T\in \B(X,Y)$ ist $ker T$ abgeschlossen, 
+				da $T$ stetig ist und der $ker\:T = \inv{T}(\{0\})$,
+				also Urbild einer abgeschlossen Menge unter einer stetigen Funktionen. 
 		\end{enumerate}
 	\end{bem}						
 
@@ -288,32 +297,34 @@ An dieser Stelle werden einige Definition und Bemerkung festgehalten, die in sp�
 				$\norm{ST} \leq \norm{S} \cdot \norm{T}$ 
 				(gilt wegen $\norm{S(Tx)}_Z \leq \norm{S} \cdot \norm{Tx}_Y
 				\leq \norm{S} \cdot \norm{T} \cdot \norm{x}_X \leq M \norm{x}_X$ $\forall x\in X$ und der Linearität von $ST$.) 
-			\item $id\in \B(X,X)$, $\norm{id} = 1$.
+			\item $I\in \B(X,X)$, $\norm{I} = 1$.
 			\item Aus punktweiser Konvergenz $T_nx \to Tx$ folgt
 			i.A. \underline{nicht} $\disp \limes T_n = T$ (d.h. $\limes \norm{T_n - T} = 0$).
 				\begin{description} \item[Bsp:] 
-				%	$X = \ell^p, p\in [1,\infty)$, $T_n:\ell^p \to \ell^p, \; T_n(x_k) = (x_1,\dots,x_n,0,0,\dots)$ 
-				%	wobei $(x_k) = (x_1,\dots,x_n,\dots).$ Man kann zeigen, dass $T_n \in \B(x)$ $\forall n\in\N$ 
-				%	($\nearrow$ Übung).\par
-				%	Sei $(x_k)\in \ell^p$, $\forall \epsilon > 0 \; \exists N\in\N: (\sum_{k=N+1}^\infty |x_k|^p)^{1\backslash p} < \epsilon.$\ $\norm{T_n(x_k) - x_n}_X = (\sum_{k=N+1}^\infty |x_k|^p)^{1\backslash p} \; \forall n\geq N$.
-				%	Also $\forall x \in X$ $\norm{T_n - x}_X \to 0 \; (n\to \infty).$ Frage: $\norm{T_n - T}_X \to 0$ ?
-				%	Nein! Sei $(x_k^n) = (0,\dots,0,\overset{\text{n+1 Stelle}}{1},0,\dots)$,  
-				%	$\norm{T_n(x_k^n) - x}_X = \norm{(0,\dots,0,-1,0,\dots)})_Y = 1$ 
-				%	$\disp \norm{T_n - T} \overset{Def}{=} \supT \norm{(T_n - T)x}_X \geq 
-				%	\norm{(T_n - T)(\frac{1}{2} (x_k^n)} =\frac{1}{2}\cdot 1$ ($T = idx$) $\forall n\in\N$ 
-				%	$\df \norm{T_n - T} \not\to 0\; (n\to\infty)$
+					Sei $X = \ell^p$, $p\in [1,\infty)$, 
+					$x = (x_k)_{k\in\N} = (x_1,\dots,x_n,\dots)\in\ell^p$ und 
+					$$T_n:\ell^p \to \ell^p, \; T_n x = (x_1,\dots,x_n,0,0,\dots)$$ 
+					Es gilt $T_n \in \B(x)$ $\forall n\in\N$ (nachrechnen!) und 
+					$\forall \epsilon > 0 \; \exists N\in\N \; \forall n \geq N: $
+					$$\norm{T_n(x_k) - x_n}_X = \left(\sum_{k=n+1}^\infty 
+						|x_k|^p\right)^{\frac{1}{p}} < \varepsilon \;
+						\df \norm{T_n - x}_X \to 0 \; (n\to \infty).
+						$$
+					Aber! Betrachte	$\norm{T_ne_{n+1} - e_{n+1}}_X = \norm{e_{n+1}}_X = 1$ 
+				Also gilt $\norm{I - T_n} \geq 1$.
 				\end{description}
 
 		\item $T\in \BS$ und $T$ bijektiv. Dann ist $\inv{T}$ i.A. \underline{nicht beschränkt}.
 			\begin{description} 
-				\item[Bsp.]	$X\in C[0,1], Y= \{f\in C^1([0,1]): f(0) = 0\}$ mit $\disp \norm{x}_X = \sup_{t\in[0,1]}|x(t)|$ und $\norm{\cdot}_X = \norm{\cdot}_Y$ und $T: X\to Y,\; (Tx)(t) = \int_0^t x(s)ds$.
+				\item[Bsp.]	$X\in C[0,1]$, $Y= \{f\in C^1([0,1]): f(0) = 0\}$ mit $\disp \norm{x}_X = \sup_{t\in[0,1]}|x(t)|$ und $\norm{\cdot}_X = \norm{\cdot}_Y$ und $T: X\to Y,\; (Tx)(t) = \int_0^t x(s)ds$.
 				\begin{itemize}
-					\item $\inv{T}=S: Y\to X, Sy = y'$. (Zeige $ST = id_x$ und $TS = id_Y$)
-					\item $\inv{T}\not\in\B(Y,X)$ (Sei $y_n(t) = t^n\in Y$, $(\inv{T}y_n)(t) = n\cdot t^{n-1}$
-					$\df \norm{y_n}_Y =1 \; \forall n\in \N$, $\norm{\inv{T}y}_X =n \; \forall n\in\N \df \inv{T}$ kann nicht beschränkt sein. 
-					($\norm{\inv{T}\frac{1}{2} y_n}_X = \frac{1}{2} \cdot n$ mit $\norm{\frac{1}{2} y_n} = \frac{1}{2})$
+					\item $\inv{T}=S: Y\to X, Sy = y'$. (Zeige $ST = I_X$ und $TS = I_Y$)
+					\item $\inv{T}\not\in\B(Y,X)$ (Sei $y_n(t) = t^n\in Y$,
+					$(\inv{T}y_n)(t) = n\cdot t^{n-1}$
+					$\df \norm{y_n}_Y =1 \; \forall n\in \N$, $\norm{\inv{T}y_n}_X =n 
+					\; \forall n\in\N \df \inv{T}$ kann nicht beschränkt sein. 
 				\end{itemize}
-				Bem: $Y$ ist nicht vollständig.
+				Bem: $Y$ ist nicht vollständig. Wir werden sehen, dass dies wesentlich ist.
 			\end{description}
 		\end{enumerate}
 	\end{bem}
@@ -323,7 +334,7 @@ An dieser Stelle werden einige Definition und Bemerkung festgehalten, die in sp�
 	\label{thm:1.15}
 		Sei $X,Y$ normierte $\K$-VR, $T\in \BS$. Dann sind äquivalent:
 			\begin{enumerate}[(i)]
-				\item $T$ ist injektiv und $\inv{T} \in\B(im(T), X)$ normierter UVR von $Y$.
+				\item $T$ ist injektiv und $\inv{T} \in\B(im(T), X)$. 
 				\item $\exists \: m > 0: \norm{Tx}_Y \geq m\norm{x}_X \; \forall x\in X$.
 			\end{enumerate}
 	\end{thm}
@@ -333,10 +344,10 @@ An dieser Stelle werden einige Definition und Bemerkung festgehalten, die in sp�
 				Sei $x\in X$ $\exists y\in imT: x = \inv{T}y \df \norm{x}_Y \leq M \norm{Tx}_Y 
 				\df \norm{Tx}_Y \geq \frac{1}{M} \norm{x}_X = m\norm{x}_X$
 			\item $"(ii) \df (i)"$: Sei $x\in X: Tx = 0$.
-				Aus $\norm{Tx} \geq m \norm{x}$ folgt $x = 0$ und damit ist $T injektiv$.
+				Aus $\norm{Tx} \geq m \norm{x}$ folgt $x = 0$ und damit ist $T$ injektiv.
 				Sei $y\in imT \; \exists x\in X: Tx = y$ und $\inv{T}y = x $
 				$\df[(ii)] \norm{\inv{T}y} = \norm{x} \leq \frac{1}{m} \norm{Tx}_Y = \frac{1}{m} \norm{y}_Y,$
-				also $\exists\: M = \frac{1}{m}$, $\norm{\inv{T}y}_X \leq M\norm{y}_Y \; \forall v\in imT$
+				also $\exists\: M = \frac{1}{m}$, $\norm{\inv{T}y}_X \leq M\norm{y}_Y \; \forall y\in imT$
 				$\df \inv{T} \in \B(imT,X)$
 		\end{itemize}
 	\end{proof}
@@ -345,7 +356,7 @@ Die Negation dieser Aussage halten wir explizit fest mit folgendem
 %%%%%%% Korollar 1.16
 	\begin{cor}[Nichtexistenz der stetigen Inversen]
 	\label{cor:1.16}
-		$T \in \BS$ ($X,Y$ normierte $\K-VR$. Dann sind äquivalent:
+		Seien $X,Y$ normierte $\K$-VR, $T \in \BS$. Dann sind äquivalent:
 			\begin{enumerate}[(i)]
 				\item $T$ besitzt \underline{keine} stetige Inverser 
 					$\inv{T} : imT\to X.$
@@ -411,7 +422,8 @@ Die Negation dieser Aussage halten wir explizit fest mit folgendem
 	\begin{bem}[Isometrie und lineare Bijektion]
 	\label{bem:1.21}
 		\begin{enumerate}
-			\item Falls, $m=M=1$, dann nennen wir $T$ {\it Isometrie}.
+			\item Falls, $m=M=1$, dann nennen wir $T$ {\it Isometrie}. Also 
+				$\norm{Tx} = \norm{x}$.
 			\item Falls $\dim X = \dim Y = n\in \N$: $X,Y$ topologisch isomorph 
 				und topologischer Isomorphismus = lineare Bijektion.
 		\end{enumerate}
@@ -422,7 +434,7 @@ Die Negation dieser Aussage halten wir explizit fest mit folgendem
 %% Satz 1.22
 	\begin{thm}[Fortsetzung von stetigen Operatoren]
 	\label{thm:1.22}
-		$X,Y$ normierte $\K-VR$, $Y$ ein Banachraum, $Z\subseteq X$, $Z$ dichter UVR.
+		$X,Y$ normierter Raum, $Y$ ein Banachraum, $Z\subseteq X$, $Z$ dichter UVR.
 		$T\in \B(Z,Y)$. Dann existiert ein eindeutiger Operator $\tilde{T} \in \BS$, so dass
 		$T|_Z = T$.
 	\end{thm}
@@ -476,8 +488,10 @@ Die Negation dieser Aussage halten wir explizit fest mit folgendem
 \subsection{Neumannsche Reihe}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
+\begin{motivation}
 Nun versuchen wir mit Erfolgt einer waghalsige Verallgemeinerung der geometrischen Reihe im Reellen für Operatoren und Banachräume. 
 	$\sum_{k=0}^\infty q^k = \frac{1}{1-q} \; \forall q\in\C$ mit $\norm{q} < 1$
+\end{motivation}
 %% Satz 1.25 Neumansche Reihe
 
 	\begin{thm}[Neumanansche Reihe] 
@@ -496,16 +510,17 @@ Nun versuchen wir mit Erfolgt einer waghalsige Verallgemeinerung der geometrisch
 			\begin{itemize}[]
 				\item $ "' i)\df ii) \df iii)"':\;$ \qmarks{klaro}
 
-				\item $"' iii) \df iv)"':\;$ Sei $n\in\N \df \exists \ell\in\N, k\in \{q_0,\dots,N-1\}$, 
+				\item $"' iii) \df iv)"':\;$ Sei $n\in\N \df \exists \ell\in\N, 
+					k\in \{0,\dots,N-1\}$, 
 					so dass $n = \ell \cdot N + k$ Dann folgt  
-					$$\ell \leq \frac{n}{N} \df \norm{T^n} = \norm{(T^n)^\ell T^k} \leq \norm{T^N}^\ell \cdot \norm{T^k}. $$
+					$$\ell \leq \frac{n}{N} -1\df \norm{T^n} = \norm{(T^N)^\ell T^k} \leq \norm{T^N}^\ell \cdot \norm{T^k}. $$
 					Sei $M := \max\{1,\norm{T},\norm{T^2},\dots,\norm{T^{N-1}}\}$.
 					Dann gilt $\norm{T^n} \leq M\norm{T^N}^\ell$ und damit folgt
-					\spcm[-0.75] $$ \sqrt[n]{\norm{T^n}} = \sqrt[n]{\norm{T^N}^\ell}\sqrt[n]{M}
-					\leq \sqrt[n]{\norm{T^N} \frac{n}{N}} \cdot \sqrt[n]{M}
-					 = \underbrace{\sqrt[N]{\norm{T^N}}}_{< 1} \cdot 
-						\underbrace{\sqrt[n]{M}}_{\overset{\to 1}{\text{für } n\to\infty}} 
-						\cdot \sqrt[n]{\frac{1}{\norm{T^N}}}\spcm[-1]$$
+					\spcm[-0.75] $$ \sqrt[n]{\norm{T^n}} 
+					= 	 \sqrt[n]{\norm{T^N}^\ell}\sqrt[n]{M}
+					\leq \sqrt[n]{\norm{T^N}^{\frac{n}{N}-1}} \cdot \sqrt[n]{M}
+					= 	\underbrace{\sqrt[N]{\norm{T^N}}}_{< 1} \cdot 
+						\underbrace{\sqrt[n]{\frac{M}{\norm{T^N}}}}_{\overset{\to 1}{\text{für } n\to\infty}} \spcm[-1]$$
 					$\disp \df \limes \sup \sqrt[n]{\norm{T^n}} < 1$   ($\nearrow$ Wurzelkriterium)
 
 				\item $ "'iv) \df i)"': \;$ 
@@ -516,7 +531,7 @@ Nun versuchen wir mit Erfolgt einer waghalsige Verallgemeinerung der geometrisch
 					$$ \text{Für } S_n:=\sum_{k=0}^\infty T^k \text{ gilt also }:
 					\norm{S_n-S_m}=\norm{\sum_{k=m+1}^n T^k}\leq \sum_{k=m+1}^n \norm{T^k} \leq q^{m+1}+\dots+q^n < \varepsilon. \spcm[-0.5]
 					$$	
-					Also ist $(S_n)$ eine Cauchyfolge in $\B(X)$. Da $X^{*}$ vollständig ist, ist auch $\B(X)$ vollständig, also konvergiert die Neumannsche Reihe.
+					Also ist $(S_n)$ eine Cauchyfolge in $\B(X)$. Da $X$ vollständig ist, ist auch $\B(X)$ vollständig, also konvergiert die Neumannsche Reihe.
 
 			
 			\item 
@@ -574,18 +589,24 @@ Nun versuchen wir mit Erfolgt einer waghalsige Verallgemeinerung der geometrisch
 %Bem 1.30
 	\begin{bem} Rekapitulieren Sie folgende Begriffe:
 	\label{bem:1.30}
-		$U_r(x)$ Kugel mit Radius $r$,	$\overline{M}$ Abschluss,	$\mathring{M}$ 
-		Innere,	$\partial M$ Rand,	Kompakt,	offene Überdeckung. \todoo[Hinten noch definieren]
+		$U_r(x)$ \gls{Kugel mit Radius r},	
+		\glslink{Abschluss}{$\overline{M}$ Abschluss},	
+		\glslink{Inneres}{$\mathring{M}$ Innere},	
+		\glslink{Rand}{$\partial M$ Rand},
+		\glslink{kompakt}{Kompakt},
+		\glslink{offene Uberdeckung}{offene Überdeckung}.
 	\end{bem}
 	
-%Definition 1.31
+%Definition 1.3
 \begin{definition}[Abstandserhaltung, Einbettung und Isometrie]
 	\label{def:1.31}
 	Seien $(X,d_X),(Y,d_Y)$ metrische Räume. Eine Abbildung $f:X\to Y$ heißt
 	\begin{enumerate}[(a)]
 		\item \textit{abstandserhaltend} falls $d_X(x,y)=d_Y(f(x),f(y))$ %(Bsp.: orthogonale Matrix).
-		\item \textit{Isometrie} falls abstandserhaltend und surjektiv.
+		\item \textit{Isometrie} falls abstandserhaltend  und surjektiv, also insgesamt
+			bijektiv. Aus abstandserhaltend folgt die Injektivität. 
 	\end{enumerate}
+	Das rechtfertigt auch folgende Begriffsbildung:\\
 	Eine abstandserhaltende  Abbildung heißt auch \textit{Einbettung}.
 	Eine Einbettung heißt \textit{dicht}, falls $f(X)$ dicht in Y ist.\par
 	Notation: Wir schreiben $X\subseteq Y$, falls X in Y eingebettet ist.
@@ -677,10 +698,12 @@ Der folgende Satz ist eine Verallgemeinerung des Intervallschachtelungsprinzips 
 	$$\df 0 < d(x_0,y) \leq d(x_0,x_n) + d(x_n,y_0) \leq 2\delta(F_n)\overset{n\to\infty}{\longrightarrow} 0 \text{  Widerspruch!}$$
 \end{proof}
 
+	\begin{motivation}
 	\begin{mbem*}
 		Der Heuser beschreibt den folgenden Satz folgendermaßen:\par  
 		\enquote{Es gibt wohl keinen Satz in der Funktionalanalysis, der glanzloser und gleichzeitig kraftvoller wäre als der Bairesche Kategoriensatz. Von seiner Glanzlosigkeit wird sich der Leser \textit{sofort} überzeugen können; für seine Kraft müssen wir ihn auf die folgenden Nummern vertrösten.}
 	\end{mbem*}
+	\end{motivation}
 
 %Satz 1.35
 \begin{thm}[Bairescher Kategoriensatz]
@@ -736,10 +759,15 @@ Der folgende Satz ist eine Verallgemeinerung des Intervallschachtelungsprinzips 
 \end{definition}\par\bigskip
 
 %Eigene Bemerkung ohne Nummerierung.
-\begin{mbem*}[Trivia am Rande] Direkt aus der Definition folgt, das jede nirgends dichte Menge insbesondere von 1.Kategorie ist. Andersrum gilt dies nicht, was das Beispiel $\Q\subseteq \R$ zeigt. Ein Beispiel für eine nirgends dichte Menge ist die Cantor-Menge.\\
+\begin{motivation}
+\begin{mbem*}[Trivia am Rande] Direkt aus der Definition folgt, das jede 
+	nirgends dichte Menge insbesondere von 1.Kategorie ist. Andersrum gilt dies nicht,
+	was das Beispiel $\Q\subseteq \R$ zeigt. Ein Beispiel für eine nirgends dichte Menge 
+	ist die Cantor-Menge oder $\N\subset\R$.\\
 	 \textit{Anschaulich} bedeutet \textit{nirgends dicht}, wenn sie in keiner Teilmenge (mit nichtleeren Innerem) dicht liegt. \par\bigskip
 \end{mbem*}
 	Mithilfe dieser Definition können wir den Baireschen Kategoriensatz Umformulieren zu $$(X,d) \text{ ist ein vollständiger metrischer Raum } \df X \text{ ist von 2.Kategorie}$$ 
+\end{motivation}
 
 %Korollar 1.37
 \begin{cor}[vollstängier Raum von 2. Kategorie]
@@ -788,7 +816,9 @@ Der folgende Satz ist eine Verallgemeinerung des Intervallschachtelungsprinzips 
 	\item \textit{präkompakt}, wenn $\forall \varepsilon > 0$ eine endliche Menge 
 		$M = \{x_1,\dots, x_n\}$ existiert, so dass $X = \cup^n_{i=1} U_\varepsilon (x_i)$. 
 		$M$ heißt auch $\varepsilon$\textit{-Netz} von $X$.
+		\footnote{Äquivalent dazu: Jede Folge besitzt eine Teilfolge, die eine Cauchyfolge ist.}
 \end{enumerate}		
+Besonders interessant sind diese Begriffe für Teilräume $F\subset X$.
 \end{definition}
 
 %Satz 1.41
@@ -886,12 +916,11 @@ Der folgende Satz ist eine Verallgemeinerung des Intervallschachtelungsprinzips 
 	\end{definition}
 
 %Definition 1.44
-	\begin{definition}[?]
-	\label{def:1.44}
+	\begin{thm}[Charakterisierung relativ kompakt]
+	\label{thm:1.44}
 		$(X,d)$ vollständiger metrischer Raum, $M \subseteq X$ relativ kompakt. \par
-					\todo[inline]{Was genau wird hier definiert?}
 			$\Leftrightarrow$ jede Folge in $M$ besitzt eine in $X$ konvergente Teilfolge.
-	\end{definition}
+	\end{thm}
 
 %Satz 1.45
 	\begin{thm}[Aussagen zu komapkt, prä- und  relativkompakt]
@@ -935,19 +964,21 @@ Der folgende Satz ist eine Verallgemeinerung des Intervallschachtelungsprinzips 
 	\label{bem:1.46}
 		$(X,\norm{\cdot})$ normierter Raum.
 		\begin{enumerate}[a)]
-			\item Aussagen über metrischer Räume übertragen sich
+			\item Aussagen über metrischer Räume übertragen sich.
 			\item Die Vervollständigung von $X$ ist ein Banachraum.
 			\item Wenn $\dim X < \infty$, dann
 				\begin{enumerate}[i)]
 					\item $X$ Banachraum
-					\item $M\subseteq X$ kompakt $\aq$ $M$ beschränkt und abgeschlossen (Heine-Borel)
+					\item $M\subseteq X$ ist kompakt $\aq$ $M$ ist beschränkt und abgeschlossen (Heine-Borel)
 					\item $M\subseteq X$ relativ kompakt $\aq$ $M$ präkompakt  $\aq$ $M$ beschränkt
 				\end{enumerate}
 		\end{enumerate}
 	\end{bem}
-Folgendes Lemma dient - neben immament Interessantem - zur Vorbereitung auf eine 
-Charakterisierung des Satzes Bolazano-Weierstraß, der genau dann gilt, 
-wenn der Raum von endlicher Dimension ist.
+\begin{motivation}
+  Folgendes Lemma dient - neben immament Interessantem - zur Vorbereitung auf eine 
+	Charakterisierung des Satzes Bolazano-Weierstraß, der genau dann gilt, 
+	wenn der Raum von endlicher Dimension ist.
+\end{motivation}
 	\begin{lemma}[Lemma von Riesz]
 	\label{lem:1.47}
 		$(X,\norm{\cdot})$ normierter Raum, $E\subset X$ abgeschlossener Unterraum mit $E \not = X$, $\eta\in (0,1)$. \par
@@ -984,18 +1015,19 @@ wenn der Raum von endlicher Dimension ist.
 %		$
 %		%\end{split} \end{equation*}
 
-{\footnotesize
-\enquote{%
-Wir können nun die Endlichkeit der Dimension eines normierten Raumes (eine 
-{\sl algebraische} Eigenschaft) durch eine {\sl metrische } Eigenschaften 
-(die Gülitgkeit des Bolzano-Weierstraßschen Satzes) charakterisieren.
-Dass so etwas überhaupt möglich ist, liegt letztlich daran, dass die 
-algebraische und metrische Struktur normierter Räume nicht unverbunden
-nebeneinander stehen, sondern via Stetigkeit ineinanderengreifen.
-}
-[Heuser (S.104)]
-}
-	
+	\begin{motivation}
+		\footnotesize
+		\enquote{%
+			Wir können nun die Endlichkeit der Dimension eines normierten Raumes (eine 
+			{\sl algebraische} Eigenschaft) durch eine {\sl metrische } Eigenschaften 
+			(die Gülitgkeit des Bolzano-Weierstraßschen Satzes) charakterisieren.
+			Dass so etwas überhaupt möglich ist, liegt letztlich daran, dass die 
+			algebraische und metrische Struktur normierter Räume nicht unverbunden
+			nebeneinander stehen, sondern via Stetigkeit ineinanderengreifen.
+		}
+		[Heuser (S.104)]
+	\end{motivation}
+
 
 %Korollar 1.48
 	\begin{cor}[kompakt in endlichdim. Räumen, konvergente Teilfolgen]
@@ -1056,7 +1088,10 @@ Erinnerung Skalarprodukt:\\
 	Dann existiert ein Skalarprodukt auf $X$, welches $\norm{\cdot}$ induziert.
 	\end{thm}
 	\begin{proof}
-		Skizze! a) $\K = \R$ $(x,y) := \frac{1}{4}(\norm{x + y}^2 - \norm{x-y}^2)$.\\ b) $\K = \C$ $(x,y) := \frac{1}{4}(\| x+y\|^2 - \|x-y\|^2 + i(\|x+iy\|^2 + \|x-iy\|^2)$ ($\nearrow$ Übung, Blatt 6, Aufgabe 1)
+		($\nearrow$ \hyperref[B6.1]{Übung, Blatt 6, Aufgabe 1})
+		Skizze! a) $\K = \R$ $(x,y) := \frac{1}{4}(\norm{x + y}^2 - \norm{x-y}^2)$.\\ 
+		b) $\K = \C$ $(x,y) := \frac{1}{4}(\| x+y\|^2 - \|x-y\|^2 + 
+				i(\|x+iy\|^2 + \|x-iy\|^2)$ 
 	\end{proof}
 
 % Definition 1.51
@@ -1091,7 +1126,7 @@ Erinnerung Skalarprodukt:\\
 		Beachte: $V^\perp$ ist immer abgeschlossen, da für eine Folge $(v_i)$ in $V^\perp$ mit $v_i \to v$ gilt\\ $(x,v) \leftarrow (x,v_i) = 0 \; \forall x\in V$ $\df v \in V^\perp$
 	\end{bsp}
 
-%Satz 1.53 (Besselsche Ungleichung)
+%Satz 1.53 (Besselsche Ungleichung I)
 	\begin{thm}[Besselsche Ungleichung]
 	\label{thm:1.53}
 		Sei $X$ ein Skalarproduktraum, $\ff{u}{i}{I}$ ein Orthonormalsystem, $x\in X$, $i_1,\dots,i_n \in I$. Dann ist 
@@ -1342,15 +1377,8 @@ Sei $f\in L^2([0,2\pi])$
 		$\df \forall x\in X$ mit $x\perp \hat{x}_i \;\forall i \in I$ gilt $x= 0$ \par
 		$\df (span\ff{\hat{{x}}}{i}{I})^\perp = \{0\}$
 	\end{proof}
-	Übung. Blatt \hyperref[B5.3]{5}, \hyperref[B6.2]{6}.
-	\begin{enumerate}
-		\item Gram-Schmidt-Orthonormalisierung\\
-			Sei $(X, (\cdot,\cdot))$ ein Skalarproduktraum, $(x_n)_{n \in \N}$ linear unabhängig. 
-			Dann existiert ein ONS $(y_n)_{n \in \N}$ mit $span(y_1,\dots,y_k)=span(x_1,\dots,x_k)$.\\ 
-			Mit $(y_n)$ wie vorhin, gilt $(y_n)$ ist ONB $\forall k \in \N 
-			\Leftrightarrow span(x_n)_{n \in \N} = X$.
-		\item $M\subset X$ ist UVR $\df (M^{\perp})^{\perp} = \overline{M}$
-	\end{enumerate}
+		
+	Siehe Übung. Blatt \hyperref[B5.3]{5}, \hyperref[B6.2]{6}.
 
 %Satz 1.63
 	\begin{thm}[Basen in Hilberträumen haben die gleich Mächtigkeit]

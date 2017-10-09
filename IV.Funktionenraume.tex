@@ -1,25 +1,34 @@
 	\chapter{Funktionenräume}
 	\section{Dualität in L$^p$}
 
-	$p\in [1,\infty]$, $(\Omega, \mathcal{A}, \mu)$ Maßraum. $q\in [1,\infty]$, so dass $\frac{1}{p} + \frac{1}{q} = 1$. Nach Hölder-Ungleichng gitl für $f\in L^p(\Omega,\mu), g\in L^q(\Omega, \mu)$.\\
+	$p\in [1,\infty]$, $(\Omega, \mathcal{A}, \mu)$ Maßraum. $q\in [1,\infty]$, 
+	so dass $\frac{1}{p} + \frac{1}{q} = 1$. Nach Hölder-Ungleichung gilt für 
+	$f\in L^p(\Omega,\mu), g\in L^q(\Omega, \mu)$.\\
 	$$\left| \int_\Omega fg d\mu \right| \leq \norm{f}_p \norm{g}_q$$
 	Mit anderen Worten. Die Abbidung
 		$$ J_p : L^q(\Omega,\mu) \to L^p(\Omega, \mu)' $$
-		$$ g \mapsto (f \mapsto \int_\Omega fg d\mu)$$
-	definiere lineare Abbildung mit $\norm{J_pg} \leq \norm{g}_q$.\\
-	Für $p=2$ gilt : $J_p = \ov{R_{L^2}}$, insbesondere ist $J_p$ normerhaltend und surjektiv. (S.v. Frechet-Riesz). Sonst?
+		$$ (J_pg)(f) = \int_\Omega fg d\mu \quad \forall f\in L^p(\Omega, \mu)
+		\footnote{Wird sonst auch so geschriben:$g \mapsto 
+			(f \mapsto \int_\Omega fg d\mu)$}$$
+	definiert eine isometrisch isomorphe (lineare) Abbildung mit 
+		$\norm{J_pg} \leq \norm{g}_q$.\par
+	Für $p=2$ gilt : $J_p = \ov{R_{L^2}}$, insbesondere ist $J_p$ normerhaltend 
+	und surjektiv. (S.v. Frechet-Riesz). Sonst?
 
 	\begin{thm}
-		$p\in [1,\infty)$, $q\in [1,\infty]$, so dass $\frac{1}{p} + \frac{1}{q} = 1$. 
+		$p\in [1,\infty)$, so dass $\frac{1}{p} + \frac{1}{q} = 1$ 
+		(mit $\frac{1}{\infty} = 0$). 
 		Dann ist die Abbildung 
 			$$J_p : \ell^q \to (\ell^p)'$$
-			$$ (y_n) \mapsto ((x_n) \mapsto \sum_{n=1}^\infty x_ny_n)$$
-		normerhaltend und surjektiv.
+			$$ \small (\fop{x,y'} =\fop{x,J_py} = ) \quad 
+			(J_py)(x) = \sum_{n=1}^\infty x_ny_n \quad \text{wobei }
+			x = \ff{x}{n}{\N},y = \ff{y}{n}{\N}	$$
+		normerhaltend und surjektiv, also ein isometrischer Isomorphismus.
 	\end{thm}
 
 	\begin{proof}
-		\todor	
-	bilder 45-47
+	Bilder 45-47
+		\todor[Siehe Werner S.50]	
 	\end{proof}		
 	Gilt auch $imJ_\infty = (\ell^\infty)'$?
 
@@ -30,31 +39,43 @@
 		ist normerhaltend, jedoch nicht surjektiv.
 	\end{cor}
 	\begin{proof}
-		\todor	
 	Bilder 48-49
+		\todor	
 	\end{proof}
-	\todog[ÜA: $J_\infty (\ell^1) = (c_0)'$)]
+
+	\begin{bem*}[Der Dualraum von $c_0$]
+		Es gilt:\hyperref[B10.5]{$J_\infty (\ell^1) = (c_0)'$} (s. auch Alt S.206)
+	\end{bem*}
 
 	\begin{definition}[Buntes zu Maßen]
-		\todor[Definition beenden]
 		$\Omega$ Menge, $\mathcal{R} \subseteq \mathcal{P}(\Omega)$. 
 		Ring über $\Omega$ (d.h. 
 		$$\emptyset \in \mathcal{R}, A,B \in \mathcal{R} \df A\backslash B, A\cup B \in \mathcal{R}).$$
 		 Eine Abbildung : 
 			$$ \mu: \mathcal{R} \to \K \quad \text{ heißt}$$ 
 		\begin{enumerate}[a)]
-			\item "'additiv"', wenn $\mu(\emptyset) = 0, \mu(A\cup B) = \mu(A) + \mu(B) \forall A,B \in \mathcal{R}$ mit $A\cap B = \emptyset$.
-			\item "'$\sigma$-additiv"'
-			\item "'signiertes Maß "', wenn $\mathcal{R}$ $\sigma$-Algebra ist $\K = \R$ und $\mu$ $\sigma$-additiv
-			\item "'komplexes Maß"'
-			\item "'Maß"'
-			\item "'$\sigma$-endliches Maß"'
-			\item "'endliches Maß "'
+			\item \textit{"'additiv"'}, wenn $\mu(\emptyset) = 0, 
+				\mu(A\cup B) = \mu(A) + \mu(B) \forall A,B \in \mathcal{R}$ 
+				 mit $A\cap B = \emptyset$.
+			\item \textit{"'$\sigma$-additiv"'}, wenn sie additiv ist und 
+			$\forall (A_n) \in \mathcal{R}$ mit $\sum_{n\in\N} |\mu(A_n)| \leq \infty$,
+			$A_i \cap A_j = \emptyset \forall i,j \in \N$ mit $i\neq j$ und 
+			$\cup_{n\in\N} A_n \in \mathcal{R}: \mu(\cup_{n\in\N} A_n) = \sum_{n\in\N}
+			\mu(A_n)$ 
+			\item \textit{"'signiertes Maß"'}, wenn $\mathcal{R}$ $\sigma$-Algebra ist $\K = \R$ und $\mu$ $\sigma$-additiv
+			\item \textit{"'komplexes Maß"'}, wie in c), nur $\K = \C$.
+			\item \textit{"'Maß"'}, falls es signiertes Maß ist mit $\mu(A) \geq 0 \forall A 
+				\in \mathcal{R}$ ist.
+			\item \textit{"'$\sigma$-endliches Maß"'}, falls $\mu$ Maß und eine Folge 
+				$(A_n)$ in $ \mathcal{R}$ existiert mit $\mu(A_n) < \infty$ $\forall 
+					n\in\N$ und $\cup_{n\in\N} A_n = \Omega$.
+			\item \textit{"'endliches Maß "'}, alls $\mu$ Maß mit $\mu(\Omega) < \infty$.
 		\end{enumerate}
 	\end{definition}
 ERRATA:
 	\begin{definition*}[Semi-endlich]
-		\todor[Beweis semi-endlich, S.52]	
+	Ein Maßraum heißt \textit{semi-endlich}, wenn $\forall A \in \hA$ mit 
+	$\mu(A) = \infty$, es ein $E \in \hA, E\subset A$ gibt und $0 < \mu(A) < \infty$.
 	\end{definition*}
 
 	\begin{bem*}
@@ -65,7 +86,12 @@ ERRATA:
 	\end{bem*}	
 	
 	\begin{bsp*}
-		\todor[Beispiele S.52]	
+		\begin{enumerate}[a)]
+		  \item Zählmaß auf $\R$ ist semi-endlich jedoch nicht $\sigma$-endlich.
+			\item $\Omega = \set{0}$, $\mu(\set{0}) = \infty$
+				$L^1(\Omega,\mu) = \set{0}$, $L^\infty(\Omega,\mu) \simeq \K$
+				$\df$ $J_1: L^1(\Omega,\mu) \to L^1(\Omega,\mu)'$ ist nicht injektiv.
+		\end{enumerate}	
 	\end{bsp*}	
 ERRATA ENDE.
 	\begin{thm}[*]
@@ -77,10 +103,17 @@ ERRATA ENDE.
 		\end{split}
 		\end{equation}
 		Dann gilt 
-			\begin{enumerate}
-				\item $J_p$ normerhaltend
+			\begin{enumerate}[a)]
+				\item Wenn $p\in(1,\infty]$, dann ist $J_p$ normerhaltend
+				\item Äquivalent sind 
+					\begin{enumerate}[(i)]
+					  \item $J_1$ normerhaltend 
+						\item $J_1$ injektiv
+						\item $(\Omega, \hA, \mu)$ semi-endlich
+					\end{enumerate}
 				\item Falls $p \in (1,\infty)$, so ist $J_p$ surjektiv
-				\item Falls $p = 1$ und $\mu$ $\sigma$-endlich, dann ist $J_p$ surjektiv.
+				\item Falls $p = 1$ und $(\Omega, \hA, \mu)$ $\sigma$-endlich, 
+					dann ist $J_p$ surjektiv und normerhaltend.
 			\end{enumerate}
 	\todor[Satz unvollständig. S.53]
 	\end{thm}
@@ -95,7 +128,6 @@ ERRATA ENDE.
 		Wir betrachten die Abbildungen 
 		$$J_p : L^q(\Omega,\mu) \to L^p(\Omega,\mu)',\qquad J_q:L^p(\Omega,\mu)\to L^q(\Omega,\mu)'$$	
 		gemäß (4.1) . Dann gilt:
-		\todo{richtige Querverweise?}
 		\begin{equation}
 			\fop{f,J_p g} = \int_\Omega fgd\mu  = \fop{g,J_q f}
 		\end{equation}
@@ -134,8 +166,10 @@ ERRATA ENDE.
 	\section{Der Dualraum von $C(K,\K)$}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-	In diesem Abschnitt wollen wir den Dualraum von $C(K)$ für eine kompakte, hausdorffsche Menge $K$ mit der Topologie $\tT \in P(K)$ näher untersuchen. Dafür benötigen wir einiges an Maßtheorie.
-	Wir wissen bereits, dass $C(K):=C(K,\K)$ mit der Supremumsnorm zu einem Banachraum wird. $\B = \sigma(\tT)$ ist die \textit{Borel $\sigma$-Algebra}, also die kleinste $\sigma$-Algebra, die noch $\tT$ enthält. Entsprechend ist $\B_0$ der kleinste Ring, der $\tT$ enthält.
+	\begin{motivation}
+	  In diesem Abschnitt wollen wir den Dualraum von $C(K)$ für eine kompakte, hausdorffsche Menge $K$ mit der Topologie $\tT \in P(K)$ näher untersuchen. Dafür benötigen wir einiges an Maßtheorie.
+		Wir wissen bereits, dass $C(K):=C(K,\K)$ mit der Supremumsnorm zu einem Banachraum wird. $\B = \sigma(\tT)$ ist die \textit{Borel $\sigma$-Algebra}, also die kleinste $\sigma$-Algebra, die noch $\tT$ enthält. Entsprechend ist $\B_0$ der kleinste Ring, der $\tT$ enthält.
+	\end{motivation}
 	\begin{definition}[inkl. Satz]
 		Sei $R$ ein Ring über $\Omega$ mit $\Omega\in R$ (also eine Algebra), $\mu R\to\K$ additiv. Für $E\in R$ definieren wir
 		$$|\mu |(E) := \sup \left\lbrace \sum^k_{i=1} |\mu(E_i)|: k\in\N,\, E_1,\dots,E_k\in R \text{ paarweise disjunkt, } E_i \subseteq E \right\rbrace$$
@@ -254,32 +288,39 @@ ERRATA ENDE.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 		\begin{lemma}[partielle Integration]
-			$\Omega \subset \R^n$ offen, beschränkt und habe stückweise glatten Rand. Dann gilt für $u,v \in C^1(\ov{\Omega})$.
+			$\Omega \subset \R^n$ offen, beschränkt und habe stückweise glatten Rand. 
+			Dann gilt für $u,v \in C^1(\ov{\Omega})$.
 				$$\int_\Omega v(x) \frac{\partial}{\partial x_i} u(x) dx = 
 				\int_{\partial \Omega} v(x)u(x) e_i^T n(x) ds(x) - \int_\Omega \frac{\partial}{\partial x_i} v(x) u(x) dx$$
 				wobei n der Einheitsnormalenvektor ist und das erste Integral das Hyperflächenintegral.
 		\end{lemma}
 		\begin{proof}
-			\todor
+			\todor[S.70]
 		\end{proof}
 
 	\begin{bem}[Notation]
-		\todoy[Layout!]	
-		$\alpha \in \N_0^n:$ Multiindex, $D^\alpha f := \frac{\partial^|\alpha|}{\partial x^\alpha}f$ Ableitung
+		\vspace{-1em}
+		$$\alpha \in \N_0^n: \text{ Multiindex},$$
+		\begin{align*}
+		D^\alpha f := \frac{\partial^{|\alpha|}}{\partial x^\alpha}f 
+		\quad \text{Ableitung}
+		\end{align*}
 	\end{bem}
 
 	\begin{bem}
+		\vspace{-1em}
 		$f\in C^m(\Omega), \phi\in C_0^\infty(\Omega) 
-		= \{f\in C^\infty(\Omega): suppf\subset \ov{\Omega}\}.$ 
+		= \{f\in C^\infty(\Omega): \text{supp}(f) \text{ kompakt }\}.$ 
 		Anwendung von Lemma 4.12. liefert 
 		 $$ \int_\Omega D^\alpha f(x) \phi(x) dx = (-1)^{|\alpha|}\int_\Omega f(x) D^\alpha \phi(x) dx$$ 
+	Wobei $\phi$ auf $\partial \Omega$ verschwindet.
 	\end{bem}
 
 	\begin{definition}[schwache Ableitung]
 		\todoy[Nocheinmal mit dem Alt vergleiche]	
 		$\Omega \subset \R^n$ offen, $f\in L^1_{\text{loc}}(\Omega), \alpha \in N^n_0$. Wenn ein 
 		$w \in L^1_{\text{loc}}(\Omega)$ existiert, so dass 
-			$$\int_\Omega f D^\alpha \varphi d\lambda^n = (-1)^|\alpha| \int_\Omega w \varphi d\lambda^n 
+			$$\int_\Omega f D^\alpha \varphi d\lambda^n = (-1)^{|\alpha|} \int_\Omega w \varphi d\lambda^n 
 			\quad \forall \varphi \in C_0^\infty(\Omega)$$
 			dann heißt w \textit{schwache Ableitung} von $f$. $f \in L^1_{\text{loc}}(\Omega)$ heißt \textit{m-mal schwach diffbar}, wenn die $\alpha-ten$ schwache Ableitung exisiert $\forall |\alpha| \leq m$. 
 	\end{definition}
@@ -291,7 +332,8 @@ ERRATA ENDE.
 	\end{bem*}
 
 	\begin{thm}
-		Vor. wie in Def. 4.15. Dann gilt: Falls existent, so ist die $\alpha-te$ schwache Ableitung von $f$ eindeutig bestimmt. 
+		Vor. wie in Def. 4.15. Dann gilt: Falls existent, 
+		so ist die $\alpha$-te schwache Ableitung von $f$ eindeutig bestimmt. 
 	\end{thm}
 
 	\begin{proof}
@@ -310,8 +352,11 @@ ERRATA ENDE.
 		\todoy[Nocheinmal mit dem Alt vergleiche]	
 		$\Omega \subset \R^n$ offen, $K\in\N_0$	
 		\begin{enumerate}
-			\item $p\in [1,\infty)$, $W^{k,p}(\Omega) = \set{f\in L^p(\Omega): D^\alpha f\in L^p(\Omega) \forall |\alpha| \leq k}$ mit Norm $\norm{f}_{W^{k,p}} = (\sum_{|\alpha| \leq k} \norm{D^\alpha f}^p_{L^p(\Omega)})^{\frac{1}{p}}$
-		\item $(p = \infty)$ $W^{k,\infty}(\Omega) = \set{f\in L^\infty(\Omega): D^\alpha f \in L^\infty(\Omega) \; \forall |\alpha| \leq k}$ mit Norm $\norm{f}_{W^{k,\infty}} = \max_{|\alpha| \leq} \norm{D^\alpha f}_{L^\infty(\Omega)}$
+			\item $p\in [1,\infty)$, $W^{k,p}(\Omega) = \set{f\in L^p(\Omega): D^\alpha f\in L^p(\Omega) \forall |\alpha| \leq k}$ \\
+				mit Norm $\norm{f}_{W^{k,p}} = (\sum_{|\alpha| \leq k} \norm{D^\alpha f}^p_{L^p(\Omega)})^{\frac{1}{p}}$
+		\item $(p = \infty)$ $W^{k,\infty}(\Omega) = \set{f\in L^\infty(\Omega): 
+			D^\alpha f \in L^\infty(\Omega) \; \forall |\alpha| \leq k}$ \par
+			mit Norm $\norm{f}_{W^{k,\infty}} = \max_{|\alpha| \leq} \norm{D^\alpha f}_{L^\infty(\Omega)}$
 		\end{enumerate}
 	\end{definition}
 
@@ -337,6 +382,47 @@ ERRATA ENDE.
 	\section*{Anwendung an elliptischer Randwertprobleme}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 	\todor[Komplette Herleitung zu Dirichlet Randwertproblem] hier vieles 
+	Klassisches Dirichlet-Randwertproblem (RWP).\\
+	$\Omega \subset \R^n$ offen und beschränkt, $f\in C(\ov{\Omega})$
+	$A(\cdot) \in C^1(\ov{\Omega},\R^{n\times n}), g\in C(\partial \Omega)$\\
+	$A(x) = A^T(x) \; \forall x \in \ov{\Omega},$ es gebe $c_0, C_0 > 0$, so dass
+	$$c_0 \norm{\xi}^2 \leq \xi^T A(x) \xi \leq C_0 \norm{\xi}^2
+	\forall x\in \ov{\Omega}, \xi \in \R^n (\text{Elliptizität})$$
+	Gesucht: $f,g$ sind gegeben. $u\in C^2(\Omega) \cap C(\ov{\Omega})$, 
+	welches das \textit{elliptische RWP}:
+	$$ div (A(\cdot) grad u) = f \quad  \text{ auf } \Omega$$
+	$$ u = g \quad \text{ auf } \partial \Omega$$
+	löst.\\
+	Bsp: $A = I \df \Delta u = f$ auf $\Omega$
+	\begin{enumerate}[1.)]
+	  \item Transformation auf homogene Randwerte.\\
+			Wir nehmen an, dass 
+			$\delta$ eine Fortsetzung auf $\ov{\Omega}$ hat mit 
+			$g \in C^2(\Omega) \cap C(\ov{\Omega})$ und erhalten für 
+			$ \tilde{u} = u \cdot g$
+			$$ div( A grad \tilde{u}) = - div(A grad g) + f \text{ auf } \Omega$$
+			$$ \tilde{u} = 0 \text{ auf } \partial \Omega$$
+			OBdA kann $g = 0$ angenommen werden (falls g stetige Fortsetzung hat).
+			$$ div( A grad u) - div (A grad g) = f - div (A grad g)$$
+			$$ div( A grad u) = f \text{ auf } \Omega$$
+			$$ u = 0 \text{ auf } \partial \Omega$$
+		\item Multiplikation mit Testfunktionen \\
+		\item Gleichung $(*)$ ist äquivalent zu $div A grad u = f$		
+		\item Einbettung in geeignete Räume, schwache Lösung
+\end{enumerate}
+Grundidee der Vorgehensweise:
+\begin{enumerate}[a)]
+  \item Wir zeigen, dass die linke Seite in $(*)$ ein Skalarprodukt 
+		$a(\cdot,\cdot)$ in $W_0^{1,2}(\Omega)$ definiert.
+	\item	Wir zeigen, dass $a(\cdot,\cdot)$ äquivalent zum Skalarprodukt in
+		$W_0^{1,2}(\Omega)$ ist.
+	\item Wir zeigen, dass die rechte Seite ein beschränkte Funktional
+		$F: \varphi \mapsto \int_\Omega \varphi(x) f(x) dx$ auf $W_0^{1,2}(\Omega)$
+		definiert. Nach Frechet-Riesz existiert, dann ein eindeutiges 
+		$u \in W_0^{1,2}(\Omega)$, so dass $a(e,u) = \fop{\varphi,F}$ 
+		$\forall \varphi \in W_0^{1,2}(\Omega) \supset C_0^\infty(\Omega)$.
+		Dann $u$ ist dann schwache Lösung des RWPs.
+\end{enumerate}
 	\begin{lemma}[Poincare-Ungleichung]
 		Ist $\Omega \subset \R^n$ offen und beschränkt, so existiert $c > 0$, so dass
 			$$ \int_\Omega |u(x)|^2 dx \leq \int_\Omega \norm{grad u(x)}^2dx \quad \forall u\in W_0^{1,2}(\Omega)$$

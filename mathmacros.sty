@@ -104,24 +104,35 @@
 
 	\newtheorem*{beh}{Behauptung}
 	\newtheorem*{mbem*}{Eigene Bemerkung}
-
-	\renewcommand{\qedsymbol}{$\blacksquare$}
+	%%% proof mit Namen
 	\newtheorem*{proof*}{Beweisskizze}
-	%% For show no proofs	
+	%%%% Beweisskizzen %%%%%
+	\newenvironment{hinweise}{
+		\footnotesize \begin{proof*}}{\end{proof*}\normalsize
+		}
+	%%%% schöneres QED Symbol %%%%
+	\renewcommand{\qedsymbol}{$\blacksquare$}
+	%%%% für den Erklär- und Motivationstext
+	\newenvironment{motivation}{}{}
+	%% For show no proofs	und Rest
 	\ifx\noproofs\undefined
 	\else
 		\usepackage{environ}
 		\NewEnviron{killcontens}{}
+		%% proofs
 		\let\proof\killcontens
 		\let\endproof\endkillcontents
+		%% hinweise
+		\let\hinweise\killcontens
+		\let\endhinweise\endkillcontens
+		%% motivation		
+		\let\motivation\killcontens
+		\let\endmotivation\endkillcontens
 	\fi
 
 	%% Commands für mdfsetup
 		%\renewenvironment{thm}[1]{\begin{thm}[#1]}{\end{thm}}
 	%% Abbrv. and certain layout for mathenvi.
-		\newenvironment{hinweise}{
-			\footnotesize \begin{proof*}}{\end{proof*}\normalsize
-			}
 	%\renewcommand\thechapter{\Roman{chapter}} %Roman numerics for chapters
 			
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -139,7 +150,7 @@
 	\newcommand{\K}{\mathbb{K}}
 	
 %spaces, special symbols for spaces
-	\newcommand{\hA}{\mathfrak{A}}%Script A , hA ~ hässliches A
+	\newcommand{\hA}{\mathcal{A}}%Script A , hA ~ hässliches A
 	\newcommand{\hL}{\mathcal{L}}
 	\newcommand{\tT}{\mathcal{T}} %topologisches T
 	\newcommand{\F}{\mathcal{F}} %für?
@@ -175,7 +186,7 @@
 	\newcommand{\abs}[1]{\left\lvert #1 \right\rvert }
 	\newcommand{\codim}{\text{codim}\:}
 	\newcommand{\ind}{\text{ind}\:}
-	\newcommand{\set}[1]{\{#1\}} %Mengen
+	\newcommand{\set}[1]{\left\{#1\right\}} %Mengen
 	\newcommand{\limesinf}{\underset{n\to\infty}{\lim\inf}}
 	\newcommand{\sqrtp}[2][p]{\sqrt[\leftroot{-3}\uproot{3}#1]{#2}}
 	%%% special for functional analysis

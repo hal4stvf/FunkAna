@@ -1,28 +1,30 @@
 \chapter{Lineare Funktionale und duale Abbildungen}
 
-	{Eine nützliche Inspirations- und Motivationsquelle ist in diesem Kapitel 
-	die Lineare Algebra. Es wird ein Fortsetzungsatz aus der Lineare Algebra 
-	auf normierte Räume erweitert werden. Der sogenannte Dualraum rückt in der 
-	Mittelpunkt der Betrachtung. Und vielleicht das Grundproblem der Linearen Algebra,
-	wann die Gleichung $Ax = y$ eine Lösung besitzt wird mithilfe von 
-	adjungierten Operatoren auch im unendlich-dimensionalen beschreibar.}
-	\par
-	Thema dieses Kaptiels sind also lineare Funktionale und duale Abbildung. 
-	Die linearen Funktionale sind eine besondere \enquote{Klasse} von Operatoren,
-	nämlich solche die in die zugrundliegende Körper eines $\K$-VR $X$ abbilden.
-	Dazu schreiben man kurz $X' = \B(X,\K)$ und benutzen (gerne) kleine Buchstaben 
-	für Funktionale, also $x' \in X'$. \\
-	Der Dualraum (oder eine Teilmenge von Interesse) ist gut zu 
-	studieren und beinhaltet wesentlich alle Information des nomierten Raum 
-	in den Funktionalen. Durch Hahn-Banach können wir nämlich sehen, dass 
-	die Funktionale unseren normierten Raum trennen.
-	\par	
-	{\footnotesize Dabei sei erwähnt, dass es sich bei dem Dualraum 
-	(Dualsystem) um einen Spezialfall von sogenannten Bilinearsystemen handelt, denn
-	eine Bilinearform zugrunde liegt. Auch da kann man mit Hilfe eines beliebigen 
-	zweiten Vektorraum nützliches über den Ausgangsraum und ein Problem erfahren. 
-	(Vgl. Dazu Heuser Kapitel IX).}
-	\par
+	\begin{motivation}
+		Eine nützliche Inspirations- und Motivationsquelle ist in diesem Kapitel 
+		die Lineare Algebra. Es wird ein Fortsetzungsatz aus der Lineare Algebra 
+		auf normierte Räume erweitert werden. Der sogenannte Dualraum rückt in der 
+		Mittelpunkt der Betrachtung. Und vielleicht das Grundproblem der Linearen Algebra,
+		wann die Gleichung $Ax = y$ eine Lösung besitzt wird mithilfe von 
+		adjungierten Operatoren auch im unendlich-dimensionalen beschreibar.
+		\par
+		Thema dieses Kaptiels sind also lineare Funktionale und duale Abbildung. 
+		Die linearen Funktionale sind eine besondere \enquote{Klasse} von Operatoren,
+		nämlich solche die in die zugrundliegende Körper eines $\K$-VR $X$ abbilden.
+		Dazu schreiben man kurz $X' = \B(X,\K)$ und benutzen (gerne) kleine Buchstaben 
+		für Funktionale, also $x' \in X'$. \\
+		Der Dualraum (oder eine Teilmenge von Interesse) ist gut zu 
+		studieren und beinhaltet wesentlich alle Information des nomierten Raum 
+		in den Funktionalen. Durch Hahn-Banach können wir nämlich sehen, dass 
+		die Funktionale unseren normierten Raum trennen.
+		\par	
+		{\footnotesize Dabei sei erwähnt, dass es sich bei dem Dualraum 
+		(Dualsystem) um einen Spezialfall von sogenannten Bilinearsystemen handelt, denn
+		eine Bilinearform zugrunde liegt. Auch da kann man mit Hilfe eines beliebigen 
+		zweiten Vektorraum nützliches über den Ausgangsraum und ein Problem erfahren. 
+		(Vgl. Dazu Heuser Kapitel IX).}
+		\par
+	\end{motivation}
 	\begin{bem*} 
 		In diesem Kapitel kommt Bemerkung 3.11 besonders zum Tragen,
 		daher hier noch einmal die Aussage
@@ -38,10 +40,12 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Fortsetzungssätze von Hahn-Banach}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\footnotesize
-	Es geht um die Fortsetzbarkeit eines Funktionals. Genauer, angenommen man hat einen normierter Raum $X$ und ein lineares Funktional auf einem Untervektorraum $E\subseteq X$, $f: E \to \K$ gegeben.
-	Kann man dann $f$ auf $X$ so fortsetzen, dass die Fortsetzung auf kann X linear ist ? Die positive Beantwortung gibt der mächtige Satz von \textit{Hahn-Banach}, der in zunächst in sehr allgemeiner topologischen Form dargestellt, dann aber auch konkreter formuliert wird.
-\normalsize
+\begin{motivation}
+	\footnotesize
+		Es geht um die Fortsetzbarkeit eines Funktionals. Genauer, angenommen man hat einen normierter Raum $X$ und ein lineares Funktional auf einem Untervektorraum $E\subseteq X$, $f: E \to \K$ gegeben.
+		Kann man dann $f$ auf $X$ so fortsetzen, dass die Fortsetzung auf kann X linear ist ? Die positive Beantwortung gibt der mächtige Satz von \textit{Hahn-Banach}, der in zunächst in sehr allgemeiner topologischen Form dargestellt, dann aber auch konkreter formuliert wird.
+	\normalsize
+\end{motivation}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 	
 %%%%%% 3.1
@@ -221,14 +225,15 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Dualraum und Reflexivität}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\footnotesize
-Es wird de Dualraum genauer untersucht. Der Bidualraum wird als Dualraum des Dualraums eingeführt. Man findet eine kanonische Injektion von Raum in den Bidualraum (über das Funktional zu einem Funktional). 
-Ist die Bidualraum immer gleich dem Raum? 
-Diese Eigenschaft soll reflexiv heißen. Welchen Zusammenhang besteht zwischen reflexiv und vollständig?\\
-Hat man mehr Struktur durch einen Hilbertraum findet man eine explizite Darstellung eines Funktionals über das Skalarprodukt. Wie stehen da reflexiv und vollständig in Beziehung?\\
-Wir verallgemeiner den Orthogonalraum auf normierter Räume und seinen Dualraum. Welche topologische Eigenschaften haben solche Räume? Gibt es Normisomorphien?
+\begin{motivation}
+	\footnotesize
+	Es wird de Dualraum genauer untersucht. Der Bidualraum wird als Dualraum des Dualraums eingeführt. Man findet eine kanonische Injektion von Raum in den Bidualraum (über das Funktional zu einem Funktional). 
+	Ist die Bidualraum immer gleich dem Raum? 
+	Diese Eigenschaft soll reflexiv heißen. Welchen Zusammenhang besteht zwischen reflexiv und vollständig?\\
+	Hat man mehr Struktur durch einen Hilbertraum findet man eine explizite Darstellung eines Funktionals über das Skalarprodukt. Wie stehen da reflexiv und vollständig in Beziehung?\\
+	Wir verallgemeiner den Orthogonalraum auf normierter Räume und seinen Dualraum. Welche topologische Eigenschaften haben solche Räume? Gibt es Normisomorphien?
+\end{motivation}
 
-\normalsize
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 		\begin{definition}[Bidualraum]
@@ -238,12 +243,14 @@ Wir verallgemeiner den Orthogonalraum auf normierter Räume und seinen Dualraum.
 			Im allgemeinen, also im unendlichdimensionalen ist $X'' \neq X$.
 		\end{definition}
 
-		Wie \hyperref[def:5.7]{Definition 5.7} vermuten lässt besitzt der Dualraum 
-		$X'$ von $X$ als eigener normierter Raum auch einen Dualraum. 
-		Die Trennungsätze haben die Reichhaltigkeit dieses Dualraums gezeigt und
-		daher können wir $X$ in seinen Bidual $X''$ einbeten. 
-		$x$ kann also in folgendem Sinne als Linearform auf $X'$ aufgefasst werden.\\
-		Betrachte dazu:
+		\begin{motivation}
+		  Wie \hyperref[def:5.7]{Definition 5.7} vermuten lässt besitzt der Dualraum 
+			$X'$ von $X$ als eigener normierter Raum auch einen Dualraum. 
+			Die Trennungsätze haben die Reichhaltigkeit dieses Dualraums gezeigt und
+			daher können wir $X$ in seinen Bidual $X''$ einbeten. 
+			$x$ kann also in folgendem Sinne als Linearform auf $X'$ aufgefasst werden.\\
+			Betrachte dazu:
+		\end{motivation}
 
 		\begin{bem}[Einbettungsisomorphismus $J_X$]
 			\def\varI{Test}
@@ -289,12 +296,14 @@ Wir verallgemeiner den Orthogonalraum auf normierter Räume und seinen Dualraum.
 			und da $\K$ vollständig ist}). Da $J_X: X \to X''$ isometrisch isomorph ist, ist auch $X$ vollständig. 
 	\end{proof}
 
-	Der Hilbertraum kann als Prototyp eines {\it \enquote{schönen}} Raumes angesehen werden.
-	So finden wir eine konkrete Darstellung für seine Funktionale.
-	Der reflexive Raum kann in diesem Sinne als Versuch der Verallgemeinerung verstanden werden. 
-	Eine konkrete Darstellung werden wir auch für ihn nicht finden, aber 
-	wichtige Existenzaussagen und Kompaktheitseigenschaften werden wir beweisen können. 
-	Zunächst aber der Hilbertraum:
+	\begin{motivation}
+	  Der Hilbertraum kann als Prototyp eines {\it \enquote{schönen}} Raumes angesehen werden.
+		So finden wir eine konkrete Darstellung für seine Funktionale.
+		Der reflexive Raum kann in diesem Sinne als Versuch der Verallgemeinerung verstanden werden. 
+		Eine konkrete Darstellung werden wir auch für ihn nicht finden, aber 
+		wichtige Existenzaussagen und Kompaktheitseigenschaften werden wir beweisen können. 
+		Zunächst aber der Hilbertraum:
+	\end{motivation}
 
 %%%%%%%%%%%%%%%%%%%%%%%% 3.11
 	\begin{thm}[Darstellungssatz Frechet-Riesz]
@@ -555,15 +564,16 @@ Wir verallgemeiner den Orthogonalraum auf normierter Räume und seinen Dualraum.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 	\section{Duale und adjungierte Abbildungen}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\footnotesize
-In diesem Abschnitt wird die duale Abbildung definiert. Wann ist dieser stetig? 
-Was wissen über sein Kern und sein Bild? 
-Wie hängen Injektivität und Surjektivität vom Operator und seinem Dualen zusammen. Was ist mit dem Dualen des Dualen?
-Welche Rechenregeln gelten ? Folgt aus der Bijektivität eines Operatoren die Bijektivität seines Dualen und umgekehrt? \\
-Wenn wir sogar einen Hilbertraum haben, können wir (noch stärker) einen adjungiert Operator einführen und diesen mit Hilfe der Riesz-Einbettung eindeutig charakterisieren.
-Auch für den adjungierten Operatoren werden einige Rechenregel gezeigt.
-Welche Gleichheiten gelten für Bild und Kern von Operatoren und seinem Adjungierten?
-\normalsize
+\begin{motivation}
+  \footnotesize
+	In diesem Abschnitt wird die duale Abbildung definiert. Wann ist dieser stetig? 
+	Was wissen über sein Kern und sein Bild? 
+	Wie hängen Injektivität und Surjektivität vom Operator und seinem Dualen zusammen. Was ist mit dem Dualen des Dualen?
+	Welche Rechenregeln gelten ? Folgt aus der Bijektivität eines Operatoren die Bijektivität seines Dualen und umgekehrt? \\
+	Wenn wir sogar einen Hilbertraum haben, können wir (noch stärker) einen adjungiert Operator einführen und diesen mit Hilfe der Riesz-Einbettung eindeutig charakterisieren.
+	Auch für den adjungierten Operatoren werden einige Rechenregel gezeigt.
+	Welche Gleichheiten gelten für Bild und Kern von Operatoren und seinem Adjungierten?
+\end{motivation}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 	\begin{definition}[duale Operator]
 	\label{def:3.20}	
@@ -657,7 +667,6 @@ Welche Gleichheiten gelten für Bild und Kern von Operatoren und seinem Adjungie
 		\end{enumerate}
 	\end{proof}
 
-	Notiz:  hier Motivation für folgendes Korollar mündlich.
 	\begin{cor}[Bijektivität von der Inversen und des Dualen]
 	\label{cor:3.24}
 		$X, Y$ Banachräume, $T\in \BS$. Dann gilt 
@@ -732,10 +741,13 @@ Im folgenden Satz sind die Voraussetzungen zum Teil etwas stärker als sie seien
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 	\section{Schwache Konvergenz}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-Die schwache Konvergenz ist sehr nützlich und hilfreich. Sie ist in unserem
-Fall tatsächlich nichts anderes als punktweise Konvergenz von
-stetigen Linearformen gegen stetige Linearform. 
-Siehe dazu \hyperref[bem:3.31]{Bemerkung 3.31, a)}.
+	\begin{motivation}
+	  Die schwache Konvergenz ist sehr nützlich und hilfreich. Sie ist in unserem
+		Fall tatsächlich nichts anderes als punktweise Konvergenz von
+		stetigen Linearformen gegen stetige Linearform. 
+		Siehe dazu \hyperref[bem:3.31]{Bemerkung 3.31, a)}.
+	\end{motivation}
+
 	\begin{definition}[schwach und schwach$^*$ Konvergenz]
 	\label{def:3.30}
 		$X$ normierter Raum. 
@@ -762,7 +774,7 @@ Siehe dazu \hyperref[bem:3.31]{Bemerkung 3.31, a)}.
 	\label{bem:3.31}
 		In c) sei $X$ ein Banachraum. Sonst normierter Raum. 
 		\begin{enumerate}[a)]
-			\item  $x_n \wkc x \df J_x x_n \wskc J_x x_n$
+			\item  $x_n \wkc x \aq J_X x_n \wskc J_X x_n$
 			\item Wenn $(x_n)$ schwach konvergiert, dann ist der schwache Limes eindeutig. 
 			\item $x_n' \wskc x'$, dann $(\norm{x_n'})$ beschränkt und
 				$\norm{x'} \leq \limesinf \norm{x_n'}$ 
@@ -777,7 +789,7 @@ Siehe dazu \hyperref[bem:3.31]{Bemerkung 3.31, a)}.
 				$\fop{x_n,x_n'} \to \fop{x,x'}$.
 			\item $\dim X < \infty \df  (x_n \wkc x \aq x_n \to x)$ und  
 				$(x_n' \wskc x \aq x_n' \wkc x')$
-			\item $X$ reflexiv, dann $x_n \wkc x \aq x_n' \wskc x'$ 
+			\item $X$ reflexiv, dann $x_n' \wkc x' \aq x_n' \wskc x'$ 
 				($"' \df "'$ gilt auch ohne Reflexivität)
 		\end{enumerate}
 	\end{bem}
